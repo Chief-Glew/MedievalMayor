@@ -2,7 +2,7 @@ package com.fdmgroup.medievalmayor;
 
 import java.util.List;
 
-public class BuildingManager {
+public class BuildingManager implements Buildable, PersonAssigner {
 
 	private List<Building> cityBuildings;
 	
@@ -14,15 +14,20 @@ public class BuildingManager {
 		
 	}
 	
-	public ResourceBuilding BuildAMine(){
+	public ResourceBuilding buildAMine(){
 		
 	}
 	
-	public ResourceBuilding BuildAFarm(){
+	public ResourceBuilding buildAFarm(){
 		
 	}
 	
 	public int getPeopleInBuilding(ResourceBuilding building){
 		
 	}
+
+
+
+
+
 }
