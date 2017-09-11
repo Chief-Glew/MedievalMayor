@@ -1,4 +1,4 @@
-package main.java;
+package com.fdmgroup.medievalmayor;
 
 public interface Buildable {
 

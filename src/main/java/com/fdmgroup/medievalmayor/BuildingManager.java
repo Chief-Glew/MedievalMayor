@@ -1,14 +1,16 @@
 package com.fdmgroup.medievalmayor;
 
+import java.util.List;
+
 public class BuildingManager {
 
 	private List<Building> cityBuildings;
 	
-	public void assignPeopleToBuilding(int numberOfPeople, Building building){
+	public void assignPeopleToBuilding(int numberOfPeople, ResourceBuilding building){
 		
 	}
 	
-	public void removePeopleFromBuilding(int numberOfPeople, Building building){
+	public void removePeopleFromBuilding(int numberOfPeople, ResourceBuilding building){
 		
 	}
 	
@@ -20,7 +22,7 @@ public class BuildingManager {
 		
 	}
 	
-	public int getPeopleInBuilding(Building building){
+	public int getPeopleInBuilding(ResourceBuilding building){
 		
 	}
 }
