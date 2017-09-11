@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor;
+package com.fdmgroup.medievalmayor.building;
 
 public abstract class Building {
 

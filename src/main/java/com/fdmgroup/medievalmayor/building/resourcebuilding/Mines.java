@@ -1,7 +1,8 @@
-package com.fdmgroup.medievalmayor;
+package com.fdmgroup.medievalmayor.building.resourcebuilding;
 
 public class Mines extends ResourceBuilding{
 
+	private int numberOfMines;
 	
 	private Mines(){}
 	
@@ -14,9 +15,9 @@ public class Mines extends ResourceBuilding{
 	}
 	
 	@Override
-	public void produceResource() {
-		// TODO Auto-generated method stub
-		
+	public int produceResource() {
+		int goldProduced = getNumberOfPeopleInBuilding()*2;
+		return goldProduced;
 	}
 
 	

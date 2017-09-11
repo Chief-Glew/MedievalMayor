@@ -1,5 +1,5 @@
 package com.fdmgroup.medievalmayor;
 
-public class Test {
+public class MineTest {
 
 }

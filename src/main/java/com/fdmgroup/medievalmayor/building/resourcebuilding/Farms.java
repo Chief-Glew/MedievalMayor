@@ -1,8 +1,10 @@
-package com.fdmgroup.medievalmayor;
+package com.fdmgroup.medievalmayor.building.resourcebuilding;
 
 public class Farms extends ResourceBuilding{
 
-	private Farms(){}
+	private Farms(){
+		
+	}
 	
 	public static class FarmsInstanceHolder{
 		private static final Farms INSTANCE = new Farms();
@@ -13,9 +15,9 @@ public class Farms extends ResourceBuilding{
 	}
 	
 	@Override
-	public void produceResource() {
-		// TODO Auto-generated method stub
-		
+	public int produceResource() {
+		int foodProduced = getNumberOfPeopleInBuilding()*3;
+		return foodProduced;
 	}
 
 }
