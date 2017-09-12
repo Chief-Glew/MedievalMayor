@@ -68,6 +68,7 @@ public class City implements IdAble{
 	public void updateResources() {
 		gold += mine.produceResource();
 		food += farm.produceResource();
+		food -= totalPopulation;
 	}
 
 	@Override

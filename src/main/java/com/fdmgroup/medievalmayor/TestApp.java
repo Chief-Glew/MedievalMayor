@@ -10,5 +10,4 @@ public class TestApp {
 		
 		cityCrud.create(city);
 	}
-
 }

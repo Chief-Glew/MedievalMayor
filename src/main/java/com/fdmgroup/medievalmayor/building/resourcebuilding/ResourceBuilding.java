@@ -9,7 +9,9 @@ import com.fdmgroup.medievalmayor.building.Building;
 public abstract class ResourceBuilding extends Building{
 	@Column(name="NO_ASSIGNED_WORKERS")
 	private int noOfAssignedWorkers;
-	
+	@Column(name="RESOURCE_MODIFIER")
+	private int modifier;
+
 	public abstract int produceResource();
 
 	public int getNumberOfPeopleInBuilding() {
