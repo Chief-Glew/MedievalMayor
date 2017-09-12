@@ -40,6 +40,7 @@ public class UserHomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("totalPopulation", city.getTotalPopulation());
 		request.setAttribute("unnassignedPeople", city.getUnassignedPopulation());
 		request.setAttribute("farmers", buildingManager.getPeopleInBuilding(farms));
 		request.setAttribute("miners", buildingManager.getPeopleInBuilding(mines));
