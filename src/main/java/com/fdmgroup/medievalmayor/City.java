@@ -7,8 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Farms;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Mines;
+import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
+import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
 
 @Entity(name="CITY")
 public class City implements IdAble{
@@ -26,23 +26,19 @@ public class City implements IdAble{
 	@Column(name="FOOD")
 	private int food;
 	@Transient
-	private Farms farm;
+	private Farm farm;
 	@Transient
-	private Mines mine;
+	private Mine mine;
 
 	public City(){};
 
-	private City(int unassignedPopulation){
-		this.unassignedPopulation = unassignedPopulation;	
-				farm = Farms.getInstance();
-				mine = Mines.getInstance();
-	}
-
-	public static class CityInstanceHolder{
-		private static final City INSTANCE = new City(10);
-	}
-	public static City getInstance(){
-		return CityInstanceHolder.INSTANCE;
+	public City(int totalPopulation, int food, int gold, Farm farm, Mine mine){
+		this.unassignedPopulation = totalPopulation;
+		this.totalPopulation = totalPopulation;
+		this.food = food;
+		this.gold = gold;
+		this.farm = farm;
+		this.mine = mine;
 	}
 
 	public int getTotalPopulation() {
@@ -51,6 +47,22 @@ public class City implements IdAble{
 
 	public int getUnassignedPopulation() {
 		return unassignedPopulation;
+	}
+
+	public long getCityId() {
+		return cityId;
+	}
+
+	public void setTotalPopulation(int totalPopulation) {
+		this.totalPopulation = totalPopulation;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+
+	public void setFood(int food) {
+		this.food = food;
 	}
 
 	public void setUnassignedPopulation(int numberOfPeople) {
@@ -65,14 +77,16 @@ public class City implements IdAble{
 		return food;
 	}
 
-	public void updateResources() {
-		gold += mine.produceResource();
-		food += farm.produceResource();
-		food -= totalPopulation;
-	}
-
 	@Override
 	public long getId() {
 		return cityId;
+	}
+
+	public Farm getFarm() {
+		return farm;
+	}
+
+	public Mine getMine() {
+		return mine;
 	}
 }

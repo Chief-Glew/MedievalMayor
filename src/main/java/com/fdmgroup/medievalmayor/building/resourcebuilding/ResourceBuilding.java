@@ -7,18 +7,33 @@ import com.fdmgroup.medievalmayor.building.Building;
 
 @MappedSuperclass
 public abstract class ResourceBuilding extends Building{
-	@Column(name="NO_ASSIGNED_WORKERS")
-	private int noOfAssignedWorkers;
-	@Column(name="RESOURCE_MODIFIER")
-	private int modifier;
+	@Column(name="NUMBER_ASSIGNED_WORKERS")
+	private int numberOfAssignedWorkers;
+	@Column(name="RESOURCE_MULTIPLIER")
+	private int multiplier;
+	
+	public ResourceBuilding() {
+	}
+
+	public ResourceBuilding(int multiplier) {
+		this.multiplier = multiplier;
+	}
 
 	public abstract int produceResource();
+	
+	public void setMultiplier(int multiplier) {
+		this.multiplier = multiplier;
+	}
 
-	public int getNumberOfPeopleInBuilding() {
-		return noOfAssignedWorkers;
+	public int getMultiplier() {
+		return multiplier;
+	}
+
+	public int getNoOfAssignedWorkers() {
+		return numberOfAssignedWorkers;
 	}
 
 	public void setNumberOfPeopleInBuilding(int numberOfPeople) {
-		noOfAssignedWorkers = numberOfPeople;
+		numberOfAssignedWorkers = numberOfPeople;
 	}
 }

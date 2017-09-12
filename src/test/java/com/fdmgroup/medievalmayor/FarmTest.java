@@ -6,17 +6,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.fdmgroup.medievalmayor.building.BuildingManager;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Farms;
+import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
 
 public class FarmTest {
-	private Farms farm;
+	private Farm farm;
 	private BuildingManager buildingManager;
 	
 	@Before
 	public void init(){
-		farm = Farms.getInstance();
+		farm = Farm.getInstance();
 		buildingManager = BuildingManager.getInstance();
 	}
 	

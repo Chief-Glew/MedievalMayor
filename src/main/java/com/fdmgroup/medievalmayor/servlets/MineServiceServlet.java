@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fdmgroup.medievalmayor.City;
 import com.fdmgroup.medievalmayor.building.BuildingManager;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Mines;
+import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
 import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
 
@@ -21,7 +21,7 @@ import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
 @WebServlet({ "/MineServiceServlet", "/mineService" })
 public class MineServiceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private Mines mine;
+    private Mine mine;
     private BuildingManager buildingManager;
 	private City city;
 	
@@ -30,7 +30,7 @@ public class MineServiceServlet extends HttpServlet {
      */
     public MineServiceServlet() {
         super();
-        mine = Mines.getInstance();
+        mine = Mine.getInstance();
         buildingManager = BuildingManager.getInstance();
 		city = City.getInstance();
     }

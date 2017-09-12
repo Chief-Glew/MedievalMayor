@@ -15,7 +15,7 @@ public class BuildingManager implements Buildable, PersonAssigner {
 
 	private BuildingManager(List<Building> cityBuildings){
 		this.cityBuildings = cityBuildings;
-		city = City.getInstance();
+		
 	}
 
 	public static class BuildingManagerInstanceHolder{
@@ -30,7 +30,7 @@ public class BuildingManager implements Buildable, PersonAssigner {
 		if(numberOfPeopleToAssign < 0){
 			throw new AssignedNegativeNumberException("Cannot assign a negative number of people to a building");
 		}
-		int currentPeople = building.getNumberOfPeopleInBuilding();
+		int currentPeople = building.getNoOfAssignedWorkers();
 		int difference = numberOfPeopleToAssign - currentPeople;
 		int unassignedPeople = city.getUnassignedPopulation();
 		if(difference > unassignedPeople){
@@ -39,7 +39,7 @@ public class BuildingManager implements Buildable, PersonAssigner {
 		building.setNumberOfPeopleInBuilding(numberOfPeopleToAssign);
 		city.setUnassignedPopulation(unassignedPeople - difference);
 	}
-
+ 
 	public ResourceBuilding buildAMine(){
 		return null;
 
@@ -52,7 +52,7 @@ public class BuildingManager implements Buildable, PersonAssigner {
 
 	public int getPeopleInBuilding(ResourceBuilding building){
 
-		return building.getNumberOfPeopleInBuilding();
+		return building.getNoOfAssignedWorkers();
 
 	}
 

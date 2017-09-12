@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fdmgroup.medievalmayor.City;
 import com.fdmgroup.medievalmayor.building.BuildingManager;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Farms;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Mines;
+import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
+import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
 
 /**
  * Servlet implementation class UserHomeServlet
@@ -22,17 +22,17 @@ public class UserHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private City city;
     private BuildingManager buildingManager;
-    private Farms farms;
-    private Mines mines;
+    private Farm farms;
+    private Mine mines;
     /**
-     * @see HttpServlet#HttpServlet()
+     * @see HttpServlet#HttpServlet() 
      */
     public UserHomeServlet() {
         super();
         city = City.getInstance();
         buildingManager = BuildingManager.getInstance();
-        farms = Farms.getInstance();
-        mines = Mines.getInstance();
+        farms = Farm.getInstance();
+        mines = Mine.getInstance();
         
     }
 
@@ -54,7 +54,7 @@ public class UserHomeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		city.updateResources();
+		city.updateTurn();
 		doGet(request, response);
 	}
 

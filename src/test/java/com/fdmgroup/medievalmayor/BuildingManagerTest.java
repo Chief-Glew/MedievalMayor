@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.fdmgroup.medievalmayor.building.BuildingManager;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Farms;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Mines;
+import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
+import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.ResourceBuilding;
 import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
@@ -22,8 +22,8 @@ public class BuildingManagerTest {
 	@Before
 	public void init(){
 		buildingManager = BuildingManager.getInstance();
-		farm = Farms.getInstance();
-		mine = Mines.getInstance();
+		farm = Farm.getInstance();
+		mine = Mine.getInstance();
 		city= City.getInstance();
 		try {
 			buildingManager.assignPeopleToBuilding(0, mine);

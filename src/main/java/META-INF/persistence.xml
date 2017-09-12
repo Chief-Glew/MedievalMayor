@@ -6,6 +6,7 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>com.fdmgroup.medievalmayor.building.Building</class>
 		<class>com.fdmgroup.medievalmayor.City</class>
+		<class>com.fdmgroup.medievalmayor.building.resourcebuilding.ResourceBuilding</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/xe" />
