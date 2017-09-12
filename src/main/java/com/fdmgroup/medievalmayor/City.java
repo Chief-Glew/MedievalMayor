@@ -5,13 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Farms;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Mines;
 
 @Entity(name="CITY")
 public class City implements IdAble{
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="CITY_ID")
@@ -24,26 +25,26 @@ public class City implements IdAble{
 	private int gold;
 	@Column(name="FOOD")
 	private int food;
-//	@Column(name="FARM")
-//	private Farms farm;
-//	@Column(name="MINE")
-//	private Mines mine;
-	
+	@Transient
+	private Farms farm;
+	@Transient
+	private Mines mine;
+
 	public City(){};
-	
+
 	private City(int unassignedPopulation){
 		this.unassignedPopulation = unassignedPopulation;	
-//		farm = Farms.getInstance();
-//		mine = Mines.getInstance();
+				farm = Farms.getInstance();
+				mine = Mines.getInstance();
 	}
-	
+
 	public static class CityInstanceHolder{
 		private static final City INSTANCE = new City(10);
 	}
 	public static City getInstance(){
 		return CityInstanceHolder.INSTANCE;
 	}
-	
+
 	public int getTotalPopulation() {
 		return totalPopulation;
 	}
@@ -64,10 +65,10 @@ public class City implements IdAble{
 		return food;
 	}
 
-//	public void updateResources() {
-//		gold += mine.produceResource();
-//		food += farm.produceResource();
-//	}
+	public void updateResources() {
+		gold += mine.produceResource();
+		food += farm.produceResource();
+	}
 
 	@Override
 	public long getId() {
