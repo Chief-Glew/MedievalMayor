@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fdmgroup.medievalmayor.City;
+import com.fdmgroup.medievalmayor.CityService;
+import com.fdmgroup.medievalmayor.FarmService;
 import com.fdmgroup.medievalmayor.building.BuildingManager;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
@@ -18,20 +20,24 @@ import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
 /**
  * Servlet implementation class FarmServiceServlet
  */
-@WebServlet({ "/Farmservice", "/farmservice", "/farmService", "/FarmService" })
+@WebServlet({ "/Farmservice{}", "/farmservice", "/farmService", "/FarmService" })
 public class FarmServiceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Farm farm;  
+	private FarmService farmService;  
 	private BuildingManager buildingManager;
+	private CityService cityService;
 	private City city;
+	private Farm farm;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public FarmServiceServlet() {
 		super(); 
-		farm = Farm.getInstance();
+		farmService = FarmService.getInstance();
 		buildingManager = BuildingManager.getInstance();
-		city = City.getInstance();
+		cityService = CityService.getInstance();
+		
 	} 
 
 	/**
@@ -39,8 +45,8 @@ public class FarmServiceServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("currentAssigned", buildingManager.getPeopleInBuilding(farm));
-		int maxAssignable = buildingManager.getPeopleInBuilding(farm) + city.getUnassignedPopulation();
+		request.setAttribute("currentAssigned", buildingManager.getPeopleInBuilding(farmService));
+		int maxAssignable = buildingManager.getPeopleInBuilding(farmService) + cityService.getUnassignedPopulation();
 		request.setAttribute("maxAssignable", maxAssignable);
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("./WEB-INF/farmService.jsp");
@@ -53,7 +59,7 @@ public class FarmServiceServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int newAssignedPopulation = Integer.valueOf(request.getParameter("newAssignedPopulation"));
 		try {
-			buildingManager.assignPeopleToBuilding(newAssignedPopulation, farm);
+			buildingManager.assignPeopleToBuilding(newAssignedPopulation, farmService);
 		} catch (InsufficentPopulationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
