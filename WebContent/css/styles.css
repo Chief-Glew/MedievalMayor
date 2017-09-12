@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Artifika|Roboto');
+/* 
+=======================
+GLOBAL STYLING SETTINGS
+=======================
+*/
+
+/* Sets the generic styling for the main body of the page */
+body { 
+	background-color: #fff; 	/* Sets the  background colour to white */
+	color: #777; 				/* Sets the text colour to black */
+	font: normal 24px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif; /* Sets the font size and font type. Fonts are ordered in a priority system, with the first one being preferred and the rest being fallbacks.*/
+}
+
+.image {
+    margin-left: 25%;
+    width: 50%;
+    border: 3px solid green;
+    }
+}
+
