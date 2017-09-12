@@ -1,21 +1,40 @@
 package com.fdmgroup.medievalmayor;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Farms;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Mines;
 
-public class City {
+@Entity(name="CITY")
+public class City implements IdAble{
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="CITY_ID")
+	private long cityId;
+	@Column(name="TOTAL_POPULATION")
 	private int totalPopulation;
+	@Column(name="UNASSIGNED_POPULATION")
 	private int unassignedPopulation;
+	@Column(name="GOLD")
 	private int gold;
+	@Column(name="FOOD")
 	private int food;
-	private Farms farm;
-	private Mines mine;
+//	@Column(name="FARM")
+//	private Farms farm;
+//	@Column(name="MINE")
+//	private Mines mine;
+	
+	public City(){};
 	
 	private City(int unassignedPopulation){
 		this.unassignedPopulation = unassignedPopulation;	
-		farm = Farms.getInstance();
-		mine = Mines.getInstance();
+//		farm = Farms.getInstance();
+//		mine = Mines.getInstance();
 	}
 	
 	public static class CityInstanceHolder{
@@ -45,8 +64,13 @@ public class City {
 		return food;
 	}
 
-	public void updateResources() {
-		gold += mine.produceResource();
-		food += farm.produceResource();
+//	public void updateResources() {
+//		gold += mine.produceResource();
+//		food += farm.produceResource();
+//	}
+
+	@Override
+	public long getId() {
+		return cityId;
 	}
 }
