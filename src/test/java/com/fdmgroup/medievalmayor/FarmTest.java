@@ -7,28 +7,38 @@ import org.junit.Test;
 
 import com.fdmgroup.medievalmayor.building.BuildingManager;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
+import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
 import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
 
 public class FarmTest {
 	private Farm farm;
+	private Mine mine;
 	private BuildingManager buildingManager;
+	private City city;
+	private CityService cityService;
+
 	
 	@Before
 	public void init(){
 		farm = new Farm(3);
+		mine = new Mine(1);
+		cityService = CityService.getInstance();
+		city = new City(10,20,5,farm,mine);
 		buildingManager = BuildingManager.getInstance();
 	}
 	
 	@Test
 	public void testThatWhenOnePersonIsAssignedToAFarmThreeFoodIsProduced() throws InsufficentPopulationException, AssignedNegativeNumberException{
-		buildingManager.assignPeopleToBuilding(1, farm);
+		cityService.assignPeopleToFarm(city, 1);
+		cityService.updateTurn(city);
 		assertEquals(3,farm.produceResource());
 	}
 	
 	@Test
 	public void testThatWhenTwoPeopleIsAssignedToAFarmSixFoodIsProduced() throws InsufficentPopulationException, AssignedNegativeNumberException{
-		buildingManager.assignPeopleToBuilding(2, farm);
+		cityService.assignPeopleToFarm(city, 2);
+		cityService.updateTurn(city);
 		assertEquals(6,farm.produceResource());
 	}
 	

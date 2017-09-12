@@ -11,11 +11,10 @@ import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
 public class BuildingManager implements Buildable, PersonAssigner {
 
 	private List<Building> cityBuildings;
-	private City city;
 
 	private BuildingManager(List<Building> cityBuildings){
 		this.cityBuildings = cityBuildings;
-		
+
 	}
 
 	public static class BuildingManagerInstanceHolder{
@@ -26,20 +25,19 @@ public class BuildingManager implements Buildable, PersonAssigner {
 		return BuildingManagerInstanceHolder.INSTANCE;
 	}
 
-	public void assignPeopleToBuilding(int numberOfPeopleToAssign, ResourceBuilding building) throws InsufficentPopulationException, AssignedNegativeNumberException {
+	public int assignPeopleToBuilding(int numberOfPeopleToAssign, int numberOfPeopleAvailible, ResourceBuilding building) throws InsufficentPopulationException, AssignedNegativeNumberException {
 		if(numberOfPeopleToAssign < 0){
 			throw new AssignedNegativeNumberException("Cannot assign a negative number of people to a building");
 		}
 		int currentPeople = building.getNoOfAssignedWorkers();
 		int difference = numberOfPeopleToAssign - currentPeople;
-		int unassignedPeople = city.getUnassignedPopulation();
-		if(difference > unassignedPeople){
+		if(difference > numberOfPeopleAvailible){
 			throw new InsufficentPopulationException("Insufficent population available");
 		}
 		building.setNumberOfPeopleInBuilding(numberOfPeopleToAssign);
-		city.setUnassignedPopulation(unassignedPeople - difference);
+		return (numberOfPeopleAvailible - difference);
 	}
- 
+
 	public ResourceBuilding buildAMine(){
 		return null;
 
@@ -55,9 +53,4 @@ public class BuildingManager implements Buildable, PersonAssigner {
 		return building.getNoOfAssignedWorkers();
 
 	}
-
-
-
-
-
 }

@@ -1,7 +1,10 @@
 package com.fdmgroup.medievalmayor;
 
+import com.fdmgroup.medievalmayor.building.BuildingManager;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
+import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
+import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
 
 public class CityService {
 	
@@ -60,6 +63,17 @@ public class CityService {
 		food -= city.getTotalPopulation(); 
 		city.setFood(food);
 		city.setGold(gold);
+	}
+	
+	public void assignPeopleToFarm(City city, int numberOfPeople){
+		Farm farm = city.getFarm();
+		try {
+			BuildingManager.getInstance().assignPeopleToBuilding
+			(numberOfPeople, city.getUnassignedPopulation(), farm);
+		} catch (InsufficentPopulationException | AssignedNegativeNumberException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
