@@ -25,14 +25,14 @@ public class UserHomeServlet extends HttpServlet {
     private Farm farms;
     private Mine mines;
     /**
-     * @see HttpServlet#HttpServlet() 
+     * @see HttpServlet#HttpServlet()  
      */
     public UserHomeServlet() {
         super();
         city = City.getInstance();
         buildingManager = BuildingManager.getInstance();
         farms = Farm.getInstance();
-        mines = Mine.getInstance();
+        mines = Mine.getInstance(); 
         
     }
 
@@ -44,7 +44,7 @@ public class UserHomeServlet extends HttpServlet {
 		request.setAttribute("unnassignedPeople", city.getUnassignedPopulation());
 		request.setAttribute("farmers", buildingManager.getPeopleInBuilding(farms));
 		request.setAttribute("miners", buildingManager.getPeopleInBuilding(mines));
-		request.setAttribute("food", city.getFood());
+		request.setAttribute("food", city.getFood());  
 		request.setAttribute("gold", city.getGold());
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("./WEB-INF/userHome.jsp");
