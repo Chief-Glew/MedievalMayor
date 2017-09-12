@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fdmgroup.medievalmayor.City;
+import com.fdmgroup.medievalmayor.CityService;
+import com.fdmgroup.medievalmayor.FarmService;
 import com.fdmgroup.medievalmayor.building.BuildingManager;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
@@ -18,12 +20,15 @@ import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
 /**
  * Servlet implementation class FarmServiceServlet
  */
-@WebServlet({ "/Farmservice", "/farmservice", "/farmService", "/FarmService" })
+@WebServlet({ "/Farmservice{}", "/farmservice", "/farmService", "/FarmService" })
 public class FarmServiceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FarmService farmService;  
 	private BuildingManager buildingManager;
 	private CityService cityService;
+	private City city;
+	private Farm farm;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -31,7 +36,8 @@ public class FarmServiceServlet extends HttpServlet {
 		super(); 
 		farmService = FarmService.getInstance();
 		buildingManager = BuildingManager.getInstance();
-		cityService = City.getInstance();
+		cityService = CityService.getInstance();
+		
 	} 
 
 	/**

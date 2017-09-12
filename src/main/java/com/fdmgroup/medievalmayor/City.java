@@ -25,6 +25,8 @@ public class City implements IdAble{
 	private int gold;
 	@Column(name="FOOD")
 	private int food;
+	//@Join
+	//@OneToOne("FARM")
 	@Transient
 	private Farm farm;
 	@Transient

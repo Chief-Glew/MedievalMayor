@@ -16,7 +16,7 @@ public class FarmTest {
 	
 	@Before
 	public void init(){
-		farm = Farm.getInstance();
+		farm = new Farm(3);
 		buildingManager = BuildingManager.getInstance();
 	}
 	
