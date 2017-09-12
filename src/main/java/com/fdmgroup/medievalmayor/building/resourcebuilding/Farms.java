@@ -1,10 +1,6 @@
 package com.fdmgroup.medievalmayor.building.resourcebuilding;
 
 public class Farms extends ResourceBuilding{
-
-	private Farms(){
-		
-	}
 	
 	public static class FarmsInstanceHolder{
 		private static final Farms INSTANCE = new Farms();
