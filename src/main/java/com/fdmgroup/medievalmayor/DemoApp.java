@@ -1,10 +1,14 @@
 package com.fdmgroup.medievalmayor;
 
-import com.fdmgroup.medievalmayor.building.BuildingManager;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
-import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
-import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
+import com.fdmgroup.medievalmayor.game.City;
+import com.fdmgroup.medievalmayor.game.CityService;
+import com.fdmgroup.medievalmayor.game.building.BuildingManager;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.FarmService;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.MineService;
+import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
+import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
 
 public class DemoApp {
 

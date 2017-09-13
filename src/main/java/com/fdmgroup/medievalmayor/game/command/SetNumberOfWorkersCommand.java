@@ -1,9 +1,13 @@
-package com.fdmgroup.medievalmayor.command;
+package com.fdmgroup.medievalmayor.game.command;
 
+<<<<<<< HEAD:src/main/java/com/fdmgroup/medievalmayor/command/SetNumberOfWorkersCommand.java
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.building.resourcebuilding.ResourceBuilding;
+=======
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
+>>>>>>> commandMerger:src/main/java/com/fdmgroup/medievalmayor/game/command/SetNumberOfWorkersCommand.java
 
 public class SetNumberOfWorkersCommand implements UserCommand {
 	

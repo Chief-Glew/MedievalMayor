@@ -5,11 +5,18 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+<<<<<<< HEAD
 import com.fdmgroup.medievalmayor.building.BuildingManager;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
 import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
+=======
+import com.fdmgroup.medievalmayor.game.building.BuildingManager;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
+import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
+import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
+>>>>>>> commandMerger
 
 public class FarmTest {
 	private Farm farm;

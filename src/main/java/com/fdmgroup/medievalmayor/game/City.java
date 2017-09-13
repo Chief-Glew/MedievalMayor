@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor;
+package com.fdmgroup.medievalmayor.game;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,11 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
+<<<<<<< HEAD:src/main/java/com/fdmgroup/medievalmayor/City.java
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
+=======
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
+>>>>>>> commandMerger:src/main/java/com/fdmgroup/medievalmayor/game/City.java
 
 @Entity(name="CITY")
 public class City implements IdAble{

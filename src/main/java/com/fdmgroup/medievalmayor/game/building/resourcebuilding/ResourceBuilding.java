@@ -1,12 +1,16 @@
-package com.fdmgroup.medievalmayor.building.resourcebuilding;
+package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+<<<<<<< HEAD:src/main/java/com/fdmgroup/medievalmayor/building/resourcebuilding/ResourceBuilding.java
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.building.Building;
+=======
+import com.fdmgroup.medievalmayor.game.building.Building;
+>>>>>>> commandMerger:src/main/java/com/fdmgroup/medievalmayor/game/building/resourcebuilding/ResourceBuilding.java
 
 @MappedSuperclass
 public abstract class ResourceBuilding extends Building{

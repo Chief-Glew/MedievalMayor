@@ -1,5 +1,6 @@
-package com.fdmgroup.medievalmayor.building;
+package com.fdmgroup.medievalmayor.game.building;
 
+<<<<<<< HEAD:src/main/java/com/fdmgroup/medievalmayor/building/BuildingManager.java
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,19 @@ public class BuildingManager implements Buildable, PersonAssigner {
 
 	}
 
+=======
+import com.fdmgroup.medievalmayor.game.City;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
+import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
+import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
+
+public class BuildingManager implements Buildable, PersonAssigner {
+
+	private City city;
+
+>>>>>>> commandMerger:src/main/java/com/fdmgroup/medievalmayor/game/building/BuildingManager.java
 	public static class BuildingManagerInstanceHolder{
-		private static final BuildingManager INSTANCE = new BuildingManager(new ArrayList<Building>());
+		private static final BuildingManager INSTANCE = new BuildingManager();
 	}
 
 	public static BuildingManager getInstance(){
