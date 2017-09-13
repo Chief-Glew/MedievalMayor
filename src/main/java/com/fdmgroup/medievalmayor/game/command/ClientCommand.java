@@ -29,4 +29,10 @@ public class ClientCommand {
 		commandInvoker.setCommand(nextTurn);
 		commandInvoker.invokeCommands();
 	}
+	
+	public void setNumberOfWorkersInResourceBuildingForCity(City city, ResourceBuilding resourceBuilding, int numberOfPeopleToAssign){
+		UserCommand setNumberOfWorkers = new SetNumberOfWorkersInBuildingFromCityCommand(city, resourceBuilding, numberOfPeopleToAssign);
+		commandInvoker.setCommand(setNumberOfWorkers);
+		commandInvoker.invokeCommands();
+	}
 }

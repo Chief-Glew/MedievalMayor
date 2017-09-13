@@ -1,18 +1,25 @@
 package com.fdmgroup.medievalmayor.servlets;
 
+import java.util.HashMap;
 import java.util.Set;
 
+import javax.servlet.annotation.WebServlet;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestBody;
 import com.fdmgroup.medievalmayor.CRUD.GenericRead;
 import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
 import com.fdmgroup.medievalmayor.game.City;
 import com.fdmgroup.medievalmayor.game.CityFactory;
 import com.fdmgroup.medievalmayor.game.building.BuildingManager;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
-
+@Controller
+@RequestMapping(value = {"/medievalmayor"})
 public class CityController {
 	@Autowired
 	private GenericRead<City> readCrud;
@@ -26,6 +33,7 @@ public class CityController {
 
 	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
 	public String showCities(Model model){
+		System.out.println("root");
 		Set<City> cities = readCrud.readAll();
 		model.addAttribute("cities", cities);
 		return "index";
@@ -53,4 +61,35 @@ public class CityController {
 
 		return "userHome"; 
 	} 
+	
+	@RequestMapping(value = { "/MineServiceServlet", "/mineService" }, method = RequestMethod.GET)
+	public String displayMinerAsignerForm(Model model) {
+		model.addAttribute("currentAssigned", buildingManager.getPeopleInBuilding(city.getMine()));
+		int maxAssignable = buildingManager.getPeopleInBuilding(city.getMine()) + city.getUnassignedPopulation();
+		model.addAttribute("maxAssignable", maxAssignable);
+		return "mineService";
+	}
+	
+	@RequestMapping(value = { "/MineServiceServlet", "/mineService" }, method = RequestMethod.GET)
+	public String submitNewMinerAssignment(@RequestBody HashMap<String,String> formData) {
+		int newAssignedPopulation = Integer.valueOf(formData.get("newAssignedPopulation"));
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getMine(), newAssignedPopulation);
+		return "userHome";
+	}
+	
+	@RequestMapping(value = {  "/Farmservice", "/farmservice", "/farmService", "/FarmService" }, method = RequestMethod.GET)
+	public String displayFarmerAsignerForm(Model model) {
+		model.addAttribute("currentAssigned", buildingManager.getPeopleInBuilding(city.getFarm()));
+		int maxAssignable = buildingManager.getPeopleInBuilding(city.getFarm()) + city.getUnassignedPopulation();
+		model.addAttribute("maxAssignable", maxAssignable);
+		return "mineService";
+	}
+	
+	@RequestMapping(value = {  "/Farmservice", "/farmservice", "/farmService", "/FarmService" }, method = RequestMethod.GET)
+	public String submitNewFarmerAssignment(@RequestBody HashMap<String,String> formData) {
+		int newAssignedPopulation = Integer.valueOf(formData.get("newAssignedPopulation"));
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getFarm(), newAssignedPopulation);
+		return "userHome";
+	}
+	
 }
