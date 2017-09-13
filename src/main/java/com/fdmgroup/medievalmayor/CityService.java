@@ -1,8 +1,12 @@
 package com.fdmgroup.medievalmayor;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
 
+@Component
 public class CityService {
 	
 	private MineService mineService;
@@ -11,6 +15,8 @@ public class CityService {
 	private static class CityServiceInstanceHolder{
 		private static final CityService INSTANCE = new CityService();
 	}
+	
+	@Autowired
 	private CityService(){
 		mineService = MineService.getInstance();
 		farmService = FarmService.getInstance();
