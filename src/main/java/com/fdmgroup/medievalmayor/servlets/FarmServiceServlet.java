@@ -9,21 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
-import com.fdmgroup.medievalmayor.City;
-import com.fdmgroup.medievalmayor.CityService;
-import com.fdmgroup.medievalmayor.FarmService;
-import com.fdmgroup.medievalmayor.building.BuildingManager;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
-import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
-import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
-=======
 import com.fdmgroup.medievalmayor.game.City;
+import com.fdmgroup.medievalmayor.game.CityService;
 import com.fdmgroup.medievalmayor.game.building.BuildingManager;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.FarmService;
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
->>>>>>> commandMerger
 
 /**
  * Servlet implementation class FarmServiceServlet

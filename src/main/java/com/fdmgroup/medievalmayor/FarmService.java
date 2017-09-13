@@ -3,7 +3,7 @@ package com.fdmgroup.medievalmayor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 
 public class FarmService {
 	

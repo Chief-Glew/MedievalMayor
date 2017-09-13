@@ -25,7 +25,7 @@ public class SpringDemoApp {
 		Mine mine = new Mine(3);
 		City city = new City(10, 20, 5, new Farm(3), mine);
 		try {
-			BuildingManager.getInstance().assignPeopleToBuilding(city, 2, mine);
+			BuildingManager.getInstance().assignPeopleToBuilding(2,10,mine);
 		} catch (InsufficentPopulationException | AssignedNegativeNumberException e) {
 			e.printStackTrace();
 		}

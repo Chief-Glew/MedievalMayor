@@ -17,4 +17,6 @@ public class CommandInvoker {
 		logger.trace("Command executed");
 		command.execute();
 	}
+	
+	
 }

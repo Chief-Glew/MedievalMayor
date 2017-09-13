@@ -1,33 +1,24 @@
 package com.fdmgroup.medievalmayor.game;
 
-<<<<<<< HEAD:src/main/java/com/fdmgroup/medievalmayor/CityService.java
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fdmgroup.medievalmayor.building.BuildingManager;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
-import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
-import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
-=======
+import com.fdmgroup.medievalmayor.game.building.BuildingManager;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
+import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
+import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
->>>>>>> commandMerger:src/main/java/com/fdmgroup/medievalmayor/game/CityService.java
-
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.FarmService;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.MineService;
 
 @Component
 public class CityService {
 	
-<<<<<<< HEAD:src/main/java/com/fdmgroup/medievalmayor/CityService.java
 	static final Logger logger = LogManager.getLogger("CityService");
 	
-=======
 	private static CityService instance;
->>>>>>> commandMerger:src/main/java/com/fdmgroup/medievalmayor/game/CityService.java
 	private MineService mineService;
 	private FarmService farmService;
 
@@ -39,12 +30,8 @@ public class CityService {
 	}
 	
 	public static CityService getInstance(){
-<<<<<<< HEAD:src/main/java/com/fdmgroup/medievalmayor/CityService.java
 		logger.trace("CityService Instance retrieved");
-		return CityServiceInstanceHolder.INSTANCE; 
-=======
 		return instance; 
->>>>>>> commandMerger:src/main/java/com/fdmgroup/medievalmayor/game/CityService.java
 	}
 	
 	public void updateTurn(City city) {

@@ -3,7 +3,7 @@ package com.fdmgroup.medievalmayor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
 
 public class MineService {
 	
