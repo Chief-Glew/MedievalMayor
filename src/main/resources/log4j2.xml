@@ -1,17 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
 <Configuration status="WARN">
-  <Appenders>
-    <Console name="Console" target="SYSTEM_OUT">
-      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-    </Console>
-  </Appenders>
-  <Loggers>
-    <Logger name="Academy Log" level="warn">
-      <AppenderRef ref="Console"/>
-    </Logger>
-    <Root level="error">
-      <AppenderRef ref="Console"/>
-    </Root>
-  </Loggers>
+
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		<File name="File" fileName="output.log" bufferedIO="true"
+			advertiseURI="file://output.log" advertise="true">
+			<PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+		</File>
+	</Appenders>
+
+
+
+	<Loggers>
+		<Logger name="Farm" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="Mine" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="BuildingManager" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="ResourceBuilding" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="Building" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="ClientCommand" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="CommandInvoker" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="SetNumberOfWorkersCommand" level="info"
+			additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="BuildingJPACRUD" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="CityJPACRUD" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="City" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="CityService" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="FarmService" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="MineService" level="info" additivity="true">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Root level="error">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
 </Configuration>

@@ -1,6 +1,11 @@
 package com.fdmgroup.medievalmayor.building.resourcebuilding;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Mine extends ResourceBuilding{	
+	
+	static final Logger logger = LogManager.getLogger("Mine");
 	
 	public Mine(int multiplier){
 		super(multiplier);
@@ -8,7 +13,8 @@ public class Mine extends ResourceBuilding{
 
 	@Override
 	public int produceResource() {
-		int goldProduced = getNoOfAssignedWorkers()*getMultiplier();
+		int goldProduced = getNumberOfAssignedWorkers()*getMultiplier();
+		logger.trace("Gold Produced");
 		return goldProduced;
 	}
 	

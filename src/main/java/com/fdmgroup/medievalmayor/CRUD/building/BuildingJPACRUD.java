@@ -19,7 +19,7 @@ public class BuildingJPACRUD<T> implements GenericCrud<Building> {
 
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
-	private static final Logger logger = LogManager.getLogger("medievalMayor Log");
+	private static final Logger logger = LogManager.getLogger("BuildingJPACRUD");
 
 	protected void connect(){
 		entityManagerFactory = Persistence.createEntityManagerFactory("medievalMayor");

@@ -18,8 +18,8 @@ public class DemoApp {
 
 		System.out.println("Initial City Values");
 		System.out.println("Initial Number of Unassigned People: " + city.getUnassignedPopulation());
-		System.out.println("Initial Number of Farmers: " + farm.getNoOfAssignedWorkers());
-		System.out.println("Initial Number of Miners: " + mine.getNoOfAssignedWorkers());
+		System.out.println("Initial Number of Farmers: " + farm.getNumberOfAssignedWorkers());
+		System.out.println("Initial Number of Miners: " + mine.getNumberOfAssignedWorkers());
 		System.out.println("Initial Food: " + city.getFood());
 		System.out.println("Initial Gold: " + city.getGold() + "\n");
 
@@ -32,8 +32,8 @@ public class DemoApp {
 
 		System.out.println("Turn City Values Set");
 		System.out.println("Current Number of Unassigned People: " + city.getUnassignedPopulation());
-		System.out.println("Current Number of Farmers: " + farms.getNoOfAssignedWorkers());
-		System.out.println("Current Number of Miners: " + mines.getNoOfAssignedWorkers());
+		System.out.println("Current Number of Farmers: " + farms.getNumberOfAssignedWorkers());
+		System.out.println("Current Number of Miners: " + mines.getNumberOfAssignedWorkers());
 		cityService.updateTurn(city);
 		System.out.println("Turn Results");
 		System.out.println("Current Food: " + city.getFood());
@@ -50,8 +50,8 @@ public class DemoApp {
 		System.out.println("Turn City Values Set");
 
 		System.out.println("Current Number of Unassigned People: " + city.getUnassignedPopulation());
-		System.out.println("Current Number of Farmers: " + farms.getNoOfAssignedWorkers());
-		System.out.println("Current Number of Miners: " + mines.getNoOfAssignedWorkers());
+		System.out.println("Current Number of Farmers: " + farms.getNumberOfAssignedWorkers());
+		System.out.println("Current Number of Miners: " + mines.getNumberOfAssignedWorkers());
 		cityService.updateTurn(city);
 		System.out.println("Turn Results");
 		System.out.println("Current Food: " + city.getFood());
@@ -73,8 +73,8 @@ public class DemoApp {
 		System.out.println("Turn City Values Set");
 
 		System.out.println("Current Number of Unassigned People: " + city.getUnassignedPopulation());
-		System.out.println("Current Number of Farmers: " + farms.getNoOfAssignedWorkers());
-		System.out.println("Current Number of Miners: " + mines.getNoOfAssignedWorkers());
+		System.out.println("Current Number of Farmers: " + farms.getNumberOfAssignedWorkers());
+		System.out.println("Current Number of Miners: " + mines.getNumberOfAssignedWorkers());
 		cityService.updateTurn(city);
 		System.out.println("Turn Results");
 
@@ -97,8 +97,8 @@ public class DemoApp {
 		System.out.println("Turn City Values Set");
 
 		System.out.println("Current Number of Unassigned People: " + city.getUnassignedPopulation());
-		System.out.println("Current Number of Farmers: " + farms.getNoOfAssignedWorkers());
-		System.out.println("Current Number of Miners: " + mines.getNoOfAssignedWorkers());
+		System.out.println("Current Number of Farmers: " + farms.getNumberOfAssignedWorkers());
+		System.out.println("Current Number of Miners: " + mines.getNumberOfAssignedWorkers());
 		cityService.updateTurn(city);
 		System.out.println("Turn Results");
 
