@@ -1,16 +1,20 @@
 package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MineService {
 	
-	private MineService() {
-	}
+	private static MineService instance;
 	
-	public static class MineServiceInstanceHolder{
-		private static final MineService INSTANCE = new MineService();
+	@Autowired
+	public MineService() {
+		instance = this;
 	}
 	
 	public static MineService getInstance(){
-		return MineServiceInstanceHolder.INSTANCE;
+		return instance;
 	}
 	
 	public int produceResourcesForMine(Mine mine){

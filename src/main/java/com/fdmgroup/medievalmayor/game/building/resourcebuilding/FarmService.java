@@ -1,15 +1,23 @@
 package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class FarmService {
 
-	public static class FarmServiceInstanceHolder{
-		private static final FarmService INSTANCE = new FarmService(); 
+
+	private static FarmService instance;
+
+	@Autowired
+	public FarmService() {
+		instance = this;
 	}
-	
+
 	public static FarmService getInstance(){
-		return FarmServiceInstanceHolder.INSTANCE;
+		return instance;
 	}
-	
+
 	public int produceResourcesForFarm(Farm farm){
 		return farm.produceResource();
 	}

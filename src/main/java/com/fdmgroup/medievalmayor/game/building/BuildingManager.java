@@ -1,30 +1,16 @@
 package com.fdmgroup.medievalmayor.game.building;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.fdmgroup.medievalmayor.game.City;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
 
-@Component
 public class BuildingManager implements Buildable, PersonAssigner {
 
-	private List<Building> cityBuildings;
 	private City city;
 
-	@Autowired
-	private BuildingManager(List<Building> cityBuildings){
-		this.cityBuildings = cityBuildings;
-		
-	}
-
 	public static class BuildingManagerInstanceHolder{
-		private static final BuildingManager INSTANCE = new BuildingManager(new ArrayList<Building>());
+		private static final BuildingManager INSTANCE = new BuildingManager();
 	}
 
 	public static BuildingManager getInstance(){

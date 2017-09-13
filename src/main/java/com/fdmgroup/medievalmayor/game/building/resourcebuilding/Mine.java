@@ -1,12 +1,7 @@
 package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-@Component
 public class Mine extends ResourceBuilding{	
 	
-	@Autowired
 	public Mine(int multiplier){
 		super(multiplier);
 	}

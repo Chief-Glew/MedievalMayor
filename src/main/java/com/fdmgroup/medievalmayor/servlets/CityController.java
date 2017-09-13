@@ -1,16 +1,11 @@
 package com.fdmgroup.medievalmayor.servlets;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.fdmgroup.medievalmayor.CRUD.GenericRead;
 import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
 import com.fdmgroup.medievalmayor.game.City;
@@ -21,11 +16,23 @@ public class CityController {
 	private GenericRead<City> readCrud;
 	@Autowired
 	private GenericWrite<City> writeCrud;
-	@Autowired
 	private BuildingManager buildingManager;
-	@Autowired
 	private City city;
   
+	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
+	public String showCities(Model model){
+		Set<City> cities = readCrud.readAll();
+		model.addAttribute("cities", cities);
+		return "index";
+	}
+	
+	@RequestMapping(value = { "/UserHomeServlet", "/userHome", "/home", "/Home" }, method = RequestMethod.POST)
+	 public String changeCity(Model model){
+		//TODO get atributes from spring form
+		city = null;//the stuff from the form
+		return showAllToDoItems(model); 
+	} 
+	
 	@RequestMapping(value = { "/UserHomeServlet", "/userHome", "/home", "/Home" }, method = RequestMethod.GET)
 	 public String showAllToDoItems(Model model){
 		city = readCrud.read(1);

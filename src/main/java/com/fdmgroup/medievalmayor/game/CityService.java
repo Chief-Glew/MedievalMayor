@@ -11,21 +11,19 @@ import com.fdmgroup.medievalmayor.game.building.resourcebuilding.MineService;
 @Component
 public class CityService {
 	
+	private static CityService instance;
 	private MineService mineService;
 	private FarmService farmService;
 
-	private static class CityServiceInstanceHolder{
-		private static final CityService INSTANCE = new CityService();
-	}
-	
 	@Autowired
-	private CityService(){
-		mineService = MineService.getInstance();
-		farmService = FarmService.getInstance();
+	public CityService(MineService mineService, FarmService farmService){
+		this.mineService = mineService;
+		this.farmService = farmService;
+		instance=this;
 	}
 	
 	public static CityService getInstance(){
-		return CityServiceInstanceHolder.INSTANCE; 
+		return instance; 
 	}
 	
 	public void updateTurn(City city) {

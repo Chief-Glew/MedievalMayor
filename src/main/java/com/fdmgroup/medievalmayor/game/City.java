@@ -7,13 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
 
-@Component
 @Entity(name="CITY")
 public class City implements IdAble{
 
@@ -36,7 +32,6 @@ public class City implements IdAble{
 
 	public City(){};
 
-	@Autowired
 	public City(int totalPopulation, int food, int gold, Farm farm, Mine mine){
 		this.unassignedPopulation = totalPopulation;
 		this.totalPopulation = totalPopulation;
