@@ -3,6 +3,9 @@ package com.fdmgroup.medievalmayor.building;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fdmgroup.medievalmayor.City;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.ResourceBuilding;
 import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
@@ -10,6 +13,8 @@ import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
 
 public class BuildingManager implements Buildable, PersonAssigner {
 
+	static final Logger logger = LogManager.getLogger("BuildingManager");
+	
 	private List<Building> cityBuildings;
 
 	private BuildingManager(List<Building> cityBuildings){
@@ -22,6 +27,7 @@ public class BuildingManager implements Buildable, PersonAssigner {
 	}
 
 	public static BuildingManager getInstance(){
+		logger.trace("Building Manager Instance retrieved");
 		return BuildingManagerInstanceHolder.INSTANCE;
 	}
 
@@ -29,28 +35,30 @@ public class BuildingManager implements Buildable, PersonAssigner {
 		if(numberOfPeopleToAssign < 0){
 			throw new AssignedNegativeNumberException("Cannot assign a negative number of people to a building");
 		}
-		int currentPeople = building.getNoOfAssignedWorkers();
+		int currentPeople = building.getNumberOfAssignedWorkers();
 		int difference = numberOfPeopleToAssign - currentPeople;
 		if(difference > numberOfPeopleAvailible){
 			throw new InsufficentPopulationException("Insufficent population available");
 		}
 		building.setNumberOfPeopleInBuilding(numberOfPeopleToAssign);
+		logger.debug("People assigned to building");
 		return (numberOfPeopleAvailible - difference);
 	}
 
 	public ResourceBuilding buildAMine(){
+		logger.trace("Mine Built");
 		return null;
 
 	}
 
 	public ResourceBuilding buildAFarm(){
+		logger.trace("Farm built");
 		return null;
 
 	}
 
 	public int getPeopleInBuilding(ResourceBuilding building){
-
-		return building.getNoOfAssignedWorkers();
-
+		logger.trace("Number of assigned workers in "+building+" retrieved");
+		return building.getNumberOfAssignedWorkers();
 	}
 }

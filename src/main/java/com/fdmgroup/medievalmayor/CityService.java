@@ -1,5 +1,8 @@
 package com.fdmgroup.medievalmayor;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fdmgroup.medievalmayor.building.BuildingManager;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
@@ -7,6 +10,8 @@ import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
 
 public class CityService {
+	
+	static final Logger logger = LogManager.getLogger("CityService");
 	
 	private MineService mineService;
 	private FarmService farmService;
@@ -20,12 +25,14 @@ public class CityService {
 	}
 	
 	public static CityService getInstance(){
+		logger.trace("CityService Instance retrieved");
 		return CityServiceInstanceHolder.INSTANCE; 
 	}
 	
 	public void updateTurn(City city) {
 		updateResources(city);
 		updatePopulation(city);
+		logger.trace("Turn Updated");
 	}
 
 	private void updatePopulation(City city) {
@@ -51,6 +58,7 @@ public class CityService {
 		
 		city.setTotalPopulation(totalPopulation);
 		city.setUnassignedPopulation(unassignedPopulation);
+		logger.trace("Population Updated");
 	}
 
 	private void updateResources(City city) {
@@ -63,6 +71,7 @@ public class CityService {
 		food -= city.getTotalPopulation(); 
 		city.setFood(food);
 		city.setGold(gold);
+		logger.trace("Resources Updated");
 	}
 	
 	public void assignPeopleToFarm(City city, int numberOfPeople){
@@ -70,8 +79,9 @@ public class CityService {
 		try {
 			BuildingManager.getInstance().assignPeopleToBuilding
 			(numberOfPeople, city.getUnassignedPopulation(), farm);
+			logger.trace("People assigned to farm");
 		} catch (InsufficentPopulationException | AssignedNegativeNumberException e) {
-			// TODO Auto-generated catch block
+			logger.error("Error! Unable to assign people to farm");
 			e.printStackTrace();
 		}
 	}

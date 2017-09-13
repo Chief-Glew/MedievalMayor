@@ -1,6 +1,11 @@
 package com.fdmgroup.medievalmayor.building.resourcebuilding;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Farm extends ResourceBuilding{
+	
+	static final Logger logger = LogManager.getLogger("Farm");
 	
 	public Farm(int multiplier) {
 		super(multiplier);
@@ -8,7 +13,8 @@ public class Farm extends ResourceBuilding{
 
 	@Override
 	public int produceResource() {
-		int foodProduced = getNoOfAssignedWorkers()*getMultiplier();
+		int foodProduced = getNumberOfAssignedWorkers()*getMultiplier();
+		logger.trace("Food Produced");
 		return foodProduced;
 	}
 }

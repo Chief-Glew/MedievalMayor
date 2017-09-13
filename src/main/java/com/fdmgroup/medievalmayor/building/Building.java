@@ -6,10 +6,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fdmgroup.medievalmayor.IdAble;
 
 @MappedSuperclass
 public abstract class Building implements IdAble{
+	
+	static final Logger logger = LogManager.getLogger("Building");
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="BUILDING_ID")
@@ -20,6 +26,7 @@ public abstract class Building implements IdAble{
 	private String buildingName;
 	
 	public long getId(){
+		logger.trace("Id retrieved");
 		return buildingId;
 	}
 }
