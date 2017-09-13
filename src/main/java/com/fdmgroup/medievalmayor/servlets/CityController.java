@@ -21,11 +21,14 @@ public class CityController {
 	private GenericRead<City> readCrud;
 	@Autowired
 	private GenericWrite<City> writeCrud;
+	@Autowired
+	private BuildingManager buildingManager;
+	@Autowired
+	private City city;
   
 	@RequestMapping(value = { "/UserHomeServlet", "/userHome", "/home", "/Home" }, method = RequestMethod.GET)
 	 public String showAllToDoItems(Model model){
-		City city = readCrud.read(1);
-		BuildingManager buildingManager = BuildingManager.getInstance();
+		city = readCrud.read(1);
 		
 		model.addAttribute("totalPopulation", city.getTotalPopulation());
 		model.addAttribute("unnassignedPeople", city.getUnassignedPopulation());
