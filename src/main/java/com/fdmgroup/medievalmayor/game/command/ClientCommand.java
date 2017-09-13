@@ -2,6 +2,8 @@ package com.fdmgroup.medievalmayor.game.command;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.fdmgroup.medievalmayor.game.City;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
 
 public class ClientCommand {
@@ -19,5 +21,12 @@ public class ClientCommand {
 		commandInvoker.setCommand(setNumberOfWorkersCommand);
 		commandInvoker.invokeCommands();
 		logger.trace("Number of workers in "+resourceBuilding+" set" );
+	}
+
+	public void nextTurn(City city) {
+
+		UserCommand nextTurn = new NextTurnCommand(city);
+		commandInvoker.setCommand(nextTurn);
+		commandInvoker.invokeCommands();
 	}
 }

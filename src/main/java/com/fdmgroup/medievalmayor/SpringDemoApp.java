@@ -1,15 +1,21 @@
 package com.fdmgroup.medievalmayor;
 
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.fdmgroup.medievalmayor.config.AppConfig;
 import com.fdmgroup.medievalmayor.game.City;
+import com.fdmgroup.medievalmayor.game.CityFactory;
 import com.fdmgroup.medievalmayor.game.CityService;
 import com.fdmgroup.medievalmayor.game.building.BuildingManager;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
+import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
+import com.fdmgroup.medievalmayor.game.command.NextTurnCommand;
+import com.fdmgroup.medievalmayor.game.command.SetNumberOfWorkersInBuildingFromCityCommand;
+import com.fdmgroup.medievalmayor.game.command.UserCommand;
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
 
@@ -21,19 +27,47 @@ public class SpringDemoApp {
 			System.out.println(beanName);
 		}
 		
-		CityService cityService = applicationContext.getBean(CityService.class);
-		Mine mine = new Mine(3);
-		City city = new City(10, 20, 5, new Farm(3), mine);
-		try {
-			BuildingManager.getInstance().assignPeopleToBuilding(2,10,mine);
-		} catch (InsufficentPopulationException | AssignedNegativeNumberException e) {
-			e.printStackTrace();
-		}
 		
-		System.out.println(city.getGold());
-		cityService.updateTurn(city);
-		System.out.println(city.getGold());
+		CityFactory cityFactory = new CityFactory();
+		City city = cityFactory.getNewCity();
+		Farm farm = city.getFarm();
+		Mine mine = city.getMine();
+		CommandInvoker commandInvoker = new CommandInvoker();
+		CommandInvoker nextTurnInvoker = new CommandInvoker();
 		
+		UserCommand nextTurn = new NextTurnCommand(city);
+		nextTurnInvoker.setCommand(nextTurn);
+		
+		System.out.println("Initial City Values");
+		System.out.println("Total population: "+city.getTotalPopulation());
+		System.out.println("Initial number of unnasigned people: " + city.getUnassignedPopulation());
+		System.out.println("Initial number of Farmers: " + farm.getNumberOfAssignedWorkers());
+		System.out.println("Initial number of Miners: " + mine.getNumberOfAssignedWorkers());
+		System.out.println("Initial Food: " + city.getFood());
+		System.out.println("Initial Gold: "+city.getGold());
+		System.out.println("");
+		
+		
+		UserCommand asign2PeopleToFarm = new SetNumberOfWorkersInBuildingFromCityCommand(city, farm, 2);
+		UserCommand asign5PeopleToMine = new SetNumberOfWorkersInBuildingFromCityCommand(city, mine, 5);
+		commandInvoker.setCommand(asign5PeopleToMine);
+		commandInvoker.invokeCommands();
+		commandInvoker.setCommand(asign2PeopleToFarm);
+		commandInvoker.invokeCommands();
+		nextTurnInvoker.invokeCommands();
+		
+		
+		System.out.println("Turn 1 City Values");
+		System.out.println("Total population: "+city.getTotalPopulation());
+		System.out.println("Current number of unnasigned people: " + city.getUnassignedPopulation());
+		System.out.println("Current number of Farmers: " + farm.getNumberOfAssignedWorkers());
+		System.out.println("Current number of Miners: " + mine.getNumberOfAssignedWorkers());
+		System.out.println("Current Food: " + city.getFood());
+		System.out.println("Current Gold: "+city.getGold());
+		System.out.println("");
+		
+		
+
 		((ConfigurableApplicationContext)applicationContext).close();
 	}
 }

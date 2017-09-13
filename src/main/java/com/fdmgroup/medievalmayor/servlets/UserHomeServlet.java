@@ -24,6 +24,7 @@ public class UserHomeServlet extends HttpServlet {
     private BuildingManager buildingManager;
     private Farm farms;
     private Mine mines;
+    
     /**
      * @see HttpServlet#HttpServlet()  
      */

@@ -11,7 +11,7 @@ import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildin
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
 
-public class BuildingManager implements Buildable, PersonAssigner {
+public class BuildingManager implements Buildable {
 
 	static final Logger logger = LogManager.getLogger("City");
 	
@@ -47,7 +47,7 @@ public class BuildingManager implements Buildable, PersonAssigner {
 	}
 
 	public ResourceBuilding buildAFarm(){
-		logger.trace("Farm built");
+		logger.trace("Farm Built");
 		return null;
 
 	}
