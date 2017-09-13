@@ -1,6 +1,4 @@
-package com.fdmgroup.medievalmayor;
-
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
+package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
 
 public class FarmService {
 

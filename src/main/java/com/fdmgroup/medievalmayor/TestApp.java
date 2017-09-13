@@ -1,6 +1,8 @@
 package com.fdmgroup.medievalmayor;
 
 import com.fdmgroup.medievalmayor.CRUD.CityJPACRUD;
+import com.fdmgroup.medievalmayor.game.City;
+import com.fdmgroup.medievalmayor.game.CityService;
 
 public class TestApp {
 

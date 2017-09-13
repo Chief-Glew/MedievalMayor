@@ -13,7 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.CRUD.GenericCrud;
-import com.fdmgroup.medievalmayor.building.Building;
+import com.fdmgroup.medievalmayor.game.building.Building;
 
 public class BuildingJPACRUD<T> implements GenericCrud<Building> {
 

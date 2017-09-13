@@ -8,7 +8,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan({"com.fdmgroup.medievalmayor"})
+@ComponentScan("com.fdmgroup.medievalmayor.config")
 public class WebAppConfig {
 
 	@Bean

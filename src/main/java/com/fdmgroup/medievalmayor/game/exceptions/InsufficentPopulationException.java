@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.exceptions;
+package com.fdmgroup.medievalmayor.game.exceptions;
 
 public class InsufficentPopulationException extends Exception {
 

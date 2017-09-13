@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fdmgroup.medievalmayor.City;
 import com.fdmgroup.medievalmayor.CRUD.GenericRead;
 import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
-import com.fdmgroup.medievalmayor.building.BuildingManager;
+import com.fdmgroup.medievalmayor.game.City;
+import com.fdmgroup.medievalmayor.game.building.BuildingManager;
 
 public class CityController {
 	@Autowired

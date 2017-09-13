@@ -1,9 +1,9 @@
-package com.fdmgroup.medievalmayor.building.resourcebuilding;
+package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-import com.fdmgroup.medievalmayor.building.Building;
+import com.fdmgroup.medievalmayor.game.building.Building;
 
 @MappedSuperclass
 public abstract class ResourceBuilding extends Building{

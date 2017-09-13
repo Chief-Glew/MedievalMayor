@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.building.resourcebuilding;
+package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.building;
+package com.fdmgroup.medievalmayor.game.building;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-import com.fdmgroup.medievalmayor.IdAble;
+import com.fdmgroup.medievalmayor.game.IdAble;
 
 @MappedSuperclass
 public abstract class Building implements IdAble{

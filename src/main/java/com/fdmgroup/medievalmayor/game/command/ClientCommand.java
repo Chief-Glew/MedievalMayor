@@ -1,6 +1,6 @@
-package com.fdmgroup.medievalmayor.command;
+package com.fdmgroup.medievalmayor.game.command;
 
-import com.fdmgroup.medievalmayor.building.resourcebuilding.ResourceBuilding;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
 
 public class ClientCommand {
 

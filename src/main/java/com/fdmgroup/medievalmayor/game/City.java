@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor;
+package com.fdmgroup.medievalmayor.game;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +10,8 @@ import javax.persistence.Transient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
 
 @Component
 @Entity(name="CITY")

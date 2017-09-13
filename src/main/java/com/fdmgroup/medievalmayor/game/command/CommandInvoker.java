@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.command;
+package com.fdmgroup.medievalmayor.game.command;
 
 public class CommandInvoker {
 

@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fdmgroup.medievalmayor.City;
-import com.fdmgroup.medievalmayor.building.BuildingManager;
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Farm;
-import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
-import com.fdmgroup.medievalmayor.exceptions.InsufficentPopulationException;
+import com.fdmgroup.medievalmayor.game.City;
+import com.fdmgroup.medievalmayor.game.building.BuildingManager;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
+import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
+import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
 
 /**
  * Servlet implementation class FarmServiceServlet

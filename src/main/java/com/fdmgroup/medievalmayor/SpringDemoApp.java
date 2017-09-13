@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.fdmgroup.medievalmayor.CRUD.GenericRead;
 import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
 import com.fdmgroup.medievalmayor.config.WebAppConfig;
+import com.fdmgroup.medievalmayor.game.City;
 
 public class SpringDemoApp {
 

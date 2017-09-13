@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor;
+package com.fdmgroup.medievalmayor.game;
 
 public interface IdAble {
 

@@ -1,6 +1,4 @@
-package com.fdmgroup.medievalmayor;
-
-import com.fdmgroup.medievalmayor.building.resourcebuilding.Mine;
+package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
 
 public class MineService {
 	
