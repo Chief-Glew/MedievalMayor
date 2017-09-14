@@ -5,7 +5,7 @@
 	<persistence-unit name="medievalMayor">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>com.fdmgroup.medievalmayor.game.building.Building</class>
-		<class>com.fdmgroup.medievalmayor.game.City</class>
+		<class>com.fdmgroup.medievalmayor.game.city.City</class>
 		<class>com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding</class>
 		<class>com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm</class>
 		<class>com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine</class>

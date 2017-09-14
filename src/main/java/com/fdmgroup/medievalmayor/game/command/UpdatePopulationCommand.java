@@ -1,10 +1,10 @@
 package com.fdmgroup.medievalmayor.game.command;
 
-import com.fdmgroup.medievalmayor.game.City;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.FarmService;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.MineService;
+import com.fdmgroup.medievalmayor.game.city.City;
 
 public class UpdatePopulationCommand implements UserCommand {
 

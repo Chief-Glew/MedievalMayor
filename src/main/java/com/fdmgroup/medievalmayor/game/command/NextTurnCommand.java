@@ -1,6 +1,6 @@
 package com.fdmgroup.medievalmayor.game.command;
 
-import com.fdmgroup.medievalmayor.game.City;
+import com.fdmgroup.medievalmayor.game.city.City;
 
 public class NextTurnCommand implements UserCommand {
 	

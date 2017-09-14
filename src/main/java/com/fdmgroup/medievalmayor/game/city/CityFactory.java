@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.game;
+package com.fdmgroup.medievalmayor.game.city;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -6,12 +6,12 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.fdmgroup.medievalmayor.config.AppConfig;
-import com.fdmgroup.medievalmayor.game.City;
-import com.fdmgroup.medievalmayor.game.CityFactory;
-import com.fdmgroup.medievalmayor.game.CityService;
 import com.fdmgroup.medievalmayor.game.building.BuildingManager;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
+import com.fdmgroup.medievalmayor.game.city.City;
+import com.fdmgroup.medievalmayor.game.city.CityFactory;
+import com.fdmgroup.medievalmayor.game.city.CityService;
 import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
 import com.fdmgroup.medievalmayor.game.command.NextTurnCommand;
 import com.fdmgroup.medievalmayor.game.command.SetNumberOfWorkersInBuildingFromCityCommand;

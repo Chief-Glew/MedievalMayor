@@ -1,8 +1,8 @@
 package com.fdmgroup.medievalmayor.demos;
 
 import com.fdmgroup.medievalmayor.CRUD.CityJPACRUD;
-import com.fdmgroup.medievalmayor.game.City;
-import com.fdmgroup.medievalmayor.game.CityFactory;
+import com.fdmgroup.medievalmayor.game.city.City;
+import com.fdmgroup.medievalmayor.game.city.CityFactory;
 
 public class TestJPADemoApp {
 

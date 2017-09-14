@@ -4,11 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.fdmgroup.medievalmayor.game.City;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.FarmService;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.MineService;
+import com.fdmgroup.medievalmayor.game.city.City;
 
 public class UpdateResourcesCommand implements UserCommand{
 

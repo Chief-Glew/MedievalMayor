@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.game;
+package com.fdmgroup.medievalmayor.game.city;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

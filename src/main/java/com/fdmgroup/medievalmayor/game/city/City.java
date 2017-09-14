@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.game;
+package com.fdmgroup.medievalmayor.game.city;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
+import com.fdmgroup.medievalmayor.game.IdAble;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
 

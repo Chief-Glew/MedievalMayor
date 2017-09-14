@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.fdmgroup.medievalmayor.CRUD.CityJPACRUD;
-import com.fdmgroup.medievalmayor.game.City;
-import com.fdmgroup.medievalmayor.game.CityFactory;
 import com.fdmgroup.medievalmayor.game.building.BuildingManager;
+import com.fdmgroup.medievalmayor.game.city.City;
+import com.fdmgroup.medievalmayor.game.city.CityFactory;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
 import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
 
