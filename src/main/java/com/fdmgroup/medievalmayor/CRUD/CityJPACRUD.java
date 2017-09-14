@@ -18,7 +18,7 @@ import com.fdmgroup.medievalmayor.game.City;
 
 @Component
 @Qualifier("JPA")
-public class CityJPACRUD<T> implements GenericCrud<City> {
+public class CityJPACRUD implements GenericCrud<City> {
 
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
