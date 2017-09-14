@@ -1,34 +1,23 @@
-package com.fdmgroup.medievalmayor.servlets;
+package com.fdmgroup.medievalmayor.controllers;
 
-import java.util.HashMap;
 import java.util.Set;
 
-import javax.servlet.annotation.WebServlet;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.fdmgroup.medievalmayor.CRUD.CityJPACRUD;
-import com.fdmgroup.medievalmayor.CRUD.GenericRead;
-import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
 import com.fdmgroup.medievalmayor.game.City;
 import com.fdmgroup.medievalmayor.game.CityFactory;
 import com.fdmgroup.medievalmayor.game.building.BuildingManager;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
+import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
+
 @Controller
 public class CityController {
-//	@Autowired
-//	@Qualifier("JPA")
+	
 	private CityJPACRUD readCrud;
-//	@Autowired(required = false)
-//	@Qualifier("JPA")
 	private CityJPACRUD writeCrud;
 	private BuildingManager buildingManager;
 	private City city;
@@ -61,13 +50,19 @@ public class CityController {
 
 	@RequestMapping(value = { "/UserHomeServlet", "/userHome", "/home", "/Home" }, method = RequestMethod.POST)
 	public String changeCity(@RequestParam("cityId") String cityId,Model model){
+		writeCrud.update(city);
 		city = readCrud.read(Long.valueOf(cityId));
 		return displayCityStats(model); 
 	}
 	
 	@RequestMapping(value = {"/NextTurn","/nextturn","/nextTurn"}, method = RequestMethod.POST)
 	public String nextTurn(Model model){
-		clientComand.nextTurn(city);
+		try {
+			clientComand.nextTurn(city);
+		} catch (GameOverException e) {
+			e.printStackTrace();
+			return "gameOverPage";
+		}
 		return displayCityStats(model); 
 	}
 

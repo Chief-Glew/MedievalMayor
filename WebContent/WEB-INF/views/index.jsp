@@ -35,9 +35,6 @@
 		<div class="center-block"
 			style="background-color: yellow; width: 500px;">
 			<h1>Welcome to Medieval Mayor!</h1>
-			<p>
-				<br> <br> <a href="./userHome">Go to User home</a>
-			</p>
 		</div>
 		<img class="image" src="images/village.jpg" alt="Village">
 	</div>

@@ -7,6 +7,8 @@
 		<class>com.fdmgroup.medievalmayor.game.building.Building</class>
 		<class>com.fdmgroup.medievalmayor.game.City</class>
 		<class>com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding</class>
+		<class>com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm</class>
+		<class>com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/xe" />

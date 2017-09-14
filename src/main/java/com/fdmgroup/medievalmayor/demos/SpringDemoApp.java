@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor;
+package com.fdmgroup.medievalmayor.demos;
 
 
 import org.springframework.context.ApplicationContext;

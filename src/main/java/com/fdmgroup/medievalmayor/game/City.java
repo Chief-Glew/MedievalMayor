@@ -1,10 +1,14 @@
 package com.fdmgroup.medievalmayor.game;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import org.apache.logging.log4j.LogManager;
@@ -31,11 +35,11 @@ public class City implements IdAble{
 	private int gold;
 	@Column(name="FOOD")
 	private int food;
-	//@Join
-	//@OneToOne("FARM")
-	@Transient
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="FARM_ID")
 	private Farm farm;
-	@Transient
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="MINE_ID")
 	private Mine mine;
 
 	public City(){};
@@ -108,5 +112,12 @@ public class City implements IdAble{
 	public Mine getMine() {
 		logger.trace("Mine retrieved");
 		return mine;
+	}
+
+	@Override
+	public String toString() {
+		return "City [cityId=" + cityId + ", totalPopulation=" + totalPopulation + ", unassignedPopulation="
+				+ unassignedPopulation + ", gold=" + gold + ", food=" + food + ", farm=" + farm + ", mine=" + mine
+				+ "]";
 	}
 }

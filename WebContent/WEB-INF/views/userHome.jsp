@@ -32,37 +32,39 @@
 	</nav>
 	<div class="container-fluid" style="background-color: green; color: lightblue;">
 		<div class="center-block"
-			style="background-color: yellow; width: 500px;">
+			style="background-color: yellow; width: 250px;">
 			<h1>Build your City!</h1>
 		</div>
-		<p>
-			Total Population:
-			<c:out value="${totalPopulation}" />
-		</p>
-		<p>
-			Number of Unassigned People:
-			<c:out value="${unnassignedPeople}" />
-		</p>
-		<p>
-			Number of People in the Farm:
-			<c:out value="${farmers}" />
-			<a href="./farmService">change</a>
-		</p>
-		<p>
-			Number of People in the Mine:
-			<c:out value="${miners}" />
-			<a href="./mineService">change</a>
-		</p>
-		<p>
-			Amount of food:
-			<c:out value="${food }"></c:out>
-		</p>
-		<p>
-			Amount of gold:
-			<c:out value="${gold }"></c:out>
-		</p>
+		<table>
+		<tr>
+			<th>Total Population:</th>
+			<td><c:out value="${totalPopulation}" /></td>
+		</tr>
+		<tr>
+			<th>Number of Unassigned People:</th>
+			<td><c:out value="${unnassignedPeople}" /></td>
+		</tr>
+		<tr>
+			<th>Number of People in the Farm:</th>
+			<td><c:out value="${farmers}" /></td>
+			<td><a href=""></a></td>
+		</tr>
+		<tr>
+			<th>Number of People in the Mine:</th>
+			<td><c:out value="${miners}" /></td>
+			<td><a href=""></a></td>
+		</tr>
+		<tr>
+			<th>Amount of food:</th>
+			<td><c:out value="${food }"></c:out></td>
+		</tr>
+		<tr>
+			<th>Amount of gold:</th>
+			<td><c:out value="${gold }"></c:out></td>
+		</tr>
+		</table>
 		<form action="./NextTurn" method="post" name="nextDay">
-			<input type="submit" value="next day" style= "background-color: red; color: black;">
+			<input type="submit" value="Next Year" style= "background-color: red; color: black;">
 		</form>
 	</div>
 </body>

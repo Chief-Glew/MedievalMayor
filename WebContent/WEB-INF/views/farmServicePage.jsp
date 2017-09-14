@@ -33,7 +33,7 @@
 	<div class="container-fluid" style="background-color: green; color: lightblue;">
 
 		<div class="center-block"
-			style="background-color: yellow; width: 500px;">
+			style="background-color: yellow; width: 415px;">
 			<h1>Assign Workers To Farm!</h1>
 		</div>
 		<p>
@@ -50,6 +50,9 @@
 				name="newAssignedPopulation" min="0"
 				max="<c:out value="${maxAssignable}"/>"><br> <input
 				type="submit" value="submit" style= "background-color: red; color: black;">
+				<input
+				type="submit" value="Back" formaction="./userHome" formmethod="get"
+				style="background-color: red; color: white;">
 		</form>
 	</div>
 </body>

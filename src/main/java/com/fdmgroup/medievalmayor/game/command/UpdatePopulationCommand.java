@@ -39,6 +39,7 @@ public class UpdatePopulationCommand implements UserCommand {
 			farmService.setNumberOfPeopleInFarm(0,farm);
 			totalPopulation -= 1;
 			unassignedPopulation = totalPopulation;
+			city.setFood(0);
 		}
 		//TODO change the proportion of food deficient and number of leaving people
 		//TODO verifier to see if correct number of people is moved
