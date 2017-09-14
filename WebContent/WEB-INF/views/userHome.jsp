@@ -61,7 +61,7 @@
 			Amount of gold:
 			<c:out value="${gold }"></c:out>
 		</p>
-		<form action="./userHome" method="post">
+		<form action="./userHome" method="post" name="nextDay">
 			<input type="submit" value="next day">
 		</form>
 	</div>

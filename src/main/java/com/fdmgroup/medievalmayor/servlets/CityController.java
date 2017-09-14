@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.fdmgroup.medievalmayor.CRUD.GenericRead;
 import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
@@ -30,6 +31,10 @@ public class CityController {
 	private CityFactory cityFactory = new CityFactory();
 	//TODO make this not bad
 
+	public CityController() {
+		city = cityFactory.getNewCity();
+	}
+	
 	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
 	public String showCities(Model model){
 		System.out.println("root");
@@ -43,13 +48,13 @@ public class CityController {
 		//TODO get atributes from spring form
 		//city = cityFactory.getNewCity();//the stuff from the form
 		clientComand.nextTurn(city);
-		return showAllToDoItems(model); 
+		return displayCityStats(model); 
 	} 
 
 	@RequestMapping(value = { "/UserHomeServlet", "/userHome", "/home", "/Home" }, method = RequestMethod.GET)
-	public String showAllToDoItems(Model model){
+	public String displayCityStats(Model model){
 		//city = readCrud.read(1);
-		city = cityFactory.getNewCity();//the stuff from the form
+		//the stuff from the form
 
 		model.addAttribute("totalPopulation", city.getTotalPopulation());
 		model.addAttribute("unnassignedPeople", city.getUnassignedPopulation());
@@ -70,10 +75,10 @@ public class CityController {
 	}
 	
 	@RequestMapping(value = { "/MineServiceServlet", "/mineService" }, method = RequestMethod.POST)
-	public String submitNewMinerAssignment(@RequestBody HashMap<String,String> formData) {
-		int newAssignedPopulation = Integer.valueOf(formData.get("newAssignedPopulation"));
+	public String submitNewMinerAssignment(@RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
+		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
 		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getMine(), newAssignedPopulation);
-		return "userHome";
+		return displayCityStats(model);
 	}
 	
 	@RequestMapping(value = {  "/Farmservice", "/farmservice", "/farmService", "/FarmService" }, method = RequestMethod.GET)
@@ -85,10 +90,11 @@ public class CityController {
 	}
 	
 	@RequestMapping(value = {  "/Farmservice", "/farmservice", "/farmService", "/FarmService" }, method = RequestMethod.POST)
-	public String submitNewFarmerAssignment(@RequestBody HashMap<String,String> formData) {
-		int newAssignedPopulation = Integer.valueOf(formData.get("newAssignedPopulation"));
-		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getFarm(), newAssignedPopulation);
-		return "userHome";
+	public String submitNewFarmerAssignment(Model model) {
+	//	model.
+	//	int newAssignedPopulation = Integer.valueOf(formData.get("newAssignedPopulation"));
+		//clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getFarm(), newAssignedPopulation);
+		return displayCityStats(model);
 	}
 	
 }

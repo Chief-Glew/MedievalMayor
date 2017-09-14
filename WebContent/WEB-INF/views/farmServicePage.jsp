@@ -45,7 +45,7 @@
 			<c:out value="${maxAssignable}" />
 		</p>
 
-		<form action="./farmService" method="post">
+		<form action="./farmService" method="post" name="assignFarmers">
 			<label>New Population to set: </label> <input type="number"
 				name="newAssignedPopulation" min="0"
 				max="<c:out value="${maxAssignable}"/>"><br> <input
