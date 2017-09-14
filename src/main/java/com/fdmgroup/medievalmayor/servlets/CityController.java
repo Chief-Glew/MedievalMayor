@@ -19,11 +19,10 @@ import com.fdmgroup.medievalmayor.game.CityFactory;
 import com.fdmgroup.medievalmayor.game.building.BuildingManager;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
 @Controller
-@RequestMapping(value = {"/medievalmayor"})
 public class CityController {
-	@Autowired
+	@Autowired(required = false)
 	private GenericRead<City> readCrud;
-	@Autowired
+	@Autowired(required = false)
 	private GenericWrite<City> writeCrud;
 	private BuildingManager buildingManager = new BuildingManager();
 	private City city;
@@ -67,10 +66,10 @@ public class CityController {
 		model.addAttribute("currentAssigned", buildingManager.getPeopleInBuilding(city.getMine()));
 		int maxAssignable = buildingManager.getPeopleInBuilding(city.getMine()) + city.getUnassignedPopulation();
 		model.addAttribute("maxAssignable", maxAssignable);
-		return "mineService";
+		return "mineServicePage";
 	}
 	
-	@RequestMapping(value = { "/MineServiceServlet", "/mineService" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/MineServiceServlet", "/mineService" }, method = RequestMethod.POST)
 	public String submitNewMinerAssignment(@RequestBody HashMap<String,String> formData) {
 		int newAssignedPopulation = Integer.valueOf(formData.get("newAssignedPopulation"));
 		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getMine(), newAssignedPopulation);
@@ -82,10 +81,10 @@ public class CityController {
 		model.addAttribute("currentAssigned", buildingManager.getPeopleInBuilding(city.getFarm()));
 		int maxAssignable = buildingManager.getPeopleInBuilding(city.getFarm()) + city.getUnassignedPopulation();
 		model.addAttribute("maxAssignable", maxAssignable);
-		return "mineService";
+		return "farmServicePage";
 	}
 	
-	@RequestMapping(value = {  "/Farmservice", "/farmservice", "/farmService", "/FarmService" }, method = RequestMethod.GET)
+	@RequestMapping(value = {  "/Farmservice", "/farmservice", "/farmService", "/FarmService" }, method = RequestMethod.POST)
 	public String submitNewFarmerAssignment(@RequestBody HashMap<String,String> formData) {
 		int newAssignedPopulation = Integer.valueOf(formData.get("newAssignedPopulation"));
 		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getFarm(), newAssignedPopulation);
