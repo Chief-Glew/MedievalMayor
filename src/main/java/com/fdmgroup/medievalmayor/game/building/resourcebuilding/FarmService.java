@@ -11,15 +11,7 @@ public class FarmService {
 	static final Logger logger = LogManager.getLogger("FarmService");
 
 	
-	private static FarmService instance;
-
 	public FarmService() {
-		instance = this;
-	}
-
-	public static FarmService getInstance(){
-		logger.trace("Farm Service Instance retrieved");
-		return instance;
 	}
 
 	public int produceResourcesForFarm(Farm farm){
