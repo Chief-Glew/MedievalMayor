@@ -30,7 +30,7 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="container-fluid" style="background-color: darkgreen;">
+	<div class="container-fluid" style="background-color: green; color: lightblue;">
 
 		<div class="center-block"
 			style="background-color: yellow; width: 500px;">
@@ -49,7 +49,7 @@
 			<label>New Population to set: </label> <input type="number"
 				name="newAssignedPopulation" min="0"
 				max="<c:out value="${maxAssignable}"/>"><br> <input
-				type="submit" value="submit">
+				type="submit" value="submit" style= "background-color: red; color: black;">
 		</form>
 	</div>
 </body>

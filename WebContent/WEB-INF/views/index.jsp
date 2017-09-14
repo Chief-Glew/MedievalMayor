@@ -31,7 +31,7 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="container-fluid" style="background-color: darkgreen;">
+	<div class="container-fluid" style="background-color: green; color: lightblue;">
 		<div class="center-block"
 			style="background-color: yellow; width: 500px;">
 			<h1>Welcome to Medieval Mayor!</h1>

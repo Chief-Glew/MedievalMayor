@@ -30,40 +30,5 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="container-fluid" style="background-color: green; color: lightblue;">
-		<div class="center-block"
-			style="background-color: yellow; width: 500px;">
-			<h1>Build your City!</h1>
-		</div>
-		<p>
-			Total Population:
-			<c:out value="${totalPopulation}" />
-		</p>
-		<p>
-			Number of Unassigned People:
-			<c:out value="${unnassignedPeople}" />
-		</p>
-		<p>
-			Number of People in the Farm:
-			<c:out value="${farmers}" />
-			<a href="./farmService">change</a>
-		</p>
-		<p>
-			Number of People in the Mine:
-			<c:out value="${miners}" />
-			<a href="./mineService">change</a>
-		</p>
-		<p>
-			Amount of food:
-			<c:out value="${food }"></c:out>
-		</p>
-		<p>
-			Amount of gold:
-			<c:out value="${gold }"></c:out>
-		</p>
-		<form action="./NextTurn" method="post" name="nextDay">
-			<input type="submit" value="next day" style= "background-color: red; color: black;">
-		</form>
-	</div>
 </body>
 </html>
