@@ -5,9 +5,9 @@ import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
-import com.fdmgroup.medievalmayor.game.building.BuildingManager;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Forest;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ForestService;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildingService;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityService;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
@@ -18,14 +18,14 @@ public class ForestTest {
 	@Spy
 	private City city;
 	private ClientCommand clientCommand;
-	private BuildingManager buildingManager;
+	private ResourceBuildingService buildingManager;
 	private ForestService forestService; 
 	@Before
 	public void init(){
 		MockitoAnnotations.initMocks(this);
 		forest = new Forest(1);
 		clientCommand = new ClientCommand();
-		buildingManager = new BuildingManager();
+		buildingManager = new ResourceBuildingService();
 		forestService = new ForestService();
 	}
 	

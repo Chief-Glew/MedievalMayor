@@ -1,5 +1,8 @@
 package com.fdmgroup.medievalmayor.game.city;
 
+import java.util.Map;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +20,11 @@ import org.apache.logging.log4j.Logger;
 import com.fdmgroup.medievalmayor.game.IdAble;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.Resource;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.ResourceFactory;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.ResourceStorageFactory;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.ResourceStorageHandler;
 
 @Entity(name="CITY")
 public class City implements IdAble{
@@ -27,6 +35,8 @@ public class City implements IdAble{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="CITY_ID")
 	private long cityId;
+	@Column(name="CITY_NAME")
+	private String cityName;
 	@Column(name="TOTAL_POPULATION")
 	private int totalPopulation;
 	@Column(name="UNASSIGNED_POPULATION")
@@ -42,15 +52,50 @@ public class City implements IdAble{
 	@JoinColumn(name="MINE_ID")
 	private Mine mine;
 
+	//setup for new resource management
+	private ResourceStorageHandler resourceStorage;
+	private Set<ResourceBuilding> resourceGenerators;
+
 	public City(){};
 
-	public City(int totalPopulation, int food, int gold, Farm farm, Mine mine){
+	public City(String cityName, int totalPopulation, int food, int gold, Farm farm, Mine mine){
+		this.cityName = cityName;
 		this.unassignedPopulation = totalPopulation;
 		this.totalPopulation = totalPopulation;
 		this.food = food;
 		this.gold = gold;
 		this.farm = farm;
 		this.mine = mine;
+	}
+
+	//constructor for new resource management
+	public City(String cityName, int totalPopulation, ResourceBuilding... resourceBuildings) {
+		this.cityName = cityName;
+		this.totalPopulation = totalPopulation;
+		this.unassignedPopulation = totalPopulation;
+		ResourceStorageFactory resourceStorageFactory = new ResourceStorageFactory();
+		resourceStorage = resourceStorageFactory.getFoodStorage(10);
+		for (ResourceBuilding resourceBuilding:resourceBuildings) {
+			resourceGenerators.add(resourceBuilding);
+			resourceStorage.addResourceStore(resourceStorageFactory.getStorageForResource(resourceBuilding.produceResourceNew()));
+		}
+	}
+
+	//constructor for new resource management
+	public City(String cityName, int totalPopulation, Set<ResourceBuilding> resourceBuildings) {
+		this.cityName = cityName;
+		this.totalPopulation = totalPopulation;
+		this.unassignedPopulation = totalPopulation;
+		resourceGenerators.addAll(resourceBuildings);
+		ResourceStorageFactory resourceStorageFactory = new ResourceStorageFactory();
+		resourceStorage = resourceStorageFactory.getFoodStorage(10);
+		for (ResourceBuilding resourceBuilding:resourceBuildings) {
+			resourceStorage.addResourceStore(
+					resourceStorageFactory.getStorageForResource(
+							resourceBuilding.produceResourceNew()
+							)
+					);
+		}
 	}
 
 	public int getTotalPopulation() {
@@ -114,6 +159,51 @@ public class City implements IdAble{
 		return mine;
 	}
 
+	public String getCityName() {
+		return cityName;
+	}
+
+	//method for new resource management
+	public void addResourceStore(ResourceStorageHandler handler) {
+		resourceStorage.addResourceStore(handler);
+	}
+
+	//method for new resource management
+	public void addResource(Resource resource) {
+		resourceStorage.addResource(resource);
+	}
+
+	//method for new resource management
+	public ResourceBuilding getResourceBuildingOfType(Class<? extends ResourceBuilding> type) {
+		for (ResourceBuilding building: resourceGenerators) {
+			if (type.equals(building.getClass())) {
+				return building;
+			}
+		}
+		return null;
+	}
+
+	//method for new resource management
+	public void addResourceBuilding(ResourceBuilding resourceBuilding) {
+		ResourceStorageFactory resourceStorageFactory = new ResourceStorageFactory();
+		resourceGenerators.add(resourceBuilding);
+		resourceStorage.addResourceStore(
+				resourceStorageFactory.getStorageForResource(
+						resourceBuilding.produceResourceNew()
+						)
+				);
+
+	}
+	
+	//method for new resource management
+	public Map<String, Integer> getResources(){
+		return resourceStorage.getResources();
+	}
+
+	//method for new resource management
+	public Set<ResourceBuilding> getResourceGenerators(){
+		return resourceGenerators;
+	}
 	@Override
 	public String toString() {
 		return "City [cityId=" + cityId + ", totalPopulation=" + totalPopulation + ", unassignedPopulation="

@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.IdAble;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.Resource;
 
 @Entity(name="FARM")
 public class Farm extends ResourceBuilding implements IdAble{
@@ -20,6 +21,7 @@ public class Farm extends ResourceBuilding implements IdAble{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="FARM_ID")
 	private long farmId;
+	
 	
 	public Farm(){}
 	
@@ -37,5 +39,10 @@ public class Farm extends ResourceBuilding implements IdAble{
 	@Override
 	public long getId() {
 		return farmId;
+	}
+
+	@Override
+	public Resource produceResourceNew() {
+		return resourceFactory.getFood(getNumberOfAssignedWorkers()*getMultiplier());
 	}
 }

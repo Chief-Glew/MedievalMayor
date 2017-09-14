@@ -3,6 +3,8 @@ package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.Resource;
+
 public class Forest extends ResourceBuilding{
 
 	static final Logger logger = LogManager.getLogger("Forest");
@@ -24,4 +26,8 @@ public class Forest extends ResourceBuilding{
 		return forestId;
 	}
 
+	@Override
+	public Resource produceResourceNew() {
+		return resourceFactory.getWood(getNumberOfAssignedWorkers()*getMultiplier());
+	}
 }

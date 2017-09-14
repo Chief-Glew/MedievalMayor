@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.IdAble;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.Resource;
 
 @Entity(name="MINE")
 public class Mine extends ResourceBuilding implements IdAble{	
@@ -37,6 +38,11 @@ public class Mine extends ResourceBuilding implements IdAble{
 	@Override
 	public long getId() {
 		return mineId;
+	}
+	
+	@Override
+	public Resource produceResourceNew() {
+		return resourceFactory.getGold(getNumberOfAssignedWorkers()*getMultiplier());
 	}
 	
 }

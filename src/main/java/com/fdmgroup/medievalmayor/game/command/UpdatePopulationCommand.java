@@ -4,6 +4,7 @@ import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.FarmService;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.MineService;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
 import com.fdmgroup.medievalmayor.game.city.City;
 
 public class UpdatePopulationCommand implements UserCommand {
@@ -18,7 +19,6 @@ public class UpdatePopulationCommand implements UserCommand {
 		farmService = new FarmService(); //TODO fix this bean it
 		
 	}
-
 
 
 	@Override

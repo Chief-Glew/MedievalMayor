@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.fdmgroup.medievalmayor.CRUD.CityJPACRUD;
-import com.fdmgroup.medievalmayor.game.building.BuildingManager;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildingService;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityFactory;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
@@ -19,14 +19,14 @@ public class CityController {
 	
 	private CityJPACRUD readCrud;
 	private CityJPACRUD writeCrud;
-	private BuildingManager buildingManager;
+	private ResourceBuildingService buildingManager;
 	private City city;
 	private ClientCommand clientComand;
 	private CityFactory cityFactory;
 	
 
 	public CityController() {
-		buildingManager = new BuildingManager();
+		buildingManager = new ResourceBuildingService();
 		clientComand = new ClientCommand();
 		cityFactory = new CityFactory();
 		city = cityFactory.getNewCity();
