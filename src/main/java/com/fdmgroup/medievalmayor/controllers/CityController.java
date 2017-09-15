@@ -1,5 +1,7 @@
 package com.fdmgroup.medievalmayor.controllers;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,9 @@ import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityFactory;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
 import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
+import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
+import com.fdmgroup.medievalmayor.game.resourceproducers.Mine;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
 @Controller
@@ -19,14 +24,14 @@ public class CityController {
 	
 	private CityJPACRUD readCrud;
 	private CityJPACRUD writeCrud;
-	private ResourceProducerService buildingManager;
+	private ResourceProducerService resourceProducerService;
 	private City city;
 	private ClientCommand clientComand;
 	private CityFactory cityFactory;
 	
 
 	public CityController() {
-		buildingManager = new ResourceProducerService();
+		resourceProducerService = new ResourceProducerService();
 		clientComand = new ClientCommand();
 		cityFactory = new CityFactory();
 		city = cityFactory.getNewCity();
@@ -68,23 +73,24 @@ public class CityController {
 
 	@RequestMapping(value = { "/UserHomeServlet", "/userHome", "/home", "/Home" }, method = RequestMethod.GET)
 	public String displayCityStats(Model model){
-		//city = readCrud.read(1);
-		//the stuff from the form
+		Map<String, Integer> workers = new HashMap<String, Integer>();
+		for (ResourceProducer resourceProducer: city.getResourceGenerators()){
+			workers.put(resourceProducer.resourceProducerName(), resourceProducerService.getPeopleInBuilding(resourceProducer));
+		}
+		Map<String, Integer> resources = city.getResources();
 
 		model.addAttribute("totalPopulation", city.getTotalPopulation());
 		model.addAttribute("unnassignedPeople", city.getUnassignedPopulation());
-		model.addAttribute("farmers", buildingManager.getPeopleInBuilding(city.getFarm()));
-		model.addAttribute("miners", buildingManager.getPeopleInBuilding(city.getMine()));
-		model.addAttribute("food", city.getFood());
-		model.addAttribute("gold", city.getGold());
+		model.addAttribute("workers", workers);
+		model.addAttribute("resources", resources);
 
 		return "userHome"; 
 	} 
 	
 	@RequestMapping(value = { "/MineServiceServlet", "/mineService" }, method = RequestMethod.GET)
 	public String displayMinerAsignerForm(Model model) {
-		model.addAttribute("currentAssigned", buildingManager.getPeopleInBuilding(city.getMine()));
-		int maxAssignable = buildingManager.getPeopleInBuilding(city.getMine()) + city.getUnassignedPopulation();
+		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(Mine.class)));
+		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(Mine.class)) + city.getUnassignedPopulation();
 		model.addAttribute("maxAssignable", maxAssignable);
 		return "mineServicePage";
 	}
@@ -92,14 +98,14 @@ public class CityController {
 	@RequestMapping(value = { "/MineServiceServlet", "/mineService" }, method = RequestMethod.POST)
 	public String submitNewMinerAssignment(@RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
 		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
-		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getMine(), newAssignedPopulation);
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceBuildingOfType(Mine.class), newAssignedPopulation);
 		return displayCityStats(model);
 	}
 	
 	@RequestMapping(value = {  "/Farmservice", "/farmservice", "/farmService", "/FarmService" }, method = RequestMethod.GET)
 	public String displayFarmerAsignerForm(Model model) {
-		model.addAttribute("currentAssigned", buildingManager.getPeopleInBuilding(city.getFarm()));
-		int maxAssignable = buildingManager.getPeopleInBuilding(city.getFarm()) + city.getUnassignedPopulation();
+		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(Farm.class)));
+		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(Farm.class)) + city.getUnassignedPopulation();
 		model.addAttribute("maxAssignable", maxAssignable);
 		return "farmServicePage";
 	}
@@ -107,7 +113,7 @@ public class CityController {
 	@RequestMapping(value = {  "/Farmservice", "/farmservice", "/farmService", "/FarmService" }, method = RequestMethod.POST)
 	public String submitNewFarmerAssignment(@RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
 		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
-		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getFarm(), newAssignedPopulation);
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceBuildingOfType(Farm.class), newAssignedPopulation);
 		return displayCityStats(model);
 	}
 	
