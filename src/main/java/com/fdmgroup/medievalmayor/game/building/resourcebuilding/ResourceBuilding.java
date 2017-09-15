@@ -5,6 +5,8 @@ import javax.persistence.MappedSuperclass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.fdmgroup.medievalmayor.game.building.Building;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.Resource;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.ResourceFactory;
 
 @MappedSuperclass
 public abstract class ResourceBuilding extends Building{
@@ -16,7 +18,10 @@ public abstract class ResourceBuilding extends Building{
 	@Column(name="RESOURCE_MULTIPLIER")
 	private int multiplier;
 	
+	protected ResourceFactory resourceFactory;
+	
 	public ResourceBuilding() {
+		resourceFactory = new ResourceFactory();
 	}
 
 	public ResourceBuilding(int multiplier) {
@@ -24,6 +29,9 @@ public abstract class ResourceBuilding extends Building{
 	}
 
 	public abstract int produceResource();
+	
+	public abstract Resource produceResourceNew();
+
 	
 	public void setMultiplier(int multiplier) {
 		logger.trace("Multiplier set");

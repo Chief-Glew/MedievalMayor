@@ -5,9 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.medievalmayor.game.building.BuildingManager;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildingService;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
@@ -17,14 +17,14 @@ public class CityTest {
 	private City  city;
 	private Farm farm;
 	private Mine mine;
-	private BuildingManager buildingManager;
+	private ResourceBuildingService buildingManager;
 	
 	@Before
 	public void init(){
 		city = City.getInstance();
 		farm = Farm.getInstance();
 		mine = Mine.getInstance();
-		buildingManager = BuildingManager.getInstance();
+		buildingManager = ResourceBuildingService.getInstance();
 		farm.setMultiplier(3);
 		mine.setMultiplier(2);
 	}

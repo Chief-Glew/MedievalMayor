@@ -3,7 +3,6 @@ package com.fdmgroup.medievalmayor.game.city;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fdmgroup.medievalmayor.game.building.BuildingManager;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.FarmService;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.MineService;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildingService;
 
 @Component
 public class CityService {
@@ -82,7 +82,7 @@ public class CityService {
 	public void assignPeopleToFarm(City city, int numberOfPeople){
 		Farm farm = city.getFarm();
 		try {
-			BuildingManager.getInstance().assignPeopleToBuilding
+			ResourceBuildingService.getInstance().assignPeopleToBuilding
 			(numberOfPeople, city.getUnassignedPopulation(), farm);
 			logger.trace("People assigned to farm");
 		} catch (InsufficentPopulationException | AssignedNegativeNumberException e) {

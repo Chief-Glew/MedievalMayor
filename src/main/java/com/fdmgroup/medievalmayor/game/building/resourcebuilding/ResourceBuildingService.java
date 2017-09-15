@@ -1,31 +1,16 @@
-package com.fdmgroup.medievalmayor.game.building;
+package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
-import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
 
-public class BuildingManager implements Buildable {
+public class ResourceBuildingService {
 
 	static final Logger logger = LogManager.getLogger("City");
 	
-	private City city;
-
-	public static class BuildingManagerInstanceHolder{
-		private static final BuildingManager INSTANCE = new BuildingManager();
-	}
-
-	public static BuildingManager getInstance(){
-		logger.trace("Building Manager Instance retrieved");
-		return BuildingManagerInstanceHolder.INSTANCE;
-	}
-
 	public int assignPeopleToBuilding(int numberOfPeopleToAssign, int numberOfPeopleAvailible, ResourceBuilding building) throws InsufficentPopulationException, AssignedNegativeNumberException {
 		if(numberOfPeopleToAssign < 0){
 			throw new AssignedNegativeNumberException("Cannot assign a negative number of people to a building");
@@ -40,20 +25,12 @@ public class BuildingManager implements Buildable {
 		return (numberOfPeopleAvailible - difference);
 	}
 
-	public ResourceBuilding buildAMine(){
-		logger.trace("Mine Built");
-		return null;
-
-	}
-
-	public ResourceBuilding buildAFarm(){
-		logger.trace("Farm Built");
-		return null;
-
-	}
-
 	public int getPeopleInBuilding(ResourceBuilding building){
 		logger.trace("Number of assigned workers in "+building+" retrieved");
 		return building.getNumberOfAssignedWorkers();
+	}
+	
+	public int getResourceForBuilding(ResourceBuilding building) {
+		return building.produceResource();
 	}
 }
