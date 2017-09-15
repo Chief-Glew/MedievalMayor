@@ -11,7 +11,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
 @DiscriminatorValue(value = "FARM")
 public class Farm extends ResourceProducer{
 	
-	static final Logger logger = LogManager.getLogger("Farm");
+	static final Logger logger = LogManager.getLogger("Farm.class");
 	
 	public Farm(){}
 	
@@ -25,6 +25,7 @@ public class Farm extends ResourceProducer{
 
 	@Override
 	public Resource produceResource() {
+		logger.trace("Food Produced");
 		return resourceFactory.getFood(getNumberOfAssignedWorkers()*getMultiplier());
 	}
 }

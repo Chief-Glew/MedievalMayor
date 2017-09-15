@@ -11,7 +11,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
 @DiscriminatorValue(value = "MINE")
 public class Mine extends ResourceProducer {	
 	
-	static final Logger logger = LogManager.getLogger("Mine");
+	static final Logger logger = LogManager.getLogger("Mine.class");
 	
 	public Mine(){}
 	
@@ -25,6 +25,7 @@ public class Mine extends ResourceProducer {
 
 	@Override
 	public Resource produceResource() {
+		logger.trace("Gold produced");
 		return resourceFactory.getGold(getNumberOfAssignedWorkers()*getMultiplier());
 	}
 }

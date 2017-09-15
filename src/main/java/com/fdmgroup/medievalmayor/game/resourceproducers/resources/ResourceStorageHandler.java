@@ -9,8 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 @Entity(name="RESOURCE_STORAGE")
 public class ResourceStorageHandler extends Resource{
+	
+	private static final Logger logger = LogManager.getLogger("ResourceStorageHandler.class");
 
 	@Column(name="CAPACITY")
 	private int capacity;
@@ -39,6 +44,7 @@ public class ResourceStorageHandler extends Resource{
 				next.addResourceStore(handler);
 			}
 		}
+		logger.trace("addResourceStore method used");
 	}
 
 	public void addResource(Resource resource) throws NullPointerException {
@@ -48,6 +54,7 @@ public class ResourceStorageHandler extends Resource{
 		else {
 			next.addResource(resource);
 		}
+		logger.trace("addResource method used");
 	}
 	
 	public Map<String, Integer> getResources(){
@@ -59,6 +66,7 @@ public class ResourceStorageHandler extends Resource{
 			resources = next.getResources();
 		}
 		resources.put(getResourceType(), amount);
+		logger.trace("getResource method used");
 		return resources;
 	}
 	
@@ -69,9 +77,11 @@ public class ResourceStorageHandler extends Resource{
 		if (next!=null) {
 			next.setResources(resources);
 		}
+		logger.trace("setResources method used");
 	}
 
 	private boolean isSameResourceType(ResourceStorageHandler handler) throws NullPointerException {
+		logger.trace("isSameResourceType method used");
 		return this.isSameTypeOfResource(handler);
 	}
 }

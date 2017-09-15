@@ -18,7 +18,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFacto
 @DiscriminatorColumn(name="RESOURCE_PRODUCER_TYPE")
 public abstract class ResourceProducer{
 	
-	static final Logger logger = LogManager.getLogger("ResourceBuilding");
+	static final Logger logger = LogManager.getLogger("ResourceProducer.class");
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="RESOURCE_PRODUCER_ID")
