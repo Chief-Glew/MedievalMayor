@@ -22,7 +22,7 @@ public class CityFactory {
 	}
 	
 	public City getNewCity(){
-		return new City("nullsberg", 10, 
+		return new City("DefaultCity", 10, 
 				resourceProducerFactory.getFarm(), 
 				resourceProducerFactory.getMine());
 	}
@@ -33,8 +33,8 @@ public class CityFactory {
 				resourceProducerFactory.getMine());
 	}
 	
-	public City getNewCityWithForest(){ //TODO rename
-		return new City("nullsberg", 10, 
+	public City getNewCityWithForest(){
+		return new City("DefaultCity", 10, 
 				resourceProducerFactory.getFarm(), 
 				resourceProducerFactory.getMine(), 
 				resourceProducerFactory.getForest());

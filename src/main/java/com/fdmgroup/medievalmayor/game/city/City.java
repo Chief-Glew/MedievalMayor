@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,17 +40,17 @@ public class City implements IdAble{
 	private String cityName;
 	@Column(name="TOTAL_POPULATION") 
 	private int totalPopulation;
-	@OneToOne(cascade= CascadeType.ALL)
+	@OneToOne(cascade= CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="RESOURCE_ID")
 	private ResourceStorageHandler resourceStorage;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name="CITY_RESOURCE_PRODUCERS", joinColumns=@JoinColumn(name="CITY_ID"), inverseJoinColumns=@JoinColumn(name="RESOURCE_PRODUCER_ID"))
 	private Set<ResourceProducer> resourceGenerators;
 	@Transient  
 	private ResourceStorageFactory storageFactory;
 
 	public City(){};
-	
+
 	public City(String cityName, int totalPopulation){
 		storageFactory = new ResourceStorageFactory();
 		resourceGenerators = new HashSet<ResourceProducer>();
@@ -58,7 +59,6 @@ public class City implements IdAble{
 		resourceStorage = storageFactory.getPopulationStorage(totalPopulation, totalPopulation);
 	}
 
-	//constructor for new resource management
 	public City(String cityName, int totalPopulation, ResourceProducer... resourceBuildings) {
 		this(cityName, totalPopulation);
 		for (ResourceProducer resourceBuilding:resourceBuildings) {
@@ -67,16 +67,11 @@ public class City implements IdAble{
 		}
 	}
 
-	//constructor for new resource management
 	public City(String cityName, int totalPopulation, Set<ResourceProducer> resourceBuildings) {
 		this(cityName, totalPopulation);
 		resourceGenerators.addAll(resourceBuildings);
 		for (ResourceProducer resourceBuilding:resourceBuildings) {
-			resourceStorage.addResourceStore(
-					storageFactory.getStorageForResource(
-							resourceBuilding.produceResource()
-							)
-					);
+			resourceStorage.addResourceStore(storageFactory.getStorageForResource(resourceBuilding.produceResource()));
 		}
 	}
 
@@ -128,19 +123,16 @@ public class City implements IdAble{
 		return cityName;
 	}
 
-	//method for new resource management
 	public void addResourceStore(ResourceStorageHandler handler) {
 		logger.trace("ResourceStore added");
 		resourceStorage.addResourceStore(handler);
 	}
 
-	//method for new resource management
 	public void addResource(Resource resource) {
 		logger.trace("Resource added");
 		resourceStorage.addResource(resource);
 	}
 
-	//method for new resource management
 	public ResourceProducer getResourceBuildingOfType(Class<? extends ResourceProducer> type) {
 		for (ResourceProducer building: resourceGenerators) {
 			if (type.equals(building.getClass())) {
@@ -152,29 +144,27 @@ public class City implements IdAble{
 		return null;
 	}
 
-	//method for new resource management
 	public void addResourceBuilding(ResourceProducer resourceBuilding) {
 		ResourceStorageFactory resourceStorageFactory = new ResourceStorageFactory();
 		resourceGenerators.add(resourceBuilding);
 		resourceStorage.addResourceStore(resourceStorageFactory.getStorageForResource(resourceBuilding.produceResource()));
 		logger.trace("Resource Building Added");
 	}
-	
-	//method for new resource management
+
 	public Map<String, Integer> getResources(){
 		logger.trace("Resources retrieved");
 		return resourceStorage.getResources();
 	}
 
-	//method for new resource management
 	public Set<ResourceProducer> getResourceGenerators(){
 		logger.trace("ResourceGenerators retrieved");
 		return resourceGenerators;
 	}
-	
+
 	public void setResources(Map<String, Integer> resources) {
 		logger.trace("Resources set");
 		resourceStorage.setResources(resources);
 	}
-	
+
+
 }

@@ -74,10 +74,13 @@ public class CityController {
 	@RequestMapping(value = { "/UserHomeServlet", "/userHome", "/home", "/Home" }, method = RequestMethod.GET)
 	public String displayCityStats(Model model){
 		Map<String, Integer> workers = new HashMap<String, Integer>();
+		System.out.println(city);
+		System.out.println(city.getResourceGenerators());
 		for (ResourceProducer resourceProducer: city.getResourceGenerators()){
 			workers.put(resourceProducer.resourceProducerName(), resourceProducerService.getPeopleInBuilding(resourceProducer));
-		}
+		} 
 		Map<String, Integer> resources = city.getResources();
+		resources.remove("Population");
 
 		model.addAttribute("totalPopulation", city.getTotalPopulation());
 		model.addAttribute("unnassignedPeople", city.getUnassignedPopulation());
@@ -109,7 +112,7 @@ public class CityController {
 		model.addAttribute("maxAssignable", maxAssignable);
 		return "farmServicePage";
 	}
-	
+	  
 	@RequestMapping(value = {  "/Farmservice", "/farmservice", "/farmService", "/FarmService" }, method = RequestMethod.POST)
 	public String submitNewFarmerAssignment(@RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
 		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
