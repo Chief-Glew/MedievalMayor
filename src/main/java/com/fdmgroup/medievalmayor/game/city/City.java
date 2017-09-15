@@ -1,5 +1,7 @@
 package com.fdmgroup.medievalmayor.game.city;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -60,6 +62,8 @@ public class City implements IdAble{
 	public City(){};
 	
 	public City(String cityName, int totalPopulation){
+		storageFactory = new ResourceStorageFactory();
+		resourceGenerators = new HashSet<ResourceBuilding>();
 		this.cityName = cityName;
 		this.unassignedPopulation = totalPopulation;
 		this.totalPopulation = totalPopulation;
@@ -81,7 +85,7 @@ public class City implements IdAble{
 		this(cityName, totalPopulation);
 		for (ResourceBuilding resourceBuilding:resourceBuildings) {
 			resourceGenerators.add(resourceBuilding);
-			resourceStorage.addResourceStore(storageFactory.getStorageForResource(resourceBuilding.produceResourceNew()));
+			resourceStorage.addResourceStore(storageFactory.getStorageForResource(resourceBuilding.produceResource()));
 		}
 	}
 
@@ -92,7 +96,7 @@ public class City implements IdAble{
 		for (ResourceBuilding resourceBuilding:resourceBuildings) {
 			resourceStorage.addResourceStore(
 					storageFactory.getStorageForResource(
-							resourceBuilding.produceResourceNew()
+							resourceBuilding.produceResource()
 							)
 					);
 		}
@@ -105,7 +109,7 @@ public class City implements IdAble{
 
 	public int getUnassignedPopulation() {
 		logger.trace("Unassigned Population retrieved");
-		return unassignedPopulation;
+		return getResources().get("Population");
 	}
 
 	public long getCityId() {
@@ -130,17 +134,20 @@ public class City implements IdAble{
 
 	public void setUnassignedPopulation(int numberOfPeople) {
 		logger.trace("Unassigned Population set");
+		Map<String, Integer> newPop = new HashMap<String, Integer>();
+		newPop.put("Population", numberOfPeople);
+		setResources(newPop);
 		unassignedPopulation = numberOfPeople;
 	}
 
 	public int getGold() {
 		logger.trace("Gold retrieved");
-		return gold;
+		return getResources().get("Gold");
 	}
 
 	public int getFood() {
 		logger.trace("Food retrieved");
-		return food;
+		return getResources().get("Food");
 	}
 
 	@Override
@@ -189,7 +196,7 @@ public class City implements IdAble{
 		resourceGenerators.add(resourceBuilding);
 		resourceStorage.addResourceStore(
 				resourceStorageFactory.getStorageForResource(
-						resourceBuilding.produceResourceNew()
+						resourceBuilding.produceResource()
 						)
 				);
 
@@ -204,10 +211,17 @@ public class City implements IdAble{
 	public Set<ResourceBuilding> getResourceGenerators(){
 		return resourceGenerators;
 	}
+	
+	public void setResources(Map<String, Integer> resources) {
+		resourceStorage.setResources(resources);
+	}
+	
 	@Override
 	public String toString() {
 		return "City [cityId=" + cityId + ", totalPopulation=" + totalPopulation + ", unassignedPopulation="
 				+ unassignedPopulation + ", gold=" + gold + ", food=" + food + ", farm=" + farm + ", mine=" + mine
 				+ "]";
 	}
+
+	
 }

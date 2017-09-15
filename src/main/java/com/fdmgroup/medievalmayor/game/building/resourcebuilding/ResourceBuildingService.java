@@ -4,6 +4,7 @@ package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.Resource;
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
 
@@ -30,7 +31,7 @@ public class ResourceBuildingService {
 		return building.getNumberOfAssignedWorkers();
 	}
 	
-	public int getResourceForBuilding(ResourceBuilding building) {
+	public Resource getResourceForBuilding(ResourceBuilding building) {
 		return building.produceResource();
 	}
 }

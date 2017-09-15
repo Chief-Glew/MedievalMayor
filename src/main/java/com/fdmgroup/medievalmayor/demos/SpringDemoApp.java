@@ -8,10 +8,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.fdmgroup.medievalmayor.config.AppConfig;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildingService;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityFactory;
-import com.fdmgroup.medievalmayor.game.city.CityService;
 import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
 import com.fdmgroup.medievalmayor.game.command.NextTurnCommand;
 import com.fdmgroup.medievalmayor.game.command.SetNumberOfWorkersInBuildingFromCityCommand;
@@ -29,9 +29,10 @@ public class SpringDemoApp {
 		
 		
 		CityFactory cityFactory = new CityFactory();
-		City city = cityFactory.getNewCity();
-		Farm farm = city.getFarm();
-		Mine mine = city.getMine();
+		City city = cityFactory.getNewNewCity();
+		ResourceBuilding farm = city.getResourceBuildingOfType(Farm.class);
+		ResourceBuilding mine = city.getResourceBuildingOfType(Mine.class);
+
 		CommandInvoker commandInvoker = new CommandInvoker();
 		CommandInvoker nextTurnInvoker = new CommandInvoker();
 		
@@ -48,11 +49,11 @@ public class SpringDemoApp {
 		System.out.println("");
 		
 		
-		UserCommand asign2PeopleToFarm = new SetNumberOfWorkersInBuildingFromCityCommand(city, farm, 2);
+		UserCommand asign4PeopleToFarm = new SetNumberOfWorkersInBuildingFromCityCommand(city, farm, 4);
 		UserCommand asign5PeopleToMine = new SetNumberOfWorkersInBuildingFromCityCommand(city, mine, 5);
 		commandInvoker.setCommand(asign5PeopleToMine);
 		commandInvoker.invokeCommands();
-		commandInvoker.setCommand(asign2PeopleToFarm);
+		commandInvoker.setCommand(asign4PeopleToFarm);
 		commandInvoker.invokeCommands();
 		nextTurnInvoker.invokeCommands();
 		

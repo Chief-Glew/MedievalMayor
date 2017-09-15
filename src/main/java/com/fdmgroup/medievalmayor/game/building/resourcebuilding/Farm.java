@@ -30,19 +30,12 @@ public class Farm extends ResourceBuilding implements IdAble{
 	}
 
 	@Override
-	public int produceResource() {
-		int foodProduced = getNumberOfAssignedWorkers()*getMultiplier();
-		logger.trace("Food Produced");
-		return foodProduced;
-	}
-
-	@Override
 	public long getId() {
 		return farmId;
 	}
 
 	@Override
-	public Resource produceResourceNew() {
+	public Resource produceResource() {
 		return resourceFactory.getFood(getNumberOfAssignedWorkers()*getMultiplier());
 	}
 }

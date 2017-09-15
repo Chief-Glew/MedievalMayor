@@ -25,13 +25,11 @@ public abstract class ResourceBuilding extends Building{
 	}
 
 	public ResourceBuilding(int multiplier) {
+		this();
 		this.multiplier = multiplier;
 	}
 
-	public abstract int produceResource();
-	
-	public abstract Resource produceResourceNew();
-
+	public abstract Resource produceResource();
 	
 	public void setMultiplier(int multiplier) {
 		logger.trace("Multiplier set");
