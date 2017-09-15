@@ -20,9 +20,10 @@ import com.fdmgroup.medievalmayor.game.city.City;
 @Qualifier("JPA")
 public class CityJPACRUD implements GenericCrud<City> {
 
+	private static final Logger logger = LogManager.getLogger("CityJPACRUD.class");
+	
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
-	private static final Logger logger = LogManager.getLogger("CityJPACRUD");
 
 	protected void connect(){
 		entityManagerFactory = Persistence.createEntityManagerFactory("medievalMayor");
