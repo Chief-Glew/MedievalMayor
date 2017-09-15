@@ -8,25 +8,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.fdmgroup.medievalmayor.CRUD.CityJPACRUD;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildingService;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityFactory;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
 import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
 @Controller
 public class CityController {
 	
 	private CityJPACRUD readCrud;
 	private CityJPACRUD writeCrud;
-	private ResourceBuildingService buildingManager;
+	private ResourceProducerService buildingManager;
 	private City city;
 	private ClientCommand clientComand;
 	private CityFactory cityFactory;
 	
 
 	public CityController() {
-		buildingManager = new ResourceBuildingService();
+		buildingManager = new ResourceProducerService();
 		clientComand = new ClientCommand();
 		cityFactory = new CityFactory();
 		city = cityFactory.getNewCity();

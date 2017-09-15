@@ -5,24 +5,24 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildingService;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
+import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
+import com.fdmgroup.medievalmayor.game.resourceproducers.Mine;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
 public class BuildingManagerTest {
 
 	private City city;
-	private ResourceBuildingService buildingManager;
-	private ResourceBuilding farm;
-	private ResourceBuilding mine;
+	private ResourceProducerService buildingManager;
+	private ResourceProducer farm;
+	private ResourceProducer mine;
 
 	@Before
 	public void init(){
-		buildingManager = ResourceBuildingService.getInstance();
+		buildingManager = ResourceProducerService.getInstance();
 		farm = Farm.getInstance();
 		mine = Mine.getInstance();
 		city= City.getInstance();

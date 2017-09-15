@@ -2,32 +2,28 @@ package com.fdmgroup.medievalmayor.game.command;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildingService;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.Resource;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.ResourceFactory;
 import com.fdmgroup.medievalmayor.game.city.City;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
+import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
 
 public class UpdateResourcesCommand implements UserCommand{
 
 	private City city; 
 	private ResourceFactory resourceFactory;
-	private ResourceBuildingService resourceBuildingService;
+	private ResourceProducerService resourceBuildingService;
 	static final Logger logger = LogManager.getLogger("CityService");
 	
 	
 	public UpdateResourcesCommand(City city) {
 		resourceFactory = new ResourceFactory();
-		resourceBuildingService = new ResourceBuildingService();
+		resourceBuildingService = new ResourceProducerService();
 		this.city = city;
 	}
-
+ 
 	public void execute() {
-		for (ResourceBuilding resourceBuilding: city.getResourceGenerators()) {
+		for (ResourceProducer resourceBuilding: city.getResourceGenerators()) {
 			city.addResource(
 					resourceBuildingService.getResourceForBuilding(
 							resourceBuilding
@@ -37,25 +33,6 @@ public class UpdateResourcesCommand implements UserCommand{
 		int population = city.getTotalPopulation();
 		city.addResource(resourceFactory.getFood(-population));
 		
-		UserCommand updatePopulationCommand = new UpdatePopulationCommand(city);
-		CommandInvoker commandInvoker = new CommandInvoker();
-		
-		commandInvoker.setCommand(updatePopulationCommand);
-		commandInvoker.invokeCommands();
-	}
-	
-	
-	public void newExecute() {
-		int gold = city.getGold();
-		int food = city.getFood();
-		Farm farm = city.getFarm(); 
-		Mine mine = city.getMine();
-		//gold += mineService.produceResourcesForMine(mine);
-		//food += farmService.produceResourcesForFarm(farm);
-		food -= city.getTotalPopulation(); 
-		city.setFood(food);
-		city.setGold(gold);
-		logger.trace("Resources Updated");
 		UserCommand updatePopulationCommand = new UpdatePopulationCommand(city);
 		CommandInvoker commandInvoker = new CommandInvoker();
 		

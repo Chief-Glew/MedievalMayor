@@ -2,20 +2,18 @@ package com.fdmgroup.medievalmayor.game.command;
 
 import java.util.Map;
 
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildingService;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.ResourceFactory;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
+import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
 
 public class UpdatePopulationCommand implements UserCommand {
 
 	private City city;
 	private ResourceFactory resourceFactory;
-	private ResourceBuildingService resourceBuildingService;
+	private ResourceProducerService resourceBuildingService;
 	//private MineService mineService;
 	//private FarmService farmService;
 
@@ -24,7 +22,7 @@ public class UpdatePopulationCommand implements UserCommand {
 		//mineService = new MineService();
 		//farmService = new FarmService(); //TODO fix this bean it
 		resourceFactory = new ResourceFactory();
-		resourceBuildingService = new ResourceBuildingService();
+		resourceBuildingService = new ResourceProducerService();
 	}
 	
 	public void execute(){
@@ -35,7 +33,7 @@ public class UpdatePopulationCommand implements UserCommand {
 			city.addResource(resourceFactory.getPopulation(1));
 		} 
 		else if (resources.get("Food")<0){
-			for (ResourceBuilding resourceBuilding: city.getResourceGenerators()){
+			for (ResourceProducer resourceBuilding: city.getResourceGenerators()){
 				try {
 					resourceBuildingService.assignPeopleToBuilding(0, totalPopulation, resourceBuilding);
 				} catch (InsufficentPopulationException | AssignedNegativeNumberException e) {

@@ -1,24 +1,23 @@
-package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
+package com.fdmgroup.medievalmayor.game.resourceproducers;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.Resource;
+import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
 
-public class Forest extends ResourceBuilding{
+@Entity(name="FOREST")
+@DiscriminatorValue(value = "FOREST")
+public class Forest extends ResourceProducer{
 
 	static final Logger logger = LogManager.getLogger("Forest");
-
-	private long forestId;
+	
+	public Forest(){}
 	
 	public Forest(int multiplier) {
 		super(multiplier);
-	}
-
-
-
-	public long getForestId() {
-		return forestId;
 	}
 
 	@Override

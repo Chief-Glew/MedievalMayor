@@ -1,30 +1,44 @@
-package com.fdmgroup.medievalmayor.game.building.resourcebuilding;
+package com.fdmgroup.medievalmayor.game.resourceproducers;
 
 import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.fdmgroup.medievalmayor.game.building.Building;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.Resource;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.ResourceFactory;
 
-@MappedSuperclass
-public abstract class ResourceBuilding extends Building{
+import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
+import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
+
+@Entity(name="RESOURCE_PRODUCER")
+@DiscriminatorColumn(name="RESOURCE_PRODUCER_TYPE")
+public abstract class ResourceProducer{
 	
 	static final Logger logger = LogManager.getLogger("ResourceBuilding");
-	
+	@Id 
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="RESOURCE_PRODUCER_ID")
+	private long resourceProducerId;
 	@Column(name="NUMBER_ASSIGNED_WORKERS")
 	private int numberOfAssignedWorkers;
 	@Column(name="RESOURCE_MULTIPLIER")
 	private int multiplier;
-	
+	@Column(name="RESOURCE_PRODUCER_COST")
+	private int resourceProducerCost;
+	@Column(name="RESOURCE_PRODUCER_NAME")
+	private String resourceProducerName;
+	@Transient
 	protected ResourceFactory resourceFactory;
 	
-	public ResourceBuilding() {
+	public ResourceProducer() {
 		resourceFactory = new ResourceFactory();
 	}
 
-	public ResourceBuilding(int multiplier) {
+	public ResourceProducer(int multiplier) {
 		this();
 		this.multiplier = multiplier;
 	}
