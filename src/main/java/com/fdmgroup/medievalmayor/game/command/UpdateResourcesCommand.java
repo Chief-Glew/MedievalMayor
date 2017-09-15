@@ -5,30 +5,37 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.FarmService;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.MineService;
 import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildingService;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.Resource;
+import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.ResourceFactory;
 import com.fdmgroup.medievalmayor.game.city.City;
 
 public class UpdateResourcesCommand implements UserCommand{
 
 	private City city; 
-	private MineService mineService;
-	private FarmService farmService;
+	private ResourceFactory resourceFactory;
+	private ResourceBuildingService resourceBuildingService;
 	static final Logger logger = LogManager.getLogger("CityService");
 	
 	
 	public UpdateResourcesCommand(City city) {
-		this.mineService = new MineService();
-		this.farmService = new FarmService();
+		resourceFactory = new ResourceFactory();
+		resourceBuildingService = new ResourceBuildingService();
 		this.city = city;
 	}
 
-	public void newExecute() {
+	public void execute() {
 		for (ResourceBuilding resourceBuilding: city.getResourceGenerators()) {
-			city.addResource(resourceBuilding.produceResourceNew());
+			city.addResource(
+					resourceBuildingService.getResourceForBuilding(
+							resourceBuilding
+							)
+					);
 		}
+		int population = city.getTotalPopulation();
+		city.addResource(resourceFactory.getFood(-population));
 		
 		UserCommand updatePopulationCommand = new UpdatePopulationCommand(city);
 		CommandInvoker commandInvoker = new CommandInvoker();
@@ -38,14 +45,13 @@ public class UpdateResourcesCommand implements UserCommand{
 	}
 	
 	
-	@Override
-	public void execute() {
+	public void newExecute() {
 		int gold = city.getGold();
 		int food = city.getFood();
 		Farm farm = city.getFarm(); 
 		Mine mine = city.getMine();
-		gold += mineService.produceResourcesForMine(mine);
-		food += farmService.produceResourcesForFarm(farm);
+		//gold += mineService.produceResourcesForMine(mine);
+		//food += farmService.produceResourcesForFarm(farm);
 		food -= city.getTotalPopulation(); 
 		city.setFood(food);
 		city.setGold(gold);

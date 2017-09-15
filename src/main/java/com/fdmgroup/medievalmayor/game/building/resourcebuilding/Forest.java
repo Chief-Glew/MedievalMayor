@@ -15,19 +15,14 @@ public class Forest extends ResourceBuilding{
 		super(multiplier);
 	}
 
-	@Override
-	public int produceResource() {
-		int woodProduced = getNumberOfAssignedWorkers()*getMultiplier();
-		logger.trace("Wood Produced");
-		return woodProduced;
-	}
+
 
 	public long getForestId() {
 		return forestId;
 	}
 
 	@Override
-	public Resource produceResourceNew() {
+	public Resource produceResource() {
 		return resourceFactory.getWood(getNumberOfAssignedWorkers()*getMultiplier());
 	}
 }

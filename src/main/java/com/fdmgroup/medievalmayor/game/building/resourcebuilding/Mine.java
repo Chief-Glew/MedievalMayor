@@ -28,12 +28,6 @@ public class Mine extends ResourceBuilding implements IdAble{
 		super(multiplier);
 	}
 
-	@Override
-	public int produceResource() {
-		int goldProduced = getNumberOfAssignedWorkers()*getMultiplier();
-		logger.trace("Gold Produced");
-		return goldProduced;
-	}
 
 	@Override
 	public long getId() {
@@ -41,7 +35,7 @@ public class Mine extends ResourceBuilding implements IdAble{
 	}
 	
 	@Override
-	public Resource produceResourceNew() {
+	public Resource produceResource() {
 		return resourceFactory.getGold(getNumberOfAssignedWorkers()*getMultiplier());
 	}
 	
