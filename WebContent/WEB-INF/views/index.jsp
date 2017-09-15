@@ -36,7 +36,7 @@
 			style="background-color: yellow; width: 500px;">
 			<h1>Welcome to Medieval Mayor!</h1>
 		</div>
-		<img class="image" src="images/village.jpg" alt="Village">
+		<img src="https://cdn.thinglink.me/api/image/510436523527634945/1240/10/scaletowidth" alt="Village" />
 	</div>
 	<form action= "./home" method= "post">
 	<div>

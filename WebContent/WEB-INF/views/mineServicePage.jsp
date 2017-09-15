@@ -56,6 +56,9 @@
 				style="background-color: red; color: white;">
 
 		</form>
+		<img
+			src="https://image.freepik.com/free-vector/scene-with-mine-entrance-and-tree-illustration_1308-1043.jpg"
+			alt="Mine" />
 	</div>
 </body>
 </html>

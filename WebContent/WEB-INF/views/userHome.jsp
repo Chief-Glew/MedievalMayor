@@ -30,42 +30,48 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="container-fluid" style="background-color: green; color: lightblue;">
+	<div class="container-fluid"
+		style="background-color: green; color: lightblue;">
 		<div class="center-block"
 			style="background-color: yellow; width: 250px;">
 			<h1>Build your City!</h1>
 		</div>
 		<table>
-		<tr>
-			<th>Total Population:</th>
-			<td><c:out value="${totalPopulation}" /></td>
-		</tr>
-		<tr>
-			<th>Number of Unassigned People:</th>
-			<td><c:out value="${unnassignedPeople}" /></td>
-		</tr>
-		<tr>
-			<th>Number of People in the Farm:</th>
-			<td><c:out value="${farmers}" /></td>
-			<td><a href=""></a></td>
-		</tr>
-		<tr>
-			<th>Number of People in the Mine:</th>
-			<td><c:out value="${miners}" /></td>
-			<td><a href=""></a></td>
-		</tr>
-		<tr>
-			<th>Amount of food:</th>
-			<td><c:out value="${food }"></c:out></td>
-		</tr>
-		<tr>
-			<th>Amount of gold:</th>
-			<td><c:out value="${gold }"></c:out></td>
-		</tr>
+			<tr>
+				<th>Total Population:</th>
+				<td><c:out value="${totalPopulation}" /></td>
+			</tr>
+			<tr>
+				<th>Number of Unassigned People:</th>
+				<td><c:out value="${unnassignedPeople}" /></td>
+			</tr>
+			<tr>
+				<th>Number of People in the Farm:</th>
+				<td><c:out value="${farmers}" /></td>
+				<td><a href=""></a></td>
+			</tr>
+			<tr>
+				<th>Number of People in the Mine:</th>
+				<td><c:out value="${miners}" /></td>
+				<td><a href=""></a></td>
+			</tr>
+			<tr>
+				<th>Amount of food:</th>
+				<td><c:out value="${food }"></c:out></td>
+			</tr>
+			<tr>
+				<th>Amount of gold:</th>
+				<td><c:out value="${gold }"></c:out></td>
+			</tr>
 		</table>
 		<form action="./NextTurn" method="post" name="nextDay">
-			<input type="submit" value="Next Year" style= "background-color: red; color: black;">
+			<input type="submit" value="Next Year"
+				style="background-color: red; color: black;">
 		</form>
+		<img
+			src="https://cdn.thinglink.me/api/image/510436523527634945/1240/10/scaletowidth"
+			alt="Village" />
+
 	</div>
 </body>
 </html>

@@ -54,6 +54,9 @@
 				type="submit" value="Back" formaction="./userHome" formmethod="get"
 				style="background-color: red; color: white;">
 		</form>
+		<img
+			src="https://i.pinimg.com/736x/45/13/ff/4513ffbecf17bcb4fd4008b7c2f32487.jpg"
+			alt="Farm" />
 	</div>
 </body>
 </html>
