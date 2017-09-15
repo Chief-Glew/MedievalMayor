@@ -34,7 +34,25 @@
 			<AppenderRef ref="File" />
 		</Logger>
 		
+		<Logger name="UpdatePopulationCommand.class" level="trace"
+			additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="File" />
+		</Logger>
+		
+		<Logger name="UpdatePopulationCommand.class" level="info"
+			additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="File" />
+		</Logger>
+		
 		<Logger name="SetNumberOfWorkersInBuildingFromCityCommand.class" level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="File" />
+		</Logger>
+		
+			
+		<Logger name="SetNumberOfWorkersInBuildingFromCityCommand.class" level="info" additivity="false">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="File" />
 		</Logger>

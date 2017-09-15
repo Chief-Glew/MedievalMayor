@@ -18,8 +18,7 @@ public class SetNumberOfWorkersInBuildingFromCityCommand implements UserCommand{
 	private int numberOfPeopleToAssign;
 	private ResourceProducerService resourceBuildingService;
 
-	public SetNumberOfWorkersInBuildingFromCityCommand(
-			City city, ResourceProducer resourceBuilding, int numberOfPeopleToAssign){
+	public SetNumberOfWorkersInBuildingFromCityCommand(City city, ResourceProducer resourceBuilding, int numberOfPeopleToAssign){
 		this.city = city;
 		this.resourceBuilding = resourceBuilding;
 		this.numberOfPeopleToAssign = numberOfPeopleToAssign;
@@ -31,11 +30,15 @@ public class SetNumberOfWorkersInBuildingFromCityCommand implements UserCommand{
 		int unassignedPeople = city.getUnassignedPopulation();
 		int newUnassignedPeople = unassignedPeople;
 		try {
+			
 			newUnassignedPeople = resourceBuildingService.assignPeopleToBuilding(numberOfPeopleToAssign, unassignedPeople, resourceBuilding);
+			logger.trace("newUnassignedPeople set");
 		} catch (InsufficentPopulationException | AssignedNegativeNumberException e) {
 			e.printStackTrace();
+			logger.info("Exception");
 		}
 		city.setUnassignedPopulation(newUnassignedPeople);
+		logger.trace("Execute method used");
 	}
 
 }

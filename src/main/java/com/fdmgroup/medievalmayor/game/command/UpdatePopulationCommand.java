@@ -2,6 +2,9 @@ package com.fdmgroup.medievalmayor.game.command;
 
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
@@ -10,6 +13,8 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService
 import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
 
 public class UpdatePopulationCommand implements UserCommand {
+	
+	private static final Logger logger = LogManager.getLogger("UpdatePopulationCommand.class");
 
 	private City city;
 	private ResourceFactory resourceFactory;
@@ -27,22 +32,26 @@ public class UpdatePopulationCommand implements UserCommand {
 		if(resources.get("Food")>3){
 			totalPopulation += 1;
 			city.addResource(resourceFactory.getPopulation(1));
+			logger.info("Population increased");
 		} 
 		else if (resources.get("Food")<0){
 			for (ResourceProducer resourceBuilding: city.getResourceGenerators()){
 				try {
 					resourceBuildingService.assignPeopleToBuilding(0, totalPopulation, resourceBuilding);
 				} catch (InsufficentPopulationException | AssignedNegativeNumberException e) {
+					logger.info("Exception");
 					e.printStackTrace();
 				}
 			}
 			totalPopulation -= 1;
+			logger.info("Population decreased");
 			resources.put("Population", totalPopulation);
 			resources.put("Food", 0);
+			logger.info("Food reset to 0");
 			city.setResources(resources);
 		}
 		city.setTotalPopulation(totalPopulation);
-		
+		logger.trace("Execute method used");
 	}
 }
 

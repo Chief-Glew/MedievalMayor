@@ -9,12 +9,12 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService
 import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
 
 public class UpdateResourcesCommand implements UserCommand{
+	
+	private static final Logger logger = LogManager.getLogger("UpdateResourcesCommand.class");
 
 	private City city; 
 	private ResourceFactory resourceFactory;
 	private ResourceProducerService resourceBuildingService;
-	static final Logger logger = LogManager.getLogger("CityService");
-	
 	
 	public UpdateResourcesCommand(City city) {
 		resourceFactory = new ResourceFactory();
@@ -24,11 +24,7 @@ public class UpdateResourcesCommand implements UserCommand{
  
 	public void execute() {
 		for (ResourceProducer resourceBuilding: city.getResourceGenerators()) {
-			city.addResource(
-					resourceBuildingService.getResourceForBuilding(
-							resourceBuilding
-							)
-					);
+			city.addResource(resourceBuildingService.getResourceForBuilding(resourceBuilding));
 		}
 		int population = city.getTotalPopulation();
 		city.addResource(resourceFactory.getFood(-population));
@@ -38,6 +34,7 @@ public class UpdateResourcesCommand implements UserCommand{
 		
 		commandInvoker.setCommand(updatePopulationCommand);
 		commandInvoker.invokeCommands();
+		logger.trace("Execute method used");
 	}
 
 }
