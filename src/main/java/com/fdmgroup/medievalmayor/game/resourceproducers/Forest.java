@@ -20,8 +20,8 @@ public class Forest extends ResourceProducer{
 		super(multiplier);
 	}
 
-	public Forest(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName) {
-		super(numberOfAssignedWorkers, multiplier, resourceProducerCost, resourceProducerName);
+	public Forest(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName, int producerLevel) {
+		super(numberOfAssignedWorkers, multiplier, resourceProducerCost, resourceProducerName, producerLevel);
 	}
 
 	@Override

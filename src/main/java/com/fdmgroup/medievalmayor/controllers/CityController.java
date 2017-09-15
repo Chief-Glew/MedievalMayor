@@ -15,6 +15,8 @@ import com.fdmgroup.medievalmayor.game.city.CityFactory;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
 import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
 import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
+import com.fdmgroup.medievalmayor.game.resourceproducers.Forest;
+import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.Mine;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
@@ -58,7 +60,7 @@ public class CityController {
 		writeCrud.update(city);
 		city = readCrud.read(Long.valueOf(cityId));
 		return displayCityStats(model); 
-	}
+	} 
 	
 	@RequestMapping(value = {"/NextTurn","/nextturn","/nextTurn"}, method = RequestMethod.POST)
 	public String nextTurn(Model model){
@@ -120,5 +122,34 @@ public class CityController {
 		return displayCityStats(model);
 	}
 	
+	@RequestMapping(value = {  "/Forestservice", "/forestservice", "/forestService", "/ForestService" }, method = RequestMethod.GET)
+	public String displayLumberJackAsignerForm(Model model) {
+		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(Forest.class)));
+		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(Forest.class)) + city.getUnassignedPopulation();
+		model.addAttribute("maxAssignable", maxAssignable);
+		return "forestServicePage";
+	}
+	  
+	@RequestMapping(value = {  "/Forestservice", "/forestservice", "/forestService", "/ForestService" }, method = RequestMethod.POST)
+	public String submitNewLumberJackAssignment(@RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
+		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceBuildingOfType(Forest.class), newAssignedPopulation);
+		return displayCityStats(model);
+	}
+	
+	@RequestMapping(value = {  "/lumberMillService", "/LumberMillservice", "/lumbermillservice", "/LumbermillService", "/LumberMillService" }, method = RequestMethod.GET)
+	public String displayLumberMillWorkerAsignerForm(Model model) {
+		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(LumberMill.class)));
+		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(LumberMill.class)) + city.getUnassignedPopulation();
+		model.addAttribute("maxAssignable", maxAssignable);
+		return "lumberMillServicePage";
+	}
+	  
+	@RequestMapping(value = {  "/lumberMillService", "/LumberMillservice", "/lumbermillservice", "/LumbermillService", "/LumberMillService" }, method = RequestMethod.POST)
+	public String submitNewLumberMillWorkerAssignment(@RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
+		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceBuildingOfType(LumberMill.class), newAssignedPopulation);
+		return displayCityStats(model);
+	}
 	
 }

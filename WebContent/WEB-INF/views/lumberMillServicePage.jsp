@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Mine Service</title>
+<title>Lumber Mill Service</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -25,19 +25,19 @@
 			<ul class="nav navbar-nav">
 				<li><a href="./">Home</a></li>
 				<li><a href="./userHome">City</a></li>
-				<li><a href="./farmService">Farm</a></li>
-				<li class="active"><a href="./mineService">Mine</a></li>
+				<li class="active"><a href="./farmService">Farm</a></li>
+				<li><a href="./mineService">Mine</a></li>
 				<li><a href="./forestService">Forest</a></li>
 				<li><a href="./LumberMillService">Lumber Mill</a></li>
 			</ul>
 		</div>
 	</nav>
-
 	<div class="container-fluid"
 		style="background-color: green; color: lightblue;">
+
 		<div class="center-block"
-			style="background-color: yellow; width: 400px;">
-			<h1>Assign Workers To Mine!</h1>
+			style="background-color: yellow; width: 415px;">
+			<h1>Assign Workers To Forest!</h1>
 		</div>
 		<p>
 			Current Assigned Population:
@@ -48,7 +48,7 @@
 			<c:out value="${maxAssignable}" />
 		</p>
 
-		<form action="./mineService" method="post" name="assignMiners">
+		<form action="./forestService" method="post" name="assignLumberJacks">
 			<label>New Population to set: </label> <input type="number"
 				name="newAssignedPopulation" min="0"
 				max="<c:out value="${maxAssignable}"/>"><br> <input
@@ -56,11 +56,7 @@
 				style="background-color: red; color: black;"> <input
 				type="submit" value="Back" formaction="./userHome" formmethod="get"
 				style="background-color: red; color: white;">
-
 		</form>
-		<img
-			src="https://image.freepik.com/free-vector/scene-with-mine-entrance-and-tree-illustration_1308-1043.jpg"
-			alt="Mine" />
 	</div>
 </body>
 </html>
