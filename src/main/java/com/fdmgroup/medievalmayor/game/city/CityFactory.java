@@ -15,7 +15,7 @@ public class CityFactory {
 	}
 	
 	public City getNewCity(){
-		return new City("nullsberg", 10, 20, 5, new Farm(3), new Mine(2));
+		return new City("DefaultCity", 10, 20, 5, new Farm(3), new Mine(2));
 	}
 	
 	public City getNewCity(String cityName){
@@ -23,6 +23,6 @@ public class CityFactory {
 	}
 	
 	public City getNewNewCity(){
-		return new City("nullsberg", 10, new Farm(3), new Mine(2), new Forest(1));
+		return new City("DefaultCity", 10, new Farm(3), new Mine(2), new Forest(1));
 	}
 }

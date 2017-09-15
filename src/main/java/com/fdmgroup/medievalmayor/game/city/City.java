@@ -54,13 +54,12 @@ public class City implements IdAble{
 	@JoinColumn(name="MINE_ID")
 	private Mine mine;
 
-	//setup for new resource management
 	private ResourceStorageHandler resourceStorage;
 	private Set<ResourceBuilding> resourceGenerators;
 	private ResourceStorageFactory storageFactory;
 
 	public City(){};
-	
+
 	public City(String cityName, int totalPopulation){
 		storageFactory = new ResourceStorageFactory();
 		resourceGenerators = new HashSet<ResourceBuilding>();
@@ -80,7 +79,6 @@ public class City implements IdAble{
 		this.mine = mine;
 	}
 
-	//constructor for new resource management
 	public City(String cityName, int totalPopulation, ResourceBuilding... resourceBuildings) {
 		this(cityName, totalPopulation);
 		for (ResourceBuilding resourceBuilding:resourceBuildings) {
@@ -89,16 +87,11 @@ public class City implements IdAble{
 		}
 	}
 
-	//constructor for new resource management
 	public City(String cityName, int totalPopulation, Set<ResourceBuilding> resourceBuildings) {
 		this(cityName, totalPopulation);
 		resourceGenerators.addAll(resourceBuildings);
 		for (ResourceBuilding resourceBuilding:resourceBuildings) {
-			resourceStorage.addResourceStore(
-					storageFactory.getStorageForResource(
-							resourceBuilding.produceResource()
-							)
-					);
+			resourceStorage.addResourceStore(storageFactory.getStorageForResource(resourceBuilding.produceResource()));
 		}
 	}
 
@@ -170,17 +163,14 @@ public class City implements IdAble{
 		return cityName;
 	}
 
-	//method for new resource management
 	public void addResourceStore(ResourceStorageHandler handler) {
 		resourceStorage.addResourceStore(handler);
 	}
 
-	//method for new resource management
 	public void addResource(Resource resource) {
 		resourceStorage.addResource(resource);
 	}
 
-	//method for new resource management
 	public ResourceBuilding getResourceBuildingOfType(Class<? extends ResourceBuilding> type) {
 		for (ResourceBuilding building: resourceGenerators) {
 			if (type.equals(building.getClass())) {
@@ -190,38 +180,29 @@ public class City implements IdAble{
 		return null;
 	}
 
-	//method for new resource management
 	public void addResourceBuilding(ResourceBuilding resourceBuilding) {
 		ResourceStorageFactory resourceStorageFactory = new ResourceStorageFactory();
 		resourceGenerators.add(resourceBuilding);
-		resourceStorage.addResourceStore(
-				resourceStorageFactory.getStorageForResource(
-						resourceBuilding.produceResource()
-						)
-				);
-
+		resourceStorage.addResourceStore(resourceStorageFactory.getStorageForResource(resourceBuilding.produceResource()));
 	}
-	
-	//method for new resource management
+
 	public Map<String, Integer> getResources(){
 		return resourceStorage.getResources();
 	}
 
-	//method for new resource management
 	public Set<ResourceBuilding> getResourceGenerators(){
 		return resourceGenerators;
 	}
-	
+
 	public void setResources(Map<String, Integer> resources) {
 		resourceStorage.setResources(resources);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "City [cityId=" + cityId + ", totalPopulation=" + totalPopulation + ", unassignedPopulation="
-				+ unassignedPopulation + ", gold=" + gold + ", food=" + food + ", farm=" + farm + ", mine=" + mine
-				+ "]";
+				+ unassignedPopulation + ", gold=" + gold + ", food=" + food + "]";
 	}
 
-	
+
 }
