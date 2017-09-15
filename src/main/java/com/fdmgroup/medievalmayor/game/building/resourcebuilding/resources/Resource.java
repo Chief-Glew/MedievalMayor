@@ -3,11 +3,11 @@ package com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources;
 public class Resource {
 
 	protected int ammount;
-	private String type;
+	private String resourceType;
 	
-	public Resource(int ammount, String type) {
+	public Resource(int ammount, String resourceType) {
 		this.ammount = ammount;
-		this.type = type;
+		this.resourceType = resourceType;
 	}
 	
 	public int getAmmount() {
@@ -18,16 +18,15 @@ public class Resource {
 		this.ammount = ammount;
 	}
 
-	public String getType() {
-		return type;
+	public String getResourceType() {
+		return resourceType;
 	}
-
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((resourceType == null) ? 0 : resourceType.hashCode());
 		return result;
 	}
 
@@ -40,13 +39,16 @@ public class Resource {
 		if (getClass() != obj.getClass())
 			return false;
 		Resource other = (Resource) obj;
-		if (type == null) {
-			if (other.type != null)
+		if (resourceType == null) {
+			if (other.resourceType != null)
 				return false;
-		} else if (!type.equals(other.type))
+		} else if (!resourceType.equals(other.resourceType))
 			return false;
 		return true;
 	}
 	
+	public boolean isSameTypeOfResource(Resource resource){
+		return resourceType.equals(resource.resourceType);
+	}
 	
 }

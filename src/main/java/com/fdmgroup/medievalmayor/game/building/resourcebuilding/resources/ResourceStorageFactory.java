@@ -18,7 +18,13 @@ public class ResourceStorageFactory {
 		return new ResourceStorageHandler(0, "Lumber", capacity);
 	}
 	
-	public ResourceStorageHandler getStorageForResource(Resource resource) {
-		return new ResourceStorageHandler(0, resource.getType(), 0);
+	public ResourceStorageHandler getPopulationStorage(int capacity, int ammount) {
+		return new ResourceStorageHandler(ammount, "Population", capacity);
 	}
+	
+	public ResourceStorageHandler getStorageForResource(Resource resource) {
+		return new ResourceStorageHandler(0, resource.getResourceType(), 0);
+	}
+	
+	
 }

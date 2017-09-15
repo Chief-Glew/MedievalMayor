@@ -55,8 +55,16 @@ public class City implements IdAble{
 	//setup for new resource management
 	private ResourceStorageHandler resourceStorage;
 	private Set<ResourceBuilding> resourceGenerators;
+	private ResourceStorageFactory storageFactory;
 
 	public City(){};
+	
+	public City(String cityName, int totalPopulation){
+		this.cityName = cityName;
+		this.unassignedPopulation = totalPopulation;
+		this.totalPopulation = totalPopulation;
+		resourceStorage = storageFactory.getPopulationStorage(totalPopulation, totalPopulation);
+	}
 
 	public City(String cityName, int totalPopulation, int food, int gold, Farm farm, Mine mine){
 		this.cityName = cityName;
@@ -70,28 +78,20 @@ public class City implements IdAble{
 
 	//constructor for new resource management
 	public City(String cityName, int totalPopulation, ResourceBuilding... resourceBuildings) {
-		this.cityName = cityName;
-		this.totalPopulation = totalPopulation;
-		this.unassignedPopulation = totalPopulation;
-		ResourceStorageFactory resourceStorageFactory = new ResourceStorageFactory();
-		resourceStorage = resourceStorageFactory.getFoodStorage(10);
+		this(cityName, totalPopulation);
 		for (ResourceBuilding resourceBuilding:resourceBuildings) {
 			resourceGenerators.add(resourceBuilding);
-			resourceStorage.addResourceStore(resourceStorageFactory.getStorageForResource(resourceBuilding.produceResourceNew()));
+			resourceStorage.addResourceStore(storageFactory.getStorageForResource(resourceBuilding.produceResourceNew()));
 		}
 	}
 
 	//constructor for new resource management
 	public City(String cityName, int totalPopulation, Set<ResourceBuilding> resourceBuildings) {
-		this.cityName = cityName;
-		this.totalPopulation = totalPopulation;
-		this.unassignedPopulation = totalPopulation;
+		this(cityName, totalPopulation);
 		resourceGenerators.addAll(resourceBuildings);
-		ResourceStorageFactory resourceStorageFactory = new ResourceStorageFactory();
-		resourceStorage = resourceStorageFactory.getFoodStorage(10);
 		for (ResourceBuilding resourceBuilding:resourceBuildings) {
 			resourceStorage.addResourceStore(
-					resourceStorageFactory.getStorageForResource(
+					storageFactory.getStorageForResource(
 							resourceBuilding.produceResourceNew()
 							)
 					);

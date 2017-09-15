@@ -14,7 +14,9 @@ public class ResourceStorageHandler extends Resource{
 	}
 
 	public void addResourceStore(ResourceStorageHandler handler) {
-		if(canAddCapacity(handler)) {}
+		if(isSameResourceType(handler)) {
+			capacity += handler.capacity;
+		}
 		else {
 			if (next==null) {
 				next = handler;
@@ -26,7 +28,7 @@ public class ResourceStorageHandler extends Resource{
 	}
 
 	public void addResource(Resource resource) throws NullPointerException {
-		if (this.equals(resource)) {
+		if (this.isSameTypeOfResource(resource)) {
 			ammount += resource.ammount;
 		}
 		else {
@@ -42,30 +44,20 @@ public class ResourceStorageHandler extends Resource{
 		else {
 			resources = next.getResources();
 		}
-		resources.put(getType(), ammount);
+		resources.put(getResourceType(), ammount);
 		return resources;
 	}
 	
 	public void setResources(Map<String, Integer> resources) {
-		if (resources.containsKey(getType())) {
-			ammount = resources.get(getType());
+		if (resources.containsKey(getResourceType())) {
+			ammount = resources.get(getResourceType());
 		}
 		if (next!=null) {
 			next.setResources(resources);
 		}
 	}
 
-	private boolean canAddCapacity(ResourceStorageHandler handler) throws NullPointerException {
-		if (this.equals(handler)) {
-			capacity += handler.capacity;
-		}
-		else {
-			return false;
-		}
-		return true;
+	private boolean isSameResourceType(ResourceStorageHandler handler) throws NullPointerException {
+		return this.isSameTypeOfResource(handler);
 	}
-
-
-
-
 }

@@ -17,4 +17,8 @@ public class ResourceFactory {
 	public Resource getLumber(int ammount) {
 		return new Resource(ammount, "Lumber");
 	}
+	
+	public Resource getPopulation(int ammount){
+		return new Resource(ammount, "Population");
+	}
 }
