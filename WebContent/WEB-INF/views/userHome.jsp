@@ -44,24 +44,19 @@
 			<th>Number of Unassigned People:</th>
 			<td><c:out value="${unnassignedPeople}" /></td>
 		</tr>
+		<c:forEach items="${workers}" var="worker">
 		<tr>
-			<th>Number of People in the Farm:</th>
-			<td><c:out value="${farmers}" /></td>
+			<th>Number of People in the <c:out value="${worker.key}"/>:</th>
+			<td><c:out value="${worker.value}" /></td>
 			<td><a href=""></a></td>
 		</tr>
+		</c:forEach>
+		<c:forEach items="${resources}" var="resource">
 		<tr>
-			<th>Number of People in the Mine:</th>
-			<td><c:out value="${miners}" /></td>
-			<td><a href=""></a></td>
+			<th>Amount of <c:out value="${resource.key}"/>:</th>
+			<td><c:out value="${resource.value }"></c:out></td>
 		</tr>
-		<tr>
-			<th>Amount of food:</th>
-			<td><c:out value="${food }"></c:out></td>
-		</tr>
-		<tr>
-			<th>Amount of gold:</th>
-			<td><c:out value="${gold }"></c:out></td>
-		</tr>
+		</c:forEach>
 		</table>
 		<form action="./NextTurn" method="post" name="nextDay">
 			<input type="submit" value="Next Year" style= "background-color: red; color: black;">

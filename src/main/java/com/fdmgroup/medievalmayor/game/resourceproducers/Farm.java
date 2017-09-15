@@ -18,6 +18,10 @@ public class Farm extends ResourceProducer{
 	public Farm(int multiplier) {
 		super(multiplier);
 	}
+	
+	public Farm(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName) {
+		super(numberOfAssignedWorkers, multiplier, resourceProducerCost, resourceProducerName);
+	}
 
 	@Override
 	public Resource produceResource() {

@@ -42,6 +42,15 @@ public abstract class ResourceProducer{
 		this();
 		this.multiplier = multiplier;
 	}
+	
+
+	public ResourceProducer(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost,
+			String resourceProducerName) {
+		this(multiplier);
+		this.numberOfAssignedWorkers = numberOfAssignedWorkers;
+		this.resourceProducerCost = resourceProducerCost;
+		this.resourceProducerName = resourceProducerName;
+	}
 
 	public abstract Resource produceResource();
 	
@@ -63,5 +72,9 @@ public abstract class ResourceProducer{
 	public void setNumberOfPeopleInBuilding(int numberOfPeople) {
 		logger.trace("Number of assigned Workers set");
 		numberOfAssignedWorkers = numberOfPeople;
+	}
+
+	public String resourceProducerName() {
+		return resourceProducerName;
 	}
 }
