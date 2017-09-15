@@ -3,16 +3,16 @@ package com.fdmgroup.medievalmayor.game.command;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 public class SetNumberOfWorkersCommand implements UserCommand {
 	
 	private static final Logger logger = LogManager.getLogger("SetNumberOfWorkersCommand");
 	
-	private ResourceBuilding resourceBuilding;
+	private ResourceProducer resourceBuilding;
 	private int numberOfWorkers;
 	
 
-	public SetNumberOfWorkersCommand(ResourceBuilding resourceBuilding, int numberOfWorkers) {
+	public SetNumberOfWorkersCommand(ResourceProducer resourceBuilding, int numberOfWorkers) {
 		this.resourceBuilding = resourceBuilding;
 		this.numberOfWorkers = numberOfWorkers;
 	}

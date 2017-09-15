@@ -1,24 +1,24 @@
 package com.fdmgroup.medievalmayor.game.command;
 
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildingService;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
 public class SetNumberOfWorkersInBuildingFromCityCommand implements UserCommand{
 
 	private City city;
-	private ResourceBuilding resourceBuilding;
+	private ResourceProducer resourceBuilding;
 	private int numberOfPeopleToAssign;
-	private ResourceBuildingService resourceBuildingService;
+	private ResourceProducerService resourceBuildingService;
 
 	public SetNumberOfWorkersInBuildingFromCityCommand(
-			City city, ResourceBuilding resourceBuilding, int numberOfPeopleToAssign){
+			City city, ResourceProducer resourceBuilding, int numberOfPeopleToAssign){
 		this.city = city;
 		this.resourceBuilding = resourceBuilding;
 		this.numberOfPeopleToAssign = numberOfPeopleToAssign;
-		resourceBuildingService = new ResourceBuildingService();
+		resourceBuildingService = new ResourceProducerService();
 	}
 	
 	@Override

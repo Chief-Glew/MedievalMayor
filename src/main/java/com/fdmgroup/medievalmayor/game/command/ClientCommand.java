@@ -3,9 +3,9 @@ package com.fdmgroup.medievalmayor.game.command;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
 public class ClientCommand {
 
@@ -17,7 +17,7 @@ public class ClientCommand {
 		this.commandInvoker = new CommandInvoker();
 	}
 
-	public void setNumberOfWorkersInResourceBuilding(ResourceBuilding resourceBuilding, int numberOfWorkers){
+	public void setNumberOfWorkersInResourceBuilding(ResourceProducer resourceBuilding, int numberOfWorkers){
 		UserCommand setNumberOfWorkersCommand = new SetNumberOfWorkersCommand(resourceBuilding, numberOfWorkers);
 		commandInvoker.setCommand(setNumberOfWorkersCommand);
 		commandInvoker.invokeCommands();
@@ -34,7 +34,7 @@ public class ClientCommand {
 		}
 	}
 	
-	public void setNumberOfWorkersInResourceBuildingForCity(City city, ResourceBuilding resourceBuilding, int numberOfPeopleToAssign){
+	public void setNumberOfWorkersInResourceBuildingForCity(City city, ResourceProducer resourceBuilding, int numberOfPeopleToAssign){
 		UserCommand setNumberOfWorkers = new SetNumberOfWorkersInBuildingFromCityCommand(city, resourceBuilding, numberOfPeopleToAssign);
 		commandInvoker.setCommand(setNumberOfWorkers);
 		commandInvoker.invokeCommands();

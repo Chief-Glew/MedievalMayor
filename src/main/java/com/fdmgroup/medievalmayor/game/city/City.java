@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -20,13 +21,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.IdAble;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Farm;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Mine;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuilding;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.Resource;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.ResourceFactory;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.ResourceStorageFactory;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.resources.ResourceStorageHandler;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
+import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
+import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceStorageFactory;
+import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceStorageHandler;
 
 @Entity(name="CITY")
 public class City implements IdAble{
@@ -39,61 +37,41 @@ public class City implements IdAble{
 	private long cityId;
 	@Column(name="CITY_NAME")
 	private String cityName;
-	@Column(name="TOTAL_POPULATION")
+	@Column(name="TOTAL_POPULATION") 
 	private int totalPopulation;
-	@Column(name="UNASSIGNED_POPULATION")
-	private int unassignedPopulation;
-	@Column(name="GOLD")
-	private int gold;
-	@Column(name="FOOD")
-	private int food;
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="FARM_ID")
-	private Farm farm;
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="MINE_ID")
-	private Mine mine;
-
-	//setup for new resource management
+	@OneToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name="RESOURCE_ID")
 	private ResourceStorageHandler resourceStorage;
-	private Set<ResourceBuilding> resourceGenerators;
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="CITY_RESOURCE_PRODUCERS", joinColumns=@JoinColumn(name="CITY_ID"), inverseJoinColumns=@JoinColumn(name="RESOURCE_PRODUCER_ID"))
+	private Set<ResourceProducer> resourceGenerators;
+	@Transient  
 	private ResourceStorageFactory storageFactory;
 
 	public City(){};
 	
 	public City(String cityName, int totalPopulation){
 		storageFactory = new ResourceStorageFactory();
-		resourceGenerators = new HashSet<ResourceBuilding>();
+		resourceGenerators = new HashSet<ResourceProducer>();
 		this.cityName = cityName;
-		this.unassignedPopulation = totalPopulation;
 		this.totalPopulation = totalPopulation;
 		resourceStorage = storageFactory.getPopulationStorage(totalPopulation, totalPopulation);
 	}
 
-	public City(String cityName, int totalPopulation, int food, int gold, Farm farm, Mine mine){
-		this.cityName = cityName;
-		this.unassignedPopulation = totalPopulation;
-		this.totalPopulation = totalPopulation;
-		this.food = food;
-		this.gold = gold;
-		this.farm = farm;
-		this.mine = mine;
-	}
-
 	//constructor for new resource management
-	public City(String cityName, int totalPopulation, ResourceBuilding... resourceBuildings) {
+	public City(String cityName, int totalPopulation, ResourceProducer... resourceBuildings) {
 		this(cityName, totalPopulation);
-		for (ResourceBuilding resourceBuilding:resourceBuildings) {
+		for (ResourceProducer resourceBuilding:resourceBuildings) {
 			resourceGenerators.add(resourceBuilding);
 			resourceStorage.addResourceStore(storageFactory.getStorageForResource(resourceBuilding.produceResource()));
 		}
 	}
 
 	//constructor for new resource management
-	public City(String cityName, int totalPopulation, Set<ResourceBuilding> resourceBuildings) {
+	public City(String cityName, int totalPopulation, Set<ResourceProducer> resourceBuildings) {
 		this(cityName, totalPopulation);
 		resourceGenerators.addAll(resourceBuildings);
-		for (ResourceBuilding resourceBuilding:resourceBuildings) {
+		for (ResourceProducer resourceBuilding:resourceBuildings) {
 			resourceStorage.addResourceStore(
 					storageFactory.getStorageForResource(
 							resourceBuilding.produceResource()
@@ -122,22 +100,11 @@ public class City implements IdAble{
 		this.totalPopulation = totalPopulation;
 	}
 
-	public void setGold(int gold) {
-		logger.trace("Gold set");
-		this.gold = gold;
-	}
-
-	public void setFood(int food) {
-		logger.trace("Food set");
-		this.food = food;
-	}
-
 	public void setUnassignedPopulation(int numberOfPeople) {
 		logger.trace("Unassigned Population set");
 		Map<String, Integer> newPop = new HashMap<String, Integer>();
 		newPop.put("Population", numberOfPeople);
 		setResources(newPop);
-		unassignedPopulation = numberOfPeople;
 	}
 
 	public int getGold() {
@@ -156,16 +123,6 @@ public class City implements IdAble{
 		return cityId;
 	}
 
-	public Farm getFarm() {
-		logger.trace("Farm retrieved");
-		return farm;
-	}
-
-	public Mine getMine() {
-		logger.trace("Mine retrieved");
-		return mine;
-	}
-
 	public String getCityName() {
 		return cityName;
 	}
@@ -181,8 +138,8 @@ public class City implements IdAble{
 	}
 
 	//method for new resource management
-	public ResourceBuilding getResourceBuildingOfType(Class<? extends ResourceBuilding> type) {
-		for (ResourceBuilding building: resourceGenerators) {
+	public ResourceProducer getResourceBuildingOfType(Class<? extends ResourceProducer> type) {
+		for (ResourceProducer building: resourceGenerators) {
 			if (type.equals(building.getClass())) {
 				return building;
 			}
@@ -191,7 +148,7 @@ public class City implements IdAble{
 	}
 
 	//method for new resource management
-	public void addResourceBuilding(ResourceBuilding resourceBuilding) {
+	public void addResourceBuilding(ResourceProducer resourceBuilding) {
 		ResourceStorageFactory resourceStorageFactory = new ResourceStorageFactory();
 		resourceGenerators.add(resourceBuilding);
 		resourceStorage.addResourceStore(
@@ -199,7 +156,6 @@ public class City implements IdAble{
 						resourceBuilding.produceResource()
 						)
 				);
-
 	}
 	
 	//method for new resource management
@@ -208,20 +164,12 @@ public class City implements IdAble{
 	}
 
 	//method for new resource management
-	public Set<ResourceBuilding> getResourceGenerators(){
+	public Set<ResourceProducer> getResourceGenerators(){
 		return resourceGenerators;
 	}
 	
 	public void setResources(Map<String, Integer> resources) {
 		resourceStorage.setResources(resources);
 	}
-	
-	@Override
-	public String toString() {
-		return "City [cityId=" + cityId + ", totalPopulation=" + totalPopulation + ", unassignedPopulation="
-				+ unassignedPopulation + ", gold=" + gold + ", food=" + food + ", farm=" + farm + ", mine=" + mine
-				+ "]";
-	}
-
 	
 }

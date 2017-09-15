@@ -5,12 +5,10 @@ import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.Forest;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ForestService;
-import com.fdmgroup.medievalmayor.game.building.resourcebuilding.ResourceBuildingService;
 import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.city.CityService;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
+import com.fdmgroup.medievalmayor.game.resourceproducers.Forest;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
 public class ForestTest {
 
@@ -18,14 +16,14 @@ public class ForestTest {
 	@Spy
 	private City city;
 	private ClientCommand clientCommand;
-	private ResourceBuildingService buildingManager;
+	private ResourceProducerService buildingManager;
 	private ForestService forestService; 
 	@Before
 	public void init(){
 		MockitoAnnotations.initMocks(this);
 		forest = new Forest(1);
 		clientCommand = new ClientCommand();
-		buildingManager = new ResourceBuildingService();
+		buildingManager = new ResourceProducerService();
 		forestService = new ForestService();
 	}
 	
