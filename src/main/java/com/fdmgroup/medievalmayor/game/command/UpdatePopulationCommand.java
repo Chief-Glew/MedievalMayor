@@ -14,13 +14,9 @@ public class UpdatePopulationCommand implements UserCommand {
 	private City city;
 	private ResourceFactory resourceFactory;
 	private ResourceProducerService resourceBuildingService;
-	//private MineService mineService;
-	//private FarmService farmService;
 
 	public UpdatePopulationCommand(City city) {
 		this.city = city;
-		//mineService = new MineService();
-		//farmService = new FarmService(); //TODO fix this bean it
 		resourceFactory = new ResourceFactory();
 		resourceBuildingService = new ResourceProducerService();
 	}
@@ -44,11 +40,9 @@ public class UpdatePopulationCommand implements UserCommand {
 			resources.put("Population", totalPopulation);
 			resources.put("Food", 0);
 			city.setResources(resources);
-			city.setTotalPopulation(totalPopulation);
 		}
+		city.setTotalPopulation(totalPopulation);
 		
 	}
-		//TODO change the proportion of food deficient and number of leaving people
-		//TODO verifier to see if correct number of people is moved
 }
 

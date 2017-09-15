@@ -20,6 +20,10 @@ public class Forest extends ResourceProducer{
 		super(multiplier);
 	}
 
+	public Forest(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName) {
+		super(numberOfAssignedWorkers, multiplier, resourceProducerCost, resourceProducerName);
+	}
+
 	@Override
 	public Resource produceResource() {
 		return resourceFactory.getWood(getNumberOfAssignedWorkers()*getMultiplier());

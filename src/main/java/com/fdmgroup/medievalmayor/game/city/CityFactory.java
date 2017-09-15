@@ -2,29 +2,37 @@ package com.fdmgroup.medievalmayor.game.city;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
-import com.fdmgroup.medievalmayor.game.resourceproducers.Mine;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerFactory;
 
 @Component
 public class CityFactory {
 
+	private ResourceProducerFactory resourceProducerFactory;
+
 	static final Logger logger = LogManager.getLogger("CityFactory.class");
 
-	@Autowired
 	public CityFactory() {
+		resourceProducerFactory = new ResourceProducerFactory();
 	}
-	
+
 	public City getNewCity(){
 		logger.trace("getNewCity method used");
-		return new City("nullsberg", 10, new Farm(3), new Mine(2));
+		return new City("DefaultCity", 10,  resourceProducerFactory.getFarm(), resourceProducerFactory.getMine());
 	}
-	
+
 	public City getNewCity(String cityName){
 		logger.trace("getNewCity method used");
-		return new City(cityName, 10, new Farm(3), new Mine(2));
+		return new City(cityName, 10, 
+				resourceProducerFactory.getFarm(), 
+				resourceProducerFactory.getMine());
 	}
-	
+
+	public City getNewCityWithForest(){
+		return new City("DefaultCity", 10, 
+				resourceProducerFactory.getFarm(), 
+				resourceProducerFactory.getMine(), 
+				resourceProducerFactory.getForest());
+	}
 }

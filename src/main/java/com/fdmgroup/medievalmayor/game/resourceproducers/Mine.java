@@ -19,6 +19,10 @@ public class Mine extends ResourceProducer {
 		super(multiplier);
 	}
 
+	public Mine(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName) {
+		super(numberOfAssignedWorkers, multiplier, resourceProducerCost, resourceProducerName);
+	}
+
 	@Override
 	public Resource produceResource() {
 		return resourceFactory.getGold(getNumberOfAssignedWorkers()*getMultiplier());
