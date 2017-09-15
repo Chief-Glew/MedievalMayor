@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 @Entity(name="RESOURCE_STORAGE")
@@ -13,7 +14,7 @@ public class ResourceStorageHandler extends Resource{
 
 	@Column(name="CAPACITY")
 	private int capacity;
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name= "NEXT_RESOURCE", nullable=true)
 	private ResourceStorageHandler next;
 
