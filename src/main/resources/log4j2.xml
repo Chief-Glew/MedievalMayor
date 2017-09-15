@@ -33,6 +33,11 @@
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="File" />
 		</Logger>
+		
+		<Logger name="SetNumberOfWorkersInBuildingFromCityCommand.class" level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="File" />
+		</Logger>
 
 		<Logger name="WebAppConfig.class" level="trace" additivity="false">
 			<AppenderRef ref="Console" />
@@ -84,6 +89,11 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 
+		<Logger name="ClientCommand.class" level="info" additivity="false">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+		
 		<Logger name="CommandInvoker.class" level="trace" additivity="false">
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />

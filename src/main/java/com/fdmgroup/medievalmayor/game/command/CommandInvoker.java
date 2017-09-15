@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 public class CommandInvoker {
 	
-	private static final Logger logger = LogManager.getLogger("CommandInvoker");
+	private static final Logger logger = LogManager.getLogger("CommandInvoker.class");
 
 	private UserCommand command;
 

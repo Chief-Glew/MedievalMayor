@@ -18,10 +18,12 @@ public class CityFactory {
 	}
 	
 	public City getNewCity(){
+		logger.trace("getNewCity method used");
 		return new City("nullsberg", 10, new Farm(3), new Mine(2));
 	}
 	
 	public City getNewCity(String cityName){
+		logger.trace("getNewCity method used");
 		return new City(cityName, 10, new Farm(3), new Mine(2));
 	}
 	

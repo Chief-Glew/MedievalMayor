@@ -1,5 +1,8 @@
 package com.fdmgroup.medievalmayor.game.command;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
@@ -7,6 +10,8 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
 public class SetNumberOfWorkersInBuildingFromCityCommand implements UserCommand{
+	
+	private static final Logger logger = LogManager.getLogger("SetNumberOfWorkersInBuildingFromCityCommand.class");
 
 	private City city;
 	private ResourceProducer resourceBuilding;

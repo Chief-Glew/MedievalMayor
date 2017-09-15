@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 public class SetNumberOfWorkersCommand implements UserCommand {
 	
-	private static final Logger logger = LogManager.getLogger("SetNumberOfWorkersCommand");
+	private static final Logger logger = LogManager.getLogger("SetNumberOfWorkersCommand.class");
 	
 	private ResourceProducer resourceBuilding;
 	private int numberOfWorkers;
