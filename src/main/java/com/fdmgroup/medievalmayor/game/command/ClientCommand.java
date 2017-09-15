@@ -9,7 +9,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
 public class ClientCommand {
 
-	private static final Logger logger = LogManager.getLogger("ClientCommand");
+	private static final Logger logger = LogManager.getLogger("ClientCommand.class");
 	
 	private CommandInvoker commandInvoker;
 
@@ -25,11 +25,13 @@ public class ClientCommand {
 	}
 
 	public void nextTurn(City city) throws GameOverException {
-
+		
 		UserCommand nextTurn = new NextTurnCommand(city);
 		commandInvoker.setCommand(nextTurn);
 		commandInvoker.invokeCommands();
+		logger.trace("next turn method used");
 		if(city.getTotalPopulation()<=0){
+			logger.info("Game ended due via GameOverException");
 			throw new GameOverException("GameOver Man, GameOver");
 		}
 	}
@@ -38,5 +40,6 @@ public class ClientCommand {
 		UserCommand setNumberOfWorkers = new SetNumberOfWorkersInBuildingFromCityCommand(city, resourceBuilding, numberOfPeopleToAssign);
 		commandInvoker.setCommand(setNumberOfWorkers);
 		commandInvoker.invokeCommands();
+		logger.trace("setNumberOfWorkersInResourceBuildingForCity method used");
 	}
 }

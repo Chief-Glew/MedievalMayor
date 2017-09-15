@@ -10,7 +10,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
 
 public class ResourceProducerService {
 
-	static final Logger logger = LogManager.getLogger("City");
+	static final Logger logger = LogManager.getLogger("City.class");
 	
 	public int assignPeopleToBuilding(int numberOfPeopleToAssign, int numberOfPeopleAvailible, ResourceProducer building) throws InsufficentPopulationException, AssignedNegativeNumberException {
 		if(numberOfPeopleToAssign < 0){

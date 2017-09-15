@@ -1,8 +1,13 @@
 package com.fdmgroup.medievalmayor.game.command;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fdmgroup.medievalmayor.game.city.City;
 
 public class NextTurnCommand implements UserCommand {
+	
+	private static final Logger logger = LogManager.getLogger("CommandInvoker.class");
 	
 	private City city;
 	
@@ -17,6 +22,7 @@ public class NextTurnCommand implements UserCommand {
 		
 		commandInvoker.setCommand(updateResourceCommand);
 		commandInvoker.invokeCommands();
+		logger.trace("Execute method used");
 	}
 
 }

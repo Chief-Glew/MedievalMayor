@@ -27,9 +27,40 @@
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="File" />
 		</Logger>
-		
+
 		<Logger name="ApplicationInitializer.class" level="trace"
 			additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="File" />
+		</Logger>
+
+		<Logger name="UpdatePopulationCommand.class" level="trace"
+			additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="File" />
+		</Logger>
+
+		<Logger name="UpdatePopulationCommand.class" level="info"
+			additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="File" />
+		</Logger>
+
+		<Logger name="UpdateResourcesCommand.class" level="trace"
+			additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="File" />
+		</Logger>
+
+		<Logger name="SetNumberOfWorkersInBuildingFromCityCommand.class"
+			level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="File" />
+		</Logger>
+
+
+		<Logger name="SetNumberOfWorkersInBuildingFromCityCommand.class"
+			level="info" additivity="false">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="File" />
 		</Logger>
@@ -48,7 +79,7 @@
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="Forest.class" level="trace" additivity="false">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="File" />
@@ -69,7 +100,7 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="ResourceBuilding.class" level="trace" additivity="false">
+		<Logger name="ResourceProducer.class" level="trace" additivity="false">
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />
 		</Logger>
@@ -80,6 +111,11 @@
 		</Logger>
 
 		<Logger name="ClientCommand.class" level="trace" additivity="false">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="ClientCommand.class" level="info" additivity="false">
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />
 		</Logger>
@@ -95,18 +131,16 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="City.class" level="info"
-			additivity="false">
+		<Logger name="City.class" level="info" additivity="false">
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />
 		</Logger>
-		
-		<Logger name="CityFactory.class" level="trace"
-			additivity="false">
+
+		<Logger name="CityFactory.class" level="trace" additivity="false">
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="Resource.class" level="trace" additivity="false">
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />
@@ -116,22 +150,25 @@
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />
 		</Logger>
-		
-		<Logger name="ResourceStorageFactory.class" level="trace" additivity="false">
+
+		<Logger name="ResourceStorageFactory.class" level="trace"
+			additivity="false">
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />
 		</Logger>
-		
-		<Logger name="ResourceStorageHandler.class" level="trace" additivity="false">
+
+		<Logger name="ResourceStorageHandler.class" level="trace"
+			additivity="false">
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />
 		</Logger>
-		
-		<Logger name="ResourceStorageHandler.class" level="info" additivity="false">
+
+		<Logger name="ResourceStorageHandler.class" level="info"
+			additivity="false">
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="City.class" level="trace" additivity="false">
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />

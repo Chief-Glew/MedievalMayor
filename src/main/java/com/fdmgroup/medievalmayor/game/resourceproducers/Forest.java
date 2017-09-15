@@ -12,7 +12,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
 @DiscriminatorValue(value = "FOREST")
 public class Forest extends ResourceProducer{
 
-	static final Logger logger = LogManager.getLogger("Forest");
+	static final Logger logger = LogManager.getLogger("Forest.class");
 	
 	public Forest(){}
 	
@@ -26,6 +26,7 @@ public class Forest extends ResourceProducer{
 
 	@Override
 	public Resource produceResource() {
+		logger.trace("Wood produced");
 		return resourceFactory.getWood(getNumberOfAssignedWorkers()*getMultiplier());
 	}
 }

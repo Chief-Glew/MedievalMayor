@@ -6,8 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @MappedSuperclass
 public class Resource {
+	
+	private static final Logger logger = LogManager.getLogger("Resource.class");
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -27,14 +32,17 @@ public class Resource {
 	}
 	
 	public int getAmount() {
+		logger.trace("Amount retrieved");
 		return amount;
 	}
 
 	public void setAmount(int ammount) {
+		logger.trace("Amount set");
 		this.amount = ammount;
 	}
 
 	public String getResourceType() {
+		logger.trace("Resource type retrieved");
 		return resourceType;
 	}
 
