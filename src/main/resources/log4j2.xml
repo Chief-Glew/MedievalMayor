@@ -101,6 +101,12 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 		
+		<Logger name="CityFactory.class" level="trace"
+			additivity="false">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="Console" />
+		</Logger>
+		
 		<Logger name="Resource.class" level="trace" additivity="false">
 			<AppenderRef ref="File" />
 			<AppenderRef ref="Console" />
