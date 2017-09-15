@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
@@ -42,6 +43,7 @@ public class City implements IdAble{
 	@JoinColumn(name="RESOURCE_ID")
 	private ResourceStorageHandler resourceStorage;
 	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="CITY_RESOURCE_PRODUCERS", joinColumns=@JoinColumn(name="CITY_ID"), inverseJoinColumns=@JoinColumn(name="RESOURCE_PRODUCER_ID"))
 	private Set<ResourceProducer> resourceGenerators;
 	@Transient  
 	private ResourceStorageFactory storageFactory;
