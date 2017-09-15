@@ -29,7 +29,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceStora
 @Entity(name="CITY")
 public class City implements IdAble{
 
-	static final Logger logger = LogManager.getLogger("City");
+	static final Logger logger = LogManager.getLogger("City.class");
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -124,16 +124,19 @@ public class City implements IdAble{
 	}
 
 	public String getCityName() {
+		logger.trace("City name retrieved");
 		return cityName;
 	}
 
 	//method for new resource management
 	public void addResourceStore(ResourceStorageHandler handler) {
+		logger.trace("ResourceStore added");
 		resourceStorage.addResourceStore(handler);
 	}
 
 	//method for new resource management
 	public void addResource(Resource resource) {
+		logger.trace("Resource added");
 		resourceStorage.addResource(resource);
 	}
 
@@ -141,9 +144,11 @@ public class City implements IdAble{
 	public ResourceProducer getResourceBuildingOfType(Class<? extends ResourceProducer> type) {
 		for (ResourceProducer building: resourceGenerators) {
 			if (type.equals(building.getClass())) {
+				logger.trace("Resource building retrieved");
 				return building;
 			}
 		}
+		logger.info("getReesourceBuildingOfType method not working as intended");
 		return null;
 	}
 
@@ -151,24 +156,24 @@ public class City implements IdAble{
 	public void addResourceBuilding(ResourceProducer resourceBuilding) {
 		ResourceStorageFactory resourceStorageFactory = new ResourceStorageFactory();
 		resourceGenerators.add(resourceBuilding);
-		resourceStorage.addResourceStore(
-				resourceStorageFactory.getStorageForResource(
-						resourceBuilding.produceResource()
-						)
-				);
+		resourceStorage.addResourceStore(resourceStorageFactory.getStorageForResource(resourceBuilding.produceResource()));
+		logger.trace("Resource Building Added");
 	}
 	
 	//method for new resource management
 	public Map<String, Integer> getResources(){
+		logger.trace("Resources retrieved");
 		return resourceStorage.getResources();
 	}
 
 	//method for new resource management
 	public Set<ResourceProducer> getResourceGenerators(){
+		logger.trace("ResourceGenerators retrieved");
 		return resourceGenerators;
 	}
 	
 	public void setResources(Map<String, Integer> resources) {
+		logger.trace("Resources set");
 		resourceStorage.setResources(resources);
 	}
 	
