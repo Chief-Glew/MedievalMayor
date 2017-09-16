@@ -22,5 +22,5 @@ public abstract class ProducerClassFromStringHandler {
 		return next==null;
 	}
 	
-	public abstract Class<? extends ResourceProducer> handle(String producerName);
+	public abstract Class<? extends ResourceProducer> handle(String producerName) throws NullPointerException;
 }

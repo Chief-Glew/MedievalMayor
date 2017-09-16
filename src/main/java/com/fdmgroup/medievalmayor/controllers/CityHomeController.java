@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdmgroup.medievalmayor.CRUD.CityJPACRUD;
+import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.ResourceProducerHandler;
+import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.URLStringHandler;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityFactory;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
@@ -21,7 +23,6 @@ import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.MineStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
-import com.fdmgroup.medievalmayor.game.resourceproducers.Mine;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
@@ -32,21 +33,30 @@ public class CityHomeController {
 	private CityJPACRUD writeCrud;
 	private ResourceProducerService resourceProducerService;
 	private ClientCommand clientComand;
-	private ProducerClassFromStringHandler stringToClassHandler;
 	private CityFactory cityFactory;
+	private ProducerClassFromStringHandler stringToClassHandler;
+	private URLStringHandler urlStringHandler;
 
 	
 	public CityHomeController() {
 		cityFactory = new CityFactory();
-		resourceProducerService = new ResourceProducerService();
 		clientComand = new ClientCommand();
 		readCrud = new CityJPACRUD();
 		writeCrud = new CityJPACRUD();
+		urlStringHandler = new ResourceProducerHandler();
+		resourceProducerService = new ResourceProducerService();
 		stringToClassHandler = new FarmStringHandler();
 		stringToClassHandler.addToChain(new ForestStringHandler());
 		stringToClassHandler.addToChain(new LumberMillStringHandler());
 		stringToClassHandler.addToChain(new MineStringHandler());
 		}
+	
+	private City addCityToModel(String cityId, Model model) {
+		long cityIdValue = Long.valueOf(cityId);
+		City city = readCrud.read(cityIdValue);
+		model.addAttribute("city", city);
+		return city;
+	}
 	
 	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
 	public String showCities(Model model){
@@ -63,9 +73,7 @@ public class CityHomeController {
 	
 	@RequestMapping(value = "/{cityName}/{cityId}", method = RequestMethod.GET)
 	public String displayCityStats(@PathVariable String cityId, Model model) {
-		long cityIdValue = Long.valueOf(cityId);
-		City city = readCrud.read(cityIdValue);
-		model.addAttribute("city", city);
+		City city = addCityToModel(cityId, model);
 		
 		Map<String, Integer> workers = new HashMap<String, Integer>();
 		for (ResourceProducer resourceProducer: city.getResourceGenerators()){
@@ -85,9 +93,7 @@ public class CityHomeController {
 	
 	@RequestMapping(value = {"/{cityName}/{cityId}/NextTurn","/{cityName}/{cityId}/nextturn","/{cityName}/{cityId}/nextTurn"}, method = RequestMethod.POST)
 	public String nextTurn(@PathVariable String cityId, Model model){
-		long cityIdValue = Long.valueOf(cityId);
-		City city = readCrud.read(cityIdValue);
-		model.addAttribute("city", city);
+		City city = addCityToModel(cityId, model);
 		try {
 			clientComand.nextTurn(city);
 		} catch (GameOverException e) {
@@ -100,23 +106,21 @@ public class CityHomeController {
 	
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}", method = RequestMethod.GET)
 	public String displayMinerAsignerForm(@PathVariable String cityId, @PathVariable String producerName, Model model) {
-		long cityIdValue = Long.valueOf(cityId);
-		City city = readCrud.read(cityIdValue);
-		model.addAttribute("city", city);
-		model.addAttribute("producerName", producerName);
-		
-		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(stringToClassHandler.handle(producerName))));
-		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(stringToClassHandler.handle(producerName))) + city.getUnassignedPopulation();
-		model.addAttribute("maxAssignable", maxAssignable);
+		City city = addCityToModel(cityId, model);
+		try {
+		String jspName = urlStringHandler.handel(city, producerName, model);
 		writeCrud.update(city);
-		return "assignationPage";
+		return jspName;
+		}
+		catch(NullPointerException exception){
+		return "wrongTurnPage";
+		}
 	}
-	
+
+
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}", method = RequestMethod.POST)
 	public String submitNewMinerAssignment(@PathVariable String cityId, @PathVariable String producerName, @RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
-		long cityIdValue = Long.valueOf(cityId);
-		City city = readCrud.read(cityIdValue);
-		model.addAttribute("city", city);
+		City city = addCityToModel(cityId, model);
 		
 		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
 		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceBuildingOfType(stringToClassHandler.handle(producerName)), newAssignedPopulation);

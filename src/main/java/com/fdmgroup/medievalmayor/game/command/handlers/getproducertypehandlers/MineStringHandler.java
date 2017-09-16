@@ -6,7 +6,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 public class MineStringHandler extends ProducerClassFromStringHandler {
 
 	@Override
-	public Class<? extends ResourceProducer> handle(String producerName) {
+	public Class<? extends ResourceProducer> handle(String producerName) throws NullPointerException{
 		if (producerName.equals("Mine")) {
 			return Mine.class;
 		}

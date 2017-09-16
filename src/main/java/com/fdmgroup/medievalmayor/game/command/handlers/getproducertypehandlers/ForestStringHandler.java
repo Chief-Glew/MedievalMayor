@@ -6,7 +6,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 public class ForestStringHandler extends ProducerClassFromStringHandler {
 
 	@Override
-	public Class<? extends ResourceProducer> handle(String producerName) {
+	public Class<? extends ResourceProducer> handle(String producerName) throws NullPointerException{
 		if (producerName.equals("Forest")) {
 			return Forest.class;
 		}
