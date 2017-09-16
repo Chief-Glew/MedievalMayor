@@ -109,4 +109,8 @@ public abstract class ResourceProducer{
 		this.producerLevel = producerLevel;
 	}
 	
+	public void incrementProducerLevel() {
+		producerLevel++;
+	}
+	
 }
