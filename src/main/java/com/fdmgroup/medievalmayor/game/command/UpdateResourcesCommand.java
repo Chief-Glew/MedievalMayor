@@ -4,6 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.city.City;
+import com.fdmgroup.medievalmayor.game.command.updateresourceshandlers.UpdateFoodHandler;
+import com.fdmgroup.medievalmayor.game.command.updateresourceshandlers.UpdateGoldHandler;
+import com.fdmgroup.medievalmayor.game.command.updateresourceshandlers.UpdateLumberHandler;
+import com.fdmgroup.medievalmayor.game.command.updateresourceshandlers.UpdateResourcesHandler;
+import com.fdmgroup.medievalmayor.game.command.updateresourceshandlers.UpdateWoodHandler;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
@@ -14,17 +19,23 @@ public class UpdateResourcesCommand implements UserCommand{
 
 	private City city; 
 	private ResourceFactory resourceFactory;
-	private ResourceProducerService resourceBuildingService;
+	private ResourceProducerService resourceProducerService;
+	private UpdateResourcesHandler updateResourcesHandler;
 	
 	public UpdateResourcesCommand(City city) {
 		resourceFactory = new ResourceFactory();
-		resourceBuildingService = new ResourceProducerService();
+		resourceProducerService = new ResourceProducerService();
 		this.city = city;
+		updateResourcesHandler = new UpdateFoodHandler();
+		updateResourcesHandler.addToChain(new UpdateGoldHandler());
+		updateResourcesHandler.addToChain(new UpdateWoodHandler());
+		updateResourcesHandler.addToChain(new UpdateLumberHandler());
 	}
  
 	public void execute() {
-		for (ResourceProducer resourceBuilding: city.getResourceGenerators()) {
-			city.addResource(resourceBuildingService.getResourceForBuilding(resourceBuilding));
+		updateResourcesHandler.handle(city);
+		for (ResourceProducer resourceProducer: city.getResourceGenerators()) {
+			city.addResource(resourceProducerService.getResourceForBuilding(resourceProducer));
 		}
 		int population = city.getTotalPopulation();
 		city.addResource(resourceFactory.getFood(-population));

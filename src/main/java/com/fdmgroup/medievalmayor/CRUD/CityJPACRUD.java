@@ -72,6 +72,8 @@ public class CityJPACRUD implements GenericCrud<City> {
 		connect();
 		entityManager.find(City.class, city.getId());
 		entityManager.merge(city);
+		entityManager.flush();
+		entityManager.getTransaction().commit();
 		logger.trace("Update Method used in CityJPACRUD");
 		disconnect();
 	}

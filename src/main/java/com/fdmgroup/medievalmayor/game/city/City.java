@@ -165,6 +165,11 @@ public class City implements IdAble{
 		logger.trace("Resources set");
 		resourceStorage.setResources(resources);
 	}
+	
+	public int getResourceAmount(String resourceName) {
+		Map<String, Integer> resources = getResources();
+		return resources.get(resourceName);
+	}
 
 
 }
