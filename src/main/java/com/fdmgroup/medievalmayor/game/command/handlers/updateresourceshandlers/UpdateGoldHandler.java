@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.game.command.updateresourceshandlers;
+package com.fdmgroup.medievalmayor.game.command.handlers.updateresourceshandlers;
 
 
 import com.fdmgroup.medievalmayor.game.city.City;

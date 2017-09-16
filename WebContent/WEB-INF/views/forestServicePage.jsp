@@ -23,12 +23,12 @@
 				<a class="navbar-brand" href="./">Medieval Mayor</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="./">Home</a></li>
+				<li><a href="/medievalmayor/">Home</a></li>
 				<li><a href="./userHome">City</a></li>
-				<li class="active"><a href="./farmService">Farm</a></li>
-				<li><a href="./mineService">Mine</a></li>
-				<li><a href="./forestService">Forest</a></li>
-				<li><a href="./LumberMillService">Lumber Mill</a></li>
+				<li><a href="/medievalmayor/farmService">Farm</a></li>
+				<li><a href="/medievalmayor/mineService">Mine</a></li>
+				<li class="active"><a href="/medievalmayor/forestService">Forest</a></li>
+				<li><a href="/medievalmayor/LumberMillService">Lumber Mill</a></li>
 			</ul>
 		</div>
 	</nav>

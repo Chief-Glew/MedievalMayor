@@ -21,15 +21,15 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="./">Medieval Mayor</a>
+				<a class="navbar-brand" href="/medievalmayor/">Medieval Mayor</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="/medievalmayor/">Home</a></li>
-				<li class="active"><a href="./userHome">City</a></li>
-				<li><a href="/medievalmayor/farmService">Farm</a></li>
-				<li><a href="/medievalmayor/mineService">Mine</a></li>
-				<li><a href="/medievalmayor/forestService">Forest</a></li>
-				<li><a href="/medievalmayor/LumberMillService">Lumber Mill</a></li>
+				<li class="active"><a href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>">City</a></li>
+				<li><a href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Farm">Farm</a></li>
+				<li><a href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Mine">Mine</a></li>
+				<li><a href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Forest">Forest</a></li>
+				<li><a href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/LumberMill">Lumber Mill</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -40,13 +40,13 @@
 		</div>
 		<img src="https://cdn.thinglink.me/api/image/510436523527634945/1240/10/scaletowidth" alt="Village" />
 	</div>
-	<form action= "/medievalmayor/home" method= "get">
+	<form action= "/medievalmayor/" method= "post">
 	<div>
 	<c:forEach items = "${cities}" var = "selectCity">
-		<input type="submit" name="cityId" value = "select" formaction="/medievalmayor/<c:out value="${selectCity.cityName}"/>/<c:out value="${selectCity.cityId}"/>"/>
-		<label><c:out value="${selectCity.cityId}" />:<c:out value="${selectCity.cityName}" /></label><br>
+		<input type="radio" name="cityId" value = "${selectCity.cityId}"><label><c:out value="${selectCity.cityId}" />:<c:out value="${selectCity.cityName}" /></label><br>
 	</c:forEach>
 	</div>
+	<input type="submit" value="select">
 	<input type="submit" value = "newcity" formaction="/medievalmayor/newCity" formmethod="get">
 	</form>
 </body>

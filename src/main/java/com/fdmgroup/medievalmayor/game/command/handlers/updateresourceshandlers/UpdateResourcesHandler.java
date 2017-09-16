@@ -1,9 +1,6 @@
-package com.fdmgroup.medievalmayor.game.command.updateresourceshandlers;
-
-import java.util.Set;
+package com.fdmgroup.medievalmayor.game.command.handlers.updateresourceshandlers;
 
 import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
 
 public abstract class UpdateResourcesHandler {

@@ -21,8 +21,8 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.Mine;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
-@Controller
-public class CityController {
+//@Controller
+public class UserHomeController {
 	
 	private CityJPACRUD readCrud;
 	private CityJPACRUD writeCrud;
@@ -32,7 +32,7 @@ public class CityController {
 	private CityFactory cityFactory;
 	
 
-	public CityController() {
+	public UserHomeController() {
 		resourceProducerService = new ResourceProducerService();
 		clientComand = new ClientCommand();
 		cityFactory = new CityFactory();
@@ -76,8 +76,6 @@ public class CityController {
 	@RequestMapping(value = { "/UserHomeServlet", "/userHome", "/home", "/Home" }, method = RequestMethod.GET)
 	public String displayCityStats(Model model){
 		Map<String, Integer> workers = new HashMap<String, Integer>();
-		System.out.println(city);
-		System.out.println(city.getResourceGenerators());
 		for (ResourceProducer resourceProducer: city.getResourceGenerators()){
 			workers.put(resourceProducer.resourceProducerName(), resourceProducerService.getPeopleInBuilding(resourceProducer));
 		} 
