@@ -13,19 +13,30 @@ public class Farm extends ResourceProducer{
 	
 	static final Logger logger = LogManager.getLogger("Farm.class");
 	
+	
+	
 	public Farm(){}
 	
 	public Farm(int multiplier) {
 		super(multiplier);
 	}
 	
-	public Farm(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName, int producerLevel) {
-		super(numberOfAssignedWorkers, multiplier, resourceProducerCost, resourceProducerName, producerLevel);
+	
+
+	public Farm(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,
+			String resourceProducerName, int producerLevel, int upgradeMultiplier) {
+		super(numberOfAssignedWorkers, baseResourceProduction, resourceProducerCost, resourceProducerName, producerLevel,
+				upgradeMultiplier);
 	}
 
 	@Override
 	public Resource produceResource() {
 		logger.trace("Food Produced");
-		return resourceFactory.getFood(getNumberOfAssignedWorkers()*getMultiplier());
+		Double levelMultiplier = Double.valueOf(Math.pow(getUpgradeMultiplier(),getProducerLevel()));
+		return resourceFactory.getFood(
+				getNumberOfAssignedWorkers()*
+				getBaseResourceProduction()*
+				levelMultiplier.intValue()
+				);
 	}
 }

@@ -20,12 +20,19 @@ static final Logger logger = LogManager.getLogger("LumberMill");
 		super(multiplier);
 	}
 
-	public LumberMill(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName, int producerLevel) {
-		super(numberOfAssignedWorkers, multiplier, resourceProducerCost, resourceProducerName, producerLevel);
+	public LumberMill(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,
+			String resourceProducerName, int producerLevel, int upgradeMultiplier) {
+		super(numberOfAssignedWorkers, baseResourceProduction, resourceProducerCost, resourceProducerName, producerLevel,
+				upgradeMultiplier);
 	}
 
 	@Override
 	public Resource produceResource() {
-		return resourceFactory.getLumber(getNumberOfAssignedWorkers()*getMultiplier());
+		Double levelMultiplier = Double.valueOf(Math.pow(getUpgradeMultiplier(),getProducerLevel()));
+		return resourceFactory.getLumber(
+				getNumberOfAssignedWorkers()*
+				getBaseResourceProduction()*
+				levelMultiplier.intValue()
+				);
 	}
 }

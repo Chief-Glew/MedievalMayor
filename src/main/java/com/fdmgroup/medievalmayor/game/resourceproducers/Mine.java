@@ -19,14 +19,21 @@ public class Mine extends ResourceProducer {
 		super(multiplier);
 	}
 
-	public Mine(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName, int producerLevel) {
-		super(numberOfAssignedWorkers, multiplier, resourceProducerCost, resourceProducerName, producerLevel);
+	public Mine(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,
+			String resourceProducerName, int producerLevel, int upgradeMultiplier) {
+		super(numberOfAssignedWorkers, baseResourceProduction, resourceProducerCost, resourceProducerName, producerLevel,
+				upgradeMultiplier);
 	}
 
 	@Override
 	public Resource produceResource() {
 		logger.trace("Gold produced");
-		return resourceFactory.getGold(getNumberOfAssignedWorkers()*getMultiplier());
+		Double levelMultiplier = Double.valueOf(Math.pow(getUpgradeMultiplier(),getProducerLevel()));
+		return resourceFactory.getGold(
+				getNumberOfAssignedWorkers()*
+				getBaseResourceProduction()*
+				levelMultiplier.intValue()
+				);
 	}
 }
  

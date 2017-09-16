@@ -34,11 +34,11 @@ public class UpdateResourcesCommand implements UserCommand{
  
 	public void execute() {
 		updateResourcesHandler.handle(city);
-		for (ResourceProducer resourceProducer: city.getResourceGenerators()) {
+		/*for (ResourceProducer resourceProducer: city.getResourceGenerators()) {
 			city.addResource(resourceProducerService.getResourceForBuilding(resourceProducer));
 		}
 		int population = city.getTotalPopulation();
-		city.addResource(resourceFactory.getFood(-population));
+		city.addResource(resourceFactory.getFood(-population));*/
 		
 		UserCommand updatePopulationCommand = new UpdatePopulationCommand(city);
 		CommandInvoker commandInvoker = new CommandInvoker();

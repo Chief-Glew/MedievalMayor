@@ -25,8 +25,8 @@ public class CityTest {
 		farm = Farm.getInstance();
 		mine = Mine.getInstance();
 		buildingManager = ResourceProducerService.getInstance();
-		farm.setMultiplier(3);
-		mine.setMultiplier(2);
+		farm.setBaseResourceProduction(3);
+		mine.setBaseResourceProduction(2);
 	}
 	
 	@Test

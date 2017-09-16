@@ -21,7 +21,7 @@ public class ResourceProducerService {
 		if(difference > numberOfPeopleAvailible){
 			throw new InsufficentPopulationException("Insufficent population available");
 		}
-		building.setNumberOfPeopleInBuilding(numberOfPeopleToAssign);
+		building.setNumberOfAssignedWorkers(numberOfPeopleToAssign);
 		logger.debug("People assigned to building");
 		return (numberOfPeopleAvailible - difference);
 	}

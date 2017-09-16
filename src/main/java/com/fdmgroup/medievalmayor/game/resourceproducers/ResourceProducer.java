@@ -25,30 +25,42 @@ public abstract class ResourceProducer{
 	private long resourceProducerId;
 	@Column(name="NUMBER_ASSIGNED_WORKERS")
 	private int numberOfAssignedWorkers;
-	@Column(name="RESOURCE_MULTIPLIER")
-	private int multiplier;
+	@Column(name="BASE_RESOURCE_PRODUCTION")
+	private int baseResourceProduction;
 	@Column(name="RESOURCE_PRODUCER_COST")
 	private int resourceProducerCost;
 	@Column(name="RESOURCE_PRODUCER_NAME")
 	private String resourceProducerName;
 	@Column(name="PRODUCER_LEVEL")
 	private int producerLevel;
+	@Column(name="UPGRADE_MULTIPLIER")
+	private int upgradeMultiplier;
 	@Transient
 	protected ResourceFactory resourceFactory;
 	
 	public ResourceProducer() {
 		resourceFactory = new ResourceFactory();
+		baseResourceProduction = 3;
+		upgradeMultiplier = 3;
+		producerLevel = 0;
 	}
 
-	public ResourceProducer(int multiplier) {
+	public ResourceProducer(int baseResourceProduction) {
 		this();
-		this.multiplier = multiplier;
+		this.baseResourceProduction = baseResourceProduction;
+	}
+	
+	public ResourceProducer(int baseResourceProduction, int upgradeMultiplier) {
+		this(baseResourceProduction);
+		this.upgradeMultiplier = upgradeMultiplier;
 	}
 	
 
-	public ResourceProducer(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost,
-			String resourceProducerName, int producerLevel) {
-		this(multiplier);
+
+
+	public ResourceProducer(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,
+			String resourceProducerName, int producerLevel, int upgradeMultiplier) {
+		this(baseResourceProduction, upgradeMultiplier);
 		this.numberOfAssignedWorkers = numberOfAssignedWorkers;
 		this.resourceProducerCost = resourceProducerCost;
 		this.resourceProducerName = resourceProducerName;
@@ -57,27 +69,44 @@ public abstract class ResourceProducer{
 
 	public abstract Resource produceResource();
 	
-	public void setMultiplier(int multiplier) {
-		logger.trace("Multiplier set");
-		this.multiplier = multiplier;
+	public void setBaseResourceProduction(int baseResourceProduction) {
+		logger.trace("Base Resource Production set for "+resourceProducerName);
+		this.baseResourceProduction = baseResourceProduction;
 	}
 
-	public int getMultiplier() {
-		logger.trace("Multiplier retrieved");
-		return multiplier;
+	public int getBaseResourceProduction() {
+		logger.trace("Base Resource Production retrieved for "+resourceProducerName);
+		return baseResourceProduction;
 	}
 
 	public int getNumberOfAssignedWorkers() {
-		logger.trace("Number of assigned Workers retrieved");
+		logger.trace("Number of assigned Workers retrieved for "+resourceProducerName);
 		return numberOfAssignedWorkers;
 	}
 
-	public void setNumberOfPeopleInBuilding(int numberOfPeople) {
-		logger.trace("Number of assigned Workers set");
+	public void setNumberOfAssignedWorkers(int numberOfPeople) {
+		logger.trace("Number of assigned Workers set for "+resourceProducerName);
 		numberOfAssignedWorkers = numberOfPeople;
 	}
 
 	public String resourceProducerName() {
 		return resourceProducerName;
 	}
+
+	public int getProducerLevel() {
+		return producerLevel;
+	}
+
+	public int getUpgradeMultiplier() {
+		return upgradeMultiplier;
+	}
+
+	public void setUpgradeMultiplier(int upgradeMultiplier) {
+		this.upgradeMultiplier = upgradeMultiplier;
+	}
+
+	public void setProducerLevel(int producerLevel) {
+		this.producerLevel = producerLevel;
+	}
+	
 }

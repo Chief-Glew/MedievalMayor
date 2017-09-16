@@ -48,7 +48,7 @@
 			<c:out value="${maxAssignable}" />
 		</p>
 
-		<form action="./forestService" method="post" name="assignLumberJacks">
+		<form action="./LumberMillService" method="post" name="assignLumberJacks">
 			<label>New Population to set: </label> <input type="number"
 				name="newAssignedPopulation" min="0"
 				max="<c:out value="${maxAssignable}"/>"><br> <input

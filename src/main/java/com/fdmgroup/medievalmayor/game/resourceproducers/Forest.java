@@ -16,17 +16,26 @@ public class Forest extends ResourceProducer{
 	
 	public Forest(){}
 	
-	public Forest(int multiplier) {
-		super(multiplier);
+	public Forest(int baseResourceProduction) {
+		super(baseResourceProduction);
 	}
 
-	public Forest(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName, int producerLevel) {
-		super(numberOfAssignedWorkers, multiplier, resourceProducerCost, resourceProducerName, producerLevel);
+	
+
+	public Forest(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,
+			String resourceProducerName, int producerLevel, int upgradeMultiplier) {
+		super(numberOfAssignedWorkers, baseResourceProduction, resourceProducerCost, resourceProducerName, producerLevel,
+				upgradeMultiplier);
 	}
 
 	@Override
 	public Resource produceResource() {
 		logger.trace("Wood produced");
-		return resourceFactory.getWood(getNumberOfAssignedWorkers()*getMultiplier());
+		Double levelMultiplier = Double.valueOf(Math.pow(getUpgradeMultiplier(),getProducerLevel()));
+		return resourceFactory.getWood(
+				getNumberOfAssignedWorkers()*
+				getBaseResourceProduction()*
+				levelMultiplier.intValue()
+				);
 	}
 }

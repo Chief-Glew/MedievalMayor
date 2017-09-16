@@ -19,6 +19,6 @@ public class SetNumberOfWorkersCommand implements UserCommand {
 
 	public void execute() {
 		logger.trace("Number of workers set in "+resourceBuilding+": "+numberOfWorkers);
-		resourceBuilding.setNumberOfPeopleInBuilding(numberOfWorkers);
+		resourceBuilding.setNumberOfAssignedWorkers(numberOfWorkers);
 	}
 }
