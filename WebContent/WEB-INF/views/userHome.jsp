@@ -27,6 +27,8 @@
 				<li class="active"><a href="./userHome">City</a></li>
 				<li><a href="./farmService">Farm</a></li>
 				<li><a href="./mineService">Mine</a></li>
+				<li><a href="./forestService">Forest</a></li>
+				<li><a href="./LumberMillService">Lumber Mill</a></li>
 			</ul>
 		</div>
 	</nav>

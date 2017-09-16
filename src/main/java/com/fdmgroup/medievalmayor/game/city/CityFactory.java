@@ -19,7 +19,11 @@ public class CityFactory {
 
 	public City getNewCity(){
 		logger.trace("getNewCity method used");
-		return new City("DefaultCity", 10,  resourceProducerFactory.getFarm(), resourceProducerFactory.getMine());
+		return new City("DefaultCity", 10, 
+				resourceProducerFactory.getFarm(), 
+				resourceProducerFactory.getMine(),
+				resourceProducerFactory.getForest(),
+				resourceProducerFactory.getLumberMill());
 	}
 
 	public City getNewCity(String cityName){

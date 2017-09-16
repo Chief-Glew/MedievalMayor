@@ -31,6 +31,8 @@ public abstract class ResourceProducer{
 	private int resourceProducerCost;
 	@Column(name="RESOURCE_PRODUCER_NAME")
 	private String resourceProducerName;
+	@Column(name="PRODUCER_LEVEL")
+	private int producerLevel;
 	@Transient
 	protected ResourceFactory resourceFactory;
 	
@@ -45,11 +47,12 @@ public abstract class ResourceProducer{
 	
 
 	public ResourceProducer(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost,
-			String resourceProducerName) {
+			String resourceProducerName, int producerLevel) {
 		this(multiplier);
 		this.numberOfAssignedWorkers = numberOfAssignedWorkers;
 		this.resourceProducerCost = resourceProducerCost;
 		this.resourceProducerName = resourceProducerName;
+		this.producerLevel = producerLevel;
 	}
 
 	public abstract Resource produceResource();

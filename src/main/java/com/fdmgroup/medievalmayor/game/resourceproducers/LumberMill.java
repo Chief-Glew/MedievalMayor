@@ -2,30 +2,30 @@ package com.fdmgroup.medievalmayor.game.resourceproducers;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
 
-@Entity(name="FARM")
-@DiscriminatorValue(value = "FARM")
-public class Farm extends ResourceProducer{
+@Entity(name="LUMBERMILL")
+@DiscriminatorValue(value = "LUMBERMILL")
+public class LumberMill extends ResourceProducer{
+
+static final Logger logger = LogManager.getLogger("LumberMill");
 	
-	static final Logger logger = LogManager.getLogger("Farm.class");
+	public LumberMill(){}
 	
-	public Farm(){}
-	
-	public Farm(int multiplier) {
+	public LumberMill(int multiplier){
 		super(multiplier);
 	}
-	
-	public Farm(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName, int producerLevel) {
+
+	public LumberMill(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName, int producerLevel) {
 		super(numberOfAssignedWorkers, multiplier, resourceProducerCost, resourceProducerName, producerLevel);
 	}
 
 	@Override
 	public Resource produceResource() {
-		logger.trace("Food Produced");
-		return resourceFactory.getFood(getNumberOfAssignedWorkers()*getMultiplier());
+		return resourceFactory.getLumber(getNumberOfAssignedWorkers()*getMultiplier());
 	}
 }

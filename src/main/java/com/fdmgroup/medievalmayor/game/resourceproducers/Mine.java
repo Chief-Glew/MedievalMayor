@@ -19,8 +19,8 @@ public class Mine extends ResourceProducer {
 		super(multiplier);
 	}
 
-	public Mine(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName) {
-		super(numberOfAssignedWorkers, multiplier, resourceProducerCost, resourceProducerName);
+	public Mine(int numberOfAssignedWorkers, int multiplier, int resourceProducerCost, String resourceProducerName, int producerLevel) {
+		super(numberOfAssignedWorkers, multiplier, resourceProducerCost, resourceProducerName, producerLevel);
 	}
 
 	@Override
