@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>User Home</title>
+<title>Farm Service</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-	<nav>
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="/medievalmayor/">Medieval Mayor</a>
@@ -40,45 +40,19 @@
 	</nav>
 	<div class="container-fluid"
 		style="background-color: green; color: lightblue;">
+
 		<div class="center-block"
-			style="background-color: yellow; width: 250px;">
-			<h1>Build your City!</h1>
+			style="background-color: yellow; width: 415px;">
+			<h1>Admin</h1>
 		</div>
 		<table>
-			<tr>
-				<th>Total Population:</th>
-				<td><c:out value="${totalPopulation}" /></td>
-			</tr>
-			<tr>
-				<th>Number of Unassigned People:</th>
-				<td><c:out value="${unnassignedPeople}" /></td>
-			</tr>
-			<c:forEach items="${workers}" var="worker">
+			<c:forEach items="${resourceProducers}" var="resourceProducer">
 				<tr>
-					<th>Number of People in the <c:out value="${worker.key}" />:
-					</th>
-					<td><c:out value="${worker.value}" /></td>
-					<td><a class="btn btn-info" href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${worker.key}" />">Change</a></td>
-				</tr>
-			</c:forEach>
-			<c:forEach items="${resources}" var="resource">
-				<tr>
-					<th>Amount of <c:out value="${resource.key}" />:
-					</th>
-					<td><c:out value="${resource.value }"></c:out></td>
+					<th><c:out value="${resourceProducer}" /></th>
+					<td><a class="btn btn-success" href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin/<c:out value="${resourceProducer}"/>">Manage</a></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<form
-			action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/nextTurn"
-			method="post" name="nextDay">
-			<input type="submit" value="Next Year"
-				style="background-color: red; color: black;">
-		</form><br>
-		<a class="btn btn-danger" href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin">Go To Admin Page</a><br>
-		<img
-			src="https://cdn.thinglink.me/api/image/510436523527634945/1240/10/scaletowidth"
-			alt="Village" />
 
 	</div>
 </body>

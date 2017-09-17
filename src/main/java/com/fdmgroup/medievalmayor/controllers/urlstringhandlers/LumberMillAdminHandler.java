@@ -9,16 +9,13 @@ import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.MineStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
-import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
-public class ResourceProducerHandler extends URLStringHandler {
+public class LumberMillAdminHandler extends URLStringHandler {
 
 	private ProducerClassFromStringHandler stringToClassHandler;
-	private ResourceProducerService resourceProducerService;
 
 
-	public ResourceProducerHandler() {
-		resourceProducerService = new ResourceProducerService();
+	public LumberMillAdminHandler() {
 		stringToClassHandler = new FarmStringHandler();
 		stringToClassHandler.addToChain(new ForestStringHandler());
 		stringToClassHandler.addToChain(new LumberMillStringHandler());
@@ -27,21 +24,18 @@ public class ResourceProducerHandler extends URLStringHandler {
 
 	@Override
 	public String handle(City city, String urlString, Model model) throws NullPointerException {
-
-		try {
-			Class<? extends ResourceProducer> resourceProducerClass = stringToClassHandler.handle(urlString);	
-			
-			int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(resourceProducerClass)) + city.getUnassignedPopulation();
-
-			model.addAttribute("producerName", urlString);
-			model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(resourceProducerClass)));
-			model.addAttribute("maxAssignable", maxAssignable);
-			
-			return "assignationPage";
+		if (urlString.equals("LumberMill")) {
+			try {
+				Class<? extends ResourceProducer> resourceProducerClass = stringToClassHandler.handle(urlString);
+				city.getResourceBuildingOfType(resourceProducerClass);
+				return "lumberMillAdminPage";
+			}
+			catch(NullPointerException exception) {
+				return next.handle(city, urlString, model);
+			}
 		}
-		catch(NullPointerException exception) {
+		else {
 			return next.handle(city, urlString, model);
 		}
 	}
-
 }

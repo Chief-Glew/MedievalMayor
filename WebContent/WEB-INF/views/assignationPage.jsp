@@ -49,11 +49,11 @@
 
 		<form action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${producerName}"/>" method="post" name="assignFarmers">
 			<label>New Population to set: </label> <input type="number"
-				name="newAssignedPopulation" min="0"
-				max="<c:out value="${maxAssignable}"/>"><br> <input
-				type="submit" value="submit" style= "background-color: red; color: black;">
-				<input
-				type="submit" value="Back" formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>" formmethod="get"
+				name="newAssignedPopulation" value="<c:out value="${currentAssigned}" />" min="0"
+				max="<c:out value="${maxAssignable}"/>" required><br> 
+				<input type="submit" value="submit" style= "background-color: red; color: black;">
+				<input type="reset">
+				<input type="submit" value="Back" formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>" formmethod="get"
 				style="background-color: red; color: white;">
 		</form>
 		<img

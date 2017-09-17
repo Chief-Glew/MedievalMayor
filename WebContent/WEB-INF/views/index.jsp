@@ -18,18 +18,13 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav>
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="./">Medieval Mayor</a>
+				<a class="navbar-brand" href="/medievalmayor/">Medieval Mayor</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="/medievalmayor/">Home</a></li>
-				<li class="active"><a href="./userHome">City</a></li>
-				<li><a href="/medievalmayor/farmService">Farm</a></li>
-				<li><a href="/medievalmayor/mineService">Mine</a></li>
-				<li><a href="/medievalmayor/forestService">Forest</a></li>
-				<li><a href="/medievalmayor/LumberMillService">Lumber Mill</a></li>
 			</ul>
 		</div>
 	</nav>

@@ -17,5 +17,5 @@ public abstract class URLStringHandler {
 		}
 	}
 	
-	public abstract String handel(City city, String urlString, Model model);
+	public abstract String handle(City city, String urlString, Model model);
 }

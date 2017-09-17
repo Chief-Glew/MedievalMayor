@@ -15,6 +15,6 @@ public class ResourceProducerFactory {
 	}
 	
 	public ResourceProducer getLumberMill(){
-		return new LumberMill(0, 4, 0, "LumberMill", 0, 3);
+		return new LumberMill(0, 4, 0, "LumberMill", 0, 3, 4);
 	}
 }

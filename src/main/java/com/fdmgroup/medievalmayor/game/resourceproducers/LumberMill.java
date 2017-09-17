@@ -1,5 +1,6 @@
 package com.fdmgroup.medievalmayor.game.resourceproducers;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -13,6 +14,8 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
 public class LumberMill extends ResourceProducer{
 
 static final Logger logger = LogManager.getLogger("LumberMill");
+@Column
+private int ammountOfLumberPerWood;
 	
 	public LumberMill(){}
 	
@@ -21,9 +24,10 @@ static final Logger logger = LogManager.getLogger("LumberMill");
 	}
 
 	public LumberMill(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,
-			String resourceProducerName, int producerLevel, int upgradeMultiplier) {
+			String resourceProducerName, int producerLevel, int upgradeMultiplier, int ammountOfLumberPerWood) {
 		super(numberOfAssignedWorkers, baseResourceProduction, resourceProducerCost, resourceProducerName, producerLevel,
 				upgradeMultiplier);
+		this.ammountOfLumberPerWood = ammountOfLumberPerWood;
 	}
 
 	@Override
@@ -35,4 +39,13 @@ static final Logger logger = LogManager.getLogger("LumberMill");
 				levelMultiplier.intValue()
 				);
 	}
+
+	public int getAmountOfLumberPerWood() {
+		return ammountOfLumberPerWood;
+	}
+
+	public void setAmmountOfLumberPerWood(int ammountOfLumberPerWood) {
+		this.ammountOfLumberPerWood = ammountOfLumberPerWood;
+	}
+	
 }

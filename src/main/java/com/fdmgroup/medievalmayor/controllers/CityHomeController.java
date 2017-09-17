@@ -1,6 +1,7 @@
 package com.fdmgroup.medievalmayor.controllers;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdmgroup.medievalmayor.CRUD.CityJPACRUD;
+import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.LumberMillAdminHandler;
+import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.ResourceProducerAdminHandler;
 import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.ResourceProducerHandler;
 import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.URLStringHandler;
 import com.fdmgroup.medievalmayor.game.city.City;
@@ -104,11 +107,38 @@ public class CityHomeController {
 		return displayCityStats(cityId, model); 
 	}
 	
+	@RequestMapping(value = "/{cityName}/{cityId}/admin", method = RequestMethod.GET)
+	public String displayAdminPage(@PathVariable String cityId, Model model) {
+		City city = addCityToModel(cityId, model);
+		Set<String> resourceProducers = new HashSet<String>();
+		for (ResourceProducer resourceProducer: city.getResourceGenerators()){
+			resourceProducers.add(resourceProducer.resourceProducerName());
+		} 
+		model.addAttribute("resourceProducers", resourceProducers);
+		
+		return "adminPage";
+	}
+	
+	@RequestMapping(value = "/{cityName}/{cityId}/admin/{producerName}", method = RequestMethod.GET)
+	public String displayAdminPageForResourseProducer(@PathVariable String cityId, @PathVariable String producerName, Model model) {
+		City city = addCityToModel(cityId, model);
+		URLStringHandler handler = new LumberMillAdminHandler();
+		handler.addToChain(new ResourceProducerAdminHandler());
+		try {
+			String jspName = handler.handle(city, producerName, model);
+			writeCrud.update(city);
+			return jspName;
+			}
+			catch(NullPointerException exception){
+			return "wrongTurnPage";
+			}
+	}
+	
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}", method = RequestMethod.GET)
 	public String displayMinerAsignerForm(@PathVariable String cityId, @PathVariable String producerName, Model model) {
 		City city = addCityToModel(cityId, model);
 		try {
-		String jspName = urlStringHandler.handel(city, producerName, model);
+		String jspName = urlStringHandler.handle(city, producerName, model);
 		writeCrud.update(city);
 		return jspName;
 		}
