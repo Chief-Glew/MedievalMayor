@@ -42,6 +42,9 @@
 		<label><c:out value="${selectCity.cityId}" />:<c:out value="${selectCity.cityName}" /></label><br>
 	</c:forEach>
 	</div>
+	</form>
+	<form>
+	<input type="text" value="DefaultCity" name="cityName" pattern="[^/]*">
 	<input type="submit" value = "newcity" formaction="/medievalmayor/newCity" formmethod="get">
 	</form>
 </body>

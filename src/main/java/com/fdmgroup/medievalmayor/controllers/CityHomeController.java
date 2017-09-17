@@ -69,8 +69,9 @@ public class CityHomeController {
 		return "index";
 	}
 	@RequestMapping(value = "/newCity", method = RequestMethod.GET)
-	public String newCity(Model model){
-		writeCrud.create(cityFactory.getNewCity());
+	public String newCity(@RequestParam String cityName, Model model){
+		String safeCityName = cityName.replaceAll("/", "forwardSlash");
+		writeCrud.create(cityFactory.getNewCity(safeCityName));
 		return showCities(model);
 	}
 	
