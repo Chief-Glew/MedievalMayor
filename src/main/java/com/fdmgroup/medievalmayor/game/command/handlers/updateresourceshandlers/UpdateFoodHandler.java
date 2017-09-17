@@ -8,7 +8,7 @@ public class UpdateFoodHandler extends UpdateResourcesHandler {
 
 	@Override
 	public void handle(City city) {
-		ResourceProducer farm = city.getResourceBuildingOfType(Farm.class);
+		ResourceProducer farm = city.getResourceProducerOfType(Farm.class);
 		city.addResource(farm.produceResource());
 		city.addResource(resourceFactory.getFood(-city.getTotalPopulation()));
 		if (!isNextNull()) {

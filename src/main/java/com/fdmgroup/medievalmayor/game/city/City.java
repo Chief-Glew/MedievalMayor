@@ -133,7 +133,7 @@ public class City implements IdAble{
 		resourceStorage.addResource(resource);
 	}
 
-	public ResourceProducer getResourceBuildingOfType(Class<? extends ResourceProducer> type) {
+	public ResourceProducer getResourceProducerOfType(Class<? extends ResourceProducer> type) {
 		for (ResourceProducer building: resourceGenerators) {
 			if (type.equals(building.getClass())) {
 				logger.trace("Resource building retrieved");

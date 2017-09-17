@@ -134,6 +134,21 @@ public class CityHomeController {
 			}
 	}
 	
+	@RequestMapping(value = "/{cityName}/{cityId}/admin/{producerName}", method = RequestMethod.POST)//TODO complete method
+	public String updateAdminValuesForResourseProducer(@PathVariable String cityId, @PathVariable String producerName, Model model) {
+		City city = addCityToModel(cityId, model);
+		URLStringHandler handler = new LumberMillAdminHandler();
+		handler.addToChain(new ResourceProducerAdminHandler());
+		try {
+			String jspName = handler.handle(city, producerName, model);
+			writeCrud.update(city);
+			return jspName;
+			}
+			catch(NullPointerException exception){
+			return "wrongTurnPage";
+			}
+	}
+	
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}", method = RequestMethod.GET)
 	public String displayMinerAsignerForm(@PathVariable String cityId, @PathVariable String producerName, Model model) {
 		City city = addCityToModel(cityId, model);
@@ -153,7 +168,7 @@ public class CityHomeController {
 		City city = addCityToModel(cityId, model);
 		
 		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
-		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceBuildingOfType(stringToClassHandler.handle(producerName)), newAssignedPopulation);
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceProducerOfType(stringToClassHandler.handle(producerName)), newAssignedPopulation);
 		writeCrud.update(city);
 		return displayCityStats(cityId, model);
 	}

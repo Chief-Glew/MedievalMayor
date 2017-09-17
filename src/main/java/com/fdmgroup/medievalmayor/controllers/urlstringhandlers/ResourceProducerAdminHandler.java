@@ -26,7 +26,11 @@ public class ResourceProducerAdminHandler extends URLStringHandler {
 	public String handle(City city, String urlString, Model model) throws NullPointerException{
 		try {
 			Class<? extends ResourceProducer> resourceProducerClass = stringToClassHandler.handle(urlString);
-			city.getResourceBuildingOfType(resourceProducerClass);
+			ResourceProducer resourceProducer = city.getResourceProducerOfType(resourceProducerClass);
+			int baseResourceProduction = resourceProducer.getBaseResourceProduction();
+			int upgradeMultiplier = resourceProducer.getUpgradeMultiplier();
+			model.addAttribute("baseResourceProduction", baseResourceProduction);
+			model.addAttribute("upgradeMultiplier", upgradeMultiplier);
 						
 			return "resourceProducerAdminPage";
 		}

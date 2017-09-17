@@ -91,8 +91,8 @@ public class UserHomeController {
 	
 	@RequestMapping(value = { "/MineServiceServlet", "/mineService" }, method = RequestMethod.GET)
 	public String displayMinerAsignerForm(Model model) {
-		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(Mine.class)));
-		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(Mine.class)) + city.getUnassignedPopulation();
+		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceProducerOfType(Mine.class)));
+		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceProducerOfType(Mine.class)) + city.getUnassignedPopulation();
 		model.addAttribute("maxAssignable", maxAssignable);
 		return "mineServicePage";
 	}
@@ -100,14 +100,14 @@ public class UserHomeController {
 	@RequestMapping(value = { "/MineServiceServlet", "/mineService" }, method = RequestMethod.POST)
 	public String submitNewMinerAssignment(@RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
 		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
-		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceBuildingOfType(Mine.class), newAssignedPopulation);
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceProducerOfType(Mine.class), newAssignedPopulation);
 		return displayCityStats(model);
 	}
 	
 	@RequestMapping(value = {  "/Farmservice", "/farmservice", "/farmService", "/FarmService" }, method = RequestMethod.GET)
 	public String displayFarmerAsignerForm(Model model) {
-		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(Farm.class)));
-		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(Farm.class)) + city.getUnassignedPopulation();
+		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceProducerOfType(Farm.class)));
+		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceProducerOfType(Farm.class)) + city.getUnassignedPopulation();
 		model.addAttribute("maxAssignable", maxAssignable);
 		return "farmServicePage";
 	}
@@ -115,14 +115,14 @@ public class UserHomeController {
 	@RequestMapping(value = {  "/Farmservice", "/farmservice", "/farmService", "/FarmService" }, method = RequestMethod.POST)
 	public String submitNewFarmerAssignment(@RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
 		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
-		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceBuildingOfType(Farm.class), newAssignedPopulation);
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceProducerOfType(Farm.class), newAssignedPopulation);
 		return displayCityStats(model);
 	}
 	
 	@RequestMapping(value = {  "/Forestservice", "/forestservice", "/forestService", "/ForestService" }, method = RequestMethod.GET)
 	public String displayLumberJackAsignerForm(Model model) {
-		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(Forest.class)));
-		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(Forest.class)) + city.getUnassignedPopulation();
+		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceProducerOfType(Forest.class)));
+		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceProducerOfType(Forest.class)) + city.getUnassignedPopulation();
 		model.addAttribute("maxAssignable", maxAssignable);
 		return "forestServicePage";
 	}
@@ -130,14 +130,14 @@ public class UserHomeController {
 	@RequestMapping(value = {  "/Forestservice", "/forestservice", "/forestService", "/ForestService" }, method = RequestMethod.POST)
 	public String submitNewLumberJackAssignment(@RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
 		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
-		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceBuildingOfType(Forest.class), newAssignedPopulation);
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceProducerOfType(Forest.class), newAssignedPopulation);
 		return displayCityStats(model);
 	}
 	
 	@RequestMapping(value = {  "/lumberMillService", "/LumberMillservice", "/lumbermillservice", "/LumbermillService", "/LumberMillService" }, method = RequestMethod.GET)
 	public String displayLumberMillWorkerAsignerForm(Model model) {
-		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(LumberMill.class)));
-		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(LumberMill.class)) + city.getUnassignedPopulation();
+		model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceProducerOfType(LumberMill.class)));
+		int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceProducerOfType(LumberMill.class)) + city.getUnassignedPopulation();
 		model.addAttribute("maxAssignable", maxAssignable);
 		return "lumberMillServicePage";
 	}
@@ -145,7 +145,7 @@ public class UserHomeController {
 	@RequestMapping(value = {  "/lumberMillService", "/LumberMillservice", "/lumbermillservice", "/LumbermillService", "/LumberMillService" }, method = RequestMethod.POST)
 	public String submitNewLumberMillWorkerAssignment(@RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
 		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
-		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceBuildingOfType(LumberMill.class), newAssignedPopulation);
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceProducerOfType(LumberMill.class), newAssignedPopulation);
 		return displayCityStats(model);
 	}
 	

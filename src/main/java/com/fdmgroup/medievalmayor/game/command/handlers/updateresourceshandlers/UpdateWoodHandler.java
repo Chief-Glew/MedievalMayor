@@ -8,7 +8,7 @@ public class UpdateWoodHandler extends UpdateResourcesHandler {
 
 	@Override
 	public void handle(City city) {
-		ResourceProducer forest = city.getResourceBuildingOfType(Forest.class);
+		ResourceProducer forest = city.getResourceProducerOfType(Forest.class);
 		city.addResource(forest.produceResource());
 		if (!isNextNull()) {
 			next.handle(city);

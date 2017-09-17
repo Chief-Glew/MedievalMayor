@@ -10,7 +10,7 @@ public class UpdateLumberHandler extends UpdateResourcesHandler {
 
 	@Override
 	public void handle(City city) {
-		LumberMill lumberMill = (LumberMill)city.getResourceBuildingOfType(LumberMill.class);//TODO find a better way to do this
+		LumberMill lumberMill = (LumberMill)city.getResourceProducerOfType(LumberMill.class);//TODO find a better way to do this
 		int lumberPerWood = lumberMill.getAmountOfLumberPerWood();
 		Resource maxLumberResource = lumberMill.produceResource();
 		int maxLumberAmount = maxLumberResource.getAmount();

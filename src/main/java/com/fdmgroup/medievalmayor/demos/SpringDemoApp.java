@@ -27,8 +27,8 @@ public class SpringDemoApp {
 		
 		CityFactory cityFactory = new CityFactory();
 		City city = cityFactory.getNewCityWithForest();
-		ResourceProducer farm = city.getResourceBuildingOfType(Farm.class);
-		ResourceProducer mine = city.getResourceBuildingOfType(Mine.class);
+		ResourceProducer farm = city.getResourceProducerOfType(Farm.class);
+		ResourceProducer mine = city.getResourceProducerOfType(Mine.class);
 
 		CommandInvoker commandInvoker = new CommandInvoker();
 		CommandInvoker nextTurnInvoker = new CommandInvoker();

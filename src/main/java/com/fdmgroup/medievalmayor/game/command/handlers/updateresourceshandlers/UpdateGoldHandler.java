@@ -9,7 +9,7 @@ public class UpdateGoldHandler extends UpdateResourcesHandler {
 
 	@Override
 	public void handle(City city) {
-		ResourceProducer mine = city.getResourceBuildingOfType(Mine.class);
+		ResourceProducer mine = city.getResourceProducerOfType(Mine.class);
 		city.addResource(mine.produceResource());
 		if (!isNextNull()) {
 			next.handle(city);

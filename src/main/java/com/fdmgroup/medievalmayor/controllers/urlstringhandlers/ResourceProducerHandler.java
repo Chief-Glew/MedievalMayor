@@ -31,10 +31,10 @@ public class ResourceProducerHandler extends URLStringHandler {
 		try {
 			Class<? extends ResourceProducer> resourceProducerClass = stringToClassHandler.handle(urlString);	
 			
-			int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(resourceProducerClass)) + city.getUnassignedPopulation();
+			int maxAssignable = resourceProducerService.getPeopleInBuilding(city.getResourceProducerOfType(resourceProducerClass)) + city.getUnassignedPopulation();
 
 			model.addAttribute("producerName", urlString);
-			model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceBuildingOfType(resourceProducerClass)));
+			model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceProducerOfType(resourceProducerClass)));
 			model.addAttribute("maxAssignable", maxAssignable);
 			
 			return "assignationPage";
