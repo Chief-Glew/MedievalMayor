@@ -19,6 +19,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFacto
 public abstract class ResourceProducer{
 	
 	static final Logger logger = LogManager.getLogger("ResourceProducer.class");
+	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="RESOURCE_PRODUCER_ID")
@@ -70,46 +71,52 @@ public abstract class ResourceProducer{
 	public abstract Resource produceResource();
 	
 	public void setBaseResourceProduction(int baseResourceProduction) {
-		logger.trace("Base Resource Production set for "+resourceProducerName);
+		logger.debug("Base Resource Production set for "+resourceProducerName);
 		this.baseResourceProduction = baseResourceProduction;
 	}
 
 	public int getBaseResourceProduction() {
-		logger.trace("Base Resource Production retrieved for "+resourceProducerName);
+		logger.debug("Base Resource Production retrieved for "+resourceProducerName);
 		return baseResourceProduction;
 	}
 
 	public int getNumberOfAssignedWorkers() {
-		logger.trace("Number of assigned Workers retrieved for "+resourceProducerName);
+		logger.debug("Number of assigned Workers retrieved for "+resourceProducerName);
 		return numberOfAssignedWorkers;
 	}
 
 	public void setNumberOfAssignedWorkers(int numberOfPeople) {
-		logger.trace("Number of assigned Workers set for "+resourceProducerName);
+		logger.debug("Number of assigned Workers set for "+resourceProducerName);
 		numberOfAssignedWorkers = numberOfPeople;
 	}
 
-	public String resourceProducerName() {
+	public String getResourceProducerName() {
+		logger.debug("ResourceProducerName retrieved");
 		return resourceProducerName;
 	}
 
 	public int getProducerLevel() {
+		logger.debug("ProducerLevel retrieved");
 		return producerLevel;
 	}
 
 	public int getUpgradeMultiplier() {
+		logger.debug("Upgrade multiplier retrieved");
 		return upgradeMultiplier;
 	}
 
 	public void setUpgradeMultiplier(int upgradeMultiplier) {
+		logger.debug("Upgrade multiplier set");
 		this.upgradeMultiplier = upgradeMultiplier;
 	}
 
 	public void setProducerLevel(int producerLevel) {
+		logger.debug("ProducerLevel set retrieved");
 		this.producerLevel = producerLevel;
 	}
 	
 	public void incrementProducerLevel() {
+		logger.debug("IncrementProducerLevel method used");
 		producerLevel++;
 	}
 }

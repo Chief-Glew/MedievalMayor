@@ -20,7 +20,7 @@ public class WebAppConfig {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();  
 		viewResolver.setPrefix("/WEB-INF/views/");  
 		viewResolver.setSuffix(".jsp"); 
-		logger.trace("ViewResolver set up");
+		logger.debug("ViewResolver set up");
 		return viewResolver;  
 	}
 }
