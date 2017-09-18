@@ -15,9 +15,25 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
+<style>
+body {
+	background-image:
+		url('https://i.ytimg.com/vi/UON27Kydqsw/maxresdefault.jpg');
+	background-size: 100%;
+	max-width: 1500px;
+	margin: auto;
+}
+.info {
+	margin: 30px;
+	background-color: #ffffff;
+	border: 1px solid black;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+}
+</style>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav>
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="/medievalmayor/">Medieval Mayor</a>
@@ -32,33 +48,36 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="container-fluid" style="background-color: green; color: lightblue;">
 
-		<div class="center-block"
-			style="background-color: yellow; width: 415px;">
 			<h1>Assign Workers To <c:out value="${producerName}"/>!</h1>
-		</div>
-		<p>
+		<div class="info">
+		<table>
+		<tr>
+			<th>
 			Current Assigned Population:
+			</th>
+			<td>
 			<c:out value="${currentAssigned}" />
-		</p>
-		<p>
+		</td>
+		</tr>
+		<tr>
+		<th>
 			Max Assignable Population:
+			</th>
+			<td>
 			<c:out value="${maxAssignable}" />
-		</p>
+		</td>
+		</tr>
+		</table>
 
 		<form action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${producerName}"/>" method="post" name="assignFarmers">
 			<label>New Population to set: </label> <input type="number"
 				name="newAssignedPopulation" value="<c:out value="${currentAssigned}" />" min="0"
 				max="<c:out value="${maxAssignable}"/>" required><br> 
-				<input type="submit" value="submit" style= "background-color: red; color: black;">
-				<input type="reset">
-				<input type="submit" value="Back" formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>" formmethod="get"
-				style="background-color: red; color: white;">
+				<input type="submit" value="submit" class="btn btn-success">
+				<input type="reset" class="btn btn-danger">
+				<input type="submit" value="Back" class="btn btn-info" formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>" formmethod="get">
 		</form>
-		<img
-			src="https://i.pinimg.com/736x/45/13/ff/4513ffbecf17bcb4fd4008b7c2f32487.jpg"
-			alt="Farm" />
 	</div>
 </body>
 </html>
