@@ -26,7 +26,7 @@ import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ForestStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.LumberMillStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.MineStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ProducerClassFromStringHandler;
+import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
@@ -41,7 +41,7 @@ public class CityHomeController {
 	private ResourceProducerService resourceProducerService;
 	private ClientCommand clientComand;
 	private CityFactory cityFactory;
-	private ProducerClassFromStringHandler stringToClassHandler;
+	private ResourceProducerClassFromStringHandler stringToClassHandler;
 	private URLStringHandler urlStringHandler;
 
 	public CityHomeController() {

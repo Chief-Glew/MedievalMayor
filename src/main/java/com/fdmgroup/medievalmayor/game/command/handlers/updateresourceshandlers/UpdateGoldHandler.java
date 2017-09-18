@@ -19,6 +19,7 @@ public class UpdateGoldHandler extends UpdateResourcesHandler {
 		if (!isNextNull()) {
 			next.handle(city);
 		}
+		logger.debug("Handle method used");
 	}
 
 }

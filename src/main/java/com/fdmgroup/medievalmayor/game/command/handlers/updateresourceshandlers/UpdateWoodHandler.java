@@ -18,6 +18,7 @@ public class UpdateWoodHandler extends UpdateResourcesHandler {
 		if (!isNextNull()) {
 			next.handle(city);
 		}
+		logger.debug("Handle method used");
 	}
 
 }

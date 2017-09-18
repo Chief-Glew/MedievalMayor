@@ -86,7 +86,7 @@
 		<Logger name="CityFactory.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="City.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
@@ -131,6 +131,58 @@
 		</Logger>
 
 		<Logger name="SetNumberOfWorkersCommand.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<!-- Handlers -->
+		
+		<Logger name="FarmStringHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="ForestStringHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="LumberMillStringHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="MineStringHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="ResourceProducerClassFromStringHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="UpdateFoodHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="UpdateGoldHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="UpdateLumberHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="UpdateResourcesHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="UpdateWoodHandler.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
@@ -181,6 +233,6 @@
 		<Root level="error">
 			<AppenderRef ref="Console" />
 		</Root>
-		
+
 	</Loggers>
 </Configuration>

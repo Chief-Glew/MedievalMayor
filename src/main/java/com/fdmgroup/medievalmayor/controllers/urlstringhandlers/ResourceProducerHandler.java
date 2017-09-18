@@ -9,7 +9,7 @@ import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ForestStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.LumberMillStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.MineStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ProducerClassFromStringHandler;
+import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
@@ -17,7 +17,7 @@ public class ResourceProducerHandler extends URLStringHandler {
 	
 	static final Logger logger = LogManager.getLogger("ResourceProducerHandler.class");
 
-	private ProducerClassFromStringHandler stringToClassHandler;
+	private ResourceProducerClassFromStringHandler stringToClassHandler;
 	private ResourceProducerService resourceProducerService;
 
 

@@ -5,22 +5,23 @@ import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
-public abstract class ProducerClassFromStringHandler {
+public abstract class ResourceProducerClassFromStringHandler {
 	
-	static final Logger logger = LogManager.getLogger("ProducerStringHandler.class");
+	static final Logger logger = LogManager.getLogger("ResourceProducerClassFromStringHandler.class");
 
-	protected ProducerClassFromStringHandler next;
+	protected ResourceProducerClassFromStringHandler next;
 	
-	public ProducerClassFromStringHandler() {
+	public ResourceProducerClassFromStringHandler() {
 	}
 	
-	public void addToChain(ProducerClassFromStringHandler handler) {
+	public void addToChain(ResourceProducerClassFromStringHandler handler) {
 		if (isNextNull()) {
 			next = handler;
 		}
 		else {
 			next.addToChain(handler);
 		}
+		logger.debug("AddToChain method used");
 	}
 	
 	protected boolean isNextNull() {

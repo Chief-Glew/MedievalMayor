@@ -19,6 +19,7 @@ public class UpdateFoodHandler extends UpdateResourcesHandler {
 		if (!isNextNull()) {
 			next.handle(city);
 		}
+		logger.debug("Handle method used");
 	}
 
 }
