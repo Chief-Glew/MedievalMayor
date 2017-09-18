@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
+import com.fdmgroup.medievalmayor.game.resources.Resource;
 
 @Service
 public class ResourceProducerService {

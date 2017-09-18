@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 import com.fdmgroup.medievalmayor.game.city.City;
 
 @Component
-@Qualifier("JPA")
 public class CityJPACRUD implements GenericCrud<City> {
 
 	private static final Logger logger = LogManager.getLogger("CityJPACRUD.class");

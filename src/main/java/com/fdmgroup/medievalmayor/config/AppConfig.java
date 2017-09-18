@@ -1,24 +1,24 @@
 package com.fdmgroup.medievalmayor.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
 
 import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.FarmUpgradeHandler;
 import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.ForestUpgradeHandler;
 import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.LumberMillUpgradeHandler;
 import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.MineUpgradeHandler;
 import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.ResourceProducerUpgradeHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.FarmStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ForestStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.LumberMillStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.MineStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
-
-
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.FarmStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ForestStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.LumberMillStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.MineStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 
 @Configuration
-@ComponentScan("com.fdmgroup.medievalmayor.game")
+@ComponentScan({"com.fdmgroup.medievalmayor.game", "com.fdmgroup.medievalmayor.controllers", "com.fdmgroup.medievalmayor.CRUD"})
 public class AppConfig {
 	
 	@Bean
@@ -32,6 +32,7 @@ public class AppConfig {
 
 	
 	@Bean
+	@Autowired
 	public ResourceProducerUpgradeHandler resourceProducerUpgradeHandler(FarmUpgradeHandler farmUpgradeHandler, MineUpgradeHandler mineUpgradeHandler, ForestUpgradeHandler forestUpgradeHandler, LumberMillUpgradeHandler lumberMillUpgradeHandler){
 		ResourceProducerUpgradeHandler resourceProducerUpgradeHandler = farmUpgradeHandler;
 		resourceProducerUpgradeHandler.addToChain(mineUpgradeHandler);

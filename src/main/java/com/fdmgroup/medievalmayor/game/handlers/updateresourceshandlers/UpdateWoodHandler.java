@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.game.command.handlers.updateresourceshandlers;
+package com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

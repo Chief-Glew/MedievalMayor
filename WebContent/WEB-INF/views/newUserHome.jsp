@@ -31,7 +31,7 @@ body {
 	border: 1px solid black;
 	opacity: 0.9;
 	filter: alpha(opacity = 0);
-	max-width: 300px;
+	max-width: 450px;
 	margin: 0 auto;
 	text-align: justify;
 	text-justify: inter-word;
@@ -40,12 +40,17 @@ body {
 	border-bottom: 50px solid transparent;
 	border-right: 50px solid transparent;
 }
+
 th, td {
-    border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 }
-tr:hover {background-color: #f5f5f5}
-h1{
-color: #73020F
+
+tr:hover {
+	background-color: #f5f5f5
+}
+
+h1 {
+	color: #73020F
 }
 </style>
 </head>
@@ -66,48 +71,49 @@ color: #73020F
 				<li><a
 					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Forest">Forest</a></li>
 				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/LumberMill">Lumber Mill</a></li>
+					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/LumberMill">Lumber
+						Mill</a></li>
 			</ul>
 		</div>
 	</nav>
-	<h1><span class="label label-default">Build your City!</span></h1>
+	<h1>
+		<span class="label label-default">Build your City!</span>
+	</h1>
 	<div class="info">
-	<table>
-		<tr>
-			<th>Total Population:</th>
-			<td><c:out value="${totalPopulation}" /></td>
-		</tr>
-		<tr>
-			<th>Number of Unassigned People:</th>
-			<td><c:out value="${unnassignedPeople}" /></td>
-		</tr>
-		<c:forEach items="${workers}" var="worker">
+		<table>
 			<tr>
-				<th>Number of People in the <c:out value="${worker.key}" />:
-				</th>
-				<td><c:out value="${worker.value}" /></td>
-				<td><a class="btn btn-info"
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${worker.key}" />">Change</a></td>
+				<th>Total Population:</th>
+				<td><c:out value="${totalPopulation}" /></td>
 			</tr>
-		</c:forEach>
-		<c:forEach items="${resources}" var="resource">
 			<tr>
-				<th>Amount of <c:out value="${resource.key}" />:
-				</th>
-				<td><c:out value="${resource.value }"></c:out></td>
+				<th>Number of Unassigned People:</th>
+				<td><c:out value="${unnassignedPeople}" /></td>
 			</tr>
-		</c:forEach>
-	</table>
-	<form
-		action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/nextTurn"
-		method="post" name="nextDay">
-		<input type="submit" value="Next Year" class="btn btn-success">
-	</form>
-	<br>
-	<a class="btn btn-danger"
-		href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin">Go
-		To Admin Page</a>
-	<br>
+			<c:forEach items="${workers}" var="worker">
+				<tr>
+					<th>Number of People in the <c:out value="${worker.key}" />:
+					</th>
+					<td><c:out value="${worker.value}" /></td>
+					<td>&emsp;<a class="btn btn-info"
+						href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${worker.key}" />">+</a></td>
+				</tr>
+			</c:forEach>
+			<c:forEach items="${resources}" var="resource">
+				<tr>
+					<th>Amount of <c:out value="${resource.key}" />:
+					</th>
+					<td><c:out value="${resource.value }"></c:out></td>
+				</tr>
+			</c:forEach>
+		</table>
+		<form
+			action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/nextTurn"
+			method="post" name="nextDay">
+			<input type="submit" value="Next Year" class="btn btn-success">
+		</form>
+		<br> <a class="btn btn-danger"
+			href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin">Go
+			To Admin Page</a> <br>
 	</div>
 </body>
 </html>

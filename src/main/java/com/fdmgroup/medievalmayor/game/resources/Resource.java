@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.game.resourceproducers.resources;
+package com.fdmgroup.medievalmayor.game.resources;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

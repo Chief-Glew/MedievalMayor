@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.game.resourceproducers.resources;
+package com.fdmgroup.medievalmayor.game.resources;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

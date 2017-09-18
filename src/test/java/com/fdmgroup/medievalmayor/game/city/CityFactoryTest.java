@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.fdmgroup.medievalmayor.config.AppConfig;
 
 
 public class CityFactoryTest {
@@ -13,7 +17,8 @@ public class CityFactoryTest {
 	
 	@Before
 	public void init(){
-		cityFactory = new CityFactory();
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+		cityFactory = applicationContext.getBean(CityFactory.class);
 		city = new City("Test City", 10);
 	}
 	
