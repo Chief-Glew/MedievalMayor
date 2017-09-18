@@ -36,9 +36,9 @@ body {
 	text-align: justify;
 	text-justify: inter-word;
 	content: "";
-	border: 50px solid #9999ff;
-	border-bottom: 50px solid transparent;
-	border-right: 50px solid transparent;
+	border: 15px solid #9999ff;
+	border-bottom: 25px solid transparent;
+	border-right: 25px solid transparent;
 }
 th, td {
     border-bottom: 1px solid #ddd;
