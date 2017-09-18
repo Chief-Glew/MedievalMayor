@@ -10,19 +10,17 @@ import com.fdmgroup.medievalmayor.game.resources.Resource;
 @Entity(name="FARM")
 @DiscriminatorValue(value = "FARM")
 public class Farm extends ResourceProducer{
-	
+
 	static final Logger logger = LogManager.getLogger("Farm.class");
-	
+
 	public Farm(){}
-	
+
 	public Farm(int multiplier) {
 		super(multiplier);
 	}
-	
-	public Farm(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,
-			String resourceProducerName, int producerLevel, int upgradeMultiplier) {
-		super(numberOfAssignedWorkers, baseResourceProduction, resourceProducerCost, resourceProducerName, producerLevel,
-				upgradeMultiplier);
+
+	public Farm(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,String resourceProducerName, int producerLevel, int upgradeMultiplier) {
+		super(numberOfAssignedWorkers, baseResourceProduction, resourceProducerCost, resourceProducerName, producerLevel, upgradeMultiplier);
 	}
 
 	@Override
