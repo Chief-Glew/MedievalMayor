@@ -20,15 +20,32 @@ body {
 	background-image:
 		url('https://i.ytimg.com/vi/UON27Kydqsw/maxresdefault.jpg');
 	background-size: 100%;
-	max-width: 1500px;
-	margin: auto;
+	max-width: 1000px;
+	margin: 0 auto;
+	text-align: center;
 }
+
 .info {
 	margin: 30px;
-	background-color: #ffffff;
+	background-color: #e6e6ff;
 	border: 1px solid black;
-	opacity: 0.6;
-	filter: alpha(opacity = 60);
+	opacity: 0.9;
+	filter: alpha(opacity = 0);
+	max-width: 300px;
+	margin: 0 auto;
+	text-align: justify;
+	text-justify: inter-word;
+	content: "";
+	border: 50px solid #9999ff;
+	border-bottom: 50px solid transparent;
+	border-right: 50px solid transparent;
+}
+th, td {
+    border-bottom: 1px solid #ddd;
+}
+tr:hover {background-color: #f5f5f5}
+h1 {
+	color: #73020F
 }
 </style>
 </head>
@@ -40,43 +57,54 @@ body {
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="/medievalmayor/">Home</a></li>
-				<li class="active"><a href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>">City</a></li>
-				<li><a href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Farm">Farm</a></li>
-				<li><a href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Mine">Mine</a></li>
-				<li><a href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Forest">Forest</a></li>
-				<li><a href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/LumberMill">Lumber Mill</a></li>
+				<li class="active"><a
+					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>">City</a></li>
+				<li><a
+					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Farm">Farm</a></li>
+				<li><a
+					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Mine">Mine</a></li>
+				<li><a
+					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Forest">Forest</a></li>
+				<li><a
+					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/LumberMill">Lumber
+						Mill</a></li>
 			</ul>
 		</div>
 	</nav>
 
-			<h1>Assign Workers To <c:out value="${producerName}"/>!</h1>
-		<div class="info">
+	<h1>
+		<span class="label label-default">Assign Workers To <c:out
+				value="${producerName}" />!
+		</span>
+	</h1>
+	<div class="info">
 		<table>
-		<tr>
-			<th>
-			Current Assigned Population:
-			</th>
-			<td>
-			<c:out value="${currentAssigned}" />
-		</td>
-		</tr>
-		<tr>
-		<th>
-			Max Assignable Population:
-			</th>
-			<td>
-			<c:out value="${maxAssignable}" />
-		</td>
-		</tr>
+			<tr>
+				<th>Current Assigned Population:</th>
+				<td><c:out value="${currentAssigned}" /></td>
+			</tr>
+			<tr>
+				<th>Max Assignable Population:</th>
+				<td><c:out value="${maxAssignable}" /></td>
+			</tr>
 		</table>
 
-		<form action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${producerName}"/>" method="post" name="assignFarmers">
-			<label>New Population to set: </label> <input type="number"
-				name="newAssignedPopulation" value="<c:out value="${currentAssigned}" />" min="0"
+		<form
+			action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${producerName}"/>"
+			method="post" name="assignFarmers">
+			<label>New Population to set: </label> 
+			<input type="number"
+				name="newAssignedPopulation"
+				value="<c:out value="${currentAssigned}" />" min="0"
 				max="<c:out value="${maxAssignable}"/>" required><br> 
-				<input type="submit" value="submit" class="btn btn-success">
-				<input type="reset" class="btn btn-danger">
-				<input type="submit" value="Back" class="btn btn-info" formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>" formmethod="get">
+				<div>
+				<input
+				type="submit" value="submit" class="btn btn-success"> <input
+				type="reset" class="btn btn-danger"> <input type="submit"
+				value="Back" class="btn btn-info"
+				formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>"
+				formmethod="get">
+				</div>
 		</form>
 	</div>
 </body>

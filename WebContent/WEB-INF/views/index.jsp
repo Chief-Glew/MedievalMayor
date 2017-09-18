@@ -15,21 +15,48 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <style>
 body {
 	background-image:
 		url('https://i.ytimg.com/vi/UON27Kydqsw/maxresdefault.jpg');
 	background-size: 100%;
-	max-width: 1500px;
-	margin: auto;
+	max-width: 1000px;
+	margin: 0 auto;
+	text-align: center;
 }
+
 .info {
+	margin: 30px;
+	background-color: #e6e6ff;
+	border: 1px solid black;
+	opacity: 0.9;
+	filter: alpha(opacity = 0);
+	max-width: 300px;
+	margin: 0 auto;
+	text-align: justify;
+	text-justify: inter-word;
+	content: "";
+	border: 50px solid #9999ff;
+	border-bottom: 50px solid transparent;
+	border-right: 50px solid transparent;
+}
+
+.text {
 	margin: 30px;
 	background-color: #ffffff;
 	border: 1px solid black;
 	opacity: 0.6;
-	filter: alpha(opacity = 60);
+	filter: alpha(opacity = 0);
+}
+h1{
+color: #73020F
 }
 </style>
 </head>
@@ -44,9 +71,9 @@ body {
 			</ul>
 		</div>
 	</nav>
-			<h1>Welcome to Medieval Mayor!</h1>
-		<div class="info">
-		<font color="black">The men of the Middle Ages neither expected
+	<h1><span class="label label-default">Welcome to Medieval Mayor!</span></h1>
+	<div class="text">
+		<font color="black">THE men of the Middle Ages neither expected
 			nor praise 1 originality in their writers, and this, coupled with the
 			natural preference of most men for well-worn paths, means that the
 			greater part of the literature of the period falls into clearly
@@ -77,19 +104,23 @@ body {
 			dating of the important corpus of material relating to the city of
 			Rome. </font>
 	</div>
+	
+	<h1><span class="label label-default">Select your City!</span></h1>
 	<div class="info">
-	<form action= "/medievalmayor/home" method= "get">
-	<div>
-	<c:forEach items = "${cities}" var = "selectCity">
-		<input type="submit" name="cityId" value = "select" formaction="/medievalmayor/<c:out value="${selectCity.cityName}"/>/<c:out value="${selectCity.cityId}"/>"/>
-		<label><c:out value="${selectCity.cityId}" />:<c:out value="${selectCity.cityName}" /></label><br>
-	</c:forEach>
-	</div>
-	</form>
-	<form>
-	<input type="text" value="DefaultCity" name="cityName" pattern="[^/]*" required>
-	<input type="submit" value = "newcity" formaction="/medievalmayor/newCity" formmethod="get">
-	</form>
+		<form action="/medievalmayor/home" method="get">
+			<c:forEach items="${cities}" var="selectCity">
+				<input type="submit" name="cityId" value="select"
+					formaction="/medievalmayor/<c:out value="${selectCity.cityName}"/>/<c:out value="${selectCity.cityId}"/>" />
+				<label><c:out value="${selectCity.cityId}" />:<c:out
+						value="${selectCity.cityName}" /></label>
+				<br>
+			</c:forEach>
+		</form>
+		<form>
+			<input type="text" value="DefaultCity" name="cityName"
+				pattern="[^/]*" required> <input type="submit"
+				value="newcity" formaction="/medievalmayor/newCity" formmethod="get">
+		</form>
 	</div>
 </body>
 </html>
