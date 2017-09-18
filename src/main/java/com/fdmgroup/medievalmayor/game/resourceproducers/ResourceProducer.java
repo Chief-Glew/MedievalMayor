@@ -11,8 +11,8 @@ import javax.persistence.Transient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
+import com.fdmgroup.medievalmayor.game.resources.Resource;
+import com.fdmgroup.medievalmayor.game.resources.ResourceFactory;
 
 @Entity(name="RESOURCE_PRODUCER")
 @DiscriminatorColumn(name="RESOURCE_PRODUCER_TYPE")

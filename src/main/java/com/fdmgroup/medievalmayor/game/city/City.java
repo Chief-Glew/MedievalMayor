@@ -23,9 +23,9 @@ import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.IdAble;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceStorageFactory;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceStorageHandler;
+import com.fdmgroup.medievalmayor.game.resources.Resource;
+import com.fdmgroup.medievalmayor.game.resources.ResourceStorageFactory;
+import com.fdmgroup.medievalmayor.game.resources.ResourceStorageHandler;
 
 @Entity(name="CITY")
 public class City implements IdAble{

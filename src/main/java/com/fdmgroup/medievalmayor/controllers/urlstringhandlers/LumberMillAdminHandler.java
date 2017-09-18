@@ -5,11 +5,11 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.ui.Model;
 
 import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.FarmStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ForestStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.LumberMillStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.MineStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.FarmStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ForestStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.LumberMillStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.MineStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 

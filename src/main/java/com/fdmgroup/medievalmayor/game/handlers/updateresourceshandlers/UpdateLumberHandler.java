@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.game.command.handlers.updateresourceshandlers;
+package com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers;
 
 
 import org.apache.logging.log4j.LogManager;
@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
+import com.fdmgroup.medievalmayor.game.resources.Resource;
 
 public class UpdateLumberHandler extends UpdateResourcesHandler {
 	

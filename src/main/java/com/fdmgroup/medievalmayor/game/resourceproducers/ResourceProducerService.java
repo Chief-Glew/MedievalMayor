@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
+import com.fdmgroup.medievalmayor.game.resources.Resource;
 
 public class ResourceProducerService {
 

@@ -8,8 +8,8 @@
 		<class>com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer</class>
 		<class>com.fdmgroup.medievalmayor.game.resourceproducers.Farm</class>
 		<class>com.fdmgroup.medievalmayor.game.resourceproducers.Mine</class>
-		<class>com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceStorageHandler</class>
-		<class>com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource</class>
+		<class>com.fdmgroup.medievalmayor.game.resources.ResourceStorageHandler</class>
+		<class>com.fdmgroup.medievalmayor.game.resources.Resource</class>
 		<class>com.fdmgroup.medievalmayor.game.resourceproducers.Forest</class>
 		<class>com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill</class>
 		<properties>

@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor;
+package com.fdmgroup.medievalmayor.resourceproducers;
 
 import static org.junit.Assert.assertEquals;
 

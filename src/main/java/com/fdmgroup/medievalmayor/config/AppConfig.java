@@ -4,11 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.FarmStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ForestStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.LumberMillStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.MineStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ProducerClassFromStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.FarmStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ForestStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.LumberMillStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.MineStringHandler;
 
 @Configuration
 @ComponentScan("com.fdmgroup.medievalmayor.game")

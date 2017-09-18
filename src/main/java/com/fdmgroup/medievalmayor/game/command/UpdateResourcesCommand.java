@@ -4,11 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.command.handlers.updateresourceshandlers.UpdateFoodHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.updateresourceshandlers.UpdateGoldHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.updateresourceshandlers.UpdateLumberHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.updateresourceshandlers.UpdateResourcesHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.updateresourceshandlers.UpdateWoodHandler;
+import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateFoodHandler;
+import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateGoldHandler;
+import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateLumberHandler;
+import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateResourcesHandler;
+import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateWoodHandler;
 
 public class UpdateResourcesCommand implements UserCommand{
 	

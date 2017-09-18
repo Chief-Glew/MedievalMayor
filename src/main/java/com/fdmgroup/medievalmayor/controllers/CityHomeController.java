@@ -23,8 +23,8 @@ import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.URLStringHandler
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityFactory;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 

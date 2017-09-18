@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor;
+package com.fdmgroup.medievalmayor.resourceproducers;
 
 import org.junit.Before;
 import org.junit.Test;
