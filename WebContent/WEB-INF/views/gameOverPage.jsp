@@ -24,6 +24,5 @@ body {
 </style>
 </head>
 <body>
-45
 </body>
 </html>
