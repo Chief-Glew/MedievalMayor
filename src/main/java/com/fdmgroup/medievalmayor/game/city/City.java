@@ -45,7 +45,7 @@ public class City implements IdAble{
 	private ResourceStorageHandler resourceStorage;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name="CITY_RESOURCE_PRODUCERS", joinColumns=@JoinColumn(name="CITY_ID"), inverseJoinColumns=@JoinColumn(name="RESOURCE_PRODUCER_ID"))
-	private Set<ResourceProducer> resourceGenerators;
+	private Set<ResourceProducer> resourceProducer;
 	@Transient  
 	private ResourceStorageFactory storageFactory;
 
@@ -53,7 +53,7 @@ public class City implements IdAble{
 
 	public City(String cityName, int totalPopulation){
 		storageFactory = new ResourceStorageFactory();
-		resourceGenerators = new HashSet<ResourceProducer>();
+		resourceProducer = new HashSet<ResourceProducer>();
 		this.cityName = cityName;
 		this.totalPopulation = totalPopulation;
 		resourceStorage = storageFactory.getPopulationStorage(totalPopulation, totalPopulation);
@@ -62,14 +62,14 @@ public class City implements IdAble{
 	public City(String cityName, int totalPopulation, ResourceProducer... resourceBuildings) {
 		this(cityName, totalPopulation);
 		for (ResourceProducer resourceBuilding:resourceBuildings) {
-			resourceGenerators.add(resourceBuilding);
+			resourceProducer.add(resourceBuilding);
 			resourceStorage.addResourceStore(storageFactory.getStorageForResource(resourceBuilding.produceResource()));
 		}
 	}
 
 	public City(String cityName, int totalPopulation, Set<ResourceProducer> resourceBuildings) {
 		this(cityName, totalPopulation);
-		resourceGenerators.addAll(resourceBuildings);
+		resourceProducer.addAll(resourceBuildings);
 		for (ResourceProducer resourceBuilding:resourceBuildings) {
 			resourceStorage.addResourceStore(storageFactory.getStorageForResource(resourceBuilding.produceResource()));
 		}
@@ -83,11 +83,6 @@ public class City implements IdAble{
 	public int getUnassignedPopulation() {
 		logger.trace("Unassigned Population retrieved");
 		return getResources().get("Population");
-	}
-
-	public long getCityId() {
-		logger.trace("City Id retrieved");
-		return cityId;
 	}
 
 	public void setTotalPopulation(int totalPopulation) {
@@ -134,7 +129,7 @@ public class City implements IdAble{
 	}
 
 	public ResourceProducer getResourceProducerOfType(Class<? extends ResourceProducer> type) {
-		for (ResourceProducer building: resourceGenerators) {
+		for (ResourceProducer building: resourceProducer) {
 			if (type.equals(building.getClass())) {
 				logger.trace("Resource building retrieved");
 				return building;
@@ -146,7 +141,7 @@ public class City implements IdAble{
 
 	public void addResourceBuilding(ResourceProducer resourceBuilding) {
 		ResourceStorageFactory resourceStorageFactory = new ResourceStorageFactory();
-		resourceGenerators.add(resourceBuilding);
+		resourceProducer.add(resourceBuilding);
 		resourceStorage.addResourceStore(resourceStorageFactory.getStorageForResource(resourceBuilding.produceResource()));
 		logger.trace("Resource Building Added");
 	}
@@ -158,7 +153,7 @@ public class City implements IdAble{
 
 	public Set<ResourceProducer> getResourceGenerators(){
 		logger.trace("ResourceGenerators retrieved");
-		return resourceGenerators;
+		return resourceProducer;
 	}
 
 	public void setResources(Map<String, Integer> resources) {
@@ -171,5 +166,11 @@ public class City implements IdAble{
 		return resources.get(resourceName);
 	}
 
+	@Override
+	public String toString() {
+		return "City [cityId=" + cityId + ", cityName=" + cityName + ", totalPopulation=" + totalPopulation
+				+ ", resourceStorage=" + resourceStorage + ", resourceGenerators=" + resourceProducer
+				+ ", storageFactory=" + storageFactory + "]";
+	}
 
 }
