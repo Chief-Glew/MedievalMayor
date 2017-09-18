@@ -17,6 +17,7 @@ import com.fdmgroup.medievalmayor.CRUD.CityJPACRUD;
 import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.LumberMillAdminHandler;
 import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.ResourceProducerAdminHandler;
 import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.ResourceProducerHandler;
+import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.ResourceProducerUpgradeHandler;
 import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.URLStringHandler;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityFactory;
@@ -41,16 +42,18 @@ public class CityHomeController {
 	private CityFactory cityFactory;
 	private ProducerClassFromStringHandler stringToClassHandler;
 	private URLStringHandler urlStringHandler;
+	private ResourceProducerUpgradeHandler resourceProducerUpgradeHandler;
 
 	@Autowired
-	public CityHomeController(ClientCommand clientCommand, ProducerClassFromStringHandler stringToClassHandler) {
-		cityFactory = new CityFactory();
+	public CityHomeController(ResourceProducerUpgradeHandler resourceProducerUpgradeHandler, ClientCommand clientCommand, ProducerClassFromStringHandler stringToClassHandler, CityFactory cityFactory, ResourceProducerService resourceProducerService) {
+		this.cityFactory = cityFactory;
 		clientComand = clientCommand;
 		readCrud = new CityJPACRUD();
 		writeCrud = new CityJPACRUD();
 		urlStringHandler = new ResourceProducerHandler();
-		resourceProducerService = new ResourceProducerService();
+		this.resourceProducerService = resourceProducerService;
 		this.stringToClassHandler = stringToClassHandler;
+		this.resourceProducerUpgradeHandler = resourceProducerUpgradeHandler;
 		}
 	
 	private City addCityToModel(String cityId, Model model) {
@@ -174,24 +177,10 @@ public class CityHomeController {
 	}
 	
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/update", method = RequestMethod.GET)
-	public String displayMinerAsignerForm(@PathVariable String cityId, @PathVariable String producerName, Model model) {
-		City city = addCityToModel(cityId, model);
-		try {
-		String jspName = urlStringHandler.handle(city, producerName, model);
-		writeCrud.update(city);
-		return jspName;
-		}
-		catch(NullPointerException exception){
-		return "wrongTurnPage";
-		}
-	}
-	
-	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/update", method = RequestMethod.POST)
 	public String submitNewMinerAssignment(@PathVariable String cityId, @PathVariable String producerName, @RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
 		City city = addCityToModel(cityId, model);
 		
-		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
-		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceProducerOfType(stringToClassHandler.handle(producerName)), newAssignedPopulation);
+		resourceProducerUpgradeHandler.handle(city, producerName, model);
 		writeCrud.update(city);
 		return displayCityStats(cityId, model);
 	}

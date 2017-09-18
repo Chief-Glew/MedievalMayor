@@ -3,11 +3,13 @@ package com.fdmgroup.medievalmayor.game.resourceproducers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
 
 import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
 import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
 
+@Service
 public class ResourceProducerService {
 
 	static final Logger logger = LogManager.getLogger("City.class");

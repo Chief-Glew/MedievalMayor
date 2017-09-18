@@ -1,5 +1,8 @@
 package com.fdmgroup.medievalmayor.game.resourceproducers;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ResourceProducerFactory {
 
 	public ResourceProducer getFarm(){
