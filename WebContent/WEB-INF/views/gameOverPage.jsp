@@ -9,7 +9,7 @@
 <style>
 body {
 	background-image:
-		url('https://i.ytimg.com/vi/UON27Kydqsw/maxresdefault.jpg');
+		url('https://i.ytimg.com/vi/vJaAy3jmEx8/maxresdefault.jpg');
 	background-size: 100%;
 	max-width: 1500px;
 	margin: auto;
@@ -24,6 +24,5 @@ body {
 </style>
 </head>
 <body>
-<h1>GameOver</h1>
 </body>
 </html>
