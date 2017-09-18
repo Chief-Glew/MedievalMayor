@@ -135,8 +135,24 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<!-- Handlers -->
+		<Logger name="AdminCommand.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
 		
+		<Logger name="SetAmmountOfLumberPerWoodCommand.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="SetBaseResourceProductionCommand.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="SetUpgradeMultiplierCommand.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<!-- Command Handlers Loggers -->
+
 		<Logger name="FarmStringHandler.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
@@ -156,32 +172,32 @@
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
-		<Logger name="ResourceProducerClassFromStringHandler.class" level="debug"
-			additivity="false">
+
+		<Logger name="ResourceProducerClassFromStringHandler.class"
+			level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="UpdateFoodHandler.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="UpdateGoldHandler.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="UpdateLumberHandler.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="UpdateResourcesHandler.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="UpdateWoodHandler.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
@@ -227,6 +243,14 @@
 		</Logger>
 
 		<Logger name="ResourceProducer.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="ResourceProducerFactory.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="ResourceProducerService.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 

@@ -85,7 +85,7 @@ public class UserHomeController {
 	public String displayCityStats(Model model){
 		Map<String, Integer> workers = new HashMap<String, Integer>();
 		for (ResourceProducer resourceProducer: city.getResourceGenerators()){
-			workers.put(resourceProducer.resourceProducerName(), resourceProducerService.getPeopleInBuilding(resourceProducer));
+			workers.put(resourceProducer.getResourceProducerName(), resourceProducerService.getPeopleInBuilding(resourceProducer));
 		} 
 		Map<String, Integer> resources = city.getResources();
 		resources.remove("Population");

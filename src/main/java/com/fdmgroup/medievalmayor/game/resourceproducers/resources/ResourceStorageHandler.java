@@ -44,7 +44,7 @@ public class ResourceStorageHandler extends Resource{
 				next.addResourceStore(handler);
 			}
 		}
-		logger.trace("addResourceStore method used");
+		logger.debug("addResourceStore method used");
 	}
 
 	public void addResource(Resource resource) throws NullPointerException {
@@ -54,7 +54,7 @@ public class ResourceStorageHandler extends Resource{
 		else {
 			next.addResource(resource);
 		}
-		logger.trace("addResource method used");
+		logger.debug("addResource method used");
 	}
 	
 	public Map<String, Integer> getResources(){
@@ -66,7 +66,7 @@ public class ResourceStorageHandler extends Resource{
 			resources = next.getResources();
 		}
 		resources.put(getResourceType(), amount);
-		logger.trace("getResource method used");
+		logger.debug("getResource method used");
 		return resources;
 	}
 	
@@ -77,11 +77,11 @@ public class ResourceStorageHandler extends Resource{
 		if (next!=null) {
 			next.setResources(resources);
 		}
-		logger.trace("setResources method used");
+		logger.debug("setResources method used");
 	}
 
 	private boolean isSameResourceType(ResourceStorageHandler handler) throws NullPointerException {
-		logger.trace("isSameResourceType method used");
+		logger.debug("isSameResourceType method used");
 		return this.isSameTypeOfResource(handler);
 	}
 }

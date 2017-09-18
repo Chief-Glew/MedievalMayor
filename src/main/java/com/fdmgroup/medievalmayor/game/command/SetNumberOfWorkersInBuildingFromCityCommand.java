@@ -32,13 +32,13 @@ public class SetNumberOfWorkersInBuildingFromCityCommand implements UserCommand{
 		try {
 			
 			newUnassignedPeople = resourceBuildingService.assignPeopleToBuilding(numberOfPeopleToAssign, unassignedPeople, resourceBuilding);
-			logger.trace("newUnassignedPeople set");
+			logger.debug("newUnassignedPeople set");
 		} catch (InsufficentPopulationException | AssignedNegativeNumberException e) {
 			e.printStackTrace();
-			logger.info("Exception");
+			logger.debug("Exception");
 		}
 		city.setUnassignedPopulation(newUnassignedPeople);
-		logger.trace("Execute method used");
+		logger.debug("Execute method used");
 	}
 
 }

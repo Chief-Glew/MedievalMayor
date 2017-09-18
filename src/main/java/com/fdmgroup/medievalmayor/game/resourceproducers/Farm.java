@@ -31,7 +31,7 @@ public class Farm extends ResourceProducer{
 
 	@Override
 	public Resource produceResource() {
-		logger.trace("Food Produced");
+		logger.debug("Food Produced");
 		Double levelMultiplier = Double.valueOf(Math.pow(getUpgradeMultiplier(),getProducerLevel()));
 		return resourceFactory.getFood(
 				getNumberOfAssignedWorkers()*

@@ -27,7 +27,7 @@ public class Mine extends ResourceProducer {
 
 	@Override
 	public Resource produceResource() {
-		logger.trace("Gold produced");
+		logger.debug("Gold produced");
 		Double levelMultiplier = Double.valueOf(Math.pow(getUpgradeMultiplier(),getProducerLevel()));
 		return resourceFactory.getGold(
 				getNumberOfAssignedWorkers()*

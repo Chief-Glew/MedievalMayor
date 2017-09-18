@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
-import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
 
 public class UpdateLumberHandler extends UpdateResourcesHandler {
@@ -35,6 +34,7 @@ public class UpdateLumberHandler extends UpdateResourcesHandler {
 		
 		city.addResource(resourceFactory.getWood(-woodUsed));
 		city.addResource(resourceFactory.getLumber(lumberProduced));
+		logger.debug("Handle method used");
 	}
 
 }

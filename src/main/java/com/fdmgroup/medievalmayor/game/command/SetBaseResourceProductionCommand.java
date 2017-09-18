@@ -7,7 +7,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
 public class SetBaseResourceProductionCommand implements UserCommand {
 	
-	static final Logger logger = LogManager.getLogger("UpdateLumberHandler.class");
+	static final Logger logger = LogManager.getLogger("SetBaseResourceProductionCommand.class");
 
 	private ResourceProducer resourceProducer;
 	private int baseResourceProduction;
@@ -20,6 +20,7 @@ public class SetBaseResourceProductionCommand implements UserCommand {
 	@Override
 	public void execute() {
 		resourceProducer.setBaseResourceProduction(baseResourceProduction);
+		logger.debug("Execute method used");
 	}
 
 }

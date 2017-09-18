@@ -88,7 +88,7 @@ public class CityHomeController {
 		
 		Map<String, Integer> workers = new HashMap<String, Integer>();
 		for (ResourceProducer resourceProducer: city.getResourceGenerators()){
-			workers.put(resourceProducer.resourceProducerName(), resourceProducerService.getPeopleInBuilding(resourceProducer));
+			workers.put(resourceProducer.getResourceProducerName(), resourceProducerService.getPeopleInBuilding(resourceProducer));
 		} 
 		Map<String, Integer> resources = city.getResources();
 		resources.remove("Population");
@@ -122,7 +122,7 @@ public class CityHomeController {
 		City city = addCityToModel(cityId, model);
 		Set<String> resourceProducers = new HashSet<String>();
 		for (ResourceProducer resourceProducer: city.getResourceGenerators()){
-			resourceProducers.add(resourceProducer.resourceProducerName());
+			resourceProducers.add(resourceProducer.getResourceProducerName());
 		} 
 		model.addAttribute("resourceProducers", resourceProducers);
 		logger.debug("DisplayAdminPage method used");

@@ -10,11 +10,11 @@ public class CommandInvoker {
 	private UserCommand command;
 
 	public void setCommand(UserCommand command){
-		logger.trace("Command set");
+		logger.debug("Command set");
 		this.command = command; 
 	}
 	public void invokeCommands(){
-		logger.trace("Command executed");
+		logger.debug("Command executed");
 		command.execute();
 	}
 	

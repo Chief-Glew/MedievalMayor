@@ -7,7 +7,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 
 public class setAmmountOfLumberPerWoodCommand implements UserCommand {
 	
-	static final Logger logger = LogManager.getLogger("UpdateLumberHandler.class");
+	static final Logger logger = LogManager.getLogger("SetAmmountOfLumberPerWoodCommand.class");
 
 	private LumberMill lumberMill;
 	private int ammountOfLumberPerWood;
@@ -20,6 +20,7 @@ public class setAmmountOfLumberPerWoodCommand implements UserCommand {
 	@Override
 	public void execute() {
 		lumberMill.setAmmountOfLumberPerWood(ammountOfLumberPerWood);
+		logger.debug("Execute method used");
 	}
 
 }

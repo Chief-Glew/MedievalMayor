@@ -24,9 +24,11 @@ public abstract class UpdateResourcesHandler {
 		else {
 			next.addToChain(handler);
 		}
+		logger.debug("AddToChain method used");
 	}
 	
 	protected boolean isNextNull() {
+		logger.debug("IsNextNull method used");
 		return next==null;
 	}
 	

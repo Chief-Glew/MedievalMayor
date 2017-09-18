@@ -32,7 +32,7 @@ public class UpdatePopulationCommand implements UserCommand {
 		if(resources.get("Food")>3){
 			totalPopulation += 1;
 			city.addResource(resourceFactory.getPopulation(1));
-			logger.info("Population increased");
+			logger.debug("Population increased");
 		} 
 		else if (resources.get("Food")<0){
 			for (ResourceProducer resourceBuilding: city.getResourceGenerators()){
@@ -44,14 +44,14 @@ public class UpdatePopulationCommand implements UserCommand {
 				}
 			}
 			totalPopulation -= 1;
-			logger.info("Population decreased");
+			logger.debug("Population decreased");
 			resources.put("Population", totalPopulation);
 			resources.put("Food", 0);
-			logger.info("Food reset to 0");
+			logger.debug("Food reset to 0");
 			city.setResources(resources);
 		}
 		city.setTotalPopulation(totalPopulation);
-		logger.trace("Execute method used");
+		logger.debug("Execute method used");
 	}
 }
 

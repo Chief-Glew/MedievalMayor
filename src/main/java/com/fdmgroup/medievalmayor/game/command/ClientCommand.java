@@ -21,7 +21,7 @@ public class ClientCommand {
 		UserCommand setNumberOfWorkersCommand = new SetNumberOfWorkersCommand(resourceBuilding, numberOfWorkers);
 		commandInvoker.setCommand(setNumberOfWorkersCommand);
 		commandInvoker.invokeCommands();
-		logger.trace("Number of workers in "+resourceBuilding+" set" );
+		logger.debug("Number of workers in "+resourceBuilding+" set" );
 	}
 
 	public void nextTurn(City city) throws GameOverException {
@@ -29,7 +29,7 @@ public class ClientCommand {
 		UserCommand nextTurn = new NextTurnCommand(city);
 		commandInvoker.setCommand(nextTurn);
 		commandInvoker.invokeCommands();
-		logger.trace("next turn method used");
+		logger.debug("next turn method used");
 		if(city.getTotalPopulation()<=0){
 			logger.info("Game ended due via GameOverException");
 			throw new GameOverException("GameOver Man, GameOver");
@@ -40,6 +40,6 @@ public class ClientCommand {
 		UserCommand setNumberOfWorkers = new SetNumberOfWorkersInBuildingFromCityCommand(city, resourceBuilding, numberOfPeopleToAssign);
 		commandInvoker.setCommand(setNumberOfWorkers);
 		commandInvoker.invokeCommands();
-		logger.trace("setNumberOfWorkersInResourceBuildingForCity method used");
+		logger.debug("setNumberOfWorkersInResourceBuildingForCity method used");
 	}
 }

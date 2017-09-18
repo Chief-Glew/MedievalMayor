@@ -33,6 +33,7 @@ private int ammountOfLumberPerWood;
 	@Override
 	public Resource produceResource() {
 		Double levelMultiplier = Double.valueOf(Math.pow(getUpgradeMultiplier(),getProducerLevel()));
+		logger.debug("Lumber produced");
 		return resourceFactory.getLumber(
 				getNumberOfAssignedWorkers()*
 				getBaseResourceProduction()*
@@ -41,10 +42,12 @@ private int ammountOfLumberPerWood;
 	}
 
 	public int getAmountOfLumberPerWood() {
+		logger.debug("GetAmountOfLumberPerWood method used");
 		return ammountOfLumberPerWood;
 	}
 
 	public void setAmmountOfLumberPerWood(int ammountOfLumberPerWood) {
+		logger.debug("SetAmountOfLumberPerWood method used");
 		this.ammountOfLumberPerWood = ammountOfLumberPerWood;
 	}
 	
