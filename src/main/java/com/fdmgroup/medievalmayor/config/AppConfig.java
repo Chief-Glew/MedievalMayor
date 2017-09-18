@@ -8,18 +8,18 @@ import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ForestStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.LumberMillStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.MineStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ProducerClassFromStringHandler;
+import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 
 @Configuration
 @ComponentScan("com.fdmgroup.medievalmayor.game")
 public class AppConfig {
 	
 	@Bean
-	public ProducerClassFromStringHandler producerClassFromStringHandler(){
-		ProducerClassFromStringHandler producerClassFromStringHandler = new FarmStringHandler();
-		producerClassFromStringHandler.addToChain(new MineStringHandler());
-		producerClassFromStringHandler.addToChain(new ForestStringHandler());
-		producerClassFromStringHandler.addToChain(new LumberMillStringHandler());
-		return producerClassFromStringHandler;
+	public ResourceProducerClassFromStringHandler resourceProducerClassFromStringHandler(){
+		ResourceProducerClassFromStringHandler resourceProducerClassFromStringHandler = new FarmStringHandler();
+		resourceProducerClassFromStringHandler.addToChain(new MineStringHandler());
+		resourceProducerClassFromStringHandler.addToChain(new ForestStringHandler());
+		resourceProducerClassFromStringHandler.addToChain(new LumberMillStringHandler());
+		return resourceProducerClassFromStringHandler;
 	}
 }
