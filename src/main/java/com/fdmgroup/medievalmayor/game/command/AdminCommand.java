@@ -1,9 +1,14 @@
 package com.fdmgroup.medievalmayor.game.command;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
 public class AdminCommand {
+	
+	static final Logger logger = LogManager.getLogger("AdminCommand.class");
 
 	private CommandInvoker commandInvoker;
 

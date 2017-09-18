@@ -1,6 +1,11 @@
 package com.fdmgroup.medievalmayor.game.resourceproducers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class ResourceProducerFactory {
+	
+	static final Logger logger = LogManager.getLogger("UpdateLumberHandler.class");
 
 	public ResourceProducer getFarm(){
 		return new Farm(0, 3, 0, "Farm", 0, 3);

@@ -76,71 +76,71 @@ public class City implements IdAble{
 	}
 
 	public int getTotalPopulation() {
-		logger.trace("Total Population retrieved");
+		logger.debug("Total Population retrieved");
 		return totalPopulation;
 	}
 
 	public int getUnassignedPopulation() {
-		logger.trace("Unassigned Population retrieved");
+		logger.debug("Unassigned Population retrieved");
 		return getResources().get("Population");
 	}
 
 	public long getCityId() {
-		logger.trace("City Id retrieved");
+		logger.debug("City Id retrieved");
 		return cityId;
 	}
 
 	public void setTotalPopulation(int totalPopulation) {
-		logger.trace("Total Population set");
+		logger.debug("Total Population set");
 		this.totalPopulation = totalPopulation;
 	}
 
 	public void setUnassignedPopulation(int numberOfPeople) {
-		logger.trace("Unassigned Population set");
+		logger.debug("Unassigned Population set");
 		Map<String, Integer> newPop = new HashMap<String, Integer>();
 		newPop.put("Population", numberOfPeople);
 		setResources(newPop);
 	}
 
 	public int getGold() {
-		logger.trace("Gold retrieved");
+		logger.debug("Gold retrieved");
 		return getResources().get("Gold");
 	}
 
 	public int getFood() {
-		logger.trace("Food retrieved");
+		logger.debug("Food retrieved");
 		return getResources().get("Food");
 	}
 
 	@Override
 	public long getId() {
-		logger.trace("Id retrieved");
+		logger.debug("Id retrieved");
 		return cityId;
 	}
 
 	public String getCityName() {
-		logger.trace("City name retrieved");
+		logger.debug("City name retrieved");
 		return cityName;
 	}
 
 	public void addResourceStore(ResourceStorageHandler handler) {
-		logger.trace("ResourceStore added");
+		logger.debug("ResourceStore added");
 		resourceStorage.addResourceStore(handler);
 	}
 
 	public void addResource(Resource resource) {
-		logger.trace("Resource added");
+		logger.debug("Resource added");
 		resourceStorage.addResource(resource);
 	}
 
 	public ResourceProducer getResourceProducerOfType(Class<? extends ResourceProducer> type) {
 		for (ResourceProducer building: resourceGenerators) {
 			if (type.equals(building.getClass())) {
-				logger.trace("Resource building retrieved");
+				logger.debug("Resource building retrieved");
 				return building;
 			}
 		}
-		logger.info("getReesourceBuildingOfType method not working as intended");
+		logger.debug("getReesourceBuildingOfType method not working as intended");
 		return null;
 	}
 
@@ -148,21 +148,21 @@ public class City implements IdAble{
 		ResourceStorageFactory resourceStorageFactory = new ResourceStorageFactory();
 		resourceGenerators.add(resourceBuilding);
 		resourceStorage.addResourceStore(resourceStorageFactory.getStorageForResource(resourceBuilding.produceResource()));
-		logger.trace("Resource Building Added");
+		logger.debug("Resource Building Added");
 	}
 
 	public Map<String, Integer> getResources(){
-		logger.trace("Resources retrieved");
+		logger.debug("Resources retrieved");
 		return resourceStorage.getResources();
 	}
 
 	public Set<ResourceProducer> getResourceGenerators(){
-		logger.trace("ResourceGenerators retrieved");
+		logger.debug("ResourceGenerators retrieved");
 		return resourceGenerators;
 	}
 
 	public void setResources(Map<String, Integer> resources) {
-		logger.trace("Resources set");
+		logger.debug("Resources set");
 		resourceStorage.setResources(resources);
 	}
 	

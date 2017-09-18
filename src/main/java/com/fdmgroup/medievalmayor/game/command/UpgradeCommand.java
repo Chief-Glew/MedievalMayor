@@ -2,10 +2,15 @@ package com.fdmgroup.medievalmayor.game.command;
 
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
 public class UpgradeCommand implements UserCommand {
+	
+	static final Logger logger = LogManager.getLogger("UpdateLumberHandler.class");
 
 	private ResourceProducer resourceProducer;
 	private Map<String, Integer> cost;

@@ -1,12 +1,17 @@
 package com.fdmgroup.medievalmayor.game.command.handlers.updateresourceshandlers;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
 
 public class UpdateLumberHandler extends UpdateResourcesHandler {
+	
+	static final Logger logger = LogManager.getLogger("UpdateLumberHandler.class");
 
 	@Override
 	public void handle(City city) {

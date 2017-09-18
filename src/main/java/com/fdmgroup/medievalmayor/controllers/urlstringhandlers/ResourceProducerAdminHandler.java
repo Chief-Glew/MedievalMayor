@@ -1,5 +1,7 @@
 package com.fdmgroup.medievalmayor.controllers.urlstringhandlers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.ui.Model;
 
 import com.fdmgroup.medievalmayor.game.city.City;
@@ -12,6 +14,8 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
 public class ResourceProducerAdminHandler extends URLStringHandler {
+	
+	static final Logger logger = LogManager.getLogger("ResourceProducerAdminHandler.class");
 
 	private ProducerClassFromStringHandler stringToClassHandler;
 
@@ -31,10 +35,11 @@ public class ResourceProducerAdminHandler extends URLStringHandler {
 			int upgradeMultiplier = resourceProducer.getUpgradeMultiplier();
 			model.addAttribute("baseResourceProduction", baseResourceProduction);
 			model.addAttribute("upgradeMultiplier", upgradeMultiplier);
-						
+			logger.debug("handle method used");
 			return "resourceProducerAdminPage";
 		}
 		catch(NullPointerException exception) {
+			logger.debug("Null pointer exception");
 			return next.handle(city, urlString, model);
 		}
 	}

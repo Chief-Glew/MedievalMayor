@@ -13,20 +13,87 @@
 
 	<Loggers>
 
-		<Logger name="LogTest.class" level="trace" additivity="false">
+		<!-- Config Loggers -->
+
+		<Logger name="WebAppConfig.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="LogTest.class" level="info" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="ApplicationInitializer.class" level="trace"
+		<Logger name="ApplicationInitializer.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="UpdatePopulationCommand.class" level="trace"
+		<!-- Controller Loggers -->
+
+		<Logger name="URLStringHandler.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="LumberMillAdminHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="LumberMillAdminHandler.class" level="info"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="ResourceProducerAdminHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="CityHomeController.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="CityHomeController.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="UserHomeController.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<!-- CRUD Loggers -->
+
+		<Logger name="CityJPACRUD.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<!-- Demo Loggers -->
+
+		<Logger name="LogTest.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+
+		<Logger name="LogTest.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<!-- City Loggers -->
+
+		<Logger name="City.class" level="info" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="CityFactory.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="City.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<!-- Command Loggers -->
+
+		<Logger name="UpdatePopulationCommand.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
@@ -36,59 +103,22 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="UpdateResourcesCommand.class" level="trace"
+		<Logger name="UpdateResourcesCommand.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
 		<Logger name="SetNumberOfWorkersInBuildingFromCityCommand.class"
-			level="trace" additivity="false">
+			level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-
 
 		<Logger name="SetNumberOfWorkersInBuildingFromCityCommand.class"
 			level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="WebAppConfig.class" level="trace" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="CityController.class" level="trace" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="CityJPACRUD.class" level="trace" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="Forest.class" level="trace" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="Farm.class" level="trace" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="Mine.class" level="trace" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="BuildingManager.class" level="trace" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="ResourceProducer.class" level="trace" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="Building.class" level="trace" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="ClientCommand.class" level="trace" additivity="false">
+		<Logger name="ClientCommand.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
@@ -96,37 +126,31 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="CommandInvoker.class" level="trace" additivity="false">
+		<Logger name="CommandInvoker.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="SetNumberOfWorkersCommand.class" level="trace"
+		<Logger name="SetNumberOfWorkersCommand.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="City.class" level="info" additivity="false">
+		<!-- Resources -->
+
+		<Logger name="Resource.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="CityFactory.class" level="trace" additivity="false">
+		<Logger name="ResourceFactory.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="Resource.class" level="trace" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="ResourceFactory.class" level="trace" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="ResourceStorageFactory.class" level="trace"
+		<Logger name="ResourceStorageFactory.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="ResourceStorageHandler.class" level="trace"
+		<Logger name="ResourceStorageHandler.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
@@ -136,16 +160,27 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="City.class" level="trace" additivity="false">
+		<!-- ResourceProducers -->
+
+		<Logger name="Forest.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="CityService.class" level="trace" additivity="false">
+		<Logger name="Farm.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="Mine.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="ResourceProducer.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
 		<Root level="error">
 			<AppenderRef ref="Console" />
 		</Root>
+		
 	</Loggers>
 </Configuration>

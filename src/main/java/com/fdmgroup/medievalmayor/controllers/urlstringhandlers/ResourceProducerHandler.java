@@ -1,5 +1,7 @@
 package com.fdmgroup.medievalmayor.controllers.urlstringhandlers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.ui.Model;
 
 import com.fdmgroup.medievalmayor.game.city.City;
@@ -12,6 +14,8 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
 public class ResourceProducerHandler extends URLStringHandler {
+	
+	static final Logger logger = LogManager.getLogger("ResourceProducerHandler.class");
 
 	private ProducerClassFromStringHandler stringToClassHandler;
 	private ResourceProducerService resourceProducerService;
@@ -36,10 +40,11 @@ public class ResourceProducerHandler extends URLStringHandler {
 			model.addAttribute("producerName", urlString);
 			model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceProducerOfType(resourceProducerClass)));
 			model.addAttribute("maxAssignable", maxAssignable);
-			
+			logger.debug("Handle method used");
 			return "assignationPage";
 		}
 		catch(NullPointerException exception) {
+			logger.debug("Null pointer exception");
 			return next.handle(city, urlString, model);
 		}
 	}

@@ -1,5 +1,7 @@
 package com.fdmgroup.medievalmayor.controllers.urlstringhandlers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.ui.Model;
 
 import com.fdmgroup.medievalmayor.game.city.City;
@@ -12,6 +14,8 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
 public class LumberMillAdminHandler extends URLStringHandler {
+	
+	static final Logger logger = LogManager.getLogger("LumberMillAdminHandler.class");
 
 	private ProducerClassFromStringHandler stringToClassHandler;
 
@@ -32,13 +36,16 @@ public class LumberMillAdminHandler extends URLStringHandler {
 				int amountOfLumberPerWood = lumberMill.getAmountOfLumberPerWood();
 				
 				model.addAttribute("amountOfLumberPerWood", amountOfLumberPerWood);
+				logger.debug("Lumber mill handled");
 				return "lumberMillAdminPage";
 			}
 			catch(NullPointerException exception) {
+				logger.debug("NullPointerException");
 				return next.handle(city, urlString, model);
 			}
 		}
 		else {
+			logger.debug("next.handle method used");
 			return next.handle(city, urlString, model);
 		}
 	}
