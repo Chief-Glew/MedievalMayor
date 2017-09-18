@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.URLStringHandler
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityFactory;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
+import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.FarmStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ForestStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.LumberMillStringHandler;
@@ -40,18 +42,15 @@ public class CityHomeController {
 	private ProducerClassFromStringHandler stringToClassHandler;
 	private URLStringHandler urlStringHandler;
 
-	
-	public CityHomeController() {
+	@Autowired
+	public CityHomeController(ClientCommand clientCommand, ProducerClassFromStringHandler stringToClassHandler) {
 		cityFactory = new CityFactory();
-		clientComand = new ClientCommand();
+		clientComand = clientCommand;
 		readCrud = new CityJPACRUD();
 		writeCrud = new CityJPACRUD();
 		urlStringHandler = new ResourceProducerHandler();
 		resourceProducerService = new ResourceProducerService();
-		stringToClassHandler = new FarmStringHandler();
-		stringToClassHandler.addToChain(new ForestStringHandler());
-		stringToClassHandler.addToChain(new LumberMillStringHandler());
-		stringToClassHandler.addToChain(new MineStringHandler());
+		this.stringToClassHandler = stringToClassHandler;
 		}
 	
 	private City addCityToModel(String cityId, Model model) {
@@ -151,7 +150,7 @@ public class CityHomeController {
 	}
 	
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}", method = RequestMethod.GET)
-	public String displayMinerAsignerForm(@PathVariable String cityId, @PathVariable String producerName, Model model) {
+	public String displayAsignerForm(@PathVariable String cityId, @PathVariable String producerName, Model model) {
 		City city = addCityToModel(cityId, model);
 		try {
 		String jspName = urlStringHandler.handle(city, producerName, model);
@@ -165,6 +164,29 @@ public class CityHomeController {
 
 
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}", method = RequestMethod.POST)
+	public String submitNewAssignment(@PathVariable String cityId, @PathVariable String producerName, @RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
+		City city = addCityToModel(cityId, model);
+		
+		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceProducerOfType(stringToClassHandler.handle(producerName)), newAssignedPopulation);
+		writeCrud.update(city);
+		return displayCityStats(cityId, model);
+	}
+	
+	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/update", method = RequestMethod.GET)
+	public String displayMinerAsignerForm(@PathVariable String cityId, @PathVariable String producerName, Model model) {
+		City city = addCityToModel(cityId, model);
+		try {
+		String jspName = urlStringHandler.handle(city, producerName, model);
+		writeCrud.update(city);
+		return jspName;
+		}
+		catch(NullPointerException exception){
+		return "wrongTurnPage";
+		}
+	}
+	
+	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/update", method = RequestMethod.POST)
 	public String submitNewMinerAssignment(@PathVariable String cityId, @PathVariable String producerName, @RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
 		City city = addCityToModel(cityId, model);
 		

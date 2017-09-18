@@ -46,7 +46,7 @@ body {
 	</nav>
 			<h1>Welcome to Medieval Mayor!</h1>
 		<div class="info">
-		<font color="black">THE men of the Middle Ages neither expected
+		<font color="black">The men of the Middle Ages neither expected
 			nor praise 1 originality in their writers, and this, coupled with the
 			natural preference of most men for well-worn paths, means that the
 			greater part of the literature of the period falls into clearly
