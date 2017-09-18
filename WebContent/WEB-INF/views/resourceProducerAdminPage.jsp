@@ -15,6 +15,23 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
+<style>
+body {
+	background-image:
+		url('https://i.ytimg.com/vi/UON27Kydqsw/maxresdefault.jpg');
+	background-size: 100%;
+	max-width: 1500px;
+	margin: auto;
+}
+
+.info {
+	margin: 30px;
+	background-color: #ffffff;
+	border: 1px solid black;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+}
+</style>
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -38,28 +55,28 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="container-fluid"
-		style="background-color: green; color: lightblue;">
 
-		<div class="center-block"
-			style="background-color: yellow; width: 415px;">
-			<h1>Admin</h1>
-		</div>
-		
+	<h1>Admin</h1>
+	<div class="info">
 		<form>
-		<table>
-			<tr>
-			<th><label>Set Base Resource Production: </label></th>
-			<td><input type="number" value="<c:out value="${baseResourceProduction}"/>" min="0" required></td>
-			</tr>
-			<tr>
-			<th><label>Set Upgrade Multiplier: </label></th>
-			<td><input type="number" value="<c:out value="${upgradeMultiplier}"/>" min="0" required></td>
-			</tr>
+			<table>
+				<tr>
+					<th><label>Set Base Resource Production: </label></th>
+					<td><input type="number"
+						value="<c:out value="${baseResourceProduction}"/>" min="0"
+						required></td>
+				</tr>
+				<tr>
+					<th><label>Set Upgrade Multiplier: </label></th>
+					<td><input type="number"
+						value="<c:out value="${upgradeMultiplier}"/>" min="0" required></td>
+				</tr>
 			</table>
 			<input class="btn btn-success" type="submit" value="submit">
-			<input class="btn btn-danger" type="reset">
-			<input class="btn btn-info" type="submit" value="back" formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin" formmethod="get">
+			<input class="btn btn-danger" type="reset"> <input
+				class="btn btn-info" type="submit" value="back"
+				formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin"
+				formmethod="get">
 		</form>
 
 	</div>
