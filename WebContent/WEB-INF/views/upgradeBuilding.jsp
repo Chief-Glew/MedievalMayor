@@ -15,6 +15,22 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
+<style>
+body {
+	background-image:
+		url('https://i.ytimg.com/vi/UON27Kydqsw/maxresdefault.jpg');
+	background-size: 100%;
+	max-width: 1500px;
+	margin: auto;
+}
+.info {
+	margin: 30px;
+	background-color: #ffffff;
+	border: 1px solid black;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+}
+</style>
 </head>
 <body>
 	<nav class="navbar navbar-default">
