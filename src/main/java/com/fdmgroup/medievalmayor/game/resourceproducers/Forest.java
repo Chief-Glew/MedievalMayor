@@ -30,7 +30,7 @@ public class Forest extends ResourceProducer{
 
 	@Override
 	public Resource produceResource() {
-		logger.trace("Wood produced");
+		logger.debug("Wood produced");
 		Double levelMultiplier = Double.valueOf(Math.pow(getUpgradeMultiplier(),getProducerLevel()));
 		return resourceFactory.getWood(
 				getNumberOfAssignedWorkers()*

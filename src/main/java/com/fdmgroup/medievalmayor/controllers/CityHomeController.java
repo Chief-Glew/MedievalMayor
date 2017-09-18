@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,29 +23,26 @@ import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.URLStringHandler
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityFactory;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
-import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.FarmStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ForestStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.LumberMillStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.MineStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ProducerClassFromStringHandler;
+import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
 @Controller
 public class CityHomeController {
+	
+	static final Logger logger = LogManager.getLogger("CityHomeController.class");
 
 	private CityJPACRUD readCrud;
 	private CityJPACRUD writeCrud;
 	private ResourceProducerService resourceProducerService;
 	private ClientCommand clientComand;
 	private CityFactory cityFactory;
-	private ProducerClassFromStringHandler stringToClassHandler;
+	private ResourceProducerClassFromStringHandler stringToClassHandler;
 	private URLStringHandler urlStringHandler;
 
 	@Autowired
-	public CityHomeController(ClientCommand clientCommand, ProducerClassFromStringHandler stringToClassHandler) {
+	public CityHomeController(ClientCommand clientCommand, ResourceProducerClassFromStringHandler stringToClassHandler) {
 		cityFactory = new CityFactory();
 		clientComand = clientCommand;
 		readCrud = new CityJPACRUD();
@@ -51,12 +50,14 @@ public class CityHomeController {
 		urlStringHandler = new ResourceProducerHandler();
 		resourceProducerService = new ResourceProducerService();
 		this.stringToClassHandler = stringToClassHandler;
+		logger.debug("City Controller Instantiated");
 		}
 	
 	private City addCityToModel(String cityId, Model model) {
 		long cityIdValue = Long.valueOf(cityId);
 		City city = readCrud.read(cityIdValue);
 		model.addAttribute("city", city);
+		logger.debug("AddCityToModel method used");
 		return city;
 	}
 	
@@ -65,12 +66,14 @@ public class CityHomeController {
 		System.out.println("root");
 		Set<City> cities = readCrud.readAll();
 		model.addAttribute("cities", cities);
+		logger.debug("ShowCities method used");
 		return "index";
 	}
 	@RequestMapping(value = "/newCity", method = RequestMethod.GET)
 	public String newCity(@RequestParam String cityName, Model model){
 		String safeCityName = cityName.replaceAll("/", "forwardSlash");
 		writeCrud.create(cityFactory.getNewCity(safeCityName));
+		logger.debug("NewCity method used");
 		return showCities(model);
 	}
 	
@@ -80,7 +83,7 @@ public class CityHomeController {
 		
 		Map<String, Integer> workers = new HashMap<String, Integer>();
 		for (ResourceProducer resourceProducer: city.getResourceGenerators()){
-			workers.put(resourceProducer.resourceProducerName(), resourceProducerService.getPeopleInBuilding(resourceProducer));
+			workers.put(resourceProducer.getResourceProducerName(), resourceProducerService.getPeopleInBuilding(resourceProducer));
 		} 
 		Map<String, Integer> resources = city.getResources();
 		resources.remove("Population");
@@ -91,6 +94,7 @@ public class CityHomeController {
 		model.addAttribute("resources", resources);
 		
 		writeCrud.update(city);
+		logger.debug("DisplayCityStats method used");
 		return "newUserHome";
 	}
 	
@@ -104,6 +108,7 @@ public class CityHomeController {
 			return "gameOverPage";
 		}
 		writeCrud.update(city);
+		logger.debug("NextTurn method used");
 		return displayCityStats(cityId, model); 
 	}
 	
@@ -112,10 +117,10 @@ public class CityHomeController {
 		City city = addCityToModel(cityId, model);
 		Set<String> resourceProducers = new HashSet<String>();
 		for (ResourceProducer resourceProducer: city.getResourceGenerators()){
-			resourceProducers.add(resourceProducer.resourceProducerName());
+			resourceProducers.add(resourceProducer.getResourceProducerName());
 		} 
 		model.addAttribute("resourceProducers", resourceProducers);
-		
+		logger.debug("DisplayAdminPage method used");
 		return "adminPage";
 	}
 	
@@ -127,37 +132,43 @@ public class CityHomeController {
 		try {
 			String jspName = handler.handle(city, producerName, model);
 			writeCrud.update(city);
+			logger.debug("DisplayAdminPageForResourceProducer method used");
 			return jspName;
 			}
 			catch(NullPointerException exception){
+				logger.debug("Null Pointer Exception");
 			return "wrongTurnPage";
 			}
 	}
 	
 	@RequestMapping(value = "/{cityName}/{cityId}/admin/{producerName}", method = RequestMethod.POST)//TODO complete method
-	public String updateAdminValuesForResourseProducer(@PathVariable String cityId, @PathVariable String producerName, Model model) {
+	public String updateAdminValuesForResourceProducer(@PathVariable String cityId, @PathVariable String producerName, Model model) {
 		City city = addCityToModel(cityId, model);
 		URLStringHandler handler = new LumberMillAdminHandler();
 		handler.addToChain(new ResourceProducerAdminHandler());
 		try {
 			String jspName = handler.handle(city, producerName, model);
 			writeCrud.update(city);
+			logger.debug("UpdateAdminValuesForResourceProducer method used");
 			return jspName;
 			}
 			catch(NullPointerException exception){
+				logger.debug("Null Pointer Exception");
 			return "wrongTurnPage";
 			}
 	}
 	
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}", method = RequestMethod.GET)
-	public String displayAsignerForm(@PathVariable String cityId, @PathVariable String producerName, Model model) {
+	public String displayMinerAssignerForm(@PathVariable String cityId, @PathVariable String producerName, Model model) {
 		City city = addCityToModel(cityId, model);
 		try {
 		String jspName = urlStringHandler.handle(city, producerName, model);
 		writeCrud.update(city);
+		logger.debug("DisplayMinerAssignerForm method used");
 		return jspName;
 		}
 		catch(NullPointerException exception){
+			logger.debug("Null Pointer Exception");
 		return "wrongTurnPage";
 		}
 	}
@@ -193,6 +204,7 @@ public class CityHomeController {
 		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
 		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceProducerOfType(stringToClassHandler.handle(producerName)), newAssignedPopulation);
 		writeCrud.update(city);
+		logger.debug("SubmitNewMinerAssignment method used");
 		return displayCityStats(cityId, model);
 	}
 }

@@ -33,7 +33,7 @@ public class UpdateResourcesCommand implements UserCommand{
 		
 		commandInvoker.setCommand(updatePopulationCommand);
 		commandInvoker.invokeCommands();
-		logger.trace("Execute method used");
+		logger.debug("Execute method used");
 	}
 
 }

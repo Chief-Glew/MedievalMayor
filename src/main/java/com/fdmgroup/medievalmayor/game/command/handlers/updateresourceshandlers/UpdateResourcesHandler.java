@@ -1,9 +1,14 @@
 package com.fdmgroup.medievalmayor.game.command.handlers.updateresourceshandlers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
 
 public abstract class UpdateResourcesHandler {
+	
+	static final Logger logger = LogManager.getLogger("UpdateResourceHandler.class");
 
 	protected UpdateResourcesHandler next;
 	protected ResourceFactory resourceFactory;
@@ -19,9 +24,11 @@ public abstract class UpdateResourcesHandler {
 		else {
 			next.addToChain(handler);
 		}
+		logger.debug("AddToChain method used");
 	}
 	
 	protected boolean isNextNull() {
+		logger.debug("IsNextNull method used");
 		return next==null;
 	}
 	

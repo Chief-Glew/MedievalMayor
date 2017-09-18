@@ -22,7 +22,7 @@ public class NextTurnCommand implements UserCommand {
 		
 		commandInvoker.setCommand(updateResourceCommand);
 		commandInvoker.invokeCommands();
-		logger.trace("Execute method used");
+		logger.debug("Execute method used");
 	}
 
 }

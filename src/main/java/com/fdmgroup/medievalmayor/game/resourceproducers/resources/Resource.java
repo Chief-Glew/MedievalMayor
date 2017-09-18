@@ -32,17 +32,17 @@ public class Resource {
 	}
 	
 	public int getAmount() {
-		logger.trace("Amount retrieved");
+		logger.debug("Amount retrieved");
 		return amount;
 	}
 
 	public void setAmount(int ammount) {
-		logger.trace("Amount set");
+		logger.debug("Amount set");
 		this.amount = ammount;
 	}
 
 	public String getResourceType() {
-		logger.trace("Resource type retrieved");
+		logger.debug("Resource type retrieved");
 		return resourceType;
 	}
 
@@ -72,7 +72,7 @@ public class Resource {
 	}
 	
 	public boolean isSameTypeOfResource(Resource resource){
+		logger.debug("IsSameTypeOfResource method used");
 		return resourceType.equals(resource.resourceType);
 	}
-	
 }

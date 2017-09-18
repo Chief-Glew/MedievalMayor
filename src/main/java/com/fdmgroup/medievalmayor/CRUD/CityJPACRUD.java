@@ -29,13 +29,13 @@ public class CityJPACRUD implements GenericCrud<City> {
 		entityManagerFactory = Persistence.createEntityManagerFactory("medievalMayor");
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		logger.trace("Connect Method used in CityJPACRUD");
+		logger.debug("Connect Method used in CityJPACRUD");
 	}
 
 	private void disconnect(){
 		entityManager.close();
 		entityManagerFactory.close();
-		logger.trace("Disconnect Method used in CityJPACRUD");
+		logger.debug("Disconnect Method used in CityJPACRUD");
 	}
 
 	public void create(City city) {
@@ -43,14 +43,14 @@ public class CityJPACRUD implements GenericCrud<City> {
 		entityManager.persist(city);
 		entityManager.flush();
 		entityManager.getTransaction().commit();
-		logger.trace("Create Method used in CityJPACRUD");
+		logger.debug("Create Method used in CityJPACRUD");
 		disconnect();
 	}
 
 	public City read(long id) {
 		connect();
 		City city = entityManager.find(City.class, id);
-		logger.trace("Read Method used in CityJPACRUD");
+		logger.debug("Read Method used in CityJPACRUD");
 		disconnect();
 		return city;
 	}
@@ -61,7 +61,7 @@ public class CityJPACRUD implements GenericCrud<City> {
 		TypedQuery<City> typedQuery = 
 				entityManager.createQuery("SELECT c FROM CITY c", City.class);
 		citys = typedQuery.getResultList();
-		logger.trace("ReadAll Method used in CityJPACRUD");
+		logger.debug("ReadAll Method used in CityJPACRUD");
 		Set<City> citySet = new HashSet<City>();
 		citySet.addAll(citys);
 		disconnect();
@@ -74,7 +74,7 @@ public class CityJPACRUD implements GenericCrud<City> {
 		entityManager.merge(city);
 		entityManager.flush();
 		entityManager.getTransaction().commit();
-		logger.trace("Update Method used in CityJPACRUD");
+		logger.debug("Update Method used in CityJPACRUD");
 		disconnect();
 	}
 
@@ -85,7 +85,7 @@ public class CityJPACRUD implements GenericCrud<City> {
 		entityManager.remove(placeHolderCity);
 		entityManager.flush();
 		entityManager.getTransaction().commit();
-		logger.trace("Delete Method used in CityJPACRUD");
+		logger.debug("Delete Method used in CityJPACRUD");
 		disconnect();
 	}
 }

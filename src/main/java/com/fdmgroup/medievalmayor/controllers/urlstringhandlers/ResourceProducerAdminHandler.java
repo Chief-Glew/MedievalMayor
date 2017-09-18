@@ -1,5 +1,7 @@
 package com.fdmgroup.medievalmayor.controllers.urlstringhandlers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.ui.Model;
 
 import com.fdmgroup.medievalmayor.game.city.City;
@@ -7,13 +9,15 @@ import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ForestStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.LumberMillStringHandler;
 import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.MineStringHandler;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ProducerClassFromStringHandler;
+import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
 public class ResourceProducerAdminHandler extends URLStringHandler {
+	
+	static final Logger logger = LogManager.getLogger("ResourceProducerAdminHandler.class");
 
-	private ProducerClassFromStringHandler stringToClassHandler;
+	private ResourceProducerClassFromStringHandler stringToClassHandler;
 
 	public ResourceProducerAdminHandler() {
 		stringToClassHandler = new FarmStringHandler();
@@ -31,10 +35,11 @@ public class ResourceProducerAdminHandler extends URLStringHandler {
 			int upgradeMultiplier = resourceProducer.getUpgradeMultiplier();
 			model.addAttribute("baseResourceProduction", baseResourceProduction);
 			model.addAttribute("upgradeMultiplier", upgradeMultiplier);
-						
+			logger.debug("handle method used");
 			return "resourceProducerAdminPage";
 		}
 		catch(NullPointerException exception) {
+			logger.debug("Null pointer exception");
 			return next.handle(city, urlString, model);
 		}
 	}
