@@ -1,16 +1,14 @@
 package com.fdmgroup.medievalmayor.game.city;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
+import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
+import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
 
 public class CityTest {
 
@@ -32,17 +30,27 @@ public class CityTest {
 	}
 	
 	@Test
-	public void testThatACityContainsFiveResourceTypes(){
-
+	public void testThatACityContainsFourResourceTypes(){
 		assertEquals(4, city.getResourceGenerators().size());
 	}
 	
-//	@Test
-//	public void testThatGetNewCityReturnsACity() {
-//		System.out.println(city.getResourceGenerators());
-//		System.out.println(city.getResourceProducerOfType(Farm.class));
-//		System.out.println(city.getResourceAmount("Food"));
-//		
-//		assertEquals(city.getClass(), cityFactory.getNewCity().getClass());
-//	}
+	@Test
+	public void testThatACityBeginsWithZeroFood(){
+		assertEquals(0, city.getResourceAmount("Food"));
+	}
+	
+	@Test
+	public void testThatACityBeginsWithTenPopulation(){
+		assertEquals(10, city.getUnassignedPopulation());
+	}
+	
+	@Test
+	public void testThatACityCanHaveFoodAmountSet(){
+		ResourceFactory resourceFactory = new ResourceFactory();
+		Resource resource = resourceFactory.getFood(10);
+		city.addResource(resource);
+		assertEquals(10, city.getResourceAmount("Food"));
+	}
+	
+	
 }
