@@ -20,20 +20,40 @@ body {
 	background-image:
 		url('https://i.ytimg.com/vi/UON27Kydqsw/maxresdefault.jpg');
 	background-size: 100%;
-	max-width: 1500px;
-	margin: auto;
+	max-width: 1000px;
+	margin: 0 auto;
+	text-align: center;
 }
+
 .info {
 	margin: 30px;
-	background-color: #ffffff;
+	background-color: #e6e6ff;
 	border: 1px solid black;
-	opacity: 0.6;
-	filter: alpha(opacity = 60);
+	opacity: 0.9;
+	filter: alpha(opacity = 0);
+	max-width: 300px;
+	margin: 0 auto;
+	text-align: justify;
+	text-justify: inter-word;
+	content: "";
+	border: 50px solid #9999ff;
+	border-bottom: 50px solid transparent;
+	border-right: 50px solid transparent;
+}
+th, td {
+    border-bottom: 1px solid #ddd;
+}
+tr:hover {background-color: #f5f5f5}
+h1{
+color: #73020F
+}
+.tableview{
+text-align: center;
 }
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav>
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="/medievalmayor/">Medieval Mayor</a>
@@ -55,14 +75,15 @@ body {
 		</div>
 	</nav>
 
-			<h1>Admin</h1>
+	<h1><span class="label label-default">Admin</span></h1>
 
-		<div class="info">
-		<table>
+	<div class="info">
+		<table class="tableview">
 			<c:forEach items="${resourceProducers}" var="resourceProducer">
 				<tr>
 					<th><c:out value="${resourceProducer}" /></th>
-					<td><a class="btn btn-success" href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin/<c:out value="${resourceProducer}"/>">Manage</a></td>
+					<td><a class="btn btn-success"
+						href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin/<c:out value="${resourceProducer}"/>">Manage</a></td>
 				</tr>
 			</c:forEach>
 		</table>
