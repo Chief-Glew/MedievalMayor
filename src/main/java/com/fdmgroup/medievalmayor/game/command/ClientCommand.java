@@ -23,12 +23,6 @@ public class ClientCommand {
 		this.commandInvoker = commandInvoker;
 	}
 
-	public void setNumberOfWorkersInResourceBuilding(ResourceProducer resourceBuilding, int numberOfWorkers){
-		UserCommand setNumberOfWorkersCommand = new SetNumberOfWorkersCommand(resourceBuilding, numberOfWorkers);
-		invoke(setNumberOfWorkersCommand);
-		logger.trace("Number of workers in "+resourceBuilding+" set" );
-	}
-
 	public void nextTurn(City city) throws GameOverException {
 		
 		UserCommand nextTurn = new NextTurnCommand(city);
