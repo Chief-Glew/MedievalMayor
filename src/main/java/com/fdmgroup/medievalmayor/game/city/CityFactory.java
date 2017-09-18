@@ -30,13 +30,9 @@ public class CityFactory {
 		logger.trace("getNewCity method used");
 		return new City(cityName, 10, 
 				resourceProducerFactory.getFarm(), 
-				resourceProducerFactory.getMine());
+				resourceProducerFactory.getMine(),
+				resourceProducerFactory.getForest(),
+				resourceProducerFactory.getLumberMill());
 	}
 
-	public City getNewCityWithForest(){
-		return new City("DefaultCity", 10, 
-				resourceProducerFactory.getFarm(), 
-				resourceProducerFactory.getMine(), 
-				resourceProducerFactory.getForest());
-	}
 }
