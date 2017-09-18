@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
+import com.fdmgroup.medievalmayor.game.resources.Resource;
+import com.fdmgroup.medievalmayor.game.resources.ResourceFactory;
 
 public class CityTest {
 
