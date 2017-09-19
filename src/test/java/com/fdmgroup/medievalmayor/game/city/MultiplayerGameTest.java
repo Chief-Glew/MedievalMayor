@@ -1,5 +1,6 @@
 package com.fdmgroup.medievalmayor.game.city;
 
+
 import static org.junit.Assert.assertFalse;
 
 import java.util.Set;

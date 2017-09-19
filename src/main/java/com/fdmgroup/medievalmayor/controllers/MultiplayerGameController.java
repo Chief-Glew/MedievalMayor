@@ -1,5 +1,6 @@
 package com.fdmgroup.medievalmayor.controllers;
 
+
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -69,5 +70,6 @@ public class MultiplayerGameController {
 	@RequestMapping(value="/{multiplayerGameName}/{multiplayerGameId}/{cityName}/{cityId}/", method = RequestMethod.GET)
 
 	@RequestMapping(value="/{multiplayerGameName}/{multiplayerGameId}/{cityName}/{cityId}/", method = RequestMethod.GET)
+
 
 }
