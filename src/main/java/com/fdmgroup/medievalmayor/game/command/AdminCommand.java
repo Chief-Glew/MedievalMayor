@@ -2,19 +2,22 @@ package com.fdmgroup.medievalmayor.game.command;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
+@Component
 public class AdminCommand {
 	
 	static final Logger logger = LogManager.getLogger("AdminCommand.class");
 
 	private CommandInvoker commandInvoker;
 
-	public AdminCommand() {
-		this.commandInvoker = new CommandInvoker();
-		logger.debug("CommandInvoker instantiated");
+	@Autowired
+	public AdminCommand(CommandInvoker commandInvoker) {
+		this.commandInvoker = commandInvoker;
 	}
 	
 	private void setAndInvoke(UserCommand command) {

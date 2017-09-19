@@ -37,7 +37,7 @@ public class UpdatePopulationCommand implements UserCommand {
 		else if (resources.get("Food")<0){
 			for (ResourceProducer resourceBuilding: city.getResourceGenerators()){
 				try {
-					resourceBuildingService.assignPeopleToBuilding(0, totalPopulation, resourceBuilding);
+					resourceBuildingService.assignPeopleToResourceProducer(0, totalPopulation, resourceBuilding);
 				} catch (InsufficentPopulationException | AssignedNegativeNumberException e) {
 					logger.info("Exception");
 					e.printStackTrace();

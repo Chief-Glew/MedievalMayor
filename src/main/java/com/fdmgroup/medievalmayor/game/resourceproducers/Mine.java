@@ -15,10 +15,6 @@ public class Mine extends ResourceProducer {
 	
 	public Mine(){}
 	
-	public Mine(int multiplier){
-		super(multiplier);
-	}
-
 	public Mine(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,
 			String resourceProducerName, int producerLevel, int upgradeMultiplier) {
 		super(numberOfAssignedWorkers, baseResourceProduction, resourceProducerCost, resourceProducerName, producerLevel,

@@ -18,14 +18,7 @@ public class FarmTest {
 	
 	@Test
 	public void testThatWhenOnePersonIsAssignedToAFarmThreeFoodIsProduced() throws InsufficentPopulationException, AssignedNegativeNumberException{
-	
+		
 	}
-	
-	@Test
-	public void testThatWhenTwoPeopleIsAssignedToAFarmSixFoodIsProduced() throws InsufficentPopulationException, AssignedNegativeNumberException{
-	
-	}
-	
-	
 }
 

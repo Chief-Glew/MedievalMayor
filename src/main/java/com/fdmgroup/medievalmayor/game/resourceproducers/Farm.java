@@ -15,10 +15,6 @@ public class Farm extends ResourceProducer{
 
 	public Farm(){}
 
-	public Farm(int multiplier) {
-		super(multiplier);
-	}
-
 	public Farm(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,String resourceProducerName, int producerLevel, int upgradeMultiplier) {
 		super(numberOfAssignedWorkers, baseResourceProduction, resourceProducerCost, resourceProducerName, producerLevel, upgradeMultiplier);
 	}
@@ -27,10 +23,6 @@ public class Farm extends ResourceProducer{
 	public Resource produceResource() {
 		logger.debug("Food Produced");
 		Double levelMultiplier = Double.valueOf(Math.pow(getUpgradeMultiplier(),getProducerLevel()));
-		return resourceFactory.getFood(
-				getNumberOfAssignedWorkers()*
-				getBaseResourceProduction()*
-				levelMultiplier.intValue()
-				);
+		return resourceFactory.getFood(getNumberOfAssignedWorkers()*getBaseResourceProduction()*levelMultiplier.intValue());
 	}
 }

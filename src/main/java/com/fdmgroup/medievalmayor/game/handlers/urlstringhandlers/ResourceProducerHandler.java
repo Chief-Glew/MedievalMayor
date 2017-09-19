@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.controllers.urlstringhandlers;
+package com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,10 +36,10 @@ public class ResourceProducerHandler extends URLStringHandler {
 			Class<? extends ResourceProducer> resourceProducerClass = stringToClassHandler.handle(urlString);	
 			
 			ResourceProducer resourceProducer = city.getResourceProducerOfType(resourceProducerClass);
-			int maxAssignable = resourceProducerService.getPeopleInBuilding(resourceProducer) + city.getUnassignedPopulation();
+			int maxAssignable = resourceProducerService.getPeopleInResourceProducer(resourceProducer) + city.getUnassignedPopulation();
 
 			model.addAttribute("resourceProducer", resourceProducer);
-			model.addAttribute("currentAssigned", resourceProducerService.getPeopleInBuilding(city.getResourceProducerOfType(resourceProducerClass)));
+			model.addAttribute("currentAssigned", resourceProducerService.getPeopleInResourceProducer(resourceProducer));
 			model.addAttribute("maxAssignable", maxAssignable);
 			logger.debug("Handle method used");
 			return "assignationPage";

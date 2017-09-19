@@ -15,12 +15,6 @@ public class Forest extends ResourceProducer{
 	static final Logger logger = LogManager.getLogger("Forest.class");
 	
 	public Forest(){}
-	
-	public Forest(int baseResourceProduction) {
-		super(baseResourceProduction);
-	}
-
-	
 
 	public Forest(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,
 			String resourceProducerName, int producerLevel, int upgradeMultiplier) {

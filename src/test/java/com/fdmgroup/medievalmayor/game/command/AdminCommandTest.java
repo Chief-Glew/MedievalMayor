@@ -16,11 +16,13 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
 import com.fdmgroup.medievalmayor.game.resourceproducers.Forest;
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerFactory;
 
 public class AdminCommandTest {
 
 	private AdminCommand adminCommand;
 	private ResourceProducer resourceProducer;
+	private ResourceProducerFactory resourceProducerFactory;
 	private CityFactory cityFactory;
 	private City city;
 	private ApplicationContext applicationContext;
@@ -28,8 +30,9 @@ public class AdminCommandTest {
 	@Before
 	public void init(){
 		applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-		adminCommand = new AdminCommand(); 
-		resourceProducer = new Forest(5);
+		adminCommand = applicationContext.getBean(AdminCommand.class); 
+		resourceProducerFactory = applicationContext.getBean(ResourceProducerFactory.class);
+		resourceProducer = resourceProducerFactory.getForest();
 		cityFactory = applicationContext.getBean(CityFactory.class);
 		city = cityFactory.getNewCity();
 
