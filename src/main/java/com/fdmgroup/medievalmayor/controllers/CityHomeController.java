@@ -81,17 +81,15 @@ public class CityHomeController {
 	public String displayCityStats(@PathVariable String cityId, Model model) {
 		City city = addCityToModel(cityId, model);
 		
-		Map<String, Integer> workers = new HashMap<String, Integer>();
-		for (ResourceProducer resourceProducer: city.getResourceGenerators()){
-			workers.put(resourceProducer.getResourceProducerName(), resourceProducerService.getPeopleInBuilding(resourceProducer));
-		} 
+		Set<ResourceProducer> resourceProducers = city.getResourceGenerators();
+		
 		Map<String, Integer> resources = city.getResources();
 		resources.remove("Population");
 
 		model.addAttribute("totalPopulation", city.getTotalPopulation());
 		model.addAttribute("unnassignedPeople", city.getUnassignedPopulation());
-		model.addAttribute("workers", workers);
 		model.addAttribute("resources", resources);
+		model.addAttribute("resourceProducers", resourceProducers);
 		
 		writeCrud.update(city);
 		logger.debug("DisplayCityStats method used");
@@ -184,7 +182,7 @@ public class CityHomeController {
 		return displayCityStats(cityId, model);
 	}
 	
-	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/update", method = RequestMethod.GET)
+	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/upgrade", method = RequestMethod.GET)
 	public String displayMinerAsignerForm(@PathVariable String cityId, @PathVariable String producerName, Model model) {
 		City city = addCityToModel(cityId, model);
 		try {
@@ -197,7 +195,7 @@ public class CityHomeController {
 		}
 	}
 	
-	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/upgrade", method = RequestMethod.POST)
 	public String submitNewMinerAssignment(@PathVariable String cityId, @PathVariable String producerName, @RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
 		City city = addCityToModel(cityId, model);
 		
