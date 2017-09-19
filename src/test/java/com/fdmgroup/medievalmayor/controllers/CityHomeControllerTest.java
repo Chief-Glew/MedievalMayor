@@ -15,14 +15,14 @@ import com.fdmgroup.medievalmayor.config.AppConfig;
 
 
 public class CityHomeControllerTest {
-	private CityHomeController cityHomeController;
+	private SingleplayerController cityHomeController;
 	private Model modelMock;
 	private ApplicationContext applicationContext;
 	
 	@Before
 	public void init(){
 		applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-		cityHomeController = applicationContext.getBean(CityHomeController.class);
+		cityHomeController = applicationContext.getBean(SingleplayerController.class);
 		modelMock = mock(Model.class);
 	}
 

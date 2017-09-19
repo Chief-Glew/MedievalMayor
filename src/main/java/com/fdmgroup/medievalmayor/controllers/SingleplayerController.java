@@ -1,15 +1,14 @@
 package com.fdmgroup.medievalmayor.controllers;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +21,9 @@ import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
 import com.fdmgroup.medievalmayor.city.City;
 import com.fdmgroup.medievalmayor.city.CityFactory;
 import com.fdmgroup.medievalmayor.command.ClientCommand;
+import com.fdmgroup.medievalmayor.config.AppConfig;
 import com.fdmgroup.medievalmayor.exceptions.GameOverException;
+import com.fdmgroup.medievalmayor.game.city.MultiplayerGame;
 import com.fdmgroup.medievalmayor.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.handlers.upgradehandlers.ResourceProducerUpgradeHandler;
 import com.fdmgroup.medievalmayor.handlers.urlstringhandlers.LumberMillAdminHandler;
@@ -31,11 +32,10 @@ import com.fdmgroup.medievalmayor.handlers.urlstringhandlers.ResourceProducerHan
 import com.fdmgroup.medievalmayor.handlers.urlstringhandlers.URLStringHandler;
 import com.fdmgroup.medievalmayor.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.resourceproducers.ResourceProducerService;
-import com.fdmgroup.medievalmayor.config.AppConfig;
-
 
 @Controller
-public class CityHomeController {
+@RequestMapping("singleplayerGame")
+public class SingleplayerController {
 
 	static final Logger logger = LogManager.getLogger("CityHomeController.class");
 
@@ -49,11 +49,13 @@ public class CityHomeController {
 	private ResourceProducerUpgradeHandler resourceProducerUpgradeHandler;
 
 	@Autowired
-	public CityHomeController(ResourceProducerUpgradeHandler resourceProducerUpgradeHandler,
+	public SingleplayerController(ResourceProducerUpgradeHandler resourceProducerUpgradeHandler,
 			ClientCommand clientCommand, ResourceProducerClassFromStringHandler stringToClassHandler,
-			CityFactory cityFactory, ResourceProducerService resourceProducerService, GenericRead<City> readCrud, GenericWrite<City> writeCrud) {
+			CityFactory cityFactory, ResourceProducerService resourceProducerService, GenericRead<City> readCrud,
+			GenericWrite<City> writeCrud, GenericRead<MultiplayerGame> MultiReadCrud,
+			GenericWrite<MultiplayerGame> MultiWriteCrud) {
 		this.cityFactory = cityFactory;
-		clientComand = clientCommand;
+		this.clientComand = clientCommand;
 		this.readCrud = readCrud;
 		this.writeCrud = writeCrud;
 		urlStringHandler = new ResourceProducerHandler();
@@ -63,7 +65,7 @@ public class CityHomeController {
 		logger.debug("City Controller Instantiated");
 	}
 
-	private City addCityToModel(String cityId, Model model) {
+	public City addCityToModel(String cityId, Model model) {
 		long cityIdValue = Long.valueOf(cityId);
 		City city = readCrud.read(cityIdValue);
 		model.addAttribute("city", city);
