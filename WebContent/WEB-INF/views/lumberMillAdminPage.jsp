@@ -58,20 +58,20 @@ h1 {
 	<nav>
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/medievalmayor/">Medieval Mayor</a>
+				<a class="navbar-brand" href="/medievalmayor/singlePlayer/">Medieval Mayor</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="/medievalmayor/">Home</a></li>
 				<li class="active"><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>">City</a></li>
+					href="/medievalmayor/singlePlayer/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>">City</a></li>
 				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Farm">Farm</a></li>
+					href="/medievalmayor/singlePlayer/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Farm">Farm</a></li>
 				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Mine">Mine</a></li>
+					href="/medievalmayor/singlePlayer/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Mine">Mine</a></li>
 				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Forest">Forest</a></li>
+					href="/medievalmayor/singlePlayer/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Forest">Forest</a></li>
 				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/LumberMill">Lumber
+					href="/medievalmayor/singlePlayer/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/LumberMill">Lumber
 						Mill</a></li>
 			</ul>
 		</div>
@@ -104,7 +104,7 @@ h1 {
 			<input class="btn btn-success" type="submit" value="submit">
 			<input class="btn btn-danger" type="reset"> <input
 				class="btn btn-info" type="submit" value="back"
-				formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin"
+				formaction="/medievalmayor/singlePlayer/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin"
 				formmethod="get">
 		</form>
 	</div>
