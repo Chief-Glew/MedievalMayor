@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import com.fdmgroup.medievalmayor.game.city.MultiplayerGame;
 
 @Component
-public class MultiplayerGameCrud implements GenericCrud<MultiplayerGame> {
+public class MultiplayerGameJPACRUD implements GenericCrud<MultiplayerGame> {
 	private static final Logger logger = LogManager.getLogger("MultiplayerGameJPACRUD.class");
 
 	private EntityManagerFactory entityManagerFactory;

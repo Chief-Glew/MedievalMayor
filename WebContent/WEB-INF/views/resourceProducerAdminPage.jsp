@@ -40,12 +40,17 @@ body {
 	border-bottom: 50px solid transparent;
 	border-right: 50px solid transparent;
 }
+
 th, td {
-    border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 }
-tr:hover {background-color: #f5f5f5}
-h1{
-color: #73020F
+
+tr:hover {
+	background-color: #f5f5f5
+}
+
+h1 {
+	color: #73020F
 }
 </style>
 </head>
@@ -74,18 +79,21 @@ color: #73020F
 
 	<h1>Admin</h1>
 	<div class="info">
-		<form>
+		<form
+			action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin/<c:out value="${resourceProducer.resourceProducerName}"/>"
+			method="post" name="setAdminModifiers">
+			>
 			<table>
 				<tr>
 					<th><label>Set Base Resource Production: </label></th>
-					<td><input type="number"
-						value="<c:out value="${baseResourceProduction}"/>" min="0"
+					<td><input type="number" name="baseProduction"
+						value="<c:out value="${baseResourceProduction}"/>" min="1"
 						required></td>
 				</tr>
 				<tr>
 					<th><label>Set Upgrade Multiplier: </label></th>
-					<td><input type="number"
-						value="<c:out value="${upgradeMultiplier}"/>" min="0" required></td>
+					<td><input type="number" name="upgradeMultiplier"
+						value="<c:out value="${upgradeMultiplier}"/>" min="1" required></td>
 				</tr>
 			</table>
 			<input class="btn btn-success" type="submit" value="submit">

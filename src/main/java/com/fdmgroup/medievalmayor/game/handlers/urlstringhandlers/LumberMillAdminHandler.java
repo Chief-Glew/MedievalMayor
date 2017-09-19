@@ -33,7 +33,7 @@ public class LumberMillAdminHandler extends URLStringHandler {
 				next.handle(city, urlString, model);
 				LumberMill lumberMill = (LumberMill)city.getResourceProducerOfType(LumberMill.class);//TODO find a better way to do this
 				int amountOfLumberPerWood = lumberMill.getAmountOfLumberPerWood();
-				
+				model.addAttribute("resourceProducer", lumberMill);
 				model.addAttribute("amountOfLumberPerWood", amountOfLumberPerWood);
 				logger.debug("Lumber mill handled");
 				return "lumberMillAdminPage";

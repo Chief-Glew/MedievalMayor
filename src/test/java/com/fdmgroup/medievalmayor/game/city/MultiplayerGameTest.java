@@ -1,5 +1,7 @@
 package com.fdmgroup.medievalmayor.game.city;
 
+import java.util.Set;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
