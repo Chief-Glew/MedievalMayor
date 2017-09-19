@@ -31,14 +31,14 @@ body {
 	border: 1px solid black;
 	opacity: 0.9;
 	filter: alpha(opacity = 0);
-	max-width: 450px;
+	max-width: 350px;
 	margin: 0 auto;
 	text-align: justify;
 	text-justify: inter-word;
 	content: "";
-	border: 50px solid #9999ff;
-	border-bottom: 50px solid transparent;
-	border-right: 50px solid transparent;
+	border: 15px solid #9999ff;
+	border-bottom: 25px solid transparent;
+	border-right: 25px solid transparent;
 }
 
 th, td {
@@ -46,11 +46,20 @@ th, td {
 }
 
 tr:hover {
-	background-color: #f5f5f5
+	background-color: #f5f5f5;
 }
 
 h1 {
-	color: #73020F
+	color: #73020F;
+}
+
+.title {
+	text-align: left;
+	margin-bottom: 5px;
+	font-size: 160%;
+	padding: 5px;
+	font-weight: bold;
+	color: #73020F;
 }
 </style>
 </head>
@@ -77,27 +86,43 @@ h1 {
 		</div>
 	</nav>
 	<h1>
-		<span class="label label-default">Build your City!</span>
+		<span class="label label-default">Welcome to <c:out
+				value="${city.cityName }" /></span>
 	</h1>
 	<div class="info">
 		<table>
+			<caption class="title">Population</caption>
 			<tr>
-				<th>Total Population:</th>
+				<th>Total:</th>
 				<td><c:out value="${totalPopulation}" /></td>
 			</tr>
 			<tr>
-				<th>Number of Unassigned People:</th>
+				<th>Unassigned:</th>
 				<td><c:out value="${unnassignedPeople}" /></td>
 			</tr>
-			<c:forEach items="${workers}" var="worker">
+		</table>
+
+		<table>
+			<caption class="title">Resource Producer
+			</caption>
+		<tr>
+				<th>Name</th>
+				<th>Workers&emsp;</th>
+				<th>Level</th>
+			</tr>
+			<c:forEach items="${resourceProducers}" var="resourceProducer">
 				<tr>
-					<th>Number of People in the <c:out value="${worker.key}" />:
-					</th>
-					<td><c:out value="${worker.value}" /></td>
+					<td><c:out value="${resourceProducer.resourceProducerName}" />&emsp;
+					</td>
+					<td><c:out value="${resourceProducer.numberOfAssignedWorkers}" /></td>
+					<td><c:out value="${resourceProducer.producerLevel}" /></td>
 					<td>&emsp;<a class="btn btn-info"
-						href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${worker.key}" />">+</a></td>
+						href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}" />">+</a></td>
 				</tr>
 			</c:forEach>
+			</table>
+		<table>
+			<caption class="title">Resources</caption>
 			<c:forEach items="${resources}" var="resource">
 				<tr>
 					<th>Amount of <c:out value="${resource.key}" />:

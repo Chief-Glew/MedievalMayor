@@ -36,9 +36,9 @@ body {
 	text-align: justify;
 	text-justify: inter-word;
 	content: "";
-	border: 50px solid #9999ff;
-	border-bottom: 50px solid transparent;
-	border-right: 50px solid transparent;
+	border: 15px solid #9999ff;
+	border-bottom: 25px solid transparent;
+	border-right: 25px solid transparent;
 }
 th, td {
     border-bottom: 1px solid #ddd;
@@ -74,7 +74,7 @@ h1 {
 
 	<h1>
 		<span class="label label-default">Assign Workers To <c:out
-				value="${producerName}" />!
+				value="${resourceProducer.resourceProducerName}" />!
 		</span>
 	</h1>
 	<div class="info">
@@ -87,10 +87,12 @@ h1 {
 				<th>Max Assignable Population:</th>
 				<td><c:out value="${maxAssignable}" /></td>
 			</tr>
-		</table>
+		</table><span>Level: <c:out value="${resourceProducer.producerLevel}"/></span>
+		<a class="btn btn-info"
+						href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}" />/upgrade">Upgrade</a>
 
 		<form
-			action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${producerName}"/>"
+			action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}"/>"
 			method="post" name="assignFarmers">
 			<label>New Population to set: </label> 
 			<input type="number"
