@@ -2,9 +2,11 @@ package com.fdmgroup.medievalmayor.game.command;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.fdmgroup.medievalmayor.config.AppConfig;
@@ -17,10 +19,11 @@ public class ClientCommandTest {
 	private ClientCommand clientCommand;
 	private CommandInvoker commandInvoker;
 	private City city;
+	private ApplicationContext applicationContext;
 	
 	@Before
 	public void init(){
-		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+		applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 		CityFactory cityFactory = applicationContext.getBean(CityFactory.class);
 		commandInvoker = new CommandInvoker();
 		clientCommand = new ClientCommand(commandInvoker);
@@ -39,4 +42,8 @@ public class ClientCommandTest {
 		assertEquals(5, city.getResourceProducerOfType(Mine.class).getNumberOfAssignedWorkers());
 	}
 	
+	@After
+	public void closeSpring(){
+		((ConfigurableApplicationContext)applicationContext).close();
+	}
 }

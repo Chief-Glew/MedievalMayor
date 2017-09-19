@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.fdmgroup.medievalmayor.CRUD.CityJPACRUD;
 import com.fdmgroup.medievalmayor.CRUD.GenericRead;
 import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
 import com.fdmgroup.medievalmayor.controllers.urlstringhandlers.LumberMillAdminHandler;
@@ -165,13 +164,13 @@ public class CityHomeController {
 	}
 
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}", method = RequestMethod.GET)
-	public String displayMinerAssignerForm(@PathVariable String cityId, @PathVariable String producerName,
+	public String displayAssignerForm(@PathVariable String cityId, @PathVariable String producerName,
 			Model model) {
 		City city = addCityToModel(cityId, model);
 		try {
 			String jspName = urlStringHandler.handle(city, producerName, model);
 			writeCrud.update(city);
-			logger.debug("DisplayMinerAssignerForm method used");
+			logger.debug("DisplayAssignerForm method used");
 			return jspName;
 		} catch (NullPointerException exception) {
 			logger.debug("Null Pointer Exception");
