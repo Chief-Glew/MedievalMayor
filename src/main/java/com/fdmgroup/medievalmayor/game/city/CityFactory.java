@@ -13,8 +13,8 @@ public class CityFactory {
 
 	static final Logger logger = LogManager.getLogger("CityFactory.class");
 
-	public CityFactory() {
-		resourceProducerFactory = new ResourceProducerFactory();
+	public CityFactory(ResourceProducerFactory resourceProducerFactory) {
+		this.resourceProducerFactory = resourceProducerFactory;
 	}
 
 	public City getNewCity(){

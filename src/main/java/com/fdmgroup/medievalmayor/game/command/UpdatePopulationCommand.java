@@ -10,7 +10,7 @@ import com.fdmgroup.medievalmayor.game.exceptions.AssignedNegativeNumberExceptio
 import com.fdmgroup.medievalmayor.game.exceptions.InsufficentPopulationException;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
+import com.fdmgroup.medievalmayor.game.resources.ResourceFactory;
 
 public class UpdatePopulationCommand implements UserCommand {
 	

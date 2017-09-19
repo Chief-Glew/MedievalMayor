@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers;
+package com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

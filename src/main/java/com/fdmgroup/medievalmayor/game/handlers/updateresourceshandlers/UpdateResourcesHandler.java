@@ -1,10 +1,10 @@
-package com.fdmgroup.medievalmayor.game.command.handlers.updateresourceshandlers;
+package com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
+import com.fdmgroup.medievalmayor.game.resources.ResourceFactory;
 
 public abstract class UpdateResourcesHandler {
 	

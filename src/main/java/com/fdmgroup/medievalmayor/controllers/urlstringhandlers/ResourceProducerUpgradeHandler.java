@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
-import com.fdmgroup.medievalmayor.game.command.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
 public abstract class ResourceProducerUpgradeHandler extends URLStringHandler {

@@ -25,7 +25,7 @@ public class SpringDemoApp {
 		}
 		
 		
-		CityFactory cityFactory = new CityFactory();
+		CityFactory cityFactory = applicationContext.getBean(CityFactory.class);
 		City city = cityFactory.getNewCity();
 		ResourceProducer farm = city.getResourceProducerOfType(Farm.class);
 		ResourceProducer mine = city.getResourceProducerOfType(Mine.class);

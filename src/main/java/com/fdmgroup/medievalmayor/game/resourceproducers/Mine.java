@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
+import com.fdmgroup.medievalmayor.game.resources.Resource;
 
 @Entity(name="MINE")
 @DiscriminatorValue(value = "MINE")

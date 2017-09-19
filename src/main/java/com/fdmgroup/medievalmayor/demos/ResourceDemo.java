@@ -1,9 +1,9 @@
 package com.fdmgroup.medievalmayor.demos;
 
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.Resource;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceFactory;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceStorageFactory;
-import com.fdmgroup.medievalmayor.game.resourceproducers.resources.ResourceStorageHandler;
+import com.fdmgroup.medievalmayor.game.resources.Resource;
+import com.fdmgroup.medievalmayor.game.resources.ResourceFactory;
+import com.fdmgroup.medievalmayor.game.resources.ResourceStorageFactory;
+import com.fdmgroup.medievalmayor.game.resources.ResourceStorageHandler;
 
 public class ResourceDemo {
 
