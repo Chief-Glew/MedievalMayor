@@ -19,6 +19,7 @@ import com.fdmgroup.medievalmayor.CRUD.GenericRead;
 import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityFactory;
+import com.fdmgroup.medievalmayor.game.city.MultiplayerGame;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
 import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
@@ -37,6 +38,8 @@ public class CityHomeController {
 
 	private GenericRead<City> readCrud;
 	private GenericWrite<City> writeCrud;
+	private GenericRead<MultiplayerGame> MultiReadCrud;
+	private GenericWrite<MultiplayerGame> MultiWriteCrud;
 	private ResourceProducerService resourceProducerService;
 	private ClientCommand clientComand;
 	private CityFactory cityFactory;
@@ -47,11 +50,15 @@ public class CityHomeController {
 	@Autowired
 	public CityHomeController(ResourceProducerUpgradeHandler resourceProducerUpgradeHandler,
 			ClientCommand clientCommand, ResourceProducerClassFromStringHandler stringToClassHandler,
-			CityFactory cityFactory, ResourceProducerService resourceProducerService, GenericRead<City> readCrud, GenericWrite<City> writeCrud) {
+			CityFactory cityFactory, ResourceProducerService resourceProducerService, GenericRead<City> readCrud,
+			GenericWrite<City> writeCrud, GenericRead<MultiplayerGame> MultiReadCrud,
+			GenericWrite<MultiplayerGame> MultiWriteCrud) {
 		this.cityFactory = cityFactory;
-		clientComand = clientCommand;
+		this.clientComand = clientCommand;
 		this.readCrud = readCrud;
 		this.writeCrud = writeCrud;
+		this.MultiReadCrud = MultiReadCrud;
+		this.MultiWriteCrud = MultiWriteCrud;
 		urlStringHandler = new ResourceProducerHandler();
 		this.resourceProducerService = resourceProducerService;
 		this.stringToClassHandler = stringToClassHandler;
@@ -59,7 +66,7 @@ public class CityHomeController {
 		logger.debug("City Controller Instantiated");
 	}
 
-	private City addCityToModel(String cityId, Model model) {
+	public City addCityToModel(String cityId, Model model) {
 		long cityIdValue = Long.valueOf(cityId);
 		City city = readCrud.read(cityIdValue);
 		model.addAttribute("city", city);
@@ -87,7 +94,7 @@ public class CityHomeController {
 	@RequestMapping(value = "/{cityName}/{cityId}", method = RequestMethod.GET)
 	public String displayCityStats(@PathVariable String cityId, Model model) {
 		City city = addCityToModel(cityId, model);
-		
+
 		Set<ResourceProducer> resourceProducers = city.getResourceGenerators();
 		Map<String, Integer> resources = city.getResources();
 		resources.remove("Population");
@@ -166,8 +173,7 @@ public class CityHomeController {
 	}
 
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}", method = RequestMethod.GET)
-	public String displayAssignerForm(@PathVariable String cityId, @PathVariable String producerName,
-			Model model) {
+	public String displayAssignerForm(@PathVariable String cityId, @PathVariable String producerName, Model model) {
 		City city = addCityToModel(cityId, model);
 		try {
 			String jspName = urlStringHandler.handle(city, producerName, model);
