@@ -5,8 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
-
 public class LumberMillTest {
 	
 	private LumberMill lumberMill;

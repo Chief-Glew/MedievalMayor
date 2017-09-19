@@ -7,11 +7,13 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.fdmgroup.medievalmayor.city.City;
+import com.fdmgroup.medievalmayor.city.CityFactory;
 import com.fdmgroup.medievalmayor.config.AppConfig;
-import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
-import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
-import com.fdmgroup.medievalmayor.game.resources.Resource;
-import com.fdmgroup.medievalmayor.game.resources.ResourceFactory;
+import com.fdmgroup.medievalmayor.resourceproducers.Farm;
+import com.fdmgroup.medievalmayor.resourceproducers.ResourceProducer;
+import com.fdmgroup.medievalmayor.resources.Resource;
+import com.fdmgroup.medievalmayor.resources.ResourceFactory;
 
 public class CityTest {
 

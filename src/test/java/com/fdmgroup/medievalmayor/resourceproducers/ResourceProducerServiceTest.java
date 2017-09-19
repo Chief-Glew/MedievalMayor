@@ -3,9 +3,6 @@ package com.fdmgroup.medievalmayor.resourceproducers;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
-import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
-
 public class ResourceProducerServiceTest {
 	
 	private ResourceProducerService resourceProducerService;

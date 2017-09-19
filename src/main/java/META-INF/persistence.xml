@@ -4,21 +4,21 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="medievalMayor">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>com.fdmgroup.medievalmayor.game.city.City</class>
-		<class>com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer</class>
-		<class>com.fdmgroup.medievalmayor.game.resourceproducers.Farm</class>
-		<class>com.fdmgroup.medievalmayor.game.resourceproducers.Mine</class>
-		<class>com.fdmgroup.medievalmayor.game.resources.ResourceStorageHandler</class>
-		<class>com.fdmgroup.medievalmayor.game.resources.Resource</class>
-		<class>com.fdmgroup.medievalmayor.game.resourceproducers.Forest</class>
-		<class>com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill</class>
+		<class>com.fdmgroup.medievalmayor.city.City</class>
+		<class>com.fdmgroup.medievalmayor.resourceproducers.ResourceProducer</class>
+		<class>com.fdmgroup.medievalmayor.resourceproducers.Farm</class>
+		<class>com.fdmgroup.medievalmayor.resourceproducers.Mine</class>
+		<class>com.fdmgroup.medievalmayor.resources.ResourceStorageHandler</class>
+		<class>com.fdmgroup.medievalmayor.resources.Resource</class>
+		<class>com.fdmgroup.medievalmayor.resourceproducers.Forest</class>
+		<class>com.fdmgroup.medievalmayor.resourceproducers.LumberMill</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/xe" />
 			<property name="javax.persistence.jdbc.user" value="Trainee1" />
 			<property name="javax.persistence.jdbc.password" value="!QAZSE4" />
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />  
+			<property name="hibernate.hbm2ddl.auto" value="create" />  
 		</properties>
 
 	</persistence-unit>

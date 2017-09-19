@@ -17,18 +17,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdmgroup.medievalmayor.CRUD.GenericRead;
 import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
-import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.city.CityFactory;
-import com.fdmgroup.medievalmayor.game.command.ClientCommand;
-import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
-import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
-import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.ResourceProducerUpgradeHandler;
-import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.LumberMillAdminHandler;
-import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.ResourceProducerAdminHandler;
-import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.ResourceProducerHandler;
-import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.URLStringHandler;
-import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
-import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
+import com.fdmgroup.medievalmayor.city.City;
+import com.fdmgroup.medievalmayor.city.CityFactory;
+import com.fdmgroup.medievalmayor.command.ClientCommand;
+import com.fdmgroup.medievalmayor.exceptions.GameOverException;
+import com.fdmgroup.medievalmayor.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
+import com.fdmgroup.medievalmayor.handlers.upgradehandlers.ResourceProducerUpgradeHandler;
+import com.fdmgroup.medievalmayor.handlers.urlstringhandlers.LumberMillAdminHandler;
+import com.fdmgroup.medievalmayor.handlers.urlstringhandlers.ResourceProducerAdminHandler;
+import com.fdmgroup.medievalmayor.handlers.urlstringhandlers.ResourceProducerHandler;
+import com.fdmgroup.medievalmayor.handlers.urlstringhandlers.URLStringHandler;
+import com.fdmgroup.medievalmayor.resourceproducers.ResourceProducer;
+import com.fdmgroup.medievalmayor.resourceproducers.ResourceProducerService;
 
 @Controller
 public class CityHomeController {

@@ -13,7 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import com.fdmgroup.medievalmayor.game.city.City;
+import com.fdmgroup.medievalmayor.city.City;
 
 @Component
 public class CityJPACRUD implements GenericCrud<City> {
