@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.controllers.urlstringhandlers;
+package com.fdmgroup.medievalmayor.game.handlers.upgradehandlers;
 
 import java.util.HashMap;
 import java.util.Map;

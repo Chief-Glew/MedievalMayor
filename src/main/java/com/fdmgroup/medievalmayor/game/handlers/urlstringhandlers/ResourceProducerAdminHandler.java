@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.controllers.urlstringhandlers;
+package com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
