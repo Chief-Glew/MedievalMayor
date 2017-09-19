@@ -11,7 +11,6 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.fdmgroup.medievalmayor.game.city.City;
