@@ -2,9 +2,11 @@ package com.fdmgroup.medievalmayor.game.command;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.fdmgroup.medievalmayor.config.AppConfig;
@@ -21,10 +23,11 @@ public class AdminCommandTest {
 	private ResourceProducer resourceProducer;
 	private CityFactory cityFactory;
 	private City city;
+	private ApplicationContext applicationContext;
 	
 	@Before
 	public void init(){
-		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+		applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 		adminCommand = new AdminCommand(); 
 		resourceProducer = new Forest(5);
 		cityFactory = applicationContext.getBean(CityFactory.class);
@@ -48,5 +51,10 @@ public class AdminCommandTest {
 	public void testThatUpgradeMultiplierChangesTheMultiplierOfAFarmToFive(){
 		adminCommand.setUpgradeMultiplierForResourceProducer(city.getResourceProducerOfType(Farm.class), 5);
 		assertEquals(city.getResourceProducerOfType(Farm.class).getUpgradeMultiplier(), 5);
+	}
+	
+	@After
+	public void closeSpring(){
+		((ConfigurableApplicationContext)applicationContext).close();
 	}
 }
