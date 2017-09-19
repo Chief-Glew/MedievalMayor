@@ -39,4 +39,9 @@ public class ResourceProducerTest {
 		farm.incrementProducerLevel();
 		assertEquals(2,farm.getProducerLevel());
 	}
+	
+	@Test
+	public void testThatResourceProducerNameIsFarm(){
+		assertEquals("Farm",farm.getResourceProducerName());
+	}
 }

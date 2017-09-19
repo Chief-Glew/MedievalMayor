@@ -15,10 +15,6 @@ public class Farm extends ResourceProducer{
 
 	public Farm(){}
 
-	public Farm(int multiplier) {
-		super(multiplier);
-	}
-
 	public Farm(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,String resourceProducerName, int producerLevel, int upgradeMultiplier) {
 		super(numberOfAssignedWorkers, baseResourceProduction, resourceProducerCost, resourceProducerName, producerLevel, upgradeMultiplier);
 	}

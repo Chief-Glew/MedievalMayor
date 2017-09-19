@@ -18,10 +18,6 @@ static final Logger logger = LogManager.getLogger("LumberMill");
 private int ammountOfLumberPerWood;
 	
 	public LumberMill(){}
-	
-	public LumberMill(int multiplier){
-		super(multiplier);
-	}
 
 	public LumberMill(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,
 			String resourceProducerName, int producerLevel, int upgradeMultiplier, int ammountOfLumberPerWood) {

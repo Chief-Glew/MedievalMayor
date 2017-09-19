@@ -92,7 +92,7 @@ public class CityHomeController {
 		Map<String, Integer> workers = new HashMap<String, Integer>();
 		for (ResourceProducer resourceProducer : city.getResourceGenerators()) {
 			workers.put(resourceProducer.getResourceProducerName(),
-					resourceProducerService.getPeopleInBuilding(resourceProducer));
+					resourceProducerService.getPeopleInResourceProducer(resourceProducer));
 		}
 		Map<String, Integer> resources = city.getResources();
 		resources.remove("Population");
