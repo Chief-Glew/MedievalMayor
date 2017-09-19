@@ -31,26 +31,31 @@ body {
 	border: 1px solid black;
 	opacity: 0.9;
 	filter: alpha(opacity = 0);
-	max-width: 300px;
+	max-width: 350px;
 	margin: 0 auto;
 	text-align: justify;
 	text-justify: inter-word;
 	content: "";
-	border: 50px solid #9999ff;
-	border-bottom: 50px solid transparent;
-	border-right: 50px solid transparent;
+	border: 15px solid #9999ff;
+	border-bottom: 25px solid transparent;
+	border-right: 25px solid transparent;
 }
+
 th, td {
-    border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 }
-tr:hover {background-color: #f5f5f5}
-h1{
-color: #73020F
+
+tr:hover {
+	background-color: #f5f5f5
+}
+
+h1 {
+	color: #73020F
 }
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav>
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="/medievalmayor/">Medieval Mayor</a>
@@ -71,27 +76,36 @@ color: #73020F
 			</ul>
 		</div>
 	</nav>
-			<h1>Admin</h1>
+	<h1>
+		<span class="label label-default">Admin</span>
+	</h1>
 
-		<div class="info">
+	<div class="info">
 		<form>
-		<table>
-			<tr>
-			<th><label>Set Base Resource Production: </label></th>
-			<td><input type="number" value="<c:out value="${baseResourceProduction}"/>" min="0" required></td>
-			</tr>
-			<tr>
-			<th><label>Set Upgrade Multiplier: </label></th>
-			<td><input type="number" value="<c:out value="${upgradeMultiplier}"/>" min="0" required></td>
-			</tr>
-			<tr>
-			<th><label>Set Amount Of Lumber Produced For Each Piece Of Wood: </label></th>
-			<td><input type="number" value="<c:out value="${amountOfLumberPerWood}"/>" min="0" required></td>
-			</tr>
+			<table>
+				<tr>
+					<th><label>Set Base Resource Production: </label></th>
+					<td><input type="number"
+						value="<c:out value="${baseResourceProduction}"/>" min="0"
+						required></td>
+				</tr>
+				<tr>
+					<th><label>Set Upgrade Multiplier: </label></th>
+					<td><input type="number"
+						value="<c:out value="${upgradeMultiplier}"/>" min="0" required></td>
+				</tr>
+				<tr>
+					<th><label>Set Amount Of Lumber Produced For Each
+							Piece Of Wood: </label></th>
+					<td><input type="number"
+						value="<c:out value="${amountOfLumberPerWood}"/>" min="0" required></td>
+				</tr>
 			</table>
 			<input class="btn btn-success" type="submit" value="submit">
-			<input class="btn btn-danger" type="reset">
-			<input class="btn btn-info" type="submit" value="back" formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin" formmethod="get">
+			<input class="btn btn-danger" type="reset"> <input
+				class="btn btn-info" type="submit" value="back"
+				formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin"
+				formmethod="get">
 		</form>
 	</div>
 </body>

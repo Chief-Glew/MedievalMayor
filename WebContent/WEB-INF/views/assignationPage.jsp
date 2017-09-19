@@ -40,15 +40,10 @@ body {
 	border-bottom: 25px solid transparent;
 	border-right: 25px solid transparent;
 }
-
 th, td {
-	border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
-
-tr:hover {
-	background-color: #f5f5f5
-}
-
+tr:hover {background-color: #f5f5f5}
 h1 {
 	color: #73020F
 }
@@ -92,25 +87,26 @@ h1 {
 				<th>Max Assignable Population:</th>
 				<td><c:out value="${maxAssignable}" /></td>
 			</tr>
-		</table>
-		<span>Level: <c:out value="${resourceProducer.producerLevel}" /></span>
+		</table><span>Level: <c:out value="${resourceProducer.producerLevel}"/></span>
 		<a class="btn btn-info"
-			href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}" />/upgrade">Upgrade</a>
+						href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}" />/upgrade">Upgrade</a>
 
 		<form
 			action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}"/>"
 			method="post" name="assignFarmers">
-			<label>New Population to set: </label> <input type="number"
+			<label>New Population to set: </label> 
+			<input type="number"
 				name="newAssignedPopulation"
 				value="<c:out value="${currentAssigned}" />" min="0"
-				max="<c:out value="${maxAssignable}"/>" required><br>
-			<div>
-				<input type="submit" value="submit" class="btn btn-success">
-				<input type="reset" class="btn btn-danger"> <input
-					type="submit" value="Back" class="btn btn-info"
-					formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>"
-					formmethod="get">
-			</div>
+				max="<c:out value="${maxAssignable}"/>" required><br> 
+				<div>
+				<input
+				type="submit" value="submit" class="btn btn-success"> <input
+				type="reset" class="btn btn-danger"> <input type="submit"
+				value="Back" class="btn btn-info"
+				formaction="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>"
+				formmethod="get">
+				</div>
 		</form>
 	</div>
 </body>
