@@ -1,6 +1,7 @@
 package com.fdmgroup.medievalmayor.game.city;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -21,9 +22,10 @@ public class MultiplayerGameTest {
 	@Test
 	public void testThatIsReady_City_ReturnsFalseForANewMulitplayerGame(){
 		Set<City> cities = multiplayerGame.getCities();
-		for (City city: cities){
-			
+		City city;
+		for (City localCity: cities){
+			city = localCity;
 		}
-		assertFalse(multiplayerGame.isReady())
+		assertFalse(multiplayerGame.isReady(city));
 	}
 }
