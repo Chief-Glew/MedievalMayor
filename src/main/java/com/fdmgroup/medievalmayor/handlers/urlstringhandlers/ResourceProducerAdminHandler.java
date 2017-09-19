@@ -30,6 +30,7 @@ public class ResourceProducerAdminHandler extends URLStringHandler {
 		try {
 			Class<? extends ResourceProducer> resourceProducerClass = stringToClassHandler.handle(urlString);
 			ResourceProducer resourceProducer = city.getResourceProducerOfType(resourceProducerClass);
+			model.addAttribute("resourceProducer", resourceProducer);
 			int baseResourceProduction = resourceProducer.getBaseResourceProduction();
 			int upgradeMultiplier = resourceProducer.getUpgradeMultiplier();
 			model.addAttribute("baseResourceProduction", baseResourceProduction);

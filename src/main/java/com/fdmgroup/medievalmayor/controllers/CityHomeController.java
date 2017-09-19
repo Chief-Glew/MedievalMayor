@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,8 @@ import com.fdmgroup.medievalmayor.handlers.urlstringhandlers.ResourceProducerHan
 import com.fdmgroup.medievalmayor.handlers.urlstringhandlers.URLStringHandler;
 import com.fdmgroup.medievalmayor.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.resourceproducers.ResourceProducerService;
+import com.fdmgroup.medievalmayor.config.AppConfig;
+
 
 @Controller
 public class CityHomeController {
@@ -87,7 +91,7 @@ public class CityHomeController {
 	@RequestMapping(value = "/{cityName}/{cityId}", method = RequestMethod.GET)
 	public String displayCityStats(@PathVariable String cityId, Model model) {
 		City city = addCityToModel(cityId, model);
-		
+
 		Set<ResourceProducer> resourceProducers = city.getResourceGenerators();
 		Map<String, Integer> resources = city.getResources();
 		resources.remove("Population");
@@ -103,7 +107,7 @@ public class CityHomeController {
 	}
 
 	@RequestMapping(value = { "/{cityName}/{cityId}/NextTurn", "/{cityName}/{cityId}/nextturn",
-			"/{cityName}/{cityId}/nextTurn" }, method = RequestMethod.POST)
+	"/{cityName}/{cityId}/nextTurn" }, method = RequestMethod.POST)
 	public String nextTurn(@PathVariable String cityId, Model model) {
 		City city = addCityToModel(cityId, model);
 		try {
@@ -146,18 +150,22 @@ public class CityHomeController {
 		}
 	}
 
-	@RequestMapping(value = "/{cityName}/{cityId}/admin/{producerName}", method = RequestMethod.POST) // TODO
-																										// complete
-																										// method
+	@RequestMapping(value = "/{cityName}/{cityId}/admin/{producerName}", method = RequestMethod.POST)																							
 	public String updateAdminValuesForResourceProducer(@PathVariable String cityId, @PathVariable String producerName,
-			Model model) {
+			@RequestParam("baseProduction") String baseProduction, @RequestParam("upgradeMultiplier") String upgradeMultiplier, Model model) {
+		int baseProductionInt = Integer.valueOf(baseProduction);
+		int upgradeMultiplierInt = Integer.valueOf(upgradeMultiplier);
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class); //TODO fix this;
+		ResourceProducerClassFromStringHandler resourceProducerClass = applicationContext.getBean(ResourceProducerClassFromStringHandler.class);
 		City city = addCityToModel(cityId, model);
-		URLStringHandler handler = new LumberMillAdminHandler();
-		handler.addToChain(new ResourceProducerAdminHandler());
+		logger.debug("UpdateAdminValuesForResourceProducer method used");
 		try {
-			String jspName = handler.handle(city, producerName, model);
+			city.getResourceProducerOfType(resourceProducerClass.handle(producerName)).setBaseResourceProduction(baseProductionInt);;
+			city.getResourceProducerOfType(resourceProducerClass.handle(producerName)).setUpgradeMultiplier(upgradeMultiplierInt);;
 			writeCrud.update(city);
-			logger.debug("UpdateAdminValuesForResourceProducer method used");
+			String jspName = urlStringHandler.handle(city, producerName, model);
+			writeCrud.update(city);
+			logger.debug("DisplayAssignerForm method used");
 			return jspName;
 		} catch (NullPointerException exception) {
 			logger.debug("Null Pointer Exception");

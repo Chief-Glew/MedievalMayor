@@ -52,13 +52,13 @@ public class CityHomeControllerTest {
 	}
 	
 	@Test
-	public void testThatUpdateAdminValuesForResourceProducerWillDirectToResourceProducerAdminPageJSP(){
-		assertEquals("resourceProducerAdminPage", cityHomeController.updateAdminValuesForResourceProducer("1", "Farm", modelMock));
+	public void testThatUpdateAdminValuesForResourceProducerWillDirectAssignationPage(){
+		assertEquals("assignationPage", cityHomeController.updateAdminValuesForResourceProducer("1", "Farm", "2", "2", modelMock));
 	}
 	
 	@Test
 	public void testThatUpdateAdminValuesForResourceProducerWillDirectToRWrongTurnPageJSPIfGivenNull(){
-		assertEquals("wrongTurnPage", cityHomeController.updateAdminValuesForResourceProducer("1", null, modelMock));
+		assertEquals("wrongTurnPage", cityHomeController.updateAdminValuesForResourceProducer("100001", "Farm", "2", "2", modelMock));
 	}
 	
 	@Test
