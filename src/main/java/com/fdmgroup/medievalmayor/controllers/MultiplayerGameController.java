@@ -15,31 +15,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.fdmgroup.medievalmayor.CRUD.GenericRead;
 import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
 import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.city.CityFactory;
 import com.fdmgroup.medievalmayor.game.city.MultiplayerGame;
-import com.fdmgroup.medievalmayor.game.command.ClientCommand;
-import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
-import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.ResourceProducerUpgradeHandler;
-import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.ResourceProducerHandler;
-import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.URLStringHandler;
-import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
+import com.fdmgroup.medievalmayor.game.exceptions.GameOverException;
 
 @Controller
-@RequestMapping("multiPlayer")
+@RequestMapping("multiplayerGame")
 public class MultiplayerGameController {
 
 	static final Logger logger = LogManager.getLogger("CityHomeController.class");
 
 	private GenericRead<MultiplayerGame> MultiReadCrud;
 	private GenericWrite<MultiplayerGame> MultiWriteCrud;
-	private CityHomeController cityHomeController;
+	private SingleplayerController singleplayerController;
 
 	@Autowired
-	public MultiplayerGameController(CityHomeController cityHomeController, GenericRead<MultiplayerGame> MultiReadCrud,
+	public MultiplayerGameController(SingleplayerController singleplayerController, GenericRead<MultiplayerGame> MultiReadCrud,
 			GenericWrite<MultiplayerGame> MultiWriteCrud) {
 		this.MultiReadCrud = MultiReadCrud;
 		this.MultiWriteCrud = MultiWriteCrud;
-		this.cityHomeController = cityHomeController;
+		this.singleplayerController = singleplayerController;
 	}
 	
 	private MultiplayerGame addMultiplayerGameToModel(String multiplayerGameId, Model model) {
@@ -50,10 +44,10 @@ public class MultiplayerGameController {
 	}
 	
 	@RequestMapping(value="/{multiplayerGameName}/{multiplayerGameId}/{cityName}/{cityId}/", method = RequestMethod.GET)
-	public String showAllMultiplayerGames(@PathVariable String multiplayerGameId, @PathVariable String cityId, Model model){
+	public String showAllCities(@PathVariable String multiplayerGameId, @PathVariable String cityId, Model model){
+		singleplayerController.displayCityStats(cityId, model);
 		MultiplayerGame multiplayerGame = addMultiplayerGameToModel(multiplayerGameId, model);
-		City city = cityHomeController.addCityToModel(cityId, model);
-		cityHomeController.displayCityStats(cityId, model);
+		City city = singleplayerController.addCityToModel(cityId, model);
 		Set<City> otherCities = multiplayerGame.getCities();
 		otherCities.remove(city);
 		model.addAttribute("otherCities", otherCities);
@@ -62,14 +56,31 @@ public class MultiplayerGameController {
 	}
 	
 	@RequestMapping(value="/{multiplayerGameName}/{multiplayerGameId}/{cityName}/{cityId}/nextturn", method = RequestMethod.GET)
-
+	public String nextTurn(@PathVariable String multiplayerGameId, @PathVariable String cityId, Model model){
+		MultiplayerGame multiplayerGame = addMultiplayerGameToModel(multiplayerGameId, model);
+		City city = singleplayerController.addCityToModel(cityId, model);
+		try {
+			multiplayerGame.setReady(city);
+			return showAllCities(multiplayerGameId, cityId, model);
+		} catch (GameOverException e) {
+			e.printStackTrace();
+			return "gameOver";
+		}
+		
+	}
+	
 	@RequestMapping(value="/{multiplayerGameName}/{multiplayerGameId}/{cityName}/{cityId}/", method = RequestMethod.GET)
-
-	@RequestMapping(value="/{multiplayerGameName}/{multiplayerGameId}/{cityName}/{cityId}/", method = RequestMethod.GET)
-
-	@RequestMapping(value="/{multiplayerGameName}/{multiplayerGameId}/{cityName}/{cityId}/", method = RequestMethod.GET)
-
-	@RequestMapping(value="/{multiplayerGameName}/{multiplayerGameId}/{cityName}/{cityId}/", method = RequestMethod.GET)
+	public String displayAssignerForm(@PathVariable String multiplayerGameId, @PathVariable String cityId, @PathVariable String producerName, Model model) {
+		addMultiplayerGameToModel(multiplayerGameId, model);
+		String jspFile = singleplayerController.displayAssignerForm(cityId, producerName, model);
+		singleplayerController.addCityToModel(cityId, model);
+		return "multi"+jspFile;
+	}
+	//	@RequestMapping(value="/{multiplayerGameName}/{multiplayerGameId}/{cityName}/{cityId}/", method = RequestMethod.GET)
+//
+//	@RequestMapping(value="/{multiplayerGameName}/{multiplayerGameId}/{cityName}/{cityId}/", method = RequestMethod.GET)
+//
+//	@RequestMapping(value="/{multiplayerGameName}/{multiplayerGameId}/{cityName}/{cityId}/", method = RequestMethod.GET)
 
 
 }
