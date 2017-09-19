@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
+
 public class ResourceProducerTest {
 	
 	private Farm farm;

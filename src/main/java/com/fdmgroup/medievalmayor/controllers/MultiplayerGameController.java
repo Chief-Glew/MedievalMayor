@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fdmgroup.medievalmayor.CRUD.GenericRead;
 import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
-import com.fdmgroup.medievalmayor.city.City;
 import com.fdmgroup.medievalmayor.exceptions.GameOverException;
+import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.MultiplayerGame;
 
 @Controller
-@RequestMapping("multiplayerGame")
 public class MultiplayerGameController {
 
 	static final Logger logger = LogManager.getLogger("CityHomeController.class");

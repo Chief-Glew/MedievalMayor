@@ -5,16 +5,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.fdmgroup.medievalmayor.handlers.getproducertypehandlers.FarmStringHandler;
-import com.fdmgroup.medievalmayor.handlers.getproducertypehandlers.ForestStringHandler;
-import com.fdmgroup.medievalmayor.handlers.getproducertypehandlers.LumberMillStringHandler;
-import com.fdmgroup.medievalmayor.handlers.getproducertypehandlers.MineStringHandler;
-import com.fdmgroup.medievalmayor.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
-import com.fdmgroup.medievalmayor.handlers.upgradehandlers.FarmUpgradeHandler;
-import com.fdmgroup.medievalmayor.handlers.upgradehandlers.ForestUpgradeHandler;
-import com.fdmgroup.medievalmayor.handlers.upgradehandlers.LumberMillUpgradeHandler;
-import com.fdmgroup.medievalmayor.handlers.upgradehandlers.MineUpgradeHandler;
-import com.fdmgroup.medievalmayor.handlers.upgradehandlers.ResourceProducerUpgradeHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.FarmStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ForestStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.LumberMillStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.MineStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.FarmUpgradeHandler;
+import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.ForestUpgradeHandler;
+import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.LumberMillUpgradeHandler;
+import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.MineUpgradeHandler;
+import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.ResourceProducerUpgradeHandler;
 
 @Configuration
 @ComponentScan({"com.fdmgroup.medievalmayor.game", "com.fdmgroup.medievalmayor.controllers", "com.fdmgroup.medievalmayor.CRUD"})

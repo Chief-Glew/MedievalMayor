@@ -7,11 +7,9 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.fdmgroup.medievalmayor.city.City;
-import com.fdmgroup.medievalmayor.city.CityFactory;
-import com.fdmgroup.medievalmayor.command.ClientCommand;
 import com.fdmgroup.medievalmayor.config.AppConfig;
 import com.fdmgroup.medievalmayor.exceptions.GameOverException;
+import com.fdmgroup.medievalmayor.game.command.ClientCommand;
 
 public class UpdateCityYearCommandTest {
 	

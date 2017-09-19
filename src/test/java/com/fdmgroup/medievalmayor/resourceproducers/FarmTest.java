@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.exceptions.InsufficientPopulationException;
+import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
 
 public class FarmTest {
 	private Farm farm;

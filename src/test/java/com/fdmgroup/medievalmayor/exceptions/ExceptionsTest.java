@@ -9,15 +9,15 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.ui.Model;
 
-import com.fdmgroup.medievalmayor.city.City;
-import com.fdmgroup.medievalmayor.city.CityFactory;
-import com.fdmgroup.medievalmayor.command.ClientCommand;
-import com.fdmgroup.medievalmayor.command.UpgradeCommand;
 import com.fdmgroup.medievalmayor.config.AppConfig;
-import com.fdmgroup.medievalmayor.handlers.upgradehandlers.ResourceProducerUpgradeHandler;
-import com.fdmgroup.medievalmayor.resourceproducers.Farm;
-import com.fdmgroup.medievalmayor.resourceproducers.ResourceProducer;
-import com.fdmgroup.medievalmayor.resourceproducers.ResourceProducerService;
+import com.fdmgroup.medievalmayor.game.city.City;
+import com.fdmgroup.medievalmayor.game.city.CityFactory;
+import com.fdmgroup.medievalmayor.game.command.ClientCommand;
+import com.fdmgroup.medievalmayor.game.command.UpgradeCommand;
+import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.ResourceProducerUpgradeHandler;
+import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
 public class ExceptionsTest {
 	private City city;

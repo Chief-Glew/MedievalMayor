@@ -3,8 +3,6 @@ package com.fdmgroup.medievalmayor.game.city;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fdmgroup.medievalmayor.city.CityFactory;
-
 @Component
 public class MultiplayerGameFactory {
 	
