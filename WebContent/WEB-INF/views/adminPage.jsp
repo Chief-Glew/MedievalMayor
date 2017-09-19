@@ -31,7 +31,7 @@ body {
 	border: 1px solid black;
 	opacity: 0.9;
 	filter: alpha(opacity = 0);
-	max-width: 300px;
+	max-width: 200px;
 	margin: 0 auto;
 	text-align: justify;
 	text-justify: inter-word;

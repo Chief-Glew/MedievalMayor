@@ -87,21 +87,15 @@ public class CityHomeController {
 
 	@RequestMapping(value = "/{cityName}/{cityId}", method = RequestMethod.GET)
 	public String displayCityStats(@PathVariable String cityId, Model model) {
-		City city = addCityToModel(cityId, model);
-
-		Map<String, Integer> workers = new HashMap<String, Integer>();
-		for (ResourceProducer resourceProducer : city.getResourceGenerators()) {
-			workers.put(resourceProducer.getResourceProducerName(),
-					resourceProducerService.getPeopleInBuilding(resourceProducer));
-		}
+		City city = addCityToModel(cityId, model);		
+		Set<ResourceProducer> resourceProducers = city.getResourceGenerators();
 		Map<String, Integer> resources = city.getResources();
 		resources.remove("Population");
 
 		model.addAttribute("totalPopulation", city.getTotalPopulation());
 		model.addAttribute("unnassignedPeople", city.getUnassignedPopulation());
-		model.addAttribute("workers", workers);
 		model.addAttribute("resources", resources);
-
+		model.addAttribute("resourceProducers", resourceProducers);
 		writeCrud.update(city);
 		logger.debug("DisplayCityStats method used");
 		return "newUserHome";
@@ -196,13 +190,26 @@ public class CityHomeController {
 		writeCrud.update(city);
 		return displayCityStats(cityId, model);
 	}
-
-	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/update", method = RequestMethod.GET)
-	public String submitNewMinerAssignment(@PathVariable String cityId, @PathVariable String producerName,
-			@RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
+	
+	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/upgrade", method = RequestMethod.GET)
+	public String displayMinerAsignerForm(@PathVariable String cityId, @PathVariable String producerName, Model model) {
 		City city = addCityToModel(cityId, model);
-
-		resourceProducerUpgradeHandler.handle(city, producerName, model);
+		try {
+		String jspName = urlStringHandler.handle(city, producerName, model);
+		writeCrud.update(city);
+		return jspName;
+		}
+		catch(NullPointerException exception){
+		return "wrongTurnPage";
+		}
+	}
+	
+	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/upgrade", method = RequestMethod.POST)
+	public String submitNewMinerAssignment(@PathVariable String cityId, @PathVariable String producerName, @RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
+		City city = addCityToModel(cityId, model);
+		
+		int newAssignedPopulation = Integer.valueOf(assignedPopulation);
+		clientComand.setNumberOfWorkersInResourceBuildingForCity(city, city.getResourceProducerOfType(stringToClassHandler.handle(producerName)), newAssignedPopulation);
 		writeCrud.update(city);
 		logger.debug("SubmitNewMinerAssignment method used");
 		return displayCityStats(cityId, model);

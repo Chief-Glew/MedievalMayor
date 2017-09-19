@@ -27,6 +27,7 @@ public class AppConfig {
 		resourceProducerClassFromStringHandler.addToChain(new MineStringHandler());
 		resourceProducerClassFromStringHandler.addToChain(new ForestStringHandler());
 		resourceProducerClassFromStringHandler.addToChain(new LumberMillStringHandler());
+		
 		return resourceProducerClassFromStringHandler;
 	}
 
