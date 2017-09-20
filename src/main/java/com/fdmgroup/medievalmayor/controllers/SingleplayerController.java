@@ -41,9 +41,7 @@ public class SingleplayerController {
 
 	private GenericRead<City> readCrud;
 	private GenericWrite<City> writeCrud;
-	private ResourceProducerService resourceProducerService;
 	private ClientCommand clientComand;
-	private CityFactory cityFactory;
 	private ResourceProducerClassFromStringHandler stringToClassHandler;
 	private URLStringHandler urlStringHandler;
 	private ResourceProducerUpgradeHandler resourceProducerUpgradeHandler;
@@ -51,15 +49,13 @@ public class SingleplayerController {
 	@Autowired
 	public SingleplayerController(ResourceProducerUpgradeHandler resourceProducerUpgradeHandler,
 			ClientCommand clientCommand, ResourceProducerClassFromStringHandler stringToClassHandler,
-			CityFactory cityFactory, ResourceProducerService resourceProducerService, GenericRead<City> readCrud,
-			GenericWrite<City> writeCrud, GenericRead<MultiplayerGame> MultiReadCrud,
+			GenericRead<City> readCrud, GenericWrite<City> writeCrud, 
+			GenericRead<MultiplayerGame> MultiReadCrud,
 			GenericWrite<MultiplayerGame> MultiWriteCrud) {
-		this.cityFactory = cityFactory;
 		this.clientComand = clientCommand;
 		this.readCrud = readCrud;
 		this.writeCrud = writeCrud;
 		urlStringHandler = new ResourceProducerHandler();
-		this.resourceProducerService = resourceProducerService;
 		this.stringToClassHandler = stringToClassHandler;
 		this.resourceProducerUpgradeHandler = resourceProducerUpgradeHandler;
 		logger.debug("City Controller Instantiated");
@@ -76,23 +72,7 @@ public class SingleplayerController {
 		return city;
 	}
 
-	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
-	public String showCities(Model model) {
-		System.out.println("root");
-		Set<City> cities = readCrud.readAll();
-		model.addAttribute("cities", cities);
-		logger.debug("ShowCities method used");
-		return "index";
-	}
-
-	@RequestMapping(value = "/newCity", method = RequestMethod.GET)
-	public String newCity(@RequestParam String cityName, Model model) {
-		String safeCityName = cityName.replaceAll("/", "forwardSlash");
-		safeCityName = safeCityName.replaceAll(" ", "");
-		writeCrud.create(cityFactory.getNewCity(safeCityName));
-		logger.debug("NewCity method used");
-		return showCities(model);
-	}
+	
 
 	@RequestMapping(value = "/{cityName}/{cityId}", method = RequestMethod.GET)
 	public String displayCityStats(@PathVariable String cityId, @PathVariable String cityName, Model model) {

@@ -31,7 +31,7 @@ public class MultiplayerGame implements IdAble{
 	@Column(name="MULTIPLAYER_GAME_ID")
 	private long multiplayerGameId;
 	@ElementCollection
-	@CollectionTable
+	@CollectionTable(name="MULTIPLAYER_GAME_CITIES")
 	private Map<City, Boolean> cities;
 	@Transient
 	private ClientCommand clientCommand;

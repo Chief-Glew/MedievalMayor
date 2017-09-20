@@ -41,11 +41,11 @@ button {
 	<h1>
 		<span class="label label-default">Welcome to Medieval Mayor!</span>
 	</h1>
-		<a class="btn btn-primary" href="/medievalmayor/index">
+		<a class="btn btn-primary" href="/medievalmayor/singleplayerGame">
 			<h3>SinglePlayer</h3>
 		</a>
 
-		<a class="btn btn-success" href="/medievalmayor/index">
+		<a class="btn btn-success" href="/medievalmayor/multiplayerGame">
 			<h3>MultiPlayer</h3>
 		</a>
 </body>
