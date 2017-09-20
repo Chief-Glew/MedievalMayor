@@ -2,11 +2,21 @@ package com.fdmgroup.medievalmayor.game.handlers.peoplekillinghandlers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
+import com.fdmgroup.medievalmayor.game.resources.ResourceFactory;
 
+@Component
 public class FarmersKiller extends PeopleKillingHandler {
+
+	@Autowired
+	public FarmersKiller(ResourceFactory resourceFactory) {
+		super(resourceFactory);
+	}
 
 	@Override
 	public void handle(City city, List<String> events) {

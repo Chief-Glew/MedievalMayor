@@ -15,8 +15,8 @@ public abstract class PeopleKillingHandler {
 	protected PeopleKillingHandler next;
 	protected ResourceFactory resourceFactory;
 	
-	public PeopleKillingHandler() {
-		this.resourceFactory = new ResourceFactory();
+	public PeopleKillingHandler(ResourceFactory resourceFactory) {
+		this.resourceFactory = resourceFactory;
 	}
 	
 	public void addToChain(PeopleKillingHandler handler) {

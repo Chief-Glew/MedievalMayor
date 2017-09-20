@@ -32,7 +32,8 @@ public class CityFactory {
 				resourceProducerFactory.getFarm(), 
 				resourceProducerFactory.getMine(),
 				resourceProducerFactory.getForest(),
-				resourceProducerFactory.getLumberMill());
+				resourceProducerFactory.getLumberMill(),
+				resourceProducerFactory.getGuardHouse());
 	}
 
 }

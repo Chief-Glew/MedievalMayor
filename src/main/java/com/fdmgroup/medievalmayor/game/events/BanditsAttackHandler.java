@@ -14,15 +14,13 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.GuardHouse;;
 @Component
 public class BanditsAttackHandler extends RandomEventHandler {
 
-	private double frequency = 0.2;
-	private ResourceFactory resourceFactory;
+	private double frequency = 1;
 	private PeopleKillingHandler peopleKillingHandler;
 	private ResourceStealingHandler resourceStealingHandler;
 
 	@Autowired
-	public BanditsAttackHandler(ResourceFactory resourceFactory, PeopleKillingHandler peopleKillingHandler,
+	public BanditsAttackHandler(PeopleKillingHandler peopleKillingHandler,
 			ResourceStealingHandler resourceStealingHandler) {
-		this.resourceFactory = resourceFactory;
 		this.peopleKillingHandler = peopleKillingHandler;
 		this.resourceStealingHandler = resourceStealingHandler;
 	}
@@ -40,31 +38,35 @@ public class BanditsAttackHandler extends RandomEventHandler {
 	@Override
 	public List<String> handle(City city, List<String> events) {
 		if(Math.random()<frequency){
-			int numberOfBandits = generateBanditNumbers(city);
-			events.add("You were attacked by "+numberOfBandits+" bandits!");
-			GuardHouse guardHouse = (GuardHouse)city.getResourceProducerOfType(GuardHouse.class);
-			int numberOfBanditsKilled = guardHouse.getBanditsKilled();
-			if (numberOfBanditsKilled>numberOfBandits){
-			events.add("Your guards killed all of them!");
-			}
-			else{
-				events.add("Your guards killed "+numberOfBanditsKilled+" of them!");
-			}
-			numberOfBandits -= numberOfBanditsKilled;
-			for(int i=0 ; i < numberOfBandits; i++){
-				if(Math.random()<0.5){
-					peopleKillingHandler.handle(city, events);
-				}
-				else{
-				resourceStealingHandler.handle(city, events);
-				}
-			}
+			banditsAttack(city, events);
 		}
 
 		if (!isNextNull()) {
 			return next.handle(city, events);
 		}
 		return events;
+	}
+
+	private void banditsAttack(City city, List<String> events) {
+		int numberOfBandits = generateBanditNumbers(city);
+		events.add("You were attacked by "+numberOfBandits+" bandits!");
+		GuardHouse guardHouse = (GuardHouse)city.getResourceProducerOfType(GuardHouse.class);
+		int numberOfBanditsKilled = guardHouse.getBanditsKilled();
+		if (numberOfBanditsKilled>numberOfBandits){
+			events.add("Your guards killed all of them!");
+		}
+		else{
+			events.add("Your guards killed "+numberOfBanditsKilled+" of them!");
+		}
+		numberOfBandits -= numberOfBanditsKilled;
+		for(int i=0 ; i < numberOfBandits; i++){
+			if(Math.random()<0.5){
+				peopleKillingHandler.handle(city, events);
+			}
+			else{
+				resourceStealingHandler.handle(city, events);
+			}
+		}
 	}
 
 	private int generateBanditNumbers(City city) {

@@ -1,6 +1,8 @@
 package com.fdmgroup.medievalmayor.controllers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,6 +26,7 @@ import com.fdmgroup.medievalmayor.exceptions.InvalidCityNameIDCombinationExcepti
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.MultiplayerGame;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
+import com.fdmgroup.medievalmayor.game.events.RandomEventHandler;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.ResourceProducerUpgradeHandler;
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.LumberMillAdminHandler;
@@ -44,13 +47,16 @@ public class SingleplayerController {
 	private ResourceProducerClassFromStringHandler stringToClassHandler;
 	private URLStringHandler urlStringHandler;
 	private ResourceProducerUpgradeHandler resourceProducerUpgradeHandler;
+	private RandomEventHandler randomEventHandler;
 
 	@Autowired
 	public SingleplayerController(ResourceProducerUpgradeHandler resourceProducerUpgradeHandler,
 			ClientCommand clientCommand, ResourceProducerClassFromStringHandler stringToClassHandler,
 			GenericRead<City> readCrud, GenericWrite<City> writeCrud, 
 			GenericRead<MultiplayerGame> MultiReadCrud,
-			GenericWrite<MultiplayerGame> MultiWriteCrud) {
+			GenericWrite<MultiplayerGame> MultiWriteCrud,
+			RandomEventHandler randomEventHandler) {
+		this.randomEventHandler = randomEventHandler;
 		this.clientComand = clientCommand;
 		this.readCrud = readCrud;
 		this.writeCrud = writeCrud;
@@ -98,18 +104,23 @@ public class SingleplayerController {
 	"/{cityName}/{cityId}/nextTurn" }, method = RequestMethod.POST)
 	public String nextTurn(@PathVariable String cityId, @PathVariable String cityName, Model model) {
 		City city;
+		List<String> events = new ArrayList<String>();
 		try {
 			city = addCityToModel(cityId, cityName, model);
 		} catch (InvalidCityNameIDCombinationException e) {
 			return "wrongTurnPage";
 		}
 		try {
-			clientComand.nextTurn(city);
+			clientComand.nextTurn(city); //TODO make next turn record events
 		} catch (GameOverException e) {
 			e.printStackTrace();
 			return "gameOverPage";
 		}
+		randomEventHandler.handle(city, events);
 		writeCrud.update(city);
+		System.out.println("----------------------------------------------------------------------------------------------------");
+		System.out.println(events);
+		model.addAttribute("events", events);
 		logger.debug("NextTurn method used");
 		return displayCityStats(cityId, cityName, model);
 	}
