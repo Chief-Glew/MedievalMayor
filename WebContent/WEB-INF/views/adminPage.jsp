@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Farm Service</title>
+<title>City Service</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -16,6 +17,10 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <style>
+html {
+	width: 100%;
+}
+
 body {
 	background-image:
 		url('https://i.ytimg.com/vi/UON27Kydqsw/maxresdefault.jpg');
@@ -31,7 +36,7 @@ body {
 	border: 1px solid black;
 	opacity: 0.9;
 	filter: alpha(opacity = 0);
-	max-width: 200px;
+	max-width: 250px;
 	margin: 0 auto;
 	text-align: justify;
 	text-justify: inter-word;
@@ -40,15 +45,17 @@ body {
 	border-bottom: 25px solid transparent;
 	border-right: 25px solid transparent;
 }
-th, td {
-    border-bottom: 1px solid #ddd;
+
+.text {
+	margin: 30px;
+	background-color: #ffffff;
+	border: 1px solid black;
+	opacity: 0.6;
+	filter: alpha(opacity = 0);
 }
-tr:hover {background-color: #f5f5f5}
-h1{
-color: #73020F
-}
-.tableview{
-text-align: center;
+
+h1 {
+	color: #73020F
 }
 </style>
 </head>
@@ -75,7 +82,9 @@ text-align: center;
 		</div>
 	</nav>
 
-	<h1><span class="label label-default">Admin</span></h1>
+	<h1>
+		<span class="label label-default">Admin</span>
+	</h1>
 
 	<div class="info">
 		<table class="tableview">
