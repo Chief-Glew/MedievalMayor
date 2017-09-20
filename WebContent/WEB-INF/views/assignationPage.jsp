@@ -40,12 +40,26 @@ body {
 	border-bottom: 25px solid transparent;
 	border-right: 25px solid transparent;
 }
+
 th, td {
-    border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 }
-tr:hover {background-color: #f5f5f5}
+
+tr:hover {
+	background-color: #f5f5f5;
+}
+
 h1 {
-	color: #73020F
+	color: #73020F;
+}
+
+.title {
+	text-align: left;
+	margin-bottom: 5px;
+	font-size: 160%;
+	padding: 5px;
+	font-weight: bold;
+	color: #73020F;
 }
 </style>
 </head>
@@ -59,15 +73,11 @@ h1 {
 				<li><a href="/medievalmayor/">Home</a></li>
 				<li class="active"><a
 					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>">City</a></li>
-				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Farm">Farm</a></li>
-				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Mine">Mine</a></li>
-				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Forest">Forest</a></li>
-				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/LumberMill">Lumber
-						Mill</a></li>
+				<c:forEach items="${resourceProducers}" var="resourceProducer">
+					<li><a
+						href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}" />"><c:out
+								value="${resourceProducer.resourceProducerName}" /></a></li>
+				</c:forEach>
 			</ul>
 		</div>
 	</nav>

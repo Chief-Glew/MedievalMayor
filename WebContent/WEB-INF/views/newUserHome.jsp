@@ -73,15 +73,11 @@ h1 {
 				<li><a href="/medievalmayor/">Home</a></li>
 				<li class="active"><a
 					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>">City</a></li>
-				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Farm">Farm</a></li>
-				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Mine">Mine</a></li>
-				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Forest">Forest</a></li>
-				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/LumberMill">Lumber
-						Mill</a></li>
+				<c:forEach items="${resourceProducers}" var="resourceProducer">
+					<li><a
+						href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}" />"><c:out
+								value="${resourceProducer.resourceProducerName}" /></a></li>
+				</c:forEach>
 			</ul>
 		</div>
 	</nav>
@@ -90,8 +86,9 @@ h1 {
 				value="${city.cityName }" /></span>
 	</h1>
 	<div class="info">
-	
-	<label>Year: </label> <c:out value="${city.cityYear}"></c:out>
+
+		<label>Year: </label>
+		<c:out value="${city.cityYear}"></c:out>
 		<table>
 			<caption class="title">Population</caption>
 			<tr>
@@ -105,9 +102,8 @@ h1 {
 		</table>
 
 		<table>
-			<caption class="title">Resource Producer
-			</caption>
-		<tr>
+			<caption class="title">Resource Producer</caption>
+			<tr>
 				<th>Name</th>
 				<th>Workers&emsp;</th>
 				<th>Level</th>
@@ -122,7 +118,7 @@ h1 {
 						href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}" />">+</a></td>
 				</tr>
 			</c:forEach>
-			</table>
+		</table>
 		<table>
 			<caption class="title">Resources</caption>
 			<c:forEach items="${resources}" var="resource">
