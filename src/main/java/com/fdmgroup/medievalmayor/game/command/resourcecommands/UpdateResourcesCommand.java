@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
 import com.fdmgroup.medievalmayor.game.command.UpdatePopulationCommand;
+import com.fdmgroup.medievalmayor.game.command.UpdateWeatherCommand;
 import com.fdmgroup.medievalmayor.game.command.UserCommand;
 import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateFoodHandler;
 import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateGoldHandler;

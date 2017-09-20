@@ -13,16 +13,25 @@ public class Farm extends ResourceProducer{
 
 	static final Logger logger = LogManager.getLogger("Farm.class");
 
+	private double weatherMultiplier;
+	
 	public Farm(){}
 
 	public Farm(int numberOfAssignedWorkers, int baseResourceProduction, int resourceProducerCost,String resourceProducerName, int producerLevel, int upgradeMultiplier) {
 		super(numberOfAssignedWorkers, baseResourceProduction, resourceProducerCost, resourceProducerName, producerLevel, upgradeMultiplier);
 	}
 
+	public void setWeatherMultiplier(double weatherMultiplier) {
+		this.weatherMultiplier = weatherMultiplier;
+	}
+
 	@Override
 	public Resource produceResource() {
 		logger.debug("Food Produced");
 		Double levelMultiplier = Double.valueOf(Math.pow(getUpgradeMultiplier(),getProducerLevel()));
-		return resourceFactory.getFood(getNumberOfAssignedWorkers()*getBaseResourceProduction()*levelMultiplier.intValue());
+		Double doubleFoodAmount = getNumberOfAssignedWorkers()*getBaseResourceProduction()*weatherMultiplier*levelMultiplier;
+		return resourceFactory.getFood(doubleFoodAmount.intValue());
 	}
+
+	
 }

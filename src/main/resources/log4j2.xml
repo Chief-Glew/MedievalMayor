@@ -81,6 +81,11 @@
 		</Logger>
 
 		<!-- Command Loggers -->
+		
+		<Logger name="UpdateWeatherCommand.class" level="trace"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
 
 		<Logger name="UpdatePopulationCommand.class" level="debug"
 			additivity="false">

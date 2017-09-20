@@ -27,7 +27,7 @@ public abstract class ResourceProducerUpgradeHandler extends URLStringHandler {
 	}
 
 	protected void setCost(Map<String, Integer> cost) {
-		this.cost = cost;
+		this.cost = cost; 
 	}
 
 	@Override

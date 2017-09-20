@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.command.resourcecommands.UpdateResourcesCommand;
+import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.UpdateWeatherHandler;
 
 public class NextTurnCommand implements UserCommand {
 	
@@ -12,19 +12,19 @@ public class NextTurnCommand implements UserCommand {
 	
 	private City city;
 	
-	
 	public NextTurnCommand(City city) {
-		this.city = city;
+		this.city = city; 
 	}
 
 	@Override
 	public void execute() {
-		UserCommand updateResourceCommand = new UpdateResourcesCommand(city);
+		
+		UserCommand updateWeatherCommand = new UpdateWeatherCommand(city);
 		CommandInvoker commandInvoker = new CommandInvoker();
-		commandInvoker.setCommand(updateResourceCommand);
+		commandInvoker.setCommand(updateWeatherCommand);
 		commandInvoker.invokeCommands();
 		
-		logger.debug("Execute method used");
+		logger.debug("Execute weather method used");
 	}
 
 }
