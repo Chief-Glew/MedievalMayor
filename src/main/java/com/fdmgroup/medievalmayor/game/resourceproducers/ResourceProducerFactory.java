@@ -26,7 +26,7 @@ public class ResourceProducerFactory {
 	}
 	
 	public ResourceProducer getLumberMill(){
-		logger.debug("LumberMill retrieved");
-		return new LumberMill(0, 4, 0, "LumberMill", 0, 3, 4);
+		logger.debug("Lumber Mill retrieved");
+		return new LumberMill(0, 4, 0, "Lumber Mill", 0, 3, 4);
 	}
 }

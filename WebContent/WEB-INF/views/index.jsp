@@ -68,7 +68,7 @@ color: #73020F
 				<a class="navbar-brand" href="/medievalmayor/">Medieval Mayor</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="/medievalmayor/singleplayerGame/">Home</a></li>
+				<li><a href="/medievalmayor/">Home</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -108,19 +108,19 @@ color: #73020F
 	
 	<h1><span class="label label-default">Select your City!</span></h1>
 	<div class="info">
-		<form action="/medievalmayor/singleplayerGame/home" method="get">
+		<form action="/medievalmayor/home" method="get">
 			<c:forEach items="${cities}" var="selectCity">
 				<input type="submit" name="cityId" value="select"
-					formaction="/medievalmayor/singleplayerGame/<c:out value="${selectCity.cityName}"/>/<c:out value="${selectCity.cityId}"/>" />
+					formaction="/medievalmayor/<c:out value="${selectCity.cityName}"/>/<c:out value="${selectCity.cityId}"/>" />
 				<label><c:out value="${selectCity.cityId}" />:<c:out
 						value="${selectCity.cityName}" /></label>
 				<br>
 			</c:forEach>
 		</form>
 		<form>
-			<input type="text" value="DefaultCity" name="cityName"
-				pattern="[^/]*" required> <input type="submit"
-				value="newcity" formaction="/medievalmayor/singleplayerGame/newCity" formmethod="get">
+			<input type="text" value="Rivendale" name="cityName"
+				pattern="[a-zA-Z0-9]+"  maxlength="28" required> <input type="submit"
+				value="newcity" formaction="/medievalmayor/newCity" formmethod="get">
 		</form>
 	</div>
 </body>

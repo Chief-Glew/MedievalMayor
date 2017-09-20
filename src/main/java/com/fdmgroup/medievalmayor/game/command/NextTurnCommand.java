@@ -20,10 +20,8 @@ public class NextTurnCommand implements UserCommand {
 	@Override
 	public void execute() {
 		UserCommand updateResourceCommand = new UpdateResourcesCommand(city);
-		UserCommand updateCityYearCommand = new UpdateCityYearCommand(city);
 		CommandInvoker commandInvoker = new CommandInvoker();
 		commandInvoker.setCommand(updateResourceCommand);
-		commandInvoker.setCommand(updateCityYearCommand);
 		commandInvoker.invokeCommands();
 		
 		logger.debug("Execute method used");

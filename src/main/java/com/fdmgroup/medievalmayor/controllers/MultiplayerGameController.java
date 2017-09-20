@@ -18,7 +18,7 @@ import com.fdmgroup.medievalmayor.exceptions.GameOverException;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.MultiplayerGame;
 
-@Controller
+
 public class MultiplayerGameController {
 
 	static final Logger logger = LogManager.getLogger("CityHomeController.class");
@@ -27,7 +27,7 @@ public class MultiplayerGameController {
 	private GenericWrite<MultiplayerGame> MultiWriteCrud;
 	private SingleplayerController singleplayerController;
 
-	@Autowired
+	
 	public MultiplayerGameController(SingleplayerController singleplayerController, GenericRead<MultiplayerGame> MultiReadCrud,
 			GenericWrite<MultiplayerGame> MultiWriteCrud) {
 		this.MultiReadCrud = MultiReadCrud;

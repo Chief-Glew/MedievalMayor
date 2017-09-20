@@ -28,7 +28,7 @@ public class LumberMillAdminHandler extends URLStringHandler {
 
 	@Override
 	public String handle(City city, String urlString, Model model) throws NullPointerException {
-		if (urlString.equals("LumberMill")) {
+		if (urlString.equals("Lumber Mill")) {
 			try {
 				next.handle(city, urlString, model);
 				LumberMill lumberMill = (LumberMill)city.getResourceProducerOfType(LumberMill.class);//TODO find a better way to do this

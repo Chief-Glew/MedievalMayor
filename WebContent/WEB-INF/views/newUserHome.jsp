@@ -90,6 +90,8 @@ h1 {
 				value="${city.cityName }" /></span>
 	</h1>
 	<div class="info">
+	
+	<label>Year: </label> <c:out value="${city.cityYear}"></c:out>
 		<table>
 			<caption class="title">Population</caption>
 			<tr>

@@ -34,11 +34,11 @@ public class UpdatePopulationCommand implements UserCommand {
 		if(resources.get("Food")>5){
 			newCitizens = resources.get("Food")/5;
 			totalPopulation += newCitizens;
-			city.addResource(resourceFactory.getPopulation(1));
+			city.addResource(resourceFactory.getPopulation(newCitizens));
 			logger.debug("Population increased by: "+newCitizens);
 		} 
 		else if (resources.get("Food")<0){
-			exCitizens = resources.get("Food")/-5;
+			exCitizens = resources.get("Food");
 			for (ResourceProducer resourceBuilding: city.getResourceGenerators()){
 				try {
 					resourceBuildingService.assignPeopleToResourceProducer(0, totalPopulation, resourceBuilding);
@@ -47,7 +47,7 @@ public class UpdatePopulationCommand implements UserCommand {
 					e.printStackTrace();
 				}
 			}
-			totalPopulation -= exCitizens;
+			totalPopulation += exCitizens;
 			logger.debug("Population decreased by: "+exCitizens);
 			resources.put("Population", totalPopulation);
 			resources.put("Food", 0);
@@ -55,6 +55,11 @@ public class UpdatePopulationCommand implements UserCommand {
 			city.setResources(resources);
 		}
 		city.setTotalPopulation(totalPopulation);
+		CommandInvoker commandInvoker = new CommandInvoker();
+		UserCommand updateCityYearCommand = new UpdateCityYearCommand(city);
+		commandInvoker.setCommand(updateCityYearCommand);
+		commandInvoker.invokeCommands();
+
 		logger.debug("Execute method used");
 	}
 }

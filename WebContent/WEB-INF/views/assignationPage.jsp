@@ -58,7 +58,7 @@ h1 {
 			<ul class="nav navbar-nav">
 				<li><a href="/medievalmayor/">Home</a></li>
 				<li class="active"><a
-					href="/medievalmayor/singlepla<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>">City</a></li>
+					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>">City</a></li>
 				<li><a
 					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Farm">Farm</a></li>
 				<li><a
