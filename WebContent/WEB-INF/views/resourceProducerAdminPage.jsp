@@ -31,14 +31,14 @@ body {
 	border: 1px solid black;
 	opacity: 0.9;
 	filter: alpha(opacity = 0);
-	max-width: 300px;
+	max-width: 350px;
 	margin: 0 auto;
 	text-align: justify;
 	text-justify: inter-word;
 	content: "";
-	border: 50px solid #9999ff;
-	border-bottom: 50px solid transparent;
-	border-right: 50px solid transparent;
+	border: 15px solid #9999ff;
+	border-bottom: 25px solid transparent;
+	border-right: 25px solid transparent;
 }
 
 th, td {
@@ -46,16 +46,25 @@ th, td {
 }
 
 tr:hover {
-	background-color: #f5f5f5
+	background-color: #f5f5f5;
 }
 
 h1 {
-	color: #73020F
+	color: #73020F;
+}
+
+.title {
+	text-align: left;
+	margin-bottom: 5px;
+	font-size: 160%;
+	padding: 5px;
+	font-weight: bold;
+	color: #73020F;
 }
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav>
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="/medievalmayor/">Medieval Mayor</a>
@@ -64,20 +73,18 @@ h1 {
 				<li><a href="/medievalmayor/">Home</a></li>
 				<li class="active"><a
 					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>">City</a></li>
-				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Farm">Farm</a></li>
-				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Mine">Mine</a></li>
-				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/Forest">Forest</a></li>
-				<li><a
-					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/LumberMill">Lumber
-						Mill</a></li>
+				<c:forEach items="${resourceProducers}" var="resourceProducer">
+					<li><a
+						href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}" />"><c:out
+								value="${resourceProducer.resourceProducerName}" /></a></li>
+				</c:forEach>
 			</ul>
 		</div>
 	</nav>
 
-	<h1>Admin</h1>
+	<h1>
+		<span class="label label-default">Admin</span>
+	</h1>
 	<div class="info">
 		<form
 			action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin/<c:out value="${resourceProducer.resourceProducerName}"/>"
