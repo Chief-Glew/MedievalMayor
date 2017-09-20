@@ -2,6 +2,8 @@ package com.fdmgroup.medievalmayor.game.handlers.upgradehandlers;
 
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.ui.Model;
 
 import com.fdmgroup.medievalmayor.game.city.City;
@@ -11,6 +13,9 @@ import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.URLStringHandl
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
 public abstract class ResourceProducerUpgradeHandler extends URLStringHandler {
+	
+	static final Logger logger = LogManager.getLogger("ResourceProducerUpgradeHandler.class");
+
 
 	private Map<String, Integer> cost;
 	private ClientCommand clientCommand;

@@ -22,7 +22,6 @@ import com.fdmgroup.medievalmayor.config.AppConfig;
 import com.fdmgroup.medievalmayor.exceptions.GameOverException;
 import com.fdmgroup.medievalmayor.exceptions.InvalidCityNameIDCombinationException;
 import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.city.CityFactory;
 import com.fdmgroup.medievalmayor.game.city.MultiplayerGame;
 import com.fdmgroup.medievalmayor.game.command.ClientCommand;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
@@ -33,7 +32,6 @@ import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.ResourceProduc
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.URLStringHandler;
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
-import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
 @Controller
 public class SingleplayerController {
@@ -72,8 +70,6 @@ public class SingleplayerController {
 		logger.debug("AddCityToModel method used");
 		return city;
 	}
-
-	
 
 	@RequestMapping(value = "/{cityName}/{cityId}", method = RequestMethod.GET)
 	public String displayCityStats(@PathVariable String cityId, @PathVariable String cityName, Model model) {

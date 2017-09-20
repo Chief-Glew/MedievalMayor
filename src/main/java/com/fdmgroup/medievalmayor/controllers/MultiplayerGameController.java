@@ -22,7 +22,7 @@ import com.fdmgroup.medievalmayor.game.city.MultiplayerGame;
 @Controller
 public class MultiplayerGameController {
 
-	static final Logger logger = LogManager.getLogger("CityHomeController.class");
+	static final Logger logger = LogManager.getLogger("MultiplayerGameController.class");
 
 	private GenericRead<MultiplayerGame> MultiReadCrud;
 	private GenericWrite<MultiplayerGame> MultiWriteCrud;
