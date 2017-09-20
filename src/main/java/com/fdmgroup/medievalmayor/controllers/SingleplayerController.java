@@ -31,6 +31,7 @@ import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.LumberMillAdmi
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.ResourceProducerAdminHandler;
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.ResourceProducerHandler;
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.URLStringHandler;
+import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
@@ -193,6 +194,39 @@ public class SingleplayerController {
 		try {
 			city.getResourceProducerOfType(resourceProducerClass.handle(producerName)).setBaseResourceProduction(baseProductionInt);;
 			city.getResourceProducerOfType(resourceProducerClass.handle(producerName)).setUpgradeMultiplier(upgradeMultiplierInt);;
+			writeCrud.update(city);
+			String jspName = urlStringHandler.handle(city, producerName, model);
+			writeCrud.update(city);
+			logger.debug("DisplayAssignerForm method used");
+			return jspName;
+		} catch (NullPointerException exception) {
+			logger.debug("Null Pointer Exception");
+			return "wrongTurnPage";
+		}
+	}
+	
+	//TODO FIX THIS HORRIBLE REPEATING NIGHTMARE
+	@RequestMapping(value = "/{cityName}/{cityId}/admin/Lumber Mill", method = RequestMethod.POST)																							
+	public String updateAdminValuesForLumberMill(@PathVariable String cityId, @PathVariable String cityName,
+			@RequestParam("baseProduction") String baseProduction, @RequestParam("upgradeMultiplier") String upgradeMultiplier, @RequestParam("conversionFactor") String conversionFactor, Model model) {
+		String producerName = "Lumber Mill";
+		int baseProductionInt = Integer.valueOf(baseProduction);
+		int upgradeMultiplierInt = Integer.valueOf(upgradeMultiplier);
+		int conversionFactorInt = Integer.valueOf(conversionFactor);
+		
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class); //TODO fix this;
+		ResourceProducerClassFromStringHandler resourceProducerClass = applicationContext.getBean(ResourceProducerClassFromStringHandler.class);
+		City city;
+		try {
+			city = addCityToModel(cityId, cityName, model);
+		} catch (InvalidCityNameIDCombinationException e) {
+			return "wrongTurnPage";
+		}
+		logger.debug("UpdateAdminValuesForResourceProducer method used");
+		try {
+			city.getResourceProducerOfType(resourceProducerClass.handle(producerName)).setBaseResourceProduction(baseProductionInt);;
+			city.getResourceProducerOfType(resourceProducerClass.handle(producerName)).setUpgradeMultiplier(upgradeMultiplierInt);;
+			city.getResourceProducerOfType(LumberMill.class).setProducerLevel(conversionFactorInt);
 			writeCrud.update(city);
 			String jspName = urlStringHandler.handle(city, producerName, model);
 			writeCrud.update(city);
