@@ -33,22 +33,22 @@ public class CityHomeControllerTest {
 	
 	@Test
 	public void testThatDisplayCityStatsWillDirectToNewUserHomeJSP(){
-		assertEquals("newUserHome", cityHomeController.displayCityStats("1", modelMock));
+		assertEquals("newUserHome", cityHomeController.displayCityStats("1", null, modelMock));
 	}
 	
 	@Test
 	public void testThatDisplayAdminPageWillDirectToAdminPageJSP(){
-		assertEquals("adminPage", cityHomeController.displayAdminPage("1", modelMock));
+		assertEquals("adminPage", cityHomeController.displayAdminPage("1", null, modelMock));
 	}
 	
 	@Test
 	public void testThatDisplayAdminPageForResourseProducerWillDirectToResourceProducerAdminPageJSP(){
-		assertEquals("resourceProducerAdminPage", cityHomeController.displayAdminPageForResourseProducer("1", "Farm", modelMock));
+		assertEquals("resourceProducerAdminPage", cityHomeController.displayAdminPageForResourseProducer("1", "Farm", null, modelMock));
 	}
 	
 	@Test
 	public void testThatDisplayAdminPageForResourseProducerWillDirectToRWrongTurnPageJSPIfGivenNull(){
-		assertEquals("wrongTurnPage", cityHomeController.displayAdminPageForResourseProducer("1", null, modelMock));
+		assertEquals("wrongTurnPage", cityHomeController.displayAdminPageForResourseProducer("1", null, null, modelMock));
 	}
 	
 	@Test

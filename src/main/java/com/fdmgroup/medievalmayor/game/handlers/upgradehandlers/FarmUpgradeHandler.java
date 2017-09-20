@@ -20,5 +20,4 @@ public class FarmUpgradeHandler extends ResourceProducerUpgradeHandler {
 		cost.put("Lumber", 50);
 		setCost(cost);
 	}
-
 }

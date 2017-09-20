@@ -44,6 +44,11 @@ public class CityTest {
 	}
 	
 	@Test
+	public void testThatCityGetIdMethodWorks(){
+		assertEquals(0, city.getCityId());
+	}
+	
+	@Test
 	public void testThatACityBeginsWithTenPopulation(){
 		assertEquals(10, city.getUnassignedPopulation());
 	}

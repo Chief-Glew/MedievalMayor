@@ -75,7 +75,7 @@ public class SingleplayerController {
 		logger.debug("AddCityToModel method used");
 		return city;
 	}
-
+ 
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String showCities(Model model) {
 		System.out.println("root");
@@ -84,7 +84,7 @@ public class SingleplayerController {
 		logger.debug("ShowCities method used");
 		return "index";
 	}
-
+	
 	@RequestMapping(value = "/newCity", method = RequestMethod.GET)
 	public String newCity(@RequestParam String cityName, Model model) {
 		String safeCityName = cityName.replaceAll("/", "forwardSlash");
