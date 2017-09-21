@@ -85,64 +85,66 @@ h1 {
 		<span class="label label-default">Welcome to <c:out
 				value="${city.cityName }" /></span>
 	</h1>
+	<c:forEach items="${events}" var="events">
+		<div class="alert alert-info">
+			<span class="closebtn"
+				onclick="this.parentElement.style.display='none';">&times;</span>
+			<c:out value="${events}" />
+		</div>
+		</c:forEach>
+		<div class="info">
 
-	<div class="alert alert-info">
-		<span class="closebtn"
-			onclick="this.parentElement.style.display='none';">&times;</span>
-		This is an alert box.
-	</div>
-	<div class="info">
-
-		<label>Year: </label>
-		<c:out value="${city.cityYear}"></c:out>
-		<table>
-			<caption class="title">Population</caption>
-			<tr>
-				<th>Total:</th>
-				<td><c:out value="${totalPopulation}" /></td>
-			</tr>
-			<tr>
-				<th>Unassigned:</th>
-				<td><c:out value="${unnassignedPeople}" /></td>
-			</tr>
-		</table>
-
-		<table>
-			<caption class="title">Resource Producer</caption>
-			<tr>
-				<th>Name</th>
-				<th>Workers&emsp;</th>
-				<th>Level</th>
-			</tr>
-			<c:forEach items="${resourceProducers}" var="resourceProducer">
+			<label>Year: </label>
+			<c:out value="${city.cityYear}"></c:out>
+			<table>
+				<caption class="title">Population</caption>
 				<tr>
-					<td><c:out value="${resourceProducer.resourceProducerName}" />&emsp;
-					</td>
-					<td><c:out value="${resourceProducer.numberOfAssignedWorkers}" /></td>
-					<td><c:out value="${resourceProducer.producerLevel}" /></td>
-					<td>&emsp;<a class="btn btn-info"
-						href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}" />">+</a></td>
+					<th>Total:</th>
+					<td><c:out value="${totalPopulation}" /></td>
 				</tr>
-			</c:forEach>
-		</table>
-		<table>
-			<caption class="title">Resources</caption>
-			<c:forEach items="${resources}" var="resource">
 				<tr>
-					<th>Amount of <c:out value="${resource.key}" />:
-					</th>
-					<td><c:out value="${resource.value }"></c:out></td>
+					<th>Unassigned:</th>
+					<td><c:out value="${unnassignedPeople}" /></td>
 				</tr>
-			</c:forEach>
-		</table>
-		<form
-			action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/nextTurn"
-			method="post" name="nextDay">
-			<input type="submit" value="Next Year" class="btn btn-success">
-		</form>
-		<br> <a class="btn btn-danger"
-			href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin">Go
-			To Admin Page</a> <br>
-	</div>
+			</table>
+
+			<table>
+				<caption class="title">Resource Producer</caption>
+				<tr>
+					<th>Name</th>
+					<th>Workers&emsp;</th>
+					<th>Level</th>
+				</tr>
+				<c:forEach items="${resourceProducers}" var="resourceProducer">
+					<tr>
+						<td><c:out value="${resourceProducer.resourceProducerName}" />&emsp;
+						</td>
+						<td><c:out
+								value="${resourceProducer.numberOfAssignedWorkers}" /></td>
+						<td><c:out value="${resourceProducer.producerLevel}" /></td>
+						<td>&emsp;<a class="btn btn-info"
+							href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}" />">+</a></td>
+					</tr>
+				</c:forEach>
+			</table>
+			<table>
+				<caption class="title">Resources</caption>
+				<c:forEach items="${resources}" var="resource">
+					<tr>
+						<th>Amount of <c:out value="${resource.key}" />:
+						</th>
+						<td><c:out value="${resource.value }"></c:out></td>
+					</tr>
+				</c:forEach>
+			</table>
+			<form
+				action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/nextTurn"
+				method="post" name="nextDay">
+				<input type="submit" value="Next Year" class="btn btn-success">
+			</form>
+			<br> <a class="btn btn-danger"
+				href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin">Go
+				To Admin Page</a> <br>
+		</div>
 </body>
 </html>

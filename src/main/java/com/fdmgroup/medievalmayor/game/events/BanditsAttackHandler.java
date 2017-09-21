@@ -73,6 +73,9 @@ public class BanditsAttackHandler extends RandomEventHandler {
 	private int generateBanditNumbers(City city) {
 		Double doubleNumberOfBandits = Math.random()*city.getTotalPopulation()*Math.pow(1.02,city.getCityYear());
 		doubleNumberOfBandits = Math.floor(doubleNumberOfBandits);
+		if(doubleNumberOfBandits == 0){
+			doubleNumberOfBandits=1d;
+		}
 		return doubleNumberOfBandits.intValue();
 	}
 
