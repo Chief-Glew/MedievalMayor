@@ -28,24 +28,24 @@ public class AdminCommand {
 	private void setAndInvoke(UserCommand command) {
 		commandInvoker.setCommand(command);
 		commandInvoker.invokeCommands();
-		logger.debug("doIt method used");
+		logger.info("SetAndInvoke method used in AdminCommand class");
 	}
 	
 	public void setBaseResourceProductionForResourceProducer(ResourceProducer resourceProducer, int baseResourceProduction) {
 		UserCommand command = new SetBaseResourceProductionCommand(resourceProducer, baseResourceProduction);
 		setAndInvoke(command);
-		logger.debug("SetBaseResourceProductionForResourceProducer method used");
+		logger.info("SetBaseResourceProductionForResourceProducer method used in AdminCommand class");
 	}
 	
 	public void setUpgradeMultiplierForResourceProducer(ResourceProducer resourceProducer, int upgradeMultiplier) {
 		UserCommand command = new SetUpgradeMultiplierCommand(resourceProducer, upgradeMultiplier);
 		setAndInvoke(command);
-		logger.debug("SetUpgradeMultiplierForResourceProducer method used");
+		logger.info("SetUpgradeMultiplierForResourceProducer method used in AdminCommand class");
 	}
 	
 	public void setAmmountOfLumberPerWoodForLumberMill(LumberMill lumberMill, int ammountOfLumberPerWood) {
 		UserCommand command = new SetAmmountOfLumberPerWoodCommand(lumberMill, ammountOfLumberPerWood);
 		setAndInvoke(command);
-		logger.debug("SetAmmountOfLumberPerWoodForLumberMill method used");
+		logger.info("SetAmmountOfLumberPerWoodForLumberMill method used in AdminCommand class");
 	}
 }

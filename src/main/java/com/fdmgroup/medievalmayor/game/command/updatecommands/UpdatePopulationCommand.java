@@ -29,6 +29,7 @@ public class UpdatePopulationCommand implements UserCommand {
 	}
 	
 	public void execute(){ 
+		logger.info("UpdatePopulationCommand executed");
 		Map<String, Integer> resources = city.getResources(); 
 		int totalPopulation = city.getTotalPopulation();
 		int newCitizens;
@@ -37,23 +38,24 @@ public class UpdatePopulationCommand implements UserCommand {
 			newCitizens = resources.get("Food")/5;
 			totalPopulation += newCitizens;
 			city.addResource(resourceFactory.getPopulation(newCitizens));
-			logger.debug("Population increased by: "+newCitizens);
+			logger.trace("Population increased by: "+newCitizens+" in UpdatePopulationCommand class");
 		} 
 		else if (resources.get("Food")<0){
 			exCitizens = resources.get("Food");
-			for (ResourceProducer resourceBuilding: city.getResourceGenerators()){
+			for (ResourceProducer resourceBuilding: city.getResourceProducers()){
 				try {
 					resourceBuildingService.assignPeopleToResourceProducer(0, totalPopulation, resourceBuilding);
+					logger.trace("People recalled to city in UpdatePopulationCommand class");
 				} catch (InsufficientPopulationException | AssignedNegativeNumberException e) {
-					logger.info("Exception");
+					logger.debug("Exception: "+e+" in UpdatePopulationCommand class");
 					e.printStackTrace();
 				}
 			}
 			totalPopulation += exCitizens;
-			logger.debug("Population decreased by: "+exCitizens);
+			logger.info("Population decreased by: "+exCitizens+" in UpdatePopulationCommand class");
 			resources.put("Population", totalPopulation);
 			resources.put("Food", 0);
-			logger.debug("Food reset to 0");
+			logger.info("Food reset to 0 in UpdatePopulationCommand class");
 			city.setResources(resources);
 		}
 		city.setTotalPopulation(totalPopulation);

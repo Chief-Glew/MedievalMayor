@@ -21,7 +21,7 @@ public abstract class ResourceProducerClassFromStringHandler {
 		else {
 			next.addToChain(handler);
 		}
-		logger.debug("AddToChain method used");
+		logger.info(handler+"AddedToChain in ResourceProducerClassFromStringHandler");
 	}
 	
 	protected boolean isNextNull() {

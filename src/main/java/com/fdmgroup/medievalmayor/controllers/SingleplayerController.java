@@ -94,7 +94,7 @@ public class SingleplayerController {
 			return "wrongTurnPage";
 		}
 
-		Set<ResourceProducer> resourceProducers = city.getResourceGenerators();
+		Set<ResourceProducer> resourceProducers = city.getResourceProducers();
 		Map<String, Integer> resources = city.getResources();
 		resources.remove("Population");
 
@@ -153,7 +153,7 @@ public class SingleplayerController {
 			return "wrongTurnPage";
 		}
 		Set<String> resourceProducers = new HashSet<String>();
-		for (ResourceProducer resourceProducer : city.getResourceGenerators()) {
+		for (ResourceProducer resourceProducer : city.getResourceProducers()) {
 			resourceProducers.add(resourceProducer.getResourceProducerName());
 		}
 		model.addAttribute("resourceProducers", resourceProducers);

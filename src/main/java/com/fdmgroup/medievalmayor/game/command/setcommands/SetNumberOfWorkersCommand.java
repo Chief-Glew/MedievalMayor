@@ -9,18 +9,18 @@ public class SetNumberOfWorkersCommand implements UserCommand {
 	
 	private static final Logger logger = LogManager.getLogger("SetNumberOfWorkersCommand.class");
 	
-	private ResourceProducer resourceBuilding;
+	private ResourceProducer resourceProducer;
 	private int numberOfWorkers;
 	
 
-	public SetNumberOfWorkersCommand(ResourceProducer resourceBuilding, int numberOfWorkers) {
-		this.resourceBuilding = resourceBuilding;
+	public SetNumberOfWorkersCommand(ResourceProducer resourceProducer, int numberOfWorkers) {
+		this.resourceProducer = resourceProducer;
 		this.numberOfWorkers = numberOfWorkers;
 	}
 
 	public void execute() {
-		logger.debug("Number of workers set in "+resourceBuilding+": "+numberOfWorkers);
-		resourceBuilding.setNumberOfAssignedWorkers(numberOfWorkers);
+		logger.info("SetNumberOfWorkers Command executed");
+		resourceProducer.setNumberOfAssignedWorkers(numberOfWorkers);
 	}
 }
  

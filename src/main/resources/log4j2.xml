@@ -30,24 +30,22 @@
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="SingleplayerController.class" level="info"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="SingleplayerController.class" level="trace"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="HomeController.class" level="debug"
-			additivity="false">
+		<Logger name="HomeController.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="HomeController.class" level="info"
-			additivity="false">
+		<Logger name="HomeController.class" level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
@@ -63,7 +61,7 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="CityFactory.class" level="debug" additivity="false">
+		<Logger name="CityFactory.class" level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
@@ -71,9 +69,52 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<!-- Command Loggers -->
-		
-		<Logger name="UpdateWeatherCommand.class" level="trace"
+		<!-- Set Commands Loggers -->
+
+		<Logger name="SetAmountOfLumberPerWoodCommand.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="SetBaseResourceProductionCommand.class" level="info"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="SetUpgradeMultiplierCommand.class" level="info"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="SetNumberOfWorkersInResourceProducerFromCityCommand.class"
+			level="info" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="SetNumberOfWorkersInResourceProducerFromCityCommand.class"
+			level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="SetNumberOfWorkersInResourceProducerFromCityCommand.class"
+			level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="SetNumberOfWorkersCommand.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+
+		<!-- Update Command Loggers -->
+
+		<Logger name="UpdateWeatherCommand.class" level="info"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="UpdateCityYearCommand.class" level="info"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
@@ -88,20 +129,32 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 
+		<Logger name="UpdatePopulationCommand.class" level="trace"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+
 		<Logger name="UpdateResourcesCommand.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="SetNumberOfWorkersInBuildingFromCityCommand.class"
-			level="debug" additivity="false">
+		<!-- Upgrade Command Loggers -->
+
+		<Logger name="UpgradeCommand.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="SetNumberOfWorkersInBuildingFromCityCommand.class"
-			level="info" additivity="false">
+		<Logger name="UpgradeCommand.class" level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
+
+		<Logger name="UpgradeCommand.class" level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<!-- User Command Loggers -->
 
 		<Logger name="ClientCommand.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
@@ -110,35 +163,56 @@
 		<Logger name="ClientCommand.class" level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-
-		<Logger name="CommandInvoker.class" level="debug" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="SetNumberOfWorkersCommand.class" level="debug"
-			additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="AdminCommand.class" level="debug" additivity="false">
+		
+		<Logger name="ClientCommand.class" level="trace" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 		
-		<Logger name="SetAmmountOfLumberPerWoodCommand.class" level="debug" additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-		
-		<Logger name="SetBaseResourceProductionCommand.class" level="debug" additivity="false">
+		<!-- General Command Loggers -->
+
+		<Logger name="AdminCommand.class" level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="SetUpgradeMultiplierCommand.class" level="debug" additivity="false">
+		<Logger name="CommandInvoker.class" level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 		
-		<!-- Handlers Loggers -->
+		<Logger name="NextTurnCommand.class" level="info" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<!-- Event Handlers Loggers -->
 		
-			<Logger name="URLStringHandler.class" level="debug" additivity="false">
+		<Logger name="BanditsAttackHandler.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="BanditsAttackHandler.class" level="info" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="BanditsAttackHandler.class" level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="MigrantsAppearHandler.class" level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="RandomEventHandler.class" level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="MigrantsAppearHandler.class" level="info" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="MigrantsAppearHandler.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="URLStringHandler.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
@@ -156,16 +230,19 @@
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
-		<Logger name="NormalWeatherHandler.class" level="debug" additivity="false">
+
+		<Logger name="NormalWeatherHandler.class" level="debug"
+			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
-		<Logger name="GoodWeatherHandler.class" level="debug" additivity="false">
+
+		<Logger name="GoodWeatherHandler.class" level="debug"
+			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
-		<Logger name="BadWeatherHandler.class" level="debug" additivity="false">
+
+		<Logger name="BadWeatherHandler.class" level="debug"
+			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
@@ -190,7 +267,7 @@
 		</Logger>
 
 		<Logger name="ResourceProducerClassFromStringHandler.class"
-			level="debug" additivity="false">
+			level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
@@ -261,12 +338,14 @@
 		<Logger name="ResourceProducer.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
-		<Logger name="ResourceProducerFactory.class" level="debug" additivity="false">
+
+		<Logger name="ResourceProducerFactory.class" level="debug"
+			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
-		<Logger name="ResourceProducerService.class" level="debug" additivity="false">
+
+		<Logger name="ResourceProducerService.class" level="debug"
+			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 

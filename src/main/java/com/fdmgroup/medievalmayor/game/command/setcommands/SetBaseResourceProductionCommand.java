@@ -21,7 +21,7 @@ public class SetBaseResourceProductionCommand implements UserCommand {
 	@Override
 	public void execute() {
 		resourceProducer.setBaseResourceProduction(baseResourceProduction);
-		logger.debug("Execute method used");
+		logger.info("SetBaseResourceProduction Command executed");
 	}
 
 }

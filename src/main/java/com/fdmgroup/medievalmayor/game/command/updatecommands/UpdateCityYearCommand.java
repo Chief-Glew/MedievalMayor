@@ -19,6 +19,7 @@ public class UpdateCityYearCommand implements UserCommand{
 
 	@Override
 	public void execute() {
+		logger.info("UpdateCityYear Command executed");
 		int newCityYear = city.getCityYear()+1;
 		city.setCityYear(newCityYear);
 	}

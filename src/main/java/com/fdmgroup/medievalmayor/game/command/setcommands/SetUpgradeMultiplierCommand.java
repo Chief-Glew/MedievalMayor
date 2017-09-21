@@ -21,7 +21,7 @@ public class SetUpgradeMultiplierCommand implements UserCommand {
 	@Override
 	public void execute() {
 		resourceProducer.setUpgradeMultiplier(upgradeMultiplier);
-		logger.debug("Execute method used");
+		logger.info("SetUpgradeMultiplier Command executed");
 	}
 
 }

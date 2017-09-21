@@ -12,34 +12,32 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService
 
 public class SetNumberOfWorkersInBuildingFromCityCommand implements UserCommand{
 	
-	private static final Logger logger = LogManager.getLogger("SetNumberOfWorkersInBuildingFromCityCommand.class");
+	private static final Logger logger = LogManager.getLogger("SetNumberOfWorkersInResourceBuildingFromCityCommand.class");
 
 	private City city;
-	private ResourceProducer resourceBuilding;
+	private ResourceProducer resourceProducer;
 	private int numberOfPeopleToAssign;
 	private ResourceProducerService resourceProducerService;
 
-	public SetNumberOfWorkersInBuildingFromCityCommand(City city, ResourceProducer resourceBuilding, int numberOfPeopleToAssign){
+	public SetNumberOfWorkersInBuildingFromCityCommand(City city, ResourceProducer resourceProducer, int numberOfPeopleToAssign){
 		this.city = city;
-		this.resourceBuilding = resourceBuilding;
+		this.resourceProducer = resourceProducer;
 		this.numberOfPeopleToAssign = numberOfPeopleToAssign;
 		resourceProducerService = new ResourceProducerService();
 	}
 	
 	@Override
 	public void execute() {
+		logger.info("SetNumberOfWorkersInResourceProducerFromCity Command executed");
 		int unassignedPeople = city.getUnassignedPopulation();
 		int newUnassignedPeople = unassignedPeople;
 		try {
-			
-			newUnassignedPeople = resourceProducerService.assignPeopleToResourceProducer(numberOfPeopleToAssign, unassignedPeople, resourceBuilding);
-			logger.debug("newUnassignedPeople set");
+			newUnassignedPeople = resourceProducerService.assignPeopleToResourceProducer(numberOfPeopleToAssign, unassignedPeople, resourceProducer);
+			logger.trace("NewUnassignedPeople set in SetNumberOfWorkersInResourceProducerFromCityCommand class");
 		} catch (InsufficientPopulationException | AssignedNegativeNumberException e) {
 			e.printStackTrace();
-			logger.debug("Exception");
+			logger.debug("Exception: "+e+" in SetNumberOfWorkersInResourceProducerFromCity Command");
 		}
 		city.setUnassignedPopulation(newUnassignedPeople);
-		logger.debug("Execute method used"); 
 	}
-
 }

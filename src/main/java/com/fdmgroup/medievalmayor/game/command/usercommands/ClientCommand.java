@@ -29,12 +29,11 @@ public class ClientCommand {
 	}
 
 	public void nextTurn(City city) throws GameOverException {
-		
 		UserCommand nextTurn = new NextTurnCommand(city);
 		invoke(nextTurn);
-		logger.trace("next turn method used");
+		logger.info("NextTurn method used in ClientCommand class");
 		if(city.getTotalPopulation()<=0){
-			logger.info("Game ended via GameOverException");
+			logger.debug("Game ended via GameOverException in ClientCommand class");
 			throw new GameOverException("GameOver Man, GameOver");
 		}
 	}
@@ -42,15 +41,17 @@ public class ClientCommand {
 	public void setNumberOfWorkersInResourceBuildingForCity(City city, ResourceProducer resourceBuilding, int numberOfPeopleToAssign){
 		UserCommand setNumberOfWorkers = new SetNumberOfWorkersInBuildingFromCityCommand(city, resourceBuilding, numberOfPeopleToAssign);
 		invoke(setNumberOfWorkers);
-		logger.trace("setNumberOfWorkersInResourceBuildingForCity method used");
+		logger.info("SetNumberOfWorkersInResourceBuildingForCity method used in ClientCommand class");
 	}
 	
 	public void upgradeResourceProducerInCity(City city, ResourceProducer resourceProducer, Map<String, Integer> cost){
+		logger.info("SetNumberOfWorkersInResourceBuildingForCity method used in ClientCommand class");
 		UserCommand command = new UpgradeCommand( city,  resourceProducer,  cost);
 		invoke(command);
 	}
 
 	private void invoke(UserCommand command) {
+		logger.info("NextTurn method used in ClientCommand class");
 		commandInvoker.setCommand(command);
 		commandInvoker.invokeCommands();
 	}

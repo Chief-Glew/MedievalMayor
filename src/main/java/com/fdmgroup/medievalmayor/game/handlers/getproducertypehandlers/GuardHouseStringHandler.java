@@ -8,11 +8,11 @@ public class GuardHouseStringHandler extends ResourceProducerClassFromStringHand
 	@Override
 	public Class<? extends ResourceProducer> handle(String producerName) throws NullPointerException {
 		if (producerName.equals("Guard House")) {
-			logger.debug("Guard House Class returned");
+			logger.info("Guard House Class returned in FarmStringHandler class");
 			return GuardHouse.class;
 		}
 		else {
-			logger.debug("Next.Handle method used");
+			logger.info("Next.Handle method used");
 			return next.handle(producerName);
 		}
 	}
