@@ -1,10 +1,11 @@
-package com.fdmgroup.medievalmayor.game.command;
+package com.fdmgroup.medievalmayor.game.command.updatecommands;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.command.resourcecommands.UpdateResourcesCommand;
+import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
+import com.fdmgroup.medievalmayor.game.command.UserCommand;
 import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.BadWeatherHandler;
 import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.GoodWeatherHandler;
 import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.NormalWeatherHandler;

@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.game.command;
+package com.fdmgroup.medievalmayor.game.command.usercommands;
 
 import java.util.Map;
 
@@ -9,6 +9,11 @@ import org.springframework.stereotype.Component;
 
 import com.fdmgroup.medievalmayor.exceptions.GameOverException;
 import com.fdmgroup.medievalmayor.game.city.City;
+import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
+import com.fdmgroup.medievalmayor.game.command.NextTurnCommand;
+import com.fdmgroup.medievalmayor.game.command.UserCommand;
+import com.fdmgroup.medievalmayor.game.command.setcommands.SetNumberOfWorkersInBuildingFromCityCommand;
+import com.fdmgroup.medievalmayor.game.command.upgradecommands.UpgradeCommand;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
 @Component

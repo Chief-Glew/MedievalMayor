@@ -1,11 +1,15 @@
-package com.fdmgroup.medievalmayor.game.command;
+package com.fdmgroup.medievalmayor.game.command.usercommands;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fdmgroup.medievalmayor.game.command.resourcecommands.setAmmountOfLumberPerWoodCommand;
+import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
+import com.fdmgroup.medievalmayor.game.command.UserCommand;
+import com.fdmgroup.medievalmayor.game.command.setcommands.SetBaseResourceProductionCommand;
+import com.fdmgroup.medievalmayor.game.command.setcommands.SetUpgradeMultiplierCommand;
+import com.fdmgroup.medievalmayor.game.command.setcommands.SetAmmountOfLumberPerWoodCommand;
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
@@ -40,7 +44,7 @@ public class AdminCommand {
 	}
 	
 	public void setAmmountOfLumberPerWoodForLumberMill(LumberMill lumberMill, int ammountOfLumberPerWood) {
-		UserCommand command = new setAmmountOfLumberPerWoodCommand(lumberMill, ammountOfLumberPerWood);
+		UserCommand command = new SetAmmountOfLumberPerWoodCommand(lumberMill, ammountOfLumberPerWood);
 		setAndInvoke(command);
 		logger.debug("SetAmmountOfLumberPerWoodForLumberMill method used");
 	}

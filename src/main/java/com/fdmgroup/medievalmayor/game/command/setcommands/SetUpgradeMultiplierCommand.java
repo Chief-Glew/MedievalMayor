@@ -1,8 +1,9 @@
-package com.fdmgroup.medievalmayor.game.command;
+package com.fdmgroup.medievalmayor.game.command.setcommands;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.fdmgroup.medievalmayor.game.command.UserCommand;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
 public class SetUpgradeMultiplierCommand implements UserCommand {

@@ -13,8 +13,8 @@ import com.fdmgroup.medievalmayor.config.AppConfig;
 import com.fdmgroup.medievalmayor.exceptions.GameOverException;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityFactory;
-import com.fdmgroup.medievalmayor.game.command.ClientCommand;
 import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
+import com.fdmgroup.medievalmayor.game.command.usercommands.ClientCommand;
 import com.fdmgroup.medievalmayor.game.resourceproducers.Mine;
 
 public class ClientCommandTest {

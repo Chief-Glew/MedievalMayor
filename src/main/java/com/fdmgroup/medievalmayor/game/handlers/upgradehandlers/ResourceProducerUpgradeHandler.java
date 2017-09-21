@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.ui.Model;
 
 import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.command.ClientCommand;
+import com.fdmgroup.medievalmayor.game.command.usercommands.ClientCommand;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.URLStringHandler;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;

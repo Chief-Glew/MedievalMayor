@@ -20,7 +20,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.fdmgroup.medievalmayor.config.AppConfig;
 import com.fdmgroup.medievalmayor.exceptions.GameOverException;
 import com.fdmgroup.medievalmayor.game.IdAble;
-import com.fdmgroup.medievalmayor.game.command.ClientCommand;
+import com.fdmgroup.medievalmayor.game.command.usercommands.ClientCommand;
 
 
 @Entity(name="MULTIPLAYER_GAME")

@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.game.command;
+package com.fdmgroup.medievalmayor.game.command.updatecommands;
 
 import java.util.Map;
 
@@ -8,6 +8,8 @@ import org.apache.logging.log4j.Logger;
 import com.fdmgroup.medievalmayor.exceptions.AssignedNegativeNumberException;
 import com.fdmgroup.medievalmayor.exceptions.InsufficientPopulationException;
 import com.fdmgroup.medievalmayor.game.city.City;
+import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
+import com.fdmgroup.medievalmayor.game.command.UserCommand;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 import com.fdmgroup.medievalmayor.game.resources.ResourceFactory;
