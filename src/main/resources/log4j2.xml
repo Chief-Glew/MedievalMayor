@@ -26,36 +26,27 @@
 
 		<!-- Controller Loggers -->
 
-		<Logger name="URLStringHandler.class" level="debug" additivity="false">
+		<Logger name="SingleplayerController.class" level="debug"
+			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-
-		<Logger name="LumberMillAdminHandler.class" level="debug"
+		
+		<Logger name="SingleplayerController.class" level="info"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="SingleplayerController.class" level="trace"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="LumberMillAdminHandler.class" level="info"
+		<Logger name="HomeController.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="ResourceProducerAdminHandler.class" level="debug"
-			additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="CityHomeController.class" level="debug"
-			additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="CityHomeController.class" level="debug"
-			additivity="false">
-			<AppenderRef ref="Console" />
-		</Logger>
-
-		<Logger name="UserHomeController.class" level="debug"
+		<Logger name="HomeController.class" level="info"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
@@ -146,6 +137,25 @@
 		</Logger>
 		
 		<!-- Handlers Loggers -->
+		
+			<Logger name="URLStringHandler.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="LumberMillAdminHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="LumberMillAdminHandler.class" level="info"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="ResourceProducerAdminHandler.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
 		
 		<Logger name="NormalWeatherHandler.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />

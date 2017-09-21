@@ -17,9 +17,11 @@ import com.fdmgroup.medievalmayor.game.city.CityFactory;
 
 @Controller
 public class HomeController {
+	
+	static final Logger logger = LogManager.getLogger("HomeController.class");
+
 
 	private GenericRead<City> readCrud;
-	static final Logger logger = LogManager.getLogger("CityHomeController.class");
 	private CityFactory cityFactory;
 	private GenericWrite<City> writeCrud;
 
@@ -30,19 +32,18 @@ public class HomeController {
 	}
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String showCities(Model model) {
-		System.out.println("root");
+		logger.info("ShowCities method used in HomeController class");
 		Set<City> cities = readCrud.readAll();
 		model.addAttribute("cities", cities);
-		logger.debug("ShowCities method used");
 		return "index";
 	}
 
 	@RequestMapping(value = "/newCity", method = RequestMethod.GET)
 	public String newCity(@RequestParam String cityName, Model model) {
+		logger.info("NewCity method used in HomeController class");
 		String safeCityName = cityName.replaceAll("/", "forwardSlash");
 		safeCityName = safeCityName.replaceAll(" ", "");
 		writeCrud.create(cityFactory.getNewCity(safeCityName));
-		logger.debug("NewCity method used");
 		return showCities(model);
 	}
 }
