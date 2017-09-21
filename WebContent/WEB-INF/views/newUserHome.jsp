@@ -85,6 +85,11 @@ h1 {
 		<span class="label label-default">Welcome to <c:out
 				value="${city.cityName }" /></span>
 	</h1>
+	<div class="alert alert-info">
+			<span class="closebtn"
+				onclick="this.parentElement.style.display='none';">&times;</span>
+			<c:out value="${weather}" />
+		</div>
 	<c:forEach items="${events}" var="events">
 		<div class="alert alert-info">
 			<span class="closebtn"

@@ -33,6 +33,7 @@ import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.LumberMillAdmi
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.ResourceProducerAdminHandler;
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.ResourceProducerHandler;
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.URLStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.NormalWeatherHandler;
 import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.UpdateWeatherHandler;
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
@@ -49,7 +50,6 @@ public class SingleplayerController {
 	private URLStringHandler urlStringHandler;
 	private ResourceProducerUpgradeHandler resourceProducerUpgradeHandler;
 	private RandomEventHandler randomEventHandler;
-	private UpdateWeatherHandler updateWeatherHandler;
 
 	@Autowired
 	public SingleplayerController(ResourceProducerUpgradeHandler resourceProducerUpgradeHandler,
@@ -57,7 +57,7 @@ public class SingleplayerController {
 			GenericRead<City> readCrud, GenericWrite<City> writeCrud, 
 			GenericRead<MultiplayerGame> MultiReadCrud,
 			GenericWrite<MultiplayerGame> MultiWriteCrud,
-			RandomEventHandler randomEventHandler, UpdateWeatherHandler updateWeatherHandler) {
+			RandomEventHandler randomEventHandler) {
 		this.randomEventHandler = randomEventHandler;
 		this.clientComand = clientCommand;
 		this.readCrud = readCrud;
@@ -65,7 +65,6 @@ public class SingleplayerController {
 		urlStringHandler = new ResourceProducerHandler();
 		this.stringToClassHandler = stringToClassHandler;
 		this.resourceProducerUpgradeHandler = resourceProducerUpgradeHandler;
-		this.updateWeatherHandler = updateWeatherHandler;
 		logger.debug("City Controller Instantiated");
 	}
 
@@ -121,7 +120,6 @@ public class SingleplayerController {
 		}
 		randomEventHandler.handle(city, events);
 		writeCrud.update(city);
-		model.addAttribute("weather", updateWeatherHandler.getWeatherEffect());
 		model.addAttribute("events", events);
 		logger.debug("NextTurn method used");
 		return displayCityStats(cityId, cityName, model);
