@@ -89,7 +89,6 @@ h1 {
 		<form
 			action="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/admin/<c:out value="${resourceProducer.resourceProducerName}"/>"
 			method="post" name="setAdminModifiers">
-			>
 			<table>
 				<tr>
 					<th><label>Set Base Resource Production: </label></th>
