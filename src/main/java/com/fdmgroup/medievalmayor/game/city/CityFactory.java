@@ -18,7 +18,7 @@ public class CityFactory {
 	}
 
 	public City getNewCity(){
-		logger.debug("getNewCity method used");
+		logger.info("GetNewCity method used in CityFactory");
 		return new City("Rivendale", 10, 
 				resourceProducerFactory.getFarm(), 
 				resourceProducerFactory.getMine(),
@@ -27,7 +27,7 @@ public class CityFactory {
 	}
 
 	public City getNewCity(String cityName){
-		logger.debug("getNewCity method used");
+		logger.info("GetNewCity method used in CityFactory");
 		return new City(cityName, 10, 
 				resourceProducerFactory.getFarm(), 
 				resourceProducerFactory.getMine(),

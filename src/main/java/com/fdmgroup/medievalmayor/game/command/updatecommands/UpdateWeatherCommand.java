@@ -1,8 +1,5 @@
 package com.fdmgroup.medievalmayor.game.command.updatecommands;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +16,6 @@ public class UpdateWeatherCommand implements UserCommand{
 	
 	static final Logger logger = LogManager.getLogger("UpdateWeatherCommand.class");
 
-	private double weather = Math.random();
 	private City city;
 	private UpdateWeatherHandler updateWeatherHandler;
 			
@@ -32,6 +28,7 @@ public class UpdateWeatherCommand implements UserCommand{
 
 	@Override
 	public void execute() {
+		logger.info("UpdateWeatherCommand executed");
 		Farm farm = (Farm)city.getResourceProducerOfType(Farm.class);
 		double weather = Math.random();
 		String weatherEffects = "";

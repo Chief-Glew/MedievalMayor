@@ -35,7 +35,7 @@ public class CityTest {
 	
 	@Test
 	public void testThatACityContainsFourResourceTypes(){
-		assertEquals(4, city.getResourceGenerators().size());
+		assertEquals(4, city.getResourceProducers().size());
 	}
 	
 	@Test

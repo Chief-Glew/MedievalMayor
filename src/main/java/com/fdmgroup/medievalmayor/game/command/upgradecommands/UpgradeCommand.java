@@ -13,7 +13,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
 public class UpgradeCommand implements UserCommand {
 
-	static final Logger logger = LogManager.getLogger("UpdateLumberHandler.class");
+	static final Logger logger = LogManager.getLogger("UpgradeCommand.class");
 
 	private ResourceProducer resourceProducer;
 	private Map<String, Integer> cost;
@@ -27,6 +27,7 @@ public class UpgradeCommand implements UserCommand {
 
 	@Override
 	public void execute() {
+		logger.info("UpgradeCommand executed");
 		Map<String, Integer> resources = city.getResources(); 
 		boolean hasEnoughResources = true;
 		for(String resource: cost.keySet()){
@@ -34,6 +35,7 @@ public class UpgradeCommand implements UserCommand {
 			int currentResourceAmmount = resources.getOrDefault(resource, 0);
 			if(resourceCost>currentResourceAmmount){
 				try {
+					logger.trace("UpgradeCommand executed");
 					hasEnoughResources = false;
 					throw new InsufficientResourcesException("Insufficient resources available");
 				} catch (InsufficientResourcesException e) {

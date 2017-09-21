@@ -83,104 +83,105 @@ public class City implements IdAble{
 	}
 
 	public int getUnassignedPopulation() {
-		logger.debug("Unassigned Population retrieved");
+		logger.info("GetUnassignedPopulation method used in City class");
 		return getResources().get("Population");
 	}
 
 	public long getCityId() {
-		logger.debug("City Id retrieved");
+		logger.info("GetCityId method used in City Class");
 		return cityId;
 	}
 	
 
 	public int getCityYear() {
-		logger.debug("City year retrieved");
+		logger.info("GetCityYear method used in City Class");
 		return cityYear;
 	}
 
 	public void setCityYear(int cityYear) {
-		logger.debug("City year set");
+		logger.info("SetCityYear method used in City Class");
 		this.cityYear = cityYear;
 	}
 
 	public void setTotalPopulation(int totalPopulation) {
-		logger.debug("Total Population set");
+		logger.info("SetTotalPopulation method used in City Class");
 		this.totalPopulation = totalPopulation;
 	}
 
 	public void setUnassignedPopulation(int numberOfPeople) {
-		logger.debug("Unassigned Population set");
+		logger.info("SetUnassignedPopulation method used in City Class");
 		Map<String, Integer> newPop = new HashMap<String, Integer>();
 		newPop.put("Population", numberOfPeople);
 		setResources(newPop);
 	}
 
 	public int getGold() {
-		logger.debug("Gold retrieved");
+		logger.info("GetGold method used in City Class");
 		return getResources().get("Gold");
 	}
 
 	public int getFood() {
-		logger.debug("Food retrieved");
+		logger.debug("GetFood method used in City Class");
 		return getResources().get("Food");
 	}
 
 	@Override
 	public long getId() {
-		logger.debug("Id retrieved");
+		logger.info("GetId method used in City Class");
 		return cityId;
 	}
 
 	public String getCityName() {
-		logger.debug("City name retrieved");
+		logger.info("GetCityName method used in City Class");
 		return cityName;
 	}
 
 	public void addResourceStore(ResourceStorageHandler handler) {
-		logger.debug("ResourceStore added");
+		logger.info("AddResourceStore method used in City Class");
 		resourceStorage.addResourceStore(handler);
 	}
 
 	public void addResource(Resource resource) {
-		logger.debug("Resource added");
+		logger.info("AddResource method used in City Class");
 		resourceStorage.addResource(resource);
 	}
 
 	public ResourceProducer getResourceProducerOfType(Class<? extends ResourceProducer> type) {
 		for (ResourceProducer building: resourceProducers) {
 			if (type.equals(building.getClass())) {
-				logger.debug("Resource building retrieved");
+				logger.info("GetResourceProducerOfType method used in City Class");
 				return building;
 			}
 		}
-		logger.debug("getReesourceBuildingOfType method not working as intended");
+		logger.debug("GetResourceProducerOfType method not working as intended in City class");
 		return null;
 	}
 
-	public void addResourceBuilding(ResourceProducer resourceBuilding) {
+	public void addResourceProducer(ResourceProducer resourceProducer) {
 		ResourceStorageFactory resourceStorageFactory = new ResourceStorageFactory();
-		resourceProducers.add(resourceBuilding);
-		resourceStorage.addResourceStore(resourceStorageFactory.getStorageForResource(resourceBuilding.produceResource()));
-		logger.debug("Resource Building Added");
+		resourceProducers.add(resourceProducer);
+		resourceStorage.addResourceStore(resourceStorageFactory.getStorageForResource(resourceProducer.produceResource()));
+		logger.info("AddResourceProducer method used in City class");
 	}
 
 	public Map<String, Integer> getResources(){
-		logger.debug("Resources retrieved");
+		logger.info("GetResources method used in City class");
 		return resourceStorage.getResources();
 	}
 
-	public Set<ResourceProducer> getResourceGenerators(){
-		logger.debug("ResourceGenerators retrieved");
+	public Set<ResourceProducer> getResourceProducers(){
+		logger.info("GetResourceProducers method used in City class");
 		return resourceProducers;
 	}
 
 	public void setResources(Map<String, Integer> resources) {
-		logger.debug("Resources set");
+		logger.info("SetResources method used in City class");
 		resourceStorage.setResources(resources);
 	}
 	
 	public int getResourceAmount(String resourceName) {
 		Map<String, Integer> resources = getResources();
+		logger.info("GetResourceAmount method used in City class");
 		return resources.get(resourceName);
 	}
 

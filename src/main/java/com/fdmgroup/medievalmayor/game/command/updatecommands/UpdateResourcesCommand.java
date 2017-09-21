@@ -33,11 +33,11 @@ public class UpdateResourcesCommand implements UserCommand{
  
 	public void execute() {
 		updateResourcesHandler.handle(city);
+		logger.info("UpdateResourcesCommand executed");
 		UserCommand updatePopulationCommand = new UpdatePopulationCommand(city);
 		CommandInvoker commandInvoker = new CommandInvoker();
 		commandInvoker.setCommand(updatePopulationCommand);
 		commandInvoker.invokeCommands();
-		logger.debug("Execute method used");
 	}
 
 }
