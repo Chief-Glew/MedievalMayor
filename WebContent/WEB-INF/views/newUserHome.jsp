@@ -85,6 +85,12 @@ h1 {
 		<span class="label label-default">Welcome to <c:out
 				value="${city.cityName }" /></span>
 	</h1>
+
+	<div class="alert alert-info">
+		<span class="closebtn"
+			onclick="this.parentElement.style.display='none';">&times;</span>
+		This is an alert box.
+	</div>
 	<div class="info">
 
 		<label>Year: </label>
