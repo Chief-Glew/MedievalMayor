@@ -45,7 +45,7 @@ public class MigrantsAppearHandler extends RandomEventHandler{
 			int numberOfMigrants = generateMigrantNumbers(city.getTotalPopulation()/4);
 			numberOfMigrants += 1;
 			Resource newPeople = resourceFactory.getPopulation(numberOfMigrants);
-			city.addResource(newPeople);
+			city.addResource(newPeople);city.setTotalPopulation(city.getTotalPopulation()+numberOfMigrants);
 			events.add(numberOfMigrants +" refugees have shown up from nearby villages attacked by bandits.");
 		}
 		if (!isNextNull()) {
