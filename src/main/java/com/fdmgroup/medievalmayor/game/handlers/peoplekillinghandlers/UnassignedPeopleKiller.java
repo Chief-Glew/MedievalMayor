@@ -19,10 +19,11 @@ public class UnassignedPeopleKiller extends PeopleKillingHandler {
 	@Override
 	public void handle(City city, List<String> events) {
 		boolean cityHasUnnassignedPeople = city.getUnassignedPopulation()!=0;
-		if (cityHasUnnassignedPeople&&isRandomNumberLessThanPointTwo()){
+		if (cityHasUnnassignedPeople&&isRandomNumberLessThanProbabilityOfDeath()){
 			city.addResource(resourceFactory.getPopulation(-1));
 			city.setTotalPopulation(city.getTotalPopulation()-1);
 			events.add("Bandits killed an unassigned person");
+			resetProbability();
 		}
 		else{
 			handleNext(city, events);

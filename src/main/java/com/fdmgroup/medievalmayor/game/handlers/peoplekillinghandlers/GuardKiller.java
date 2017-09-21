@@ -24,10 +24,11 @@ public class GuardKiller extends PeopleKillingHandler {
 		int numberOfAssignedWorkers = guardHouse.getNumberOfAssignedWorkers();
 		boolean guardHouseHasPeople = numberOfAssignedWorkers!=0;
 		
-		if (guardHouseHasPeople&&isRandomNumberLessThanPointTwo()){
+		if (guardHouseHasPeople&&isRandomNumberLessThanProbabilityOfDeath()){
 			guardHouse.setNumberOfAssignedWorkers(numberOfAssignedWorkers-1);;
 			city.setTotalPopulation(city.getTotalPopulation()-1);
 			events.add("Bandits killed a Guard");
+			resetProbability();
 		}
 		else{
 			handleNext(city, events);

@@ -14,6 +14,7 @@ public abstract class ResourceStealingHandler {
 
 	protected ResourceStealingHandler next;
 	protected ResourceFactory resourceFactory;
+	private static double probabilityDenominator = 50;
 	
 	public ResourceStealingHandler(ResourceFactory resourceFactory) {
 		this.resourceFactory = resourceFactory;
@@ -40,8 +41,16 @@ public abstract class ResourceStealingHandler {
 		}
 	}
 	
-	protected boolean isRandomNumberLessThanPointTwo() {
-		return Math.random()<0.2;
+	protected boolean isRandomNumberLessThanProbabilityOfTheft() {
+		return Math.random()<getProbabilityOfTheft();
+	}
+	
+	private double getProbabilityOfTheft() {
+		return 1/probabilityDenominator--;
+	}
+	
+	protected void resetProbability() {
+		probabilityDenominator = 50;
 	}
 	
 	protected boolean cityHasResource(City city, String resourceType) {

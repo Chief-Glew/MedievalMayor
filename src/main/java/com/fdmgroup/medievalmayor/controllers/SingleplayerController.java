@@ -50,17 +50,15 @@ public class SingleplayerController {
 	private URLStringHandler urlStringHandler;
 	private ResourceProducerUpgradeHandler resourceProducerUpgradeHandler;
 	private RandomEventHandler randomEventHandler;
-	private UpdateWeatherHandler updateWeatherHandler;
 
 	@Autowired
 	public SingleplayerController(ResourceProducerUpgradeHandler resourceProducerUpgradeHandler,
 			ClientCommand clientCommand, ResourceProducerClassFromStringHandler stringToClassHandler,
-			GenericRead<City> readCrud, GenericWrite<City> writeCrud, UpdateWeatherHandler updateWeatherHandler, 
+			GenericRead<City> readCrud, GenericWrite<City> writeCrud, 
 			GenericRead<MultiplayerGame> MultiReadCrud,
 			GenericWrite<MultiplayerGame> MultiWriteCrud,
 			RandomEventHandler randomEventHandler) {
 		this.randomEventHandler = randomEventHandler;
-		this.updateWeatherHandler = updateWeatherHandler;
 		this.clientComand = clientCommand;
 		this.readCrud = readCrud;
 		this.writeCrud = writeCrud;

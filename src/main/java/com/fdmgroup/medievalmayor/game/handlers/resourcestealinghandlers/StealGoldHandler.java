@@ -19,9 +19,10 @@ public class StealGoldHandler extends ResourceStealingHandler {
 	@Override
 	public void handle(City city, List<String> events) {
 		
-		if (cityHasResource(city, "Gold")&&isRandomNumberLessThanPointTwo()){
+		if (cityHasResource(city, "Gold")&&isRandomNumberLessThanProbabilityOfTheft()){
 			city.addResource(resourceFactory.getGold(-1));
 			events.add("Bandits stole 1 Gold");
+			resetProbability();
 		}
 		else{
 			handleNext(city, events);

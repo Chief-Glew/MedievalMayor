@@ -19,9 +19,10 @@ public class StealLumberHandler extends ResourceStealingHandler {
 	@Override
 	public void handle(City city, List<String> events) {
 		
-		if (cityHasResource(city, "Lumber")&&isRandomNumberLessThanPointTwo()){
+		if (cityHasResource(city, "Lumber")&&isRandomNumberLessThanProbabilityOfTheft()){
 			city.addResource(resourceFactory.getLumber(-1));
 			events.add("Bandits stole 1 Lumber");
+			resetProbability();
 		}
 		else{
 			handleNext(city, events);
