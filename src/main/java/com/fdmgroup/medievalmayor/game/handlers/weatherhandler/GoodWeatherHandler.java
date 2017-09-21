@@ -14,16 +14,15 @@ public class GoodWeatherHandler extends UpdateWeatherHandler{
 	static final Logger logger = LogManager.getLogger("GoodWeatherHandler.class");
 
 	@Override
-	public double handle(City city, double weather, String weatherEvent) {
+	public double handle(double weather, List<String> events) {
 		if(weather > 0.66){
 			logger.debug("Good Weather This year");
 			logger.debug("Good Weather handler used");
 			System.out.println("----------------------Good Weather");
-			weatherEvent = "Good Weather";
-
+			events.add("Good Weather This year");
 			return 1.2;
 		} else {
-			return next.handle(city, weather, weatherEvent);
+			return handleNext(weather, events);
 		}
 	}
 	

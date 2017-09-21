@@ -1,5 +1,7 @@
 package com.fdmgroup.medievalmayor.game.command.updatecommands;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,9 +14,11 @@ public class UpdateCityYearCommand implements UserCommand{
 
 	
 	private City city; 
+	private List<String> events;
 
-	public UpdateCityYearCommand(City city) {
+	public UpdateCityYearCommand(City city, List<String> events) {
 		this.city = city;
+		this.events = events;
 	}
 
 	@Override
@@ -22,5 +26,6 @@ public class UpdateCityYearCommand implements UserCommand{
 		logger.info("UpdateCityYear Command executed");
 		int newCityYear = city.getCityYear()+1;
 		city.setCityYear(newCityYear);
+		events.add("City entered year "+newCityYear);
 	}
 }

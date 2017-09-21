@@ -1,5 +1,6 @@
 package com.fdmgroup.medievalmayor.game.command.updatecommands;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
@@ -21,10 +22,12 @@ public class UpdatePopulationCommand implements UserCommand {
 	private City city;
 	private ResourceFactory resourceFactory;
 	private ResourceProducerService resourceBuildingService;
+	private List<String> events;
 
-	public UpdatePopulationCommand(City city) {
+	public UpdatePopulationCommand(City city, List<String> events) {
 		this.city = city;
 		resourceFactory = new ResourceFactory();
+		this.events = events;
 		resourceBuildingService = new ResourceProducerService();
 	}
 	
@@ -34,14 +37,19 @@ public class UpdatePopulationCommand implements UserCommand {
 		int totalPopulation = city.getTotalPopulation();
 		int newCitizens;
 		int exCitizens;
+		int people = 0;
+		String comingOrGoing = "Arrived";
 		if(resources.get("Food")>5){
 			newCitizens = resources.get("Food")/5;
 			totalPopulation += newCitizens;
+			people = newCitizens;
 			city.addResource(resourceFactory.getPopulation(newCitizens));
 			logger.trace("Population increased by: "+newCitizens+" in UpdatePopulationCommand class");
 		} 
 		else if (resources.get("Food")<0){
 			exCitizens = resources.get("Food");
+			people = exCitizens;
+			comingOrGoing = "Left";
 			for (ResourceProducer resourceBuilding: city.getResourceProducers()){
 				try {
 					resourceBuildingService.assignPeopleToResourceProducer(0, totalPopulation, resourceBuilding);
@@ -58,9 +66,10 @@ public class UpdatePopulationCommand implements UserCommand {
 			logger.info("Food reset to 0 in UpdatePopulationCommand class");
 			city.setResources(resources);
 		}
+		events.add(people+" people have "+comingOrGoing);
 		city.setTotalPopulation(totalPopulation);
 		CommandInvoker commandInvoker = new CommandInvoker();
-		UserCommand updateCityYearCommand = new UpdateCityYearCommand(city);
+		UserCommand updateCityYearCommand = new UpdateCityYearCommand(city, events);
 		commandInvoker.setCommand(updateCityYearCommand);
 		commandInvoker.invokeCommands();
 

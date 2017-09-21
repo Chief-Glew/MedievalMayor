@@ -114,7 +114,6 @@ public class SingleplayerController {
 		logger.info("NextTurn method used in SinglePlayerController Class");
 		City city;
 		List<String> events = new ArrayList<String>();
-		String weatherEvent = "blank";
 		try {
 			city = addCityToModel(cityId, cityName, model);
 			logger.trace(city+" addedToModel in nextTurn method");
@@ -123,7 +122,7 @@ public class SingleplayerController {
 			return "wrongTurnPage";
 		}
 		try {
-			clientComand.nextTurn(city); //TODO make next turn record events
+			clientComand.nextTurn(city, events); //TODO make next turn record events
 			logger.trace("NextTurn command used in NextTurn method");
 		} catch (GameOverException e) {
 			logger.debug("GameOverException in NextTurn method");
@@ -131,12 +130,10 @@ public class SingleplayerController {
 			return "gameOverPage";
 		}
 		randomEventHandler.handle(city, events);
-		updateWeatherHandler.handle(city, 1, weatherEvent);
-		System.out.println(weatherEvent);
+		
 		writeCrud.update(city);
 		logger.info("Events of the Year: "+events);
 		model.addAttribute("events", events);
-		model.addAttribute("weatherEvent", weatherEvent);
 		logger.debug("NextTurn method used");
 		return displayCityStats(cityId, cityName, model);
 	}
