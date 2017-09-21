@@ -104,7 +104,7 @@ color: #73020F
 	<div class="info">
 		<form action="/medievalmayor/home" method="get">
 			<c:forEach items="${cities}" var="selectCity">
-				<input type="submit" name="cityId" value="select"
+				<input type="submit" name="cityId" value="Select"
 					formaction="/medievalmayor/<c:out value="${selectCity.cityName}"/>/<c:out value="${selectCity.cityId}"/>" />
 				<label><c:out value="${selectCity.cityId}" />:<c:out
 						value="${selectCity.cityName}" /></label>
@@ -113,8 +113,8 @@ color: #73020F
 		</form>
 		<form>
 			<input type="text" value="Rivendale" name="cityName"
-				pattern="[a-zA-Z0-9]+"  maxlength="28" required> <input type="submit"
-				value="newcity" formaction="/medievalmayor/newCity" formmethod="get">
+				pattern="[a-zA-Z0-9\s]+"  maxlength="28" required> <input type="submit"
+				value="New City" formaction="/medievalmayor/newCity" formmethod="get">
 		</form>
 	</div>
 </body>

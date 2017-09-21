@@ -270,7 +270,7 @@ public class SingleplayerController {
 	}
 
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/upgrade", method = RequestMethod.GET)
-	public String submitNewMinerAssignment(@PathVariable String cityId, @PathVariable String cityName, @PathVariable String producerName,
+	public String submitUpgrade(@PathVariable String cityId, @PathVariable String cityName, @PathVariable String producerName,
 			Model model) {
 		City city;
 		try {
@@ -278,9 +278,12 @@ public class SingleplayerController {
 		} catch (InvalidCityNameIDCombinationException e) {
 			return "wrongTurnPage";
 		}
-		resourceProducerUpgradeHandler.handle(city, producerName, model);
+		
+		model.addAttribute("resourceProducerName", producerName);
+		
+		String upgrade = resourceProducerUpgradeHandler.handle(city, producerName, model);
 		writeCrud.update(city);
-		logger.debug("SubmitNewMinerAssignment method used");
-		return displayCityStats(cityId, cityName, model);
+		logger.debug("submitUpgrade method used");
+		return upgrade;
 	}
 }

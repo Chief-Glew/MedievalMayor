@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>User Home</title>
+<title>Farm Service</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -67,15 +67,29 @@ h1 {
 	<nav>
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="./">Medieval Mayor</a>
+				<a class="navbar-brand" href="/medievalmayor/">Medieval Mayor</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="./">Home</a></li>
-				<li class="active"><a href="./userHome">City</a></li>
-				<li><a href="./farmService">Farm</a></li>
-				<li><a href="./mineService">Mine</a></li>
+				<li><a href="/medievalmayor/">Home</a></li>
+				<li class="active"><a
+					href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>">City</a></li>
+				<c:forEach items="${resourceProducers}" var="resourceProducer">
+					<li><a
+						href="/medievalmayor/<c:out value="${city.cityName}"/>/<c:out value="${city.cityId}"/>/<c:out value="${resourceProducer.resourceProducerName}" />"><c:out
+								value="${resourceProducer.resourceProducerName}" /></a></li>
+				</c:forEach>
 			</ul>
 		</div>
 	</nav>
+
+	<h1>
+		<span class="label label-default">Insufficient Resources To
+			Upgrade <c:out value="${resourceProducerName}" />!
+		</span>
+	</h1>
+	<div class="info">
+	You do not have enough resources to upgrade ${resourceProducerName}.
+	
+	</div>
 </body>
 </html>
