@@ -17,9 +17,12 @@ import com.fdmgroup.medievalmayor.game.city.CityFactory;
 
 @Controller
 public class HomeController {
+	
+	static final Logger logger = LogManager.getLogger("HomeController.class");
+
 
 	private GenericRead<City> readCrud;
-	static final Logger logger = LogManager.getLogger("CityHomeController.class");
+	
 	private CityFactory cityFactory;
 	private GenericWrite<City> writeCrud;
 
