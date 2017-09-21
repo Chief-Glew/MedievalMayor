@@ -10,7 +10,7 @@ import com.fdmgroup.medievalmayor.game.command.UserCommand;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerService;
 
-public class SetNumberOfWorkersInBuildingFromCityCommand implements UserCommand{
+public class SetNumberOfWorkersInResourceProducerFromCityCommand implements UserCommand{
 	
 	private static final Logger logger = LogManager.getLogger("SetNumberOfWorkersInResourceBuildingFromCityCommand.class");
 
@@ -19,7 +19,7 @@ public class SetNumberOfWorkersInBuildingFromCityCommand implements UserCommand{
 	private int numberOfPeopleToAssign;
 	private ResourceProducerService resourceProducerService;
 
-	public SetNumberOfWorkersInBuildingFromCityCommand(City city, ResourceProducer resourceProducer, int numberOfPeopleToAssign){
+	public SetNumberOfWorkersInResourceProducerFromCityCommand(City city, ResourceProducer resourceProducer, int numberOfPeopleToAssign){
 		this.city = city;
 		this.resourceProducer = resourceProducer;
 		this.numberOfPeopleToAssign = numberOfPeopleToAssign;

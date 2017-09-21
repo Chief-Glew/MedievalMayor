@@ -9,7 +9,7 @@ import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
 import com.fdmgroup.medievalmayor.game.command.UserCommand;
 import com.fdmgroup.medievalmayor.game.command.setcommands.SetBaseResourceProductionCommand;
 import com.fdmgroup.medievalmayor.game.command.setcommands.SetUpgradeMultiplierCommand;
-import com.fdmgroup.medievalmayor.game.command.setcommands.SetAmmountOfLumberPerWoodCommand;
+import com.fdmgroup.medievalmayor.game.command.setcommands.SetAmountOfLumberPerWoodCommand;
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
@@ -44,7 +44,7 @@ public class AdminCommand {
 	}
 	
 	public void setAmmountOfLumberPerWoodForLumberMill(LumberMill lumberMill, int ammountOfLumberPerWood) {
-		UserCommand command = new SetAmmountOfLumberPerWoodCommand(lumberMill, ammountOfLumberPerWood);
+		UserCommand command = new SetAmountOfLumberPerWoodCommand(lumberMill, ammountOfLumberPerWood);
 		setAndInvoke(command);
 		logger.info("SetAmmountOfLumberPerWoodForLumberMill method used in AdminCommand class");
 	}

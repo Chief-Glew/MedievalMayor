@@ -26,7 +26,7 @@ import com.fdmgroup.medievalmayor.exceptions.InvalidCityNameIDCombinationExcepti
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.MultiplayerGame;
 import com.fdmgroup.medievalmayor.game.command.usercommands.ClientCommand;
-import com.fdmgroup.medievalmayor.game.events.RandomEventHandler;
+import com.fdmgroup.medievalmayor.game.handlers.eventhandlers.RandomEventHandler;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
 import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.ResourceProducerUpgradeHandler;
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.LumberMillAdminHandler;

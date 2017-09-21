@@ -1,4 +1,4 @@
-package com.fdmgroup.medievalmayor.game.events;
+package com.fdmgroup.medievalmayor.game.handlers.eventhandlers;
 
 import java.util.List;
 

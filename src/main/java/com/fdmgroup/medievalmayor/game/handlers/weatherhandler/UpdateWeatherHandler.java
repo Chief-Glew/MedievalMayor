@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.events.RandomEventHandler;
+import com.fdmgroup.medievalmayor.game.handlers.eventhandlers.RandomEventHandler;
 
 public abstract class UpdateWeatherHandler {
 

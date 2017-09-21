@@ -12,7 +12,7 @@ import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
 import com.fdmgroup.medievalmayor.game.command.NextTurnCommand;
 import com.fdmgroup.medievalmayor.game.command.UserCommand;
-import com.fdmgroup.medievalmayor.game.command.setcommands.SetNumberOfWorkersInBuildingFromCityCommand;
+import com.fdmgroup.medievalmayor.game.command.setcommands.SetNumberOfWorkersInResourceProducerFromCityCommand;
 import com.fdmgroup.medievalmayor.game.command.upgradecommands.UpgradeCommand;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
@@ -39,7 +39,7 @@ public class ClientCommand {
 	}
 	
 	public void setNumberOfWorkersInResourceBuildingForCity(City city, ResourceProducer resourceBuilding, int numberOfPeopleToAssign){
-		UserCommand setNumberOfWorkers = new SetNumberOfWorkersInBuildingFromCityCommand(city, resourceBuilding, numberOfPeopleToAssign);
+		UserCommand setNumberOfWorkers = new SetNumberOfWorkersInResourceProducerFromCityCommand(city, resourceBuilding, numberOfPeopleToAssign);
 		invoke(setNumberOfWorkers);
 		logger.info("SetNumberOfWorkersInResourceBuildingForCity method used in ClientCommand class");
 	}

@@ -5,9 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.fdmgroup.medievalmayor.game.events.BanditsAttackHandler;
-import com.fdmgroup.medievalmayor.game.events.MigrantsAppearHandler;
-import com.fdmgroup.medievalmayor.game.events.RandomEventHandler;
+import com.fdmgroup.medievalmayor.game.handlers.eventhandlers.BanditsAttackHandler;
+import com.fdmgroup.medievalmayor.game.handlers.eventhandlers.MigrantsAppearHandler;
+import com.fdmgroup.medievalmayor.game.handlers.eventhandlers.RandomEventHandler;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.FarmStringHandler;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ForestStringHandler;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.GuardHouseStringHandler;
