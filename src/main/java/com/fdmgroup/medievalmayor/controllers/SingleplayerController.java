@@ -50,15 +50,17 @@ public class SingleplayerController {
 	private URLStringHandler urlStringHandler;
 	private ResourceProducerUpgradeHandler resourceProducerUpgradeHandler;
 	private RandomEventHandler randomEventHandler;
+	private UpdateWeatherHandler updateWeatherHandler;
 
 	@Autowired
 	public SingleplayerController(ResourceProducerUpgradeHandler resourceProducerUpgradeHandler,
 			ClientCommand clientCommand, ResourceProducerClassFromStringHandler stringToClassHandler,
-			GenericRead<City> readCrud, GenericWrite<City> writeCrud, 
+			GenericRead<City> readCrud, GenericWrite<City> writeCrud, UpdateWeatherHandler updateWeatherHandler, 
 			GenericRead<MultiplayerGame> MultiReadCrud,
 			GenericWrite<MultiplayerGame> MultiWriteCrud,
 			RandomEventHandler randomEventHandler) {
 		this.randomEventHandler = randomEventHandler;
+		this.updateWeatherHandler = updateWeatherHandler;
 		this.clientComand = clientCommand;
 		this.readCrud = readCrud;
 		this.writeCrud = writeCrud;
@@ -107,6 +109,7 @@ public class SingleplayerController {
 	public String nextTurn(@PathVariable String cityId, @PathVariable String cityName, Model model) {
 		City city;
 		List<String> events = new ArrayList<String>();
+		String weatherEvent = "blank";
 		try {
 			city = addCityToModel(cityId, cityName, model);
 		} catch (InvalidCityNameIDCombinationException e) {
@@ -119,8 +122,11 @@ public class SingleplayerController {
 			return "gameOverPage";
 		}
 		randomEventHandler.handle(city, events);
+		updateWeatherHandler.handle(city, 1, weatherEvent);
+		System.out.println(weatherEvent);
 		writeCrud.update(city);
 		model.addAttribute("events", events);
+		model.addAttribute("weatherEvent", weatherEvent);
 		logger.debug("NextTurn method used");
 		return displayCityStats(cityId, cityName, model);
 	}

@@ -88,7 +88,7 @@ h1 {
 	<div class="alert alert-info">
 			<span class="closebtn"
 				onclick="this.parentElement.style.display='none';">&times;</span>
-			<c:out value="${weather}" />
+			<c:out value="${weatherEvent}" />
 		</div>
 	<c:forEach items="${events}" var="events">
 		<div class="alert alert-info">

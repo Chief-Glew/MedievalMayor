@@ -31,6 +31,10 @@ import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.ForestUpgradeHan
 import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.LumberMillUpgradeHandler;
 import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.MineUpgradeHandler;
 import com.fdmgroup.medievalmayor.game.handlers.upgradehandlers.ResourceProducerUpgradeHandler;
+import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.BadWeatherHandler;
+import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.GoodWeatherHandler;
+import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.NormalWeatherHandler;
+import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.UpdateWeatherHandler;
 
 @Configuration
 @ComponentScan({"com.fdmgroup.medievalmayor.game", "com.fdmgroup.medievalmayor.controllers", "com.fdmgroup.medievalmayor.CRUD"})
@@ -89,6 +93,16 @@ public class AppConfig {
 		randomEventHandler.addToChain(banditsAttackHandler);
 		
 		return randomEventHandler;
+	}
+	
+	@Bean
+	@Autowired
+	public UpdateWeatherHandler updateWeatherHandler(BadWeatherHandler badWeatherHandler, GoodWeatherHandler goodWeatherHandler, NormalWeatherHandler normalWeatherHandler) {
+		UpdateWeatherHandler updateWeatherHandler = badWeatherHandler;
+		updateWeatherHandler.addToChain(goodWeatherHandler);
+		updateWeatherHandler.addToChain(normalWeatherHandler);
+
+		return updateWeatherHandler;
 	}
 }
 

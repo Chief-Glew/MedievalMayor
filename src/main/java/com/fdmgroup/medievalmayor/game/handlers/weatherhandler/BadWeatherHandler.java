@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.fdmgroup.medievalmayor.game.city.City;
 
+@Component
 public class BadWeatherHandler extends UpdateWeatherHandler{
 
 	static final Logger logger = LogManager.getLogger("BadWeatherHandler.class");
