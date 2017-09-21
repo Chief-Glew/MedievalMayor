@@ -1,0 +1,25 @@
+package com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.fdmgroup.medievalmayor.game.city.City;
+import com.fdmgroup.medievalmayor.game.resourceproducers.GuardHouse;
+import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
+
+public class UpdateGuardHandler extends UpdateResourcesHandler {
+
+	static final Logger logger = LogManager.getLogger("UpdateFoodHandler.class");
+
+	@Override
+	public void handle(City city) {
+		ResourceProducer guardHouse = city.getResourceProducerOfType(GuardHouse.class);
+		city.addResource(guardHouse.produceResource());
+		if (!isNextNull()) {
+			next.handle(city);
+		}
+		logger.debug("Handle method used");
+	}
+
+
+}

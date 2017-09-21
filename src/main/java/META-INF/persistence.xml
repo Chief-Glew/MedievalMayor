@@ -11,7 +11,8 @@
 		<class>com.fdmgroup.medievalmayor.game.resources.ResourceStorageHandler</class>
 		<class>com.fdmgroup.medievalmayor.game.resources.Resource</class>
 		<class>com.fdmgroup.medievalmayor.game.resourceproducers.Forest</class>
-		<class>com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill</class>
+		<class>com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill</class>		
+		<class>com.fdmgroup.medievalmayor.game.resourceproducers.GuardHouse</class>		
 		<class>com.fdmgroup.medievalmayor.game.city.MultiplayerGame</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />

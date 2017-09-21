@@ -15,60 +15,60 @@ import com.fdmgroup.medievalmayor.config.AppConfig;
 
 
 public class CityHomeControllerTest {
-	private SingleplayerController cityHomeController;
+	private SingleplayerController singleplayerController;
 	private Model modelMock;
 	private ApplicationContext applicationContext;
 	
 	@Before
 	public void init(){
 		applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-		cityHomeController = applicationContext.getBean(SingleplayerController.class);
+		singleplayerController = applicationContext.getBean(SingleplayerController.class);
 		modelMock = mock(Model.class);
 	}
 
 	@Test
 	public void testThatShowCitiesWillDirectToIndexJSP(){
-		assertEquals("index", cityHomeController.showCities(modelMock));
+		assertEquals("index", singleplayerController.showCities(modelMock));
 	}
 	
 	@Test
 	public void testThatDisplayCityStatsWillDirectToNewUserHomeJSP(){
-		assertEquals("newUserHome", cityHomeController.displayCityStats("1", null, modelMock));
+		assertEquals("newUserHome", singleplayerController.displayCityStats("1", null, modelMock));
 	}
 	
 	@Test
 	public void testThatDisplayAdminPageWillDirectToAdminPageJSP(){
-		assertEquals("adminPage", cityHomeController.displayAdminPage("1", null, modelMock));
+		assertEquals("adminPage", singleplayerController.displayAdminPage("1", null, modelMock));
 	}
 	
 	@Test
 	public void testThatDisplayAdminPageForResourseProducerWillDirectToResourceProducerAdminPageJSP(){
-		assertEquals("resourceProducerAdminPage", cityHomeController.displayAdminPageForResourseProducer("1", "Farm", null, modelMock));
+		assertEquals("resourceProducerAdminPage", singleplayerController.displayAdminPageForResourseProducer("1", "Farm", null, modelMock));
 	}
 	
 	@Test
 	public void testThatDisplayAdminPageForResourseProducerWillDirectToRWrongTurnPageJSPIfGivenNull(){
-		assertEquals("wrongTurnPage", cityHomeController.displayAdminPageForResourseProducer("1", null, null, modelMock));
+		assertEquals("wrongTurnPage", singleplayerController.displayAdminPageForResourseProducer("1", null, null, modelMock));
 	}
 	
 	@Test
 	public void testThatUpdateAdminValuesForResourceProducerWillDirectAssignationPage(){
-		assertEquals("assignationPage", cityHomeController.updateAdminValuesForResourceProducer("1", "Farm", "2", "2", modelMock));
+		assertEquals("assignationPage", singleplayerController.updateAdminValuesForResourceProducer("1", "Farm", "2", "2", modelMock));
 	}
 	
 	@Test
 	public void testThatUpdateAdminValuesForResourceProducerWillDirectToRWrongTurnPageJSPIfGivenNull(){
-		assertEquals("wrongTurnPage", cityHomeController.updateAdminValuesForResourceProducer("100001", "Farm", "2", "2", modelMock));
+		assertEquals("wrongTurnPage", singleplayerController.updateAdminValuesForResourceProducer("100001", "Farm", "2", "2", modelMock));
 	}
 	
 	@Test
 	public void testThatdisplayAssignerFormWillDirectToResourceProducerAssignationPageJSP(){
-		assertEquals("assignationPage", cityHomeController.displayAssignerForm("1", "Farm", modelMock));
+		assertEquals("assignationPage", singleplayerController.displayAssignerForm("1", "Farm", modelMock));
 	}
 	
 	@Test
 	public void testThatDisplayAssignerFormWillDirectToRWrongTurnPageJSPIfGivenNull(){
-		assertEquals("wrongTurnPage", cityHomeController.displayAssignerForm("1", null, modelMock));
+		assertEquals("wrongTurnPage", singleplayerController.displayAssignerForm("1", null, modelMock));
 	}
 	
 	@After

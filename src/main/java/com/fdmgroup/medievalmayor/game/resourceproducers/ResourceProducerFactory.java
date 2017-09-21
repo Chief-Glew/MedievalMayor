@@ -29,4 +29,8 @@ public class ResourceProducerFactory {
 		logger.debug("Lumber Mill retrieved");
 		return new LumberMill(0, 4, 0, "Lumber Mill", 0, 3, 4);
 	}
+	
+	public ResourceProducer getGuardHouse() {
+		return new GuardHouse(0, 1, 0, "Guard House", 0, 3);
+	}
 }

@@ -14,7 +14,6 @@ import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.CityFactory;
 import com.fdmgroup.medievalmayor.game.command.AdminCommand;
 import com.fdmgroup.medievalmayor.game.resourceproducers.Farm;
-import com.fdmgroup.medievalmayor.game.resourceproducers.Forest;
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducerFactory;
