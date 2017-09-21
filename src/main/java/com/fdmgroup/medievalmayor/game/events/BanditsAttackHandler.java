@@ -51,6 +51,7 @@ public class BanditsAttackHandler extends RandomEventHandler {
 		int numberOfBandits = generateBanditNumbers(city);
 		events.add("You were attacked by "+numberOfBandits+" bandits!");
 		GuardHouse guardHouse = (GuardHouse)city.getResourceProducerOfType(GuardHouse.class);
+		System.out.println("------You were attacked by "+numberOfBandits+" bandits!");
 		int numberOfBanditsKilled = guardHouse.getBanditsKilled();
 		if (numberOfBanditsKilled>numberOfBandits){
 			events.add("Your guards killed all of them!");

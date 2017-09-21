@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.FarmStringHandler;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ForestStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.GuardHouseStringHandler;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.LumberMillStringHandler;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.MineStringHandler;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
@@ -23,6 +24,8 @@ public class ResourceProducerAdminHandler extends URLStringHandler {
 		stringToClassHandler.addToChain(new ForestStringHandler());
 		stringToClassHandler.addToChain(new LumberMillStringHandler());
 		stringToClassHandler.addToChain(new MineStringHandler());
+		stringToClassHandler.addToChain(new GuardHouseStringHandler());
+
 	}
 	
 	@Override

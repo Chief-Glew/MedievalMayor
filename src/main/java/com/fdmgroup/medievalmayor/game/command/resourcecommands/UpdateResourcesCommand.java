@@ -9,6 +9,7 @@ import com.fdmgroup.medievalmayor.game.command.UpdatePopulationCommand;
 import com.fdmgroup.medievalmayor.game.command.UserCommand;
 import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateFoodHandler;
 import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateGoldHandler;
+import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateGuardHandler;
 import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateLumberHandler;
 import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateResourcesHandler;
 import com.fdmgroup.medievalmayor.game.handlers.updateresourceshandlers.UpdateWoodHandler;
@@ -27,6 +28,8 @@ public class UpdateResourcesCommand implements UserCommand{
 		updateResourcesHandler.addToChain(new UpdateGoldHandler());
 		updateResourcesHandler.addToChain(new UpdateWoodHandler());
 		updateResourcesHandler.addToChain(new UpdateLumberHandler());
+		updateResourcesHandler.addToChain(new UpdateGuardHandler());
+
 	} 
  
 	public void execute() {

@@ -228,6 +228,7 @@ public class SingleplayerController {
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}", method = RequestMethod.GET)
 	public String displayAssignerForm(@PathVariable String cityId, @PathVariable String cityName, @PathVariable String producerName,
 			Model model) {
+		logger.debug("DisplayAssignerForm method used");
 		City city;
 		try {
 			city = addCityToModel(cityId, cityName, model);
@@ -237,10 +238,10 @@ public class SingleplayerController {
 		try {
 			String jspName = urlStringHandler.handle(city, producerName, model);
 			writeCrud.update(city);
-			logger.debug("DisplayAssignerForm method used");
+			
 			return jspName;
 		} catch (NullPointerException exception) {
-			logger.debug("Null Pointer Exception");
+			logger.debug("Null Pointer Exception1");
 			return "wrongTurnPage";
 		}
 	}
