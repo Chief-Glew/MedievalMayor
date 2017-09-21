@@ -14,7 +14,7 @@
 <style>
 body {
 	background-image:
-		url('https://i.ytimg.com/vi/UON27Kydqsw/maxresdefault.jpg');
+		url('hhttp://localhost:8088/medievalmayor/%3Cc:out%20value=ttps://i.ytimg.com/vi/UON27Kydqsw/maxresdefault.jpg');
 	background-size: 100%;
 	max-width: 1000px;
 	margin: 0 auto;

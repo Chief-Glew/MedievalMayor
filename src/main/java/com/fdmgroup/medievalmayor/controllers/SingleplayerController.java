@@ -22,6 +22,7 @@ import com.fdmgroup.medievalmayor.CRUD.GenericRead;
 import com.fdmgroup.medievalmayor.CRUD.GenericWrite;
 import com.fdmgroup.medievalmayor.config.AppConfig;
 import com.fdmgroup.medievalmayor.exceptions.GameOverException;
+import com.fdmgroup.medievalmayor.exceptions.GameWinException;
 import com.fdmgroup.medievalmayor.exceptions.InvalidCityNameIDCombinationException;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.city.MultiplayerGame;
@@ -64,7 +65,7 @@ public class SingleplayerController {
 		this.clientComand = clientCommand;
 		this.readCrud = readCrud;
 		this.writeCrud = writeCrud;
-		urlStringHandler = new ResourceProducerHandler();
+		urlStringHandler = new ResourceProducerHandler(); 
 		this.stringToClassHandler = stringToClassHandler;
 		this.resourceProducerUpgradeHandler = resourceProducerUpgradeHandler;
 		logger.info("City Controller Instantiated");
@@ -119,7 +120,7 @@ public class SingleplayerController {
 			city = addCityToModel(cityId, cityName, model);
 			logger.trace(city+" addedToModel in nextTurn method");
 		} catch (InvalidCityNameIDCombinationException e) {
-			logger.debug("InvalidCityNameIDCombination exception in NextTurn method");
+			logger.debug("InvalidCityNameIDCombination exception in NextTurn method"); 
 			return "wrongTurnPage";
 		}
 		try {
@@ -129,11 +130,15 @@ public class SingleplayerController {
 			logger.debug("GameOverException in NextTurn method");
 			e.printStackTrace();
 			return "gameOverPage";
+		} catch (GameWinException e) {
+			logger.debug("GameWinException in NextTurn method");
+			e.printStackTrace();
+			return winnerPage(cityId, cityName, model);
 		}
 		randomEventHandler.handle(city, events);
 		updateWeatherHandler.handle(city, 1, weatherEvent);
 		System.out.println(weatherEvent);
-		writeCrud.update(city);
+		writeCrud.update(city); 
 		logger.info("Events of the Year: "+events);
 		model.addAttribute("events", events);
 		model.addAttribute("weatherEvent", weatherEvent);
@@ -315,4 +320,15 @@ public class SingleplayerController {
 		logger.trace("resourceProducerUpgradeHandler method used in submitNewMinerAssignment method for: "+city);
 		return upgrade;
 	}
+	
+	@RequestMapping(value= "/{cityName}/{cityId}/winnerPage",method = RequestMethod.GET)
+	public String winnerPage(@PathVariable String cityId, @PathVariable String cityName, Model model){
+
+		model.addAttribute("cityId", cityId);
+		model.addAttribute("cityName", cityName);
+
+
+		return "winnerPage";
+	}
+	
 }

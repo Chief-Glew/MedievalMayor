@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fdmgroup.medievalmayor.exceptions.GameOverException;
+import com.fdmgroup.medievalmayor.exceptions.GameWinException;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.command.CommandInvoker;
 import com.fdmgroup.medievalmayor.game.command.NextTurnCommand;
@@ -28,13 +29,17 @@ public class ClientCommand {
 		this.commandInvoker = commandInvoker;
 	}
 
-	public void nextTurn(City city) throws GameOverException {
+	public void nextTurn(City city) throws GameOverException, GameWinException {
 		UserCommand nextTurn = new NextTurnCommand(city);
 		invoke(nextTurn);
 		logger.info("NextTurn method used in ClientCommand class");
 		if(city.getTotalPopulation()<=0){
 			logger.debug("Game ended via GameOverException in ClientCommand class");
 			throw new GameOverException("GameOver Man, GameOver");
+		}
+		if(city.getCityYear()==50){
+			logger.debug("Game ended via GameWinException in ClientCommand class");
+			throw new GameWinException("You Are The Winner!");
 		}
 	}
 	
@@ -54,5 +59,5 @@ public class ClientCommand {
 		logger.info("NextTurn method used in ClientCommand class");
 		commandInvoker.setCommand(command);
 		commandInvoker.invokeCommands();
-	}
+	} 
 }
