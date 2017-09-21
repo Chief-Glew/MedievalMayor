@@ -78,7 +78,7 @@ public class City implements IdAble{
 	}
 
 	public int getTotalPopulation() {
-		logger.debug("Total Population retrieved");
+		logger.info("GetTotalPopulation method used in City class");
 		return totalPopulation;
 	}
 

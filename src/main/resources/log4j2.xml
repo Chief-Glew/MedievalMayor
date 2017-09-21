@@ -46,7 +46,7 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="HomeController.class" level="debug"
+		<Logger name="HomeController.class" level="info"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
