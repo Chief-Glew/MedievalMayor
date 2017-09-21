@@ -13,11 +13,11 @@ public class FarmStringHandler extends ResourceProducerClassFromStringHandler {
 	@Override
 	public Class<? extends ResourceProducer> handle(String producerName) throws NullPointerException{
 		if (producerName.equals("Farm")) {
-			logger.debug("Farm Class returned");
+			logger.info("Farm Class returned in FarmStringHandler class");
 			return Farm.class;
 		}
 		else {
-			logger.debug("Next.Handle method used");
+			logger.info("Next.Handle method used");
 			return next.handle(producerName);
 		}
 	}

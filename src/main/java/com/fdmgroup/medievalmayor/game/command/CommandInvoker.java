@@ -12,11 +12,11 @@ public class CommandInvoker {
 	private UserCommand command;
 
 	public void setCommand(UserCommand command){
-		logger.debug("Command set");
+		logger.info("SetCommand method used in CommandInvoker class");
 		this.command = command; 
 	}
 	public void invokeCommands(){
-		logger.debug("Command executed");
+		logger.info("InvokeCommands method used in CommandInvoker class");
 		command.execute();
 	}
 	

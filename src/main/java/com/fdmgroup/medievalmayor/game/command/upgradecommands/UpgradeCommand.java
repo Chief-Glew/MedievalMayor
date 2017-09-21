@@ -35,11 +35,11 @@ public class UpgradeCommand implements UserCommand {
 			int currentResourceAmmount = resources.getOrDefault(resource, 0);
 			if(resourceCost>currentResourceAmmount){
 				try {
-					logger.trace("UpgradeCommand executed");
 					hasEnoughResources = false;
 					throw new InsufficientResourcesException("Insufficient resources available");
 				} catch (InsufficientResourcesException e) {
 					e.printStackTrace();
+					logger.debug("InsufficientResourcesException in UpgradeCommand class");
 				}
 			}
 			else{
@@ -47,6 +47,8 @@ public class UpgradeCommand implements UserCommand {
 			}
 		}
 		if (hasEnoughResources){
+			logger.trace("Sufficient Resources available for Upgrade in UpgradeCommand class");
+
 			city.setResources(resources);
 			resourceProducer.incrementProducerLevel();
 		}

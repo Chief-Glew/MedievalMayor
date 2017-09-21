@@ -14,17 +14,17 @@ public abstract class RandomEventHandler {
 	protected RandomEventHandler next;
 	
 	public void addToChain(RandomEventHandler handler) {
+		logger.info("AddToChain method used in RandomEventHandler");
 		if (next==null) {
 			next = handler;
 		}
 		else {
 			next.addToChain(handler); 
 		}
-		logger.debug("addToChain method used");
 	}
 	
 	protected boolean isNextNull() {
-		logger.debug("IsNextNull method used");
+		logger.info("IsNextNull method used in RandomEventHandler");
 		return next==null;
 	}
 	

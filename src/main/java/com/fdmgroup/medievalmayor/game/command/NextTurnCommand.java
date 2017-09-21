@@ -8,7 +8,7 @@ import com.fdmgroup.medievalmayor.game.command.updatecommands.UpdateWeatherComma
 
 public class NextTurnCommand implements UserCommand {
 	
-	private static final Logger logger = LogManager.getLogger("CommandInvoker.class");
+	private static final Logger logger = LogManager.getLogger("NextTurnCommand.class");
 	
 	private City city;
 	
@@ -18,12 +18,12 @@ public class NextTurnCommand implements UserCommand {
 
 	@Override
 	public void execute() {
-		
+		logger.info("NextTurnCommand executed");
 		UserCommand updateWeatherCommand = new UpdateWeatherCommand(city);
 		CommandInvoker commandInvoker = new CommandInvoker();
 		commandInvoker.setCommand(updateWeatherCommand);
 		commandInvoker.invokeCommands();
 		
-		logger.debug("Execute weather method used");
+		
 	}
 }

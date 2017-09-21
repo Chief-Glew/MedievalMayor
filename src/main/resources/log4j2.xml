@@ -95,11 +95,17 @@
 			level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="SetNumberOfWorkersInResourceProducerFromCityCommand.class"
 			level="trace" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
+
+		<Logger name="SetNumberOfWorkersCommand.class" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
 
 		<!-- Update Command Loggers -->
 
@@ -107,7 +113,7 @@
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="UpdateCityYearCommand.class" level="info"
 			additivity="false">
 			<AppenderRef ref="Console" />
@@ -122,19 +128,33 @@
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 		<Logger name="UpdatePopulationCommand.class" level="trace"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-		
+
 
 		<Logger name="UpdateResourcesCommand.class" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
+		<!-- Upgrade Command Loggers -->
 
+		<Logger name="UpgradeCommand.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="UpgradeCommand.class" level="info" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="UpgradeCommand.class" level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<!-- User Command Loggers -->
 
 		<Logger name="ClientCommand.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
@@ -143,21 +163,54 @@
 		<Logger name="ClientCommand.class" level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
+		
+		<Logger name="ClientCommand.class" level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<!-- General Command Loggers -->
 
-		<Logger name="CommandInvoker.class" level="debug" additivity="false">
+		<Logger name="AdminCommand.class" level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="SetNumberOfWorkersCommand.class" level="debug"
-			additivity="false">
+		<Logger name="CommandInvoker.class" level="info" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="NextTurnCommand.class" level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
-		<Logger name="AdminCommand.class" level="debug" additivity="false">
+		<!-- Event Handlers Loggers -->
+		
+		<Logger name="BanditsAttackHandler.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-
-		<!-- Handlers Loggers -->
+		
+		<Logger name="BanditsAttackHandler.class" level="info" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="BanditsAttackHandler.class" level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="MigrantsAppearHandler.class" level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="RandomEventHandler.class" level="trace" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="MigrantsAppearHandler.class" level="info" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="MigrantsAppearHandler.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
 
 		<Logger name="URLStringHandler.class" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
@@ -214,7 +267,7 @@
 		</Logger>
 
 		<Logger name="ResourceProducerClassFromStringHandler.class"
-			level="debug" additivity="false">
+			level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 
