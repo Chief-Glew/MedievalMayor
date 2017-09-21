@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fdmgroup.medievalmayor.game.city.City;
-import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.UpdateWeatherHandler;
 
 public class NextTurnCommand implements UserCommand {
 	
@@ -26,5 +25,4 @@ public class NextTurnCommand implements UserCommand {
 		
 		logger.debug("Execute weather method used");
 	}
-
 }

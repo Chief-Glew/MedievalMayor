@@ -146,6 +146,18 @@
 		</Logger>
 		
 		<!-- Handlers Loggers -->
+		
+		<Logger name="NormalWeatherHandler.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="GoodWeatherHandler.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="BadWeatherHandler.class" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
 
 		<Logger name="FarmStringHandler.class" level="debug"
 			additivity="false">
