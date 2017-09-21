@@ -14,7 +14,7 @@ import com.fdmgroup.medievalmayor.game.resourceproducers.GuardHouse;;
 @Component
 public class BanditsAttackHandler extends RandomEventHandler {
 
-	private double frequency = 1;
+	private double frequency = 0.25;
 	private PeopleKillingHandler peopleKillingHandler;
 	private ResourceStealingHandler resourceStealingHandler;
 
@@ -51,7 +51,6 @@ public class BanditsAttackHandler extends RandomEventHandler {
 		int numberOfBandits = generateBanditNumbers(city);
 		events.add("You were attacked by "+numberOfBandits+" bandits!");
 		GuardHouse guardHouse = (GuardHouse)city.getResourceProducerOfType(GuardHouse.class);
-		System.out.println("------You were attacked by "+numberOfBandits+" bandits!");
 		int numberOfBanditsKilled = guardHouse.getBanditsKilled();
 		if (numberOfBanditsKilled>numberOfBandits){
 			events.add("Your guards killed all of them!");
@@ -73,6 +72,9 @@ public class BanditsAttackHandler extends RandomEventHandler {
 	private int generateBanditNumbers(City city) {
 		Double doubleNumberOfBandits = Math.random()*city.getTotalPopulation()*Math.pow(1.02,city.getCityYear());
 		doubleNumberOfBandits = Math.floor(doubleNumberOfBandits);
+		if(doubleNumberOfBandits == 0){
+			doubleNumberOfBandits=1d;
+		}
 		return doubleNumberOfBandits.intValue();
 	}
 

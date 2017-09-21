@@ -36,10 +36,10 @@ public class MigrantsAppearHandler extends RandomEventHandler{
 	public List<String> handle(City city, List<String> events) {
 		if(Math.random()<frequency){
 			int numberOfMigrants = generateMigrantNumbers(city.getTotalPopulation()/4);
+			numberOfMigrants += 1;
 			Resource newPeople = resourceFactory.getPopulation(numberOfMigrants);
 			city.addResource(newPeople);
 			events.add(numberOfMigrants +" refugees have shown up from nearby villages attacked by bandits.");
-			System.out.println("------"+numberOfMigrants +" refugees have shown up from nearby villages attacked by bandits.");
 		}
 		if (!isNextNull()) {
 			return next.handle(city, events);

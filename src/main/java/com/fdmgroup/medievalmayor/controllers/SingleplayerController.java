@@ -33,6 +33,8 @@ import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.LumberMillAdmi
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.ResourceProducerAdminHandler;
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.ResourceProducerHandler;
 import com.fdmgroup.medievalmayor.game.handlers.urlstringhandlers.URLStringHandler;
+import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.NormalWeatherHandler;
+import com.fdmgroup.medievalmayor.game.handlers.weatherhandler.UpdateWeatherHandler;
 import com.fdmgroup.medievalmayor.game.resourceproducers.LumberMill;
 import com.fdmgroup.medievalmayor.game.resourceproducers.ResourceProducer;
 
@@ -128,8 +130,6 @@ public class SingleplayerController {
 		randomEventHandler.handle(city, events);
 		writeCrud.update(city);
 		logger.info("Events of the Year: "+events);
-		System.out.println("----------------------------------------------------------------------------------------------------");
-		System.out.println(events);
 		model.addAttribute("events", events);
 		logger.debug("NextTurn method used");
 		return displayCityStats(cityId, cityName, model);
