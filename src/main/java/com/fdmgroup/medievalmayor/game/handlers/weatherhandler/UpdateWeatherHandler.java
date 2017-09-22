@@ -31,7 +31,7 @@ public abstract class UpdateWeatherHandler {
 			return next.handle(weather, events);
 		}
 		else {
-			return 0;
+			return 1;
 		}
 	}
 }

@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.ui.Model;
 
+import com.fdmgroup.medievalmayor.exceptions.InsufficientResourcesException;
 import com.fdmgroup.medievalmayor.game.city.City;
 import com.fdmgroup.medievalmayor.game.command.usercommands.ClientCommand;
 import com.fdmgroup.medievalmayor.game.handlers.getproducertypehandlers.ResourceProducerClassFromStringHandler;
@@ -30,8 +31,7 @@ public abstract class ResourceProducerUpgradeHandler extends URLStringHandler {
 		this.cost = cost; 
 	}
 
-	@Override
-	public String handle(City city, String urlString, Model model) {
+	protected String handlerMethod(City city, String urlString) {
 		Class<? extends ResourceProducer> resourceProducerClass = resourceProducerClassFromStringHandler.handle(urlString);
 		ResourceProducer resourceProducer = city.getResourceProducerOfType(resourceProducerClass);
 		int currentLevel = resourceProducer.getProducerLevel();
@@ -41,6 +41,11 @@ public abstract class ResourceProducerUpgradeHandler extends URLStringHandler {
 			return "notEnoughResources";
 		}
 		return "newUserHome";
+	}
+
+	public Map<String, Integer> getUpgradeCost(City city, String producerName) {
+		
+		return cost;
 	}
 
 }

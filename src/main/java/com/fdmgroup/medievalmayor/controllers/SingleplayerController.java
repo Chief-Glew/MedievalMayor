@@ -82,7 +82,12 @@ public class SingleplayerController {
 	}
 
 	@RequestMapping(value = "/{cityName}/{cityId}", method = RequestMethod.GET)
-	public String displayCityStats(@PathVariable String cityId, @PathVariable String cityName, Model model) {
+	public String somethingElse(@PathVariable String cityId, @PathVariable String cityName, Model model) {
+		List<String> events = new ArrayList<String>();
+		return displayCityStats(cityId, cityName, model, events);
+	}
+
+	protected String displayCityStats(String cityId, String cityName, Model model, List<String> events) {
 		logger.info("DisplayCityStats method used in SinglePlayerController class");
 		City city;
 		try {
@@ -101,6 +106,7 @@ public class SingleplayerController {
 		model.addAttribute("unnassignedPeople", city.getUnassignedPopulation());
 		model.addAttribute("resourceProducers", resourceProducers);
 		model.addAttribute("resources", resources);
+		model.addAttribute("events", events);
 
 		writeCrud.update(city);
 		logger.debug("DisplayCityStats method used");
@@ -135,9 +141,8 @@ public class SingleplayerController {
 		randomEventHandler.handle(city, events);
 		writeCrud.update(city);
 		logger.info("Events of the Year: "+events);
-		model.addAttribute("events", events);
 		logger.debug("NextTurn method used");
-		return displayCityStats(cityId, cityName, model);
+		return displayCityStats(cityId, cityName, model, events);
 	}
 
 	@RequestMapping(value = "/{cityName}/{cityId}/admin", method = RequestMethod.GET)
@@ -278,6 +283,7 @@ public class SingleplayerController {
 			@RequestParam("newAssignedPopulation") String assignedPopulation, Model model) {
 		logger.info("SubmitNewAssignment method used in SinglePlayerController class");
 		City city;
+		List<String> events = new ArrayList<String>();
 		try {
 			city = addCityToModel(cityId, cityName, model);
 			logger.trace(city+" addedToModel in submitNewAssignment method");
@@ -291,7 +297,7 @@ public class SingleplayerController {
 				city.getResourceProducerOfType(stringToClassHandler.handle(producerName)), newAssignedPopulation);
 		writeCrud.update(city);
 		logger.trace("setNumberOfWorkersInResourceBuildingForCity method used in submitNewAssignment method for: "+city);
-		return displayCityStats(cityId, cityName, model);
+		return displayCityStats(cityId, cityName, model, events);
 	}
 
 	@RequestMapping(value = "/{cityName}/{cityId}/{producerName}/upgrade", method = RequestMethod.GET)
@@ -299,6 +305,7 @@ public class SingleplayerController {
 			Model model) {
 		logger.info("SubmitNewMinerAssignment method used in SinglePlayerController class");
 		City city;
+		List<String> events = new ArrayList<String>();
 		try {
 			city = addCityToModel(cityId, cityName, model);
 			logger.trace(city+" addedToModel in submitNewMinerAssignment method");
@@ -312,7 +319,12 @@ public class SingleplayerController {
 		String upgrade = resourceProducerUpgradeHandler.handle(city, producerName, model);
 		writeCrud.update(city);
 		logger.trace("resourceProducerUpgradeHandler method used in submitNewMinerAssignment method for: "+city);
-		return upgrade;
+		if(upgrade.equals("notEnoughResources")){
+			events.add("Not enough resources to upgrade "+ producerName+"\nYou need: "+resourceProducerUpgradeHandler.getUpgradeCost(city, producerName));
+
+		}
+		
+		return displayCityStats(cityId, cityName, model, events);
 	}
 	
 	@RequestMapping(value= "/{cityName}/{cityId}/winnerPage",method = RequestMethod.GET)
