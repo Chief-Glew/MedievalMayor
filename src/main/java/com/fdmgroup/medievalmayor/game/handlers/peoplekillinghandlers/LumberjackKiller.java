@@ -23,10 +23,11 @@ public class LumberjackKiller extends PeopleKillingHandler{
 		int numberOfAssignedWorkers = forest.getNumberOfAssignedWorkers();
 		boolean forestHasPeople = numberOfAssignedWorkers!=0;
 		
-		if (forestHasPeople&&isRandomNumberLessThanPointTwo()){
+		if (forestHasPeople&&isRandomNumberLessThanProbabilityOfDeath()){
 			forest.setNumberOfAssignedWorkers(numberOfAssignedWorkers-1);;
 			city.setTotalPopulation(city.getTotalPopulation()-1);
 			events.add("Bandits killed a Lumberjack");
+			resetProbability();
 		}
 		else{
 			handleNext(city, events);

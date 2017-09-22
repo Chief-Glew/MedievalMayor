@@ -14,6 +14,7 @@ public abstract class PeopleKillingHandler {
 
 	protected PeopleKillingHandler next;
 	protected ResourceFactory resourceFactory;
+	private static double probabilityDenominator = 50;
 	
 	public PeopleKillingHandler(ResourceFactory resourceFactory) {
 		this.resourceFactory = resourceFactory;
@@ -34,14 +35,22 @@ public abstract class PeopleKillingHandler {
 		return next==null;
 	}
 	
-	protected boolean isRandomNumberLessThanPointTwo() {
-		return Math.random()<0.2;
+	protected boolean isRandomNumberLessThanProbabilityOfDeath() {
+		return Math.random()<getProbabilityOfDeath();
 	}
 	
 	protected void handleNext(City city, List<String> events) {
 		if (!isNextNull()){
 		next.handle(city, events);
 		}
+	}
+	
+	private double getProbabilityOfDeath() {
+		return 1/probabilityDenominator--;
+	}
+	
+	protected void resetProbability() {
+		probabilityDenominator = 50;
 	}
 	
 	public abstract void handle(City city, List<String> events);

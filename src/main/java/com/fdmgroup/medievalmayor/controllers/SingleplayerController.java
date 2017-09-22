@@ -51,17 +51,15 @@ public class SingleplayerController {
 	private URLStringHandler urlStringHandler;
 	private ResourceProducerUpgradeHandler resourceProducerUpgradeHandler;
 	private RandomEventHandler randomEventHandler;
-	private UpdateWeatherHandler updateWeatherHandler;
 
 	@Autowired
 	public SingleplayerController(ResourceProducerUpgradeHandler resourceProducerUpgradeHandler,
 			ClientCommand clientCommand, ResourceProducerClassFromStringHandler stringToClassHandler,
-			GenericRead<City> readCrud, GenericWrite<City> writeCrud, UpdateWeatherHandler updateWeatherHandler, 
+			GenericRead<City> readCrud, GenericWrite<City> writeCrud, 
 			GenericRead<MultiplayerGame> MultiReadCrud,
 			GenericWrite<MultiplayerGame> MultiWriteCrud,
 			RandomEventHandler randomEventHandler) {
 		this.randomEventHandler = randomEventHandler;
-		this.updateWeatherHandler = updateWeatherHandler;
 		this.clientComand = clientCommand;
 		this.readCrud = readCrud;
 		this.writeCrud = writeCrud;
@@ -115,7 +113,6 @@ public class SingleplayerController {
 		logger.info("NextTurn method used in SinglePlayerController Class");
 		City city;
 		List<String> events = new ArrayList<String>();
-		String weatherEvent = "blank";
 		try {
 			city = addCityToModel(cityId, cityName, model);
 			logger.trace(city+" addedToModel in nextTurn method");
@@ -124,7 +121,7 @@ public class SingleplayerController {
 			return "wrongTurnPage";
 		}
 		try {
-			clientComand.nextTurn(city); //TODO make next turn record events
+			clientComand.nextTurn(city, events); //TODO make next turn record events
 			logger.trace("NextTurn command used in NextTurn method");
 		} catch (GameOverException e) {
 			logger.debug("GameOverException in NextTurn method");
@@ -136,12 +133,9 @@ public class SingleplayerController {
 			return winnerPage(cityId, cityName, model);
 		}
 		randomEventHandler.handle(city, events);
-		updateWeatherHandler.handle(city, 1, weatherEvent);
-		System.out.println(weatherEvent);
-		writeCrud.update(city); 
+		writeCrud.update(city);
 		logger.info("Events of the Year: "+events);
 		model.addAttribute("events", events);
-		model.addAttribute("weatherEvent", weatherEvent);
 		logger.debug("NextTurn method used");
 		return displayCityStats(cityId, cityName, model);
 	}

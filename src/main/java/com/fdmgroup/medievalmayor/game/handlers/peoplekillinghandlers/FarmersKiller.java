@@ -24,10 +24,11 @@ public class FarmersKiller extends PeopleKillingHandler {
 		int numberOfAssignedWorkers = farm.getNumberOfAssignedWorkers();
 		boolean farmHasPeople = numberOfAssignedWorkers!=0;
 		
-		if (farmHasPeople&&isRandomNumberLessThanPointTwo()){
+		if (farmHasPeople&&isRandomNumberLessThanProbabilityOfDeath()){
 			farm.setNumberOfAssignedWorkers(numberOfAssignedWorkers-1);;
 			city.setTotalPopulation(city.getTotalPopulation()-1);
 			events.add("Bandits killed a Farmer");
+			resetProbability();
 		}
 		else{
 			handleNext(city, events);

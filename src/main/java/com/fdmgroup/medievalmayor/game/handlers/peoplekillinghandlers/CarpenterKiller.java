@@ -24,10 +24,11 @@ public class CarpenterKiller extends PeopleKillingHandler{
 		int numberOfAssignedWorkers = lumberMill.getNumberOfAssignedWorkers();
 		boolean lumberMillHasPeople = numberOfAssignedWorkers!=0;
 		
-		if (lumberMillHasPeople&&isRandomNumberLessThanPointTwo()){
+		if (lumberMillHasPeople&&isRandomNumberLessThanProbabilityOfDeath()){
 			lumberMill.setNumberOfAssignedWorkers(numberOfAssignedWorkers-1);;
 			city.setTotalPopulation(city.getTotalPopulation()-1);
 			events.add("Bandits killed a Carpenter");
+			resetProbability();
 		}
 		else{
 			handleNext(city, events);

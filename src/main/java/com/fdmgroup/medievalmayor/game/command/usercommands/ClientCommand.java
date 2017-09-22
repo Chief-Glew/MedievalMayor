@@ -1,5 +1,6 @@
 package com.fdmgroup.medievalmayor.game.command.usercommands;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
@@ -29,8 +30,8 @@ public class ClientCommand {
 		this.commandInvoker = commandInvoker;
 	}
 
-	public void nextTurn(City city) throws GameOverException, GameWinException {
-		UserCommand nextTurn = new NextTurnCommand(city);
+	public void nextTurn(City city, List<String> events) throws GameOverException, GameWinException {
+		UserCommand nextTurn = new NextTurnCommand(city, events);
 		invoke(nextTurn);
 		logger.info("NextTurn method used in ClientCommand class");
 		if(city.getTotalPopulation()<=0){

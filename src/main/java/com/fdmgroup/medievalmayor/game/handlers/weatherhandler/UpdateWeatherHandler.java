@@ -11,7 +11,7 @@ public abstract class UpdateWeatherHandler {
 
 	protected UpdateWeatherHandler next; 
 
-	public abstract double handle(City city, double weather, String weatherEvent);
+	public abstract double handle(double weather, List<String> events);
 
 	public void addToChain(UpdateWeatherHandler handler) {
 		if (next==null) {
@@ -24,6 +24,15 @@ public abstract class UpdateWeatherHandler {
 
 	protected boolean isNextNull() {
 		return next==null;
+	}
+	
+	protected double handleNext(double weather, List<String> events) {
+		if (!isNextNull()) {
+			return next.handle(weather, events);
+		}
+		else {
+			return 0;
+		}
 	}
 }
 

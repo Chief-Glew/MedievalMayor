@@ -1,5 +1,7 @@
 package com.fdmgroup.medievalmayor.game.command.updatecommands;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,12 +20,14 @@ public class UpdateWeatherCommand implements UserCommand{
 
 	private City city;
 	private UpdateWeatherHandler updateWeatherHandler;
+	private List<String> events;
 			
-	public UpdateWeatherCommand(City city) {
+	public UpdateWeatherCommand(City city, List<String> events) {
 		this.city = city;
 		updateWeatherHandler = new GoodWeatherHandler();
 		updateWeatherHandler.addToChain(new BadWeatherHandler());
 		updateWeatherHandler.addToChain(new NormalWeatherHandler());
+		this.events = events;
 	}
 
 	@Override
@@ -31,10 +35,9 @@ public class UpdateWeatherCommand implements UserCommand{
 		logger.info("UpdateWeatherCommand executed");
 		Farm farm = (Farm)city.getResourceProducerOfType(Farm.class);
 		double weather = Math.random();
-		String weatherEffects = "";
-		double weatherMultiplier = updateWeatherHandler.handle(city, weather, weatherEffects);
+		double weatherMultiplier = updateWeatherHandler.handle(weather, events);
 		farm.setWeatherMultiplier(weatherMultiplier);
-		UserCommand updateResourceCommand = new UpdateResourcesCommand(city);
+		UserCommand updateResourceCommand = new UpdateResourcesCommand(city, events);
 		CommandInvoker commandInvoker = new CommandInvoker();
 		commandInvoker.setCommand(updateResourceCommand);
 		commandInvoker.invokeCommands();

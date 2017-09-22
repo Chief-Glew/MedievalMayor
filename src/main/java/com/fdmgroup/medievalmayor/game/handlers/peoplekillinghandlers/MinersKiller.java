@@ -24,10 +24,11 @@ public class MinersKiller extends PeopleKillingHandler{
 		int numberOfAssignedWorkers = mine.getNumberOfAssignedWorkers();
 		boolean mineHasPeople = numberOfAssignedWorkers!=0;
 		
-		if (mineHasPeople&&isRandomNumberLessThanPointTwo()){
+		if (mineHasPeople&&isRandomNumberLessThanProbabilityOfDeath()){
 			mine.setNumberOfAssignedWorkers(numberOfAssignedWorkers-1);;
 			city.setTotalPopulation(city.getTotalPopulation()-1);
 			events.add("Bandits killed a Miner");
+			resetProbability();
 		}
 		else{
 			handleNext(city, events);
